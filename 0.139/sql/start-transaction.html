@@ -1,0 +1,99 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7.24. START TRANSACTION &mdash; Presto 0.139 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.139',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Presto 0.139 Documentation" href="../index.html" />
+    <link rel="up" title="7. SQL Statement Syntax" href="../sql.html" />
+    <link rel="next" title="7.25. USE" href="use.html" />
+    <link rel="prev" title="7.23. SHOW TABLES" href="show-tables.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.139 Documentation</span></a></h1>
+    <h2 class="heading"><span>7.24. START TRANSACTION</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="show-tables.html">7.23. SHOW TABLES</a>
+    </span>
+    <span class="right">
+        <a href="use.html">7.25. USE</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="start-transaction">
+<h1>7.24. START TRANSACTION</h1>
+<div class="section" id="synopsis">
+<h2>Synopsis</h2>
+<div class="highlight-none"><div class="highlight"><pre>START TRANSACTION [ mode [, ...] ]
+</pre></div>
+</div>
+<p>where <tt class="docutils literal"><span class="pre">mode</span></tt> is one of</p>
+<div class="highlight-none"><div class="highlight"><pre>ISOLATION LEVEL { READ UNCOMMITTED | READ COMMITTED | REPEATABLE READ | SERIALIZABLE }
+READ { ONLY | WRITE }
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description</h2>
+<p>Start a new transaction for the current session.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples</h2>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">START</span> <span class="n">TRANSACTION</span><span class="p">;</span>
+<span class="k">START</span> <span class="n">TRANSACTION</span> <span class="k">ISOLATION</span> <span class="k">LEVEL</span> <span class="k">REPEATABLE</span> <span class="k">READ</span><span class="p">;</span>
+<span class="k">START</span> <span class="n">TRANSACTION</span> <span class="k">READ</span> <span class="k">WRITE</span><span class="p">;</span>
+<span class="k">START</span> <span class="n">TRANSACTION</span> <span class="k">ISOLATION</span> <span class="k">LEVEL</span> <span class="k">READ</span> <span class="k">COMMITTED</span><span class="p">,</span> <span class="k">READ</span> <span class="k">ONLY</span><span class="p">;</span>
+<span class="k">START</span> <span class="n">TRANSACTION</span> <span class="k">READ</span> <span class="k">WRITE</span><span class="p">,</span> <span class="k">ISOLATION</span> <span class="k">LEVEL</span> <span class="k">SERIALIZABLE</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="show-tables.html">7.23. SHOW TABLES</a>
+    </span>
+    <span class="right">
+        <a href="use.html">7.25. USE</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer">
+    </div>
+  </body>
+</html>

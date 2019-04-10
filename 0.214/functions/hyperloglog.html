@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6.20. HyperLogLog Functions &#8212; Presto 0.214 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.214',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="Presto 0.214 Documentation" href="../index.html" />
+    <link rel="up" title="6. Functions and Operators" href="../functions.html" />
+    <link rel="next" title="6.21. Quantile Digest Functions" href="qdigest.html" />
+    <link rel="prev" title="6.19. Geospatial Functions" href="geospatial.html" /> 
+  </head>
+  <body role="document">
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.214 Documentation</span></a></h1>
+    <h2 class="heading"><span>6.20. HyperLogLog Functions</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="geospatial.html">6.19. Geospatial Functions</a>
+    </span>
+    <span class="right">
+        <a href="qdigest.html">6.21. Quantile Digest Functions</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="hyperloglog-functions">
+<h1>6.20. HyperLogLog Functions</h1>
+<p>Presto implements the <a class="reference internal" href="aggregate.html#approx_distinct" title="approx_distinct"><code class="xref py py-func docutils literal"><span class="pre">approx_distinct()</span></code></a> function using the
+<a class="reference external" href="https://en.wikipedia.org/wiki/HyperLogLog">HyperLogLog</a> data structure.</p>
+<div class="section" id="data-structures">
+<h2>Data Structures</h2>
+<p>Presto implements HyperLogLog data sketches as a set of 32-bit buckets which
+store a <em>maximum hash</em>. They can be stored sparsely (as a map from bucket ID
+to bucket), or densely (as a contiguous memory block). The HyperLogLog data
+structure starts as the sparse representation, switching to dense when it is
+more efficient. The P4HyperLogLog structure is initialized densely and
+remains dense for its lifetime.</p>
+<p><a class="reference internal" href="../language/types.html#hyperloglog-type"><span class="std std-ref">HyperLogLog</span></a> implicitly casts to <a class="reference internal" href="../language/types.html#p4hyperloglog-type"><span class="std std-ref">P4HyperLogLog</span></a>,
+while one can explicitly cast <code class="docutils literal"><span class="pre">HyperLogLog</span></code> to <code class="docutils literal"><span class="pre">P4HyperLogLog</span></code>:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">cast</span><span class="p">(</span><span class="n">hll</span> <span class="k">AS</span> <span class="n">P4HyperLogLog</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="serialization">
+<h2>Serialization</h2>
+<p>Data sketches can be serialized to and deserialized from <code class="docutils literal"><span class="pre">varbinary</span></code>. This
+allows them to be stored for later use.  Combined with the ability to merge
+multiple sketches, this allows one to calculate <a class="reference internal" href="aggregate.html#approx_distinct" title="approx_distinct"><code class="xref py py-func docutils literal"><span class="pre">approx_distinct()</span></code></a> of the
+elements of a partition of a query, then for the entirety of a query with very
+little cost.</p>
+<p>For example, calculating the <code class="docutils literal"><span class="pre">HyperLogLog</span></code> for daily unique users will allow
+weekly or monthly unique users to be calculated incrementally by combining the
+dailies. This is similar to computing weekly revenue by summing daily revenue.
+Uses of <a class="reference internal" href="aggregate.html#approx_distinct" title="approx_distinct"><code class="xref py py-func docutils literal"><span class="pre">approx_distinct()</span></code></a> with <code class="docutils literal"><span class="pre">GROUPING</span> <span class="pre">SETS</span></code> can be converted to use
+<code class="docutils literal"><span class="pre">HyperLogLog</span></code>.  Examples:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">visit_summaries</span> <span class="p">(</span>
+  <span class="n">visit_date</span> <span class="nb">date</span><span class="p">,</span>
+  <span class="n">hll</span> <span class="n">varbinary</span>
+<span class="p">);</span>
+
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">visit_summaries</span>
+<span class="k">SELECT</span> <span class="n">visit_date</span><span class="p">,</span> <span class="k">cast</span><span class="p">(</span><span class="n">approx_set</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span> <span class="k">AS</span> <span class="n">varbinary</span><span class="p">)</span>
+<span class="k">FROM</span> <span class="n">user_visits</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">visit_date</span><span class="p">;</span>
+
+<span class="k">SELECT</span> <span class="k">cardinality</span><span class="p">(</span><span class="n">merge</span><span class="p">(</span><span class="k">cast</span><span class="p">(</span><span class="n">hll</span> <span class="k">AS</span> <span class="n">HyperLogLog</span><span class="p">)))</span> <span class="k">AS</span> <span class="n">weekly_unique_users</span>
+<span class="k">FROM</span> <span class="n">visit_summaries</span>
+<span class="k">WHERE</span> <span class="n">visit_date</span> <span class="o">&gt;=</span> <span class="k">current_date</span> <span class="o">-</span> <span class="nb">interval</span> <span class="s1">&#39;7&#39;</span> <span class="k">day</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="functions">
+<h2>Functions</h2>
+<dl class="function">
+<dt id="approx_set">
+<code class="descname">approx_set</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span> &rarr; HyperLogLog</dt>
+<dd><p>Returns the <code class="docutils literal"><span class="pre">HyperLogLog</span></code> sketch of the input data set of <code class="docutils literal"><span class="pre">x</span></code>. This
+data sketch underlies <a class="reference internal" href="aggregate.html#approx_distinct" title="approx_distinct"><code class="xref py py-func docutils literal"><span class="pre">approx_distinct()</span></code></a> and can be stored and
+used later by calling <code class="docutils literal"><span class="pre">cardinality()</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">cardinality</code><span class="sig-paren">(</span><em>hll</em><span class="sig-paren">)</span> &rarr; bigint</dt>
+<dd><p>This will perform <a class="reference internal" href="aggregate.html#approx_distinct" title="approx_distinct"><code class="xref py py-func docutils literal"><span class="pre">approx_distinct()</span></code></a> on the data summarized by the
+<code class="docutils literal"><span class="pre">hll</span></code> HyperLogLog data sketch.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="empty_approx_set">
+<code class="descname">empty_approx_set</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; HyperLogLog</dt>
+<dd><p>Returns an empty <code class="docutils literal"><span class="pre">HyperLogLog</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="merge">
+<code class="descname">merge</code><span class="sig-paren">(</span><em>HyperLogLog</em><span class="sig-paren">)</span> &rarr; HyperLogLog</dt>
+<dd><p>Returns the <code class="docutils literal"><span class="pre">HyperLogLog</span></code> of the aggregate union of the individual <code class="docutils literal"><span class="pre">hll</span></code>
+HyperLogLog structures.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="geospatial.html">6.19. Geospatial Functions</a>
+    </span>
+    <span class="right">
+        <a href="qdigest.html">6.21. Quantile Digest Functions</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

@@ -1,0 +1,99 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>10.1. Release 0.144 &mdash; Presto 0.144 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.144',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Presto 0.144 Documentation" href="../index.html" />
+    <link rel="up" title="10. Release Notes" href="../release.html" />
+    <link rel="next" title="10.2. Release 0.143" href="release-0.143.html" />
+    <link rel="prev" title="10. Release Notes" href="../release.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.144 Documentation</span></a></h1>
+    <h2 class="heading"><span>10.1. Release 0.144</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="../release.html">10. Release Notes</a>
+    </span>
+    <span class="right">
+        <a href="release-0.143.html">10.2. Release 0.143</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-144">
+<h1>10.1. Release 0.144</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix already exists check when adding a column to be case-insensitive.</li>
+<li>Fix correctness issue when complex grouping operations have a partitioned source.</li>
+<li>Fix missing coercion when using <tt class="docutils literal"><span class="pre">INSERT</span></tt> with <tt class="docutils literal"><span class="pre">NULL</span></tt> literals.</li>
+<li>Fix regression that the queries fail when aggregation functions present in <tt class="docutils literal"><span class="pre">AT</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></tt>.</li>
+<li>Fix potential memory starvation when a query is run with <tt class="docutils literal"><span class="pre">resource_overcommit=true</span></tt>.</li>
+<li>Queries run with <tt class="docutils literal"><span class="pre">resource_overcommit=true</span></tt> may now be killed before
+they reach <tt class="docutils literal"><span class="pre">query.max-memory</span></tt> if the cluster is low on memory.</li>
+<li>Discard output stage JSON from completion event when it is very long.
+This limit can be configured with <tt class="docutils literal"><span class="pre">event.max-output-stage-size</span></tt>.</li>
+<li>Add support for <a class="reference internal" href="../sql/explain-analyze.html"><em>EXPLAIN ANALYZE</em></a>.</li>
+<li>Change <tt class="docutils literal"><span class="pre">infoUri</span></tt> field of <tt class="docutils literal"><span class="pre">/v1/statement</span></tt> to point to query HTML page instead of JSON.</li>
+<li>Improve performance when processing results in CLI and JDBC driver.</li>
+<li>Improve performance of <tt class="docutils literal"><span class="pre">GROUP</span> <span class="pre">BY</span></tt> queries.</li>
+</ul>
+</div>
+<div class="section" id="hive-changes">
+<h2>Hive Changes</h2>
+<ul class="simple">
+<li>Fix ORC reader to actually use <tt class="docutils literal"><span class="pre">hive.orc.stream-buffer-size</span></tt> configuration property.</li>
+<li>Add support for creating and inserting into bucketed tables.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="../release.html">10. Release Notes</a>
+    </span>
+    <span class="right">
+        <a href="release-0.143.html">10.2. Release 0.143</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer">
+    </div>
+  </body>
+</html>

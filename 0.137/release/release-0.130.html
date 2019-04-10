@@ -1,0 +1,89 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>10.8. Release 0.130 &mdash; Presto 0.137 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.137',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Presto 0.137 Documentation" href="../index.html" />
+    <link rel="up" title="10. Release Notes" href="../release.html" />
+    <link rel="next" title="10.9. Release 0.129" href="release-0.129.html" />
+    <link rel="prev" title="10.7. Release 0.131" href="release-0.131.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.137 Documentation</span></a></h1>
+    <h2 class="heading"><span>10.8. Release 0.130</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.131.html">10.7. Release 0.131</a>
+    </span>
+    <span class="right">
+        <a href="release-0.129.html">10.9. Release 0.129</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-130">
+<h1>10.8. Release 0.130</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix a performance regression in <tt class="docutils literal"><span class="pre">GROUP</span> <span class="pre">BY</span></tt> and <tt class="docutils literal"><span class="pre">JOIN</span></tt> queries when the
+length of the keys is between 16 and 31 bytes.</li>
+<li>Add <a class="reference internal" href="../functions/map.html#map_concat" title="map_concat"><tt class="xref py py-func docutils literal"><span class="pre">map_concat()</span></tt></a> function.</li>
+<li>Performance improvements for filters, projections and dictionary encoded data.
+This optimization is turned off by default. It can be configured via the
+<tt class="docutils literal"><span class="pre">optimizer.columnar-processing-dictionary</span></tt> config property or the
+<tt class="docutils literal"><span class="pre">columnar_processing_dictionary</span></tt> session property.</li>
+<li>Improve performance of aggregation queries with large numbers of groups.</li>
+<li>Improve performance for queries that use <a class="reference internal" href="../language/types.html#array-type"><em>ARRAY</em></a> type.</li>
+<li>Fix querying remote views in MySQL and PostgreSQL connectors.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.131.html">10.7. Release 0.131</a>
+    </span>
+    <span class="right">
+        <a href="release-0.129.html">10.9. Release 0.129</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer">
+    </div>
+  </body>
+</html>

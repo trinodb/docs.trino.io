@@ -1,0 +1,98 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>10.7. Release 0.144.6 &mdash; Presto 0.150 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.150',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Presto 0.150 Documentation" href="../index.html" />
+    <link rel="up" title="10. Release Notes" href="../release.html" />
+    <link rel="next" title="10.8. Release 0.144.5" href="release-0.144.5.html" />
+    <link rel="prev" title="10.6. Release 0.145" href="release-0.145.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.150 Documentation</span></a></h1>
+    <h2 class="heading"><span>10.7. Release 0.144.6</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.145.html">10.6. Release 0.145</a>
+    </span>
+    <span class="right">
+        <a href="release-0.144.5.html">10.8. Release 0.144.5</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-144-6">
+<h1>10.7. Release 0.144.6</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<p>This release fixes several problems with large and negative intervals.</p>
+<ul class="simple">
+<li>Fix parsing of negative interval literals. Previously, the sign of each field was treated
+independently instead of applying to the entire interval value. For example, the literal
+<tt class="docutils literal"><span class="pre">INTERVAL</span> <span class="pre">'-2-3'</span> <span class="pre">YEAR</span> <span class="pre">TO</span> <span class="pre">MONTH</span></tt> was interpreted as a negative interval of <tt class="docutils literal"><span class="pre">21</span></tt> months
+rather than <tt class="docutils literal"><span class="pre">27</span></tt> months (positive <tt class="docutils literal"><span class="pre">3</span></tt> months was added to negative <tt class="docutils literal"><span class="pre">24</span></tt> months).</li>
+<li>Fix handling of <tt class="docutils literal"><span class="pre">INTERVAL</span> <span class="pre">DAY</span> <span class="pre">TO</span> <span class="pre">SECOND</span></tt> type in REST API. Previously, intervals greater than
+<tt class="docutils literal"><span class="pre">2,147,483,647</span></tt> milliseconds (about <tt class="docutils literal"><span class="pre">24</span></tt> days) were returned as the wrong value.</li>
+<li>Fix handling of <tt class="docutils literal"><span class="pre">INTERVAL</span> <span class="pre">YEAR</span> <span class="pre">TO</span> <span class="pre">MONTH</span></tt> type. Previously, intervals greater than
+<tt class="docutils literal"><span class="pre">2,147,483,647</span></tt> months were returned as the wrong value from the REST API
+and parsed incorrectly when specified as a literal.</li>
+<li>Fix formatting of negative intervals in REST API. Previously, negative intervals
+had a negative sign before each component and could not be parsed.</li>
+<li>Fix formatting of negative intervals in JDBC <tt class="docutils literal"><span class="pre">PrestoInterval</span></tt> classes.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Older versions of the JDBC driver will misinterpret most negative
+intervals from new servers. Make sure to update the JDBC driver
+along with the server.</p>
+</div>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.145.html">10.6. Release 0.145</a>
+    </span>
+    <span class="right">
+        <a href="release-0.144.5.html">10.8. Release 0.144.5</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer">
+    </div>
+  </body>
+</html>

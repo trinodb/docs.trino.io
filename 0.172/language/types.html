@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7.1. Data Types &#8212; Presto 0.172 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.172',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="Presto 0.172 Documentation" href="../index.html" />
+    <link rel="up" title="7. SQL Language" href="../language.html" />
+    <link rel="next" title="8. SQL Statement Syntax" href="../sql.html" />
+    <link rel="prev" title="7. SQL Language" href="../language.html" /> 
+  </head>
+  <body role="document">
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.172 Documentation</span></a></h1>
+    <h2 class="heading"><span>7.1. Data Types</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="../language.html">7. SQL Language</a>
+    </span>
+    <span class="right">
+        <a href="../sql.html">8. SQL Statement Syntax</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="data-types">
+<h1>7.1. Data Types</h1>
+<p>Presto has a set of built-in data types, described below.
+Additional types can be provided by plugins.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Connectors are not required to support all types.
+See connector documentation for details on supported types.</p>
+</div>
+<div class="section" id="boolean">
+<h2>BOOLEAN</h2>
+<blockquote>
+<div>This type captures boolean values <code class="docutils literal"><span class="pre">true</span></code> and <code class="docutils literal"><span class="pre">false</span></code>.</div></blockquote>
+</div>
+<div class="section" id="tinyint">
+<h2>TINYINT</h2>
+<blockquote>
+<div>A 8-bit signed two&#8217;s complement integer with a minimum value of
+<code class="docutils literal"><span class="pre">-2^7</span></code> and a maximum value of <code class="docutils literal"><span class="pre">2^7</span> <span class="pre">-</span> <span class="pre">1</span></code>.</div></blockquote>
+</div>
+<div class="section" id="smallint">
+<h2>SMALLINT</h2>
+<blockquote>
+<div>A 16-bit signed two&#8217;s complement integer with a minimum value of
+<code class="docutils literal"><span class="pre">-2^15</span></code> and a maximum value of <code class="docutils literal"><span class="pre">2^15</span> <span class="pre">-</span> <span class="pre">1</span></code>.</div></blockquote>
+</div>
+<div class="section" id="integer">
+<h2>INTEGER</h2>
+<blockquote>
+<div>A 32-bit signed two&#8217;s complement integer with a minimum value of
+<code class="docutils literal"><span class="pre">-2^31</span></code> and a maximum value of <code class="docutils literal"><span class="pre">2^31</span> <span class="pre">-</span> <span class="pre">1</span></code>.</div></blockquote>
+</div>
+<div class="section" id="bigint">
+<h2>BIGINT</h2>
+<blockquote>
+<div>A 64-bit signed two&#8217;s complement integer with a minimum value of
+<code class="docutils literal"><span class="pre">-2^63</span></code> and a maximum value of <code class="docutils literal"><span class="pre">2^63</span> <span class="pre">-</span> <span class="pre">1</span></code>.</div></blockquote>
+</div>
+<div class="section" id="real">
+<h2>REAL</h2>
+<blockquote>
+<div>A real is a 32-bit inexact, variable-precision implementing the
+IEEE Standard 754 for Binary Floating-Point Arithmetic.</div></blockquote>
+</div>
+<div class="section" id="double">
+<h2>DOUBLE</h2>
+<blockquote>
+<div>A double is a 64-bit inexact, variable-precision implementing the
+IEEE Standard 754 for Binary Floating-Point Arithmetic.</div></blockquote>
+</div>
+<div class="section" id="decimal">
+<h2>DECIMAL</h2>
+<blockquote>
+<div><p>A fixed precision decimal number. Precision up to 38 digits is supported
+but performance is best up to 17 digits.</p>
+<p>DECIMAL type takes two literal parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>precision</strong> - total number of digits</li>
+<li><strong>scale</strong> - number of digits in fractional part. Scale is optional and defaults to 0.</li>
+</ul>
+</div></blockquote>
+<p>Example type definitions: <code class="docutils literal"><span class="pre">DECIMAL(10,3)</span></code>, <code class="docutils literal"><span class="pre">DECIMAL(20)</span></code></p>
+<p>Example literals: <code class="docutils literal"><span class="pre">DECIMAL</span> <span class="pre">'10.3'</span></code>, <code class="docutils literal"><span class="pre">DECIMAL</span> <span class="pre">'1234567890'</span></code></p>
+</div></blockquote>
+</div>
+<div class="section" id="varchar">
+<h2>VARCHAR</h2>
+<blockquote>
+<div><p>Variable length character data with an optional maximum length.</p>
+<p>Example type definitions: <code class="docutils literal"><span class="pre">varchar</span></code>, <code class="docutils literal"><span class="pre">varchar(20)</span></code></p>
+</div></blockquote>
+</div>
+<div class="section" id="char">
+<h2>CHAR</h2>
+<blockquote>
+<div><p>Fixed length character data. A CHAR type without length specified has a default length of 1.
+A <code class="docutils literal"><span class="pre">CHAR(x)</span></code> value always has <code class="docutils literal"><span class="pre">x</span></code> characters. For instance, casting <code class="docutils literal"><span class="pre">dog</span></code> to <code class="docutils literal"><span class="pre">CHAR(7)</span></code>
+adds 4 implicit trailing spaces. Leading and trailing spaces are included in comparisons of
+CHAR values. As a result, two character values with different lengths (<code class="docutils literal"><span class="pre">CHAR(x)</span></code> and
+<code class="docutils literal"><span class="pre">CHAR(y)</span></code> where <code class="docutils literal"><span class="pre">x</span> <span class="pre">!=</span> <span class="pre">y</span></code>) will never be equal.</p>
+<p>Example type definitions: <code class="docutils literal"><span class="pre">char</span></code>, <code class="docutils literal"><span class="pre">char(20)</span></code></p>
+</div></blockquote>
+</div>
+<div class="section" id="varbinary">
+<h2>VARBINARY</h2>
+<blockquote>
+<div><p>Variable length binary data.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Binary strings with length are not yet supported: <code class="docutils literal"><span class="pre">varbinary(n)</span></code></p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="json">
+<h2>JSON</h2>
+<blockquote>
+<div>Variable length json data.</div></blockquote>
+</div>
+<div class="section" id="date">
+<h2>DATE</h2>
+<blockquote>
+<div><p>Calendar date (year, month, day).</p>
+<p>Example: <code class="docutils literal"><span class="pre">DATE</span> <span class="pre">'2001-08-22'</span></code></p>
+</div></blockquote>
+</div>
+<div class="section" id="time">
+<h2>TIME</h2>
+<blockquote>
+<div><p>Time of day (hour, minute, second, millisecond) without a time zone.
+Values of this type are parsed and rendered in the session time zone.</p>
+<p>Example: <code class="docutils literal"><span class="pre">TIME</span> <span class="pre">'01:02:03.456'</span></code></p>
+</div></blockquote>
+</div>
+<div class="section" id="time-with-time-zone">
+<h2>TIME WITH TIME ZONE</h2>
+<blockquote>
+<div><p>Time of day (hour, minute, second, millisecond) with a time zone.
+Values of this type are rendered using the time zone from the value.</p>
+<p>Example: <code class="docutils literal"><span class="pre">TIME</span> <span class="pre">'01:02:03.456</span> <span class="pre">America/Los_Angeles'</span></code></p>
+</div></blockquote>
+</div>
+<div class="section" id="timestamp">
+<h2>TIMESTAMP</h2>
+<blockquote>
+<div><p>Instant in time that includes the date and time of day without a time zone.
+Values of this type are parsed and rendered in the session time zone.</p>
+<p>Example: <code class="docutils literal"><span class="pre">TIMESTAMP</span> <span class="pre">'2001-08-22</span> <span class="pre">03:04:05.321'</span></code></p>
+</div></blockquote>
+</div>
+<div class="section" id="timestamp-with-time-zone">
+<h2>TIMESTAMP WITH TIME ZONE</h2>
+<blockquote>
+<div><p>Instant in time that includes the date and time of day with a time zone.
+Values of this type are rendered using the time zone from the value.</p>
+<p>Example: <code class="docutils literal"><span class="pre">TIMESTAMP</span> <span class="pre">'2001-08-22</span> <span class="pre">03:04:05.321</span> <span class="pre">America/Los_Angeles'</span></code></p>
+</div></blockquote>
+</div>
+<div class="section" id="interval-year-to-month">
+<h2>INTERVAL YEAR TO MONTH</h2>
+<blockquote>
+<div><p>Span of years and months.</p>
+<p>Example: <code class="docutils literal"><span class="pre">INTERVAL</span> <span class="pre">'3'</span> <span class="pre">MONTH</span></code></p>
+</div></blockquote>
+</div>
+<div class="section" id="interval-day-to-second">
+<h2>INTERVAL DAY TO SECOND</h2>
+<blockquote>
+<div><p>Span of days, hours, minutes, seconds and milliseconds.</p>
+<p>Example: <code class="docutils literal"><span class="pre">INTERVAL</span> <span class="pre">'2'</span> <span class="pre">DAY</span></code></p>
+</div></blockquote>
+</div>
+<div class="section" id="array">
+<span id="array-type"></span><h2>ARRAY</h2>
+<blockquote>
+<div><p>An array of the given component type.</p>
+<p>Example: <code class="docutils literal"><span class="pre">ARRAY[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code></p>
+</div></blockquote>
+</div>
+<div class="section" id="map">
+<span id="map-type"></span><h2>MAP</h2>
+<blockquote>
+<div><p>A map between the given component types.</p>
+<p>Example: <code class="docutils literal"><span class="pre">MAP(ARRAY['foo',</span> <span class="pre">'bar'],</span> <span class="pre">ARRAY[1,</span> <span class="pre">2])</span></code></p>
+</div></blockquote>
+</div>
+<div class="section" id="row">
+<span id="row-type"></span><h2>ROW</h2>
+<blockquote>
+<div><p>A structure made up of named fields. The fields may be of any SQL type, and are
+accessed with field reference operator <code class="docutils literal"><span class="pre">.</span></code></p>
+<p>Example: <code class="docutils literal"><span class="pre">CAST(ROW(1,</span> <span class="pre">2.0)</span> <span class="pre">AS</span> <span class="pre">ROW(x</span> <span class="pre">BIGINT,</span> <span class="pre">y</span> <span class="pre">DOUBLE))</span></code></p>
+</div></blockquote>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="../language.html">7. SQL Language</a>
+    </span>
+    <span class="right">
+        <a href="../sql.html">8. SQL Statement Syntax</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

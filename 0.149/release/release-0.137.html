@@ -1,0 +1,111 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>10.19. Release 0.137 &mdash; Presto 0.149 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.149',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Presto 0.149 Documentation" href="../index.html" />
+    <link rel="up" title="10. Release Notes" href="../release.html" />
+    <link rel="next" title="10.20. Release 0.136" href="release-0.136.html" />
+    <link rel="prev" title="10.18. Release 0.138" href="release-0.138.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.149 Documentation</span></a></h1>
+    <h2 class="heading"><span>10.19. Release 0.137</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.138.html">10.18. Release 0.138</a>
+    </span>
+    <span class="right">
+        <a href="release-0.136.html">10.20. Release 0.136</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-137">
+<h1>10.19. Release 0.137</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix <tt class="docutils literal"><span class="pre">current_date</span></tt> to return correct results for all time zones.</li>
+<li>Fix invalid plans when scalar subqueries use <tt class="docutils literal"><span class="pre">GROUP</span> <span class="pre">BY</span></tt>, <tt class="docutils literal"><span class="pre">DISTINCT</span></tt> or <tt class="docutils literal"><span class="pre">JOIN</span></tt>.</li>
+<li>Do not allow creating views with a column type of <tt class="docutils literal"><span class="pre">UNKNOWN</span></tt>.</li>
+<li>Improve expression optimizer to remove some redundant operations.</li>
+<li>Add <a class="reference internal" href="../functions/bitwise.html#bit_count" title="bit_count"><tt class="xref py py-func docutils literal"><span class="pre">bit_count()</span></tt></a>, <a class="reference internal" href="../functions/bitwise.html#bitwise_not" title="bitwise_not"><tt class="xref py py-func docutils literal"><span class="pre">bitwise_not()</span></tt></a>, <a class="reference internal" href="../functions/bitwise.html#bitwise_and" title="bitwise_and"><tt class="xref py py-func docutils literal"><span class="pre">bitwise_and()</span></tt></a>,
+<a class="reference internal" href="../functions/bitwise.html#bitwise_or" title="bitwise_or"><tt class="xref py py-func docutils literal"><span class="pre">bitwise_or()</span></tt></a>, and <a class="reference internal" href="../functions/bitwise.html#bitwise_xor" title="bitwise_xor"><tt class="xref py py-func docutils literal"><span class="pre">bitwise_xor()</span></tt></a> functions.</li>
+<li>Add <a class="reference internal" href="../functions/aggregate.html#approx_distinct" title="approx_distinct"><tt class="xref py py-func docutils literal"><span class="pre">approx_distinct()</span></tt></a> aggregation support for <tt class="docutils literal"><span class="pre">VARBINARY</span></tt> input.</li>
+<li>Add create time to query detail page in UI.</li>
+<li>Add support for <tt class="docutils literal"><span class="pre">VARCHAR(length)</span></tt> type.</li>
+<li>Track per-stage peak memory usage.</li>
+<li>Allow using double input for <a class="reference internal" href="../functions/aggregate.html#approx_percentile" title="approx_percentile"><tt class="xref py py-func docutils literal"><span class="pre">approx_percentile()</span></tt></a> with an array of
+percentiles.</li>
+<li>Add API to JDBC driver to track query progress.</li>
+</ul>
+</div>
+<div class="section" id="hive-changes">
+<h2>Hive Changes</h2>
+<ul class="simple">
+<li>Do not allow inserting into tables when the Hive type does not match
+the Presto type. Previously, Presto would insert data that did not
+match the table or partition type and that data could not be read by
+Hive. For example, Presto would write files containing <tt class="docutils literal"><span class="pre">BIGINT</span></tt>
+data for a Hive column type of <tt class="docutils literal"><span class="pre">INT</span></tt>.</li>
+<li>Add validation to <a class="reference internal" href="../sql/create-table.html"><em>CREATE TABLE</em></a> and <a class="reference internal" href="../sql/create-table-as.html"><em>CREATE TABLE AS</em></a>
+to check that partition keys are the last columns in the table and in the same
+order as the table properties.</li>
+<li>Remove <tt class="docutils literal"><span class="pre">retention_days</span></tt> table property. This property is not used by Hive.</li>
+<li>Fix Parquet decoding of <tt class="docutils literal"><span class="pre">MAP</span></tt> containing a null value.</li>
+<li>Add support for accessing ORC columns by name. By default, columns in ORC
+files are accessed by their ordinal position in the Hive table definition.
+To access columns based on the names recorded in the ORC file, set
+<tt class="docutils literal"><span class="pre">hive.orc.use-column-names=true</span></tt> in your Hive catalog properties file.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.138.html">10.18. Release 0.138</a>
+    </span>
+    <span class="right">
+        <a href="release-0.136.html">10.20. Release 0.136</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer">
+    </div>
+  </body>
+</html>

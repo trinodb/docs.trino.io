@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6.9. Binary Functions &#8212; Presto 0.172 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.172',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="Presto 0.172 Documentation" href="../index.html" />
+    <link rel="up" title="6. Functions and Operators" href="../functions.html" />
+    <link rel="next" title="6.10. Date and Time Functions and Operators" href="datetime.html" />
+    <link rel="prev" title="6.8. String Functions and Operators" href="string.html" /> 
+  </head>
+  <body role="document">
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.172 Documentation</span></a></h1>
+    <h2 class="heading"><span>6.9. Binary Functions</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="string.html">6.8. String Functions and Operators</a>
+    </span>
+    <span class="right">
+        <a href="datetime.html">6.10. Date and Time Functions and Operators</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="binary-functions">
+<h1>6.9. Binary Functions</h1>
+<div class="section" id="id1">
+<h2>Binary Functions</h2>
+<dl class="function">
+<dt>
+<code class="descname">length</code><span class="sig-paren">(</span><em>binary</em><span class="sig-paren">)</span> &rarr; bigint</dt>
+<dd><p>Returns the length of <code class="docutils literal"><span class="pre">binary</span></code> in bytes.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="to_base64">
+<code class="descname">to_base64</code><span class="sig-paren">(</span><em>binary</em><span class="sig-paren">)</span> &rarr; varchar</dt>
+<dd><p>Encodes <code class="docutils literal"><span class="pre">binary</span></code> into a base64 string representation.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="from_base64">
+<code class="descname">from_base64</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &rarr; varbinary</dt>
+<dd><p>Decodes binary data from the base64 encoded <code class="docutils literal"><span class="pre">string</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="to_base64url">
+<code class="descname">to_base64url</code><span class="sig-paren">(</span><em>binary</em><span class="sig-paren">)</span> &rarr; varchar</dt>
+<dd><p>Encodes <code class="docutils literal"><span class="pre">binary</span></code> into a base64 string representation using the URL safe alphabet.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="from_base64url">
+<code class="descname">from_base64url</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &rarr; varbinary</dt>
+<dd><p>Decodes binary data from the base64 encoded <code class="docutils literal"><span class="pre">string</span></code> using the URL safe alphabet.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="to_hex">
+<code class="descname">to_hex</code><span class="sig-paren">(</span><em>binary</em><span class="sig-paren">)</span> &rarr; varchar</dt>
+<dd><p>Encodes <code class="docutils literal"><span class="pre">binary</span></code> into a hex string representation.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="from_hex">
+<code class="descname">from_hex</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &rarr; varbinary</dt>
+<dd><p>Decodes binary data from the hex encoded <code class="docutils literal"><span class="pre">string</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="to_big_endian_64">
+<code class="descname">to_big_endian_64</code><span class="sig-paren">(</span><em>bigint</em><span class="sig-paren">)</span> &rarr; varbinary</dt>
+<dd><p>Encodes <code class="docutils literal"><span class="pre">bigint</span></code> in a 64-bit 2&#8217;s complement big endian format.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="from_big_endian_64">
+<code class="descname">from_big_endian_64</code><span class="sig-paren">(</span><em>binary</em><span class="sig-paren">)</span> &rarr; bigint</dt>
+<dd><p>Decodes <code class="docutils literal"><span class="pre">bigint</span></code> value from a 64-bit 2&#8217;s complement big endian <code class="docutils literal"><span class="pre">binary</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="md5">
+<code class="descname">md5</code><span class="sig-paren">(</span><em>binary</em><span class="sig-paren">)</span> &rarr; varbinary</dt>
+<dd><p>Computes the md5 hash of <code class="docutils literal"><span class="pre">binary</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sha1">
+<code class="descname">sha1</code><span class="sig-paren">(</span><em>binary</em><span class="sig-paren">)</span> &rarr; varbinary</dt>
+<dd><p>Computes the sha1 hash of <code class="docutils literal"><span class="pre">binary</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sha256">
+<code class="descname">sha256</code><span class="sig-paren">(</span><em>binary</em><span class="sig-paren">)</span> &rarr; varbinary</dt>
+<dd><p>Computes the sha256 hash of <code class="docutils literal"><span class="pre">binary</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sha512">
+<code class="descname">sha512</code><span class="sig-paren">(</span><em>binary</em><span class="sig-paren">)</span> &rarr; varbinary</dt>
+<dd><p>Computes the sha512 hash of <code class="docutils literal"><span class="pre">binary</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="xxhash64">
+<code class="descname">xxhash64</code><span class="sig-paren">(</span><em>binary</em><span class="sig-paren">)</span> &rarr; varbinary</dt>
+<dd><p>Computes the xxhash64 hash of <code class="docutils literal"><span class="pre">binary</span></code>.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="string.html">6.8. String Functions and Operators</a>
+    </span>
+    <span class="right">
+        <a href="datetime.html">6.10. Date and Time Functions and Operators</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

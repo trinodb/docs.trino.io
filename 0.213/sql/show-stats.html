@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>8.36. SHOW STATS &#8212; Presto 0.213 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.213',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="Presto 0.213 Documentation" href="../index.html" />
+    <link rel="up" title="8. SQL Statement Syntax" href="../sql.html" />
+    <link rel="next" title="8.37. SHOW TABLES" href="show-tables.html" />
+    <link rel="prev" title="8.35. SHOW SESSION" href="show-session.html" /> 
+  </head>
+  <body role="document">
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.213 Documentation</span></a></h1>
+    <h2 class="heading"><span>8.36. SHOW STATS</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="show-session.html">8.35. SHOW SESSION</a>
+    </span>
+    <span class="right">
+        <a href="show-tables.html">8.37. SHOW TABLES</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="show-stats">
+<h1>8.36. SHOW STATS</h1>
+<div class="section" id="synopsis">
+<h2>Synopsis</h2>
+<div class="highlight-none"><div class="highlight"><pre><span></span>SHOW STATS FOR table
+SHOW STATS FOR ( SELECT * FROM table [ WHERE condition ] )
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description</h2>
+<p>Returns approximated statistics for the named table or for the results of a (limited) query.</p>
+<p>Statistics are returned for each column, along with a summary row.
+(column_name will be <code class="docutils literal"><span class="pre">NULL</span></code> for the summary row).</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Column</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>column_name</td>
+<td>The name of the column</td>
+</tr>
+<tr class="row-odd"><td>data_size</td>
+<td>The total size in bytes of all of the values in the column</td>
+</tr>
+<tr class="row-even"><td>distinct_values_count</td>
+<td>The number of distinct values in the column</td>
+</tr>
+<tr class="row-odd"><td>nulls_fractions</td>
+<td>The portion of the values in the column that are <code class="docutils literal"><span class="pre">NULL</span></code></td>
+</tr>
+<tr class="row-even"><td>row_count</td>
+<td>The number of rows (only returned for the summary row)</td>
+</tr>
+<tr class="row-odd"><td>low_value</td>
+<td>The lowest value found in this column (only for some types)</td>
+</tr>
+<tr class="row-even"><td>high_value</td>
+<td>The highest value found in this column (only for some types)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="show-session.html">8.35. SHOW SESSION</a>
+    </span>
+    <span class="right">
+        <a href="show-tables.html">8.37. SHOW TABLES</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

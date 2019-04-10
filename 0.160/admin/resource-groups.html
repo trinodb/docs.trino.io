@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4.4. Resource Group Configuration &#8212; Presto 0.160 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.160',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="Presto 0.160 Documentation" href="../index.html" />
+    <link rel="up" title="4. Administration" href="../admin.html" />
+    <link rel="next" title="5. Connectors" href="../connector.html" />
+    <link rel="prev" title="4.3. Queue Configuration" href="queue.html" /> 
+  </head>
+  <body role="document">
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.160 Documentation</span></a></h1>
+    <h2 class="heading"><span>4.4. Resource Group Configuration</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="queue.html">4.3. Queue Configuration</a>
+    </span>
+    <span class="right">
+        <a href="../connector.html">5. Connectors</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="resource-group-configuration">
+<h1>4.4. Resource Group Configuration</h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Resource groups are currently experimental and must be enabled with the
+<code class="docutils literal"><span class="pre">experimental.resource-groups-enabled=true</span></code> config flag.</p>
+</div>
+<p>Resource groups place limits on resource usage, and can enforce queueing policies on
+queries that run within them or divide their resources among sub groups. A query
+belongs to a single resource group, and consumes resources from that group (and its ancestors).
+Except for the limit on queued queries, when a resource group runs out of a resource
+it does not cause running queries to fail; instead new queries become queued.
+A resource group may have sub groups or may accept queries, but may not do both.</p>
+<p>The resource groups and associated selection rules are configured by a manager which is pluggable.
+An implementation that uses a static file can be installed via the <code class="docutils literal"><span class="pre">presto-resource-group-managers</span></code>
+plugin and enabled by adding <code class="docutils literal"><span class="pre">resource-groups.configuration-manager=file</span></code> to
+<code class="docutils literal"><span class="pre">etc/resource-groups.properties</span></code> and setting <code class="docutils literal"><span class="pre">resource-groups.config-file</span></code> to the
+location of a JSON config file with the properties described below.</p>
+<div class="section" id="resource-group-properties">
+<h2>Resource Group Properties</h2>
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">name</span></code> (required): name of the group. May be a template (see below).</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">maxQueued</span></code> (required): maximum number of queued queries. Once this limit is reached
+new queries will be rejected.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">maxRunning</span></code> (required): maximum number of running queries.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">softMemoryLimit</span></code> (required): maximum amount of distributed memory this
+group may use before new queries become queued. May be specified as
+an absolute value (i.e. <code class="docutils literal"><span class="pre">1GB</span></code>) or as a percentage (i.e. <code class="docutils literal"><span class="pre">10%</span></code>) of the cluster&#8217;s memory.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">softCpuLimit</span></code> (optional): maximum amount of CPU time this
+group may use in a period (see <code class="docutils literal"><span class="pre">cpuQuotaPeriod</span></code>) before a penalty will be applied to
+the maximum number of running queries. <code class="docutils literal"><span class="pre">hardCpuLimit</span></code> must also be specified.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">hardCpuLimit</span></code> (optional): maximum amount of CPU time this
+group may use in a period.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">schedulingPolicy</span></code> (optional): specifies how queued queries are selected to run,
+and how sub groups become eligible to start their queries. May be one of three values:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">fair</span></code> (default): queued queries are processed first-in-first-out, and sub groups
+must take turns starting new queries (if they have any queued).</li>
+<li><code class="docutils literal"><span class="pre">weighted</span></code>: queued queries are selected stochastically in proportion to their priority
+(specified via the <code class="docutils literal"><span class="pre">query_priority</span></code> <a class="reference internal" href="../sql/set-session.html"><span class="doc">session property</span></a>). Sub groups are selected
+to start new queries in proportion to their <code class="docutils literal"><span class="pre">schedulingWeight</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">query_priority</span></code>: all sub groups must also be configured with <code class="docutils literal"><span class="pre">query_priority</span></code>.
+Queued queries will be selected strictly according to their priority.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">schedulingWeight</span></code> (optional): weight of this sub group. See above.
+Defaults to <code class="docutils literal"><span class="pre">1</span></code>.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">jmxExport</span></code> (optional): If true, group statistics are exported to JMX for monitoring.
+Defaults to <code class="docutils literal"><span class="pre">false</span></code>.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">subGroups</span></code> (optional): list of sub groups.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="selector-properties">
+<h2>Selector Properties</h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">user</span></code> (optional): regex to match against user name. Defaults to <code class="docutils literal"><span class="pre">.*</span></code></li>
+<li><code class="docutils literal"><span class="pre">source</span></code> (optional): regex to match against source string. Defaults to <code class="docutils literal"><span class="pre">.*</span></code></li>
+<li><code class="docutils literal"><span class="pre">group</span></code> (required): the group these queries will run in.</li>
+</ul>
+</div>
+<div class="section" id="global-properties">
+<h2>Global Properties</h2>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">cpuQuotaPeriod</span></code> (optional): the period in which cpu quotas are enforced.</li>
+</ul>
+<p>Selectors are processed sequentially and the first one that matches will be used.
+In the example configuration below, there are five resource group templates.
+In the <code class="docutils literal"><span class="pre">adhoc_${USER}</span></code> group, <code class="docutils literal"><span class="pre">${USER}</span></code> will be expanded to the name of the
+user that submitted the query. <code class="docutils literal"><span class="pre">${SOURCE}</span></code> is also supported, which expands
+to the source submitting the query. The source name can be set as follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li>CLI: use the <code class="docutils literal"><span class="pre">--source</span></code> option.</li>
+<li>JDBC: set the <code class="docutils literal"><span class="pre">ApplicationName</span></code> client info property on the <code class="docutils literal"><span class="pre">Connection</span></code> instance.</li>
+</ul>
+</div></blockquote>
+<p>There are three selectors that define which queries run in which resource group:</p>
+<blockquote>
+<div><ul class="simple">
+<li>The first selector places queries from <code class="docutils literal"><span class="pre">bob</span></code> into the admin group.</li>
+<li>The second selector states that all queries that come from a source that includes &#8220;pipeline&#8221;
+should run in the user&#8217;s personal pipeline group, which belongs to the <code class="docutils literal"><span class="pre">global.pipeline</span></code>
+parent group.</li>
+<li>The last selector is a catch all, which puts all queries into the user&#8217;s adhoc group.</li>
+</ul>
+</div></blockquote>
+<p>All together these selectors implement the policy that <code class="docutils literal"><span class="pre">bob</span></code> is an admin and
+all other users are subject to the follow limits:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Users are allowed to have up to 2 adhoc queries running. Additionally, they may run one pipeline.</li>
+<li>No more than 5 &#8220;pipeline&#8221; queries may run at once.</li>
+<li>No more than 100 total queries may run at once, unless they&#8217;re from the admin.</li>
+</ul>
+</div></blockquote>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;rootGroups&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;global&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;softMemoryLimit&quot;</span><span class="p">:</span> <span class="s2">&quot;80%&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;maxRunning&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+      <span class="nt">&quot;maxQueued&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+      <span class="nt">&quot;schedulingPolicy&quot;</span><span class="p">:</span> <span class="s2">&quot;weighted&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;jmxExport&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nt">&quot;subGroups&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;adhoc_${USER}&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;softMemoryLimit&quot;</span><span class="p">:</span> <span class="s2">&quot;10%&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;maxRunning&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="nt">&quot;maxQueued&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="nt">&quot;schedulingWeight&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+          <span class="nt">&quot;schedulingPolicy&quot;</span><span class="p">:</span> <span class="s2">&quot;query_priority&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;pipeline&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;softMemoryLimit&quot;</span><span class="p">:</span> <span class="s2">&quot;20%&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;maxRunning&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+          <span class="nt">&quot;maxQueued&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+          <span class="nt">&quot;schedulingWeight&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="nt">&quot;jmxExport&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+          <span class="nt">&quot;subGroups&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+              <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;pipeline_${USER}&quot;</span><span class="p">,</span>
+              <span class="nt">&quot;softMemoryLimit&quot;</span><span class="p">:</span> <span class="s2">&quot;10%&quot;</span><span class="p">,</span>
+              <span class="nt">&quot;maxRunning&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+              <span class="nt">&quot;maxQueued&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+              <span class="nt">&quot;schedulingPolicy&quot;</span><span class="p">:</span> <span class="s2">&quot;query_priority&quot;</span>
+            <span class="p">}</span>
+          <span class="p">]</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;admin&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;softMemoryLimit&quot;</span><span class="p">:</span> <span class="s2">&quot;100%&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;maxRunning&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+      <span class="nt">&quot;maxQueued&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+      <span class="nt">&quot;schedulingPolicy&quot;</span><span class="p">:</span> <span class="s2">&quot;query_priority&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;jmxExport&quot;</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;selectors&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;user&quot;</span><span class="p">:</span> <span class="s2">&quot;bob&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;admin&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;.*pipeline.*&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;global.pipeline.pipeline_${USER}&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;global.adhoc_${USER}&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;cpuQuotaPeriod&quot;</span><span class="p">:</span> <span class="s2">&quot;1h&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="queue.html">4.3. Queue Configuration</a>
+    </span>
+    <span class="right">
+        <a href="../connector.html">5. Connectors</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

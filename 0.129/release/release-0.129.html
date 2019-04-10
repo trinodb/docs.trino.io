@@ -1,0 +1,132 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>10.1. Release 0.129 &mdash; Presto 0.129 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.129',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Presto 0.129 Documentation" href="../index.html" />
+    <link rel="up" title="10. Release Notes" href="../release.html" />
+    <link rel="next" title="10.2. Release 0.128" href="release-0.128.html" />
+    <link rel="prev" title="10. Release Notes" href="../release.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.129 Documentation</span></a></h1>
+    <h2 class="heading"><span>10.1. Release 0.129</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="../release.html">10. Release Notes</a>
+    </span>
+    <span class="right">
+        <a href="release-0.128.html">10.2. Release 0.128</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-129">
+<h1>10.1. Release 0.129</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix a planner issue that could cause queries involving <tt class="docutils literal"><span class="pre">OUTER</span> <span class="pre">JOIN</span></tt> to
+return incorrect results.</li>
+<li>Some queries, particularly those using <a class="reference internal" href="../functions/aggregate.html#max_by" title="max_by"><tt class="xref py py-func docutils literal"><span class="pre">max_by()</span></tt></a> or <a class="reference internal" href="../functions/aggregate.html#min_by" title="min_by"><tt class="xref py py-func docutils literal"><span class="pre">min_by()</span></tt></a>, now
+accurately reflect their true memory usage and thus appear to use more memory
+than before.</li>
+<li>Fix <a class="reference internal" href="../sql/show-session.html"><em>SHOW SESSION</em></a> to not show hidden session properties.</li>
+<li>Fix hang in large queries with <tt class="docutils literal"><span class="pre">ORDER</span> <span class="pre">BY</span></tt> and <tt class="docutils literal"><span class="pre">LIMIT</span></tt>.</li>
+<li>Fix an issue when casting empty arrays or arrays containing only <tt class="docutils literal"><span class="pre">NULL</span></tt> to
+other types.</li>
+<li>Table property names are now properly treated as case-insensitive.</li>
+<li>Minor UI improvements for query detail page.</li>
+<li>Do not display useless stack traces for expected exceptions in verifier.</li>
+<li>Improve performance of queries involving <tt class="docutils literal"><span class="pre">UNION</span> <span class="pre">ALL</span></tt> that write data.</li>
+<li>Introduce the <tt class="docutils literal"><span class="pre">P4HyperLogLog</span></tt> type, which uses an implementation of the HyperLogLog data
+structure that trades off accuracy and memory requirements when handling small sets for an
+improvement in performance.</li>
+</ul>
+</div>
+<div class="section" id="jdbc-driver-changes">
+<h2>JDBC Driver Changes</h2>
+<ul class="simple">
+<li>Throw exception when using <a class="reference internal" href="../sql/set-session.html"><em>SET SESSION</em></a> or <a class="reference internal" href="../sql/reset-session.html"><em>RESET SESSION</em></a>
+rather than silently ignoring the command.</li>
+<li>The driver now properly supports non-query statements.
+The <tt class="docutils literal"><span class="pre">Statement</span></tt> interface supports all variants of the <tt class="docutils literal"><span class="pre">execute</span></tt> methods.
+It also supports the <tt class="docutils literal"><span class="pre">getUpdateCount</span></tt> and <tt class="docutils literal"><span class="pre">getLargeUpdateCount</span></tt> methods.</li>
+</ul>
+</div>
+<div class="section" id="cli-changes">
+<h2>CLI Changes</h2>
+<ul class="simple">
+<li>Always clear screen when canceling query with <tt class="docutils literal"><span class="pre">ctrl-C</span></tt>.</li>
+<li>Make client request timeout configurable.</li>
+</ul>
+</div>
+<div class="section" id="network-topology-aware-scheduling">
+<h2>Network Topology Aware Scheduling</h2>
+<p>The scheduler can now be configured to take network topology into account when
+scheduling splits. This is set using the <tt class="docutils literal"><span class="pre">node-scheduler.network-topology</span></tt>
+config. See <a class="reference internal" href="../admin/tuning.html"><em>Tuning Presto</em></a> for more information.</p>
+</div>
+<div class="section" id="hive-changes">
+<h2>Hive Changes</h2>
+<ul class="simple">
+<li>The S3 region is no longer automatically configured when running in EC2.
+To enable this feature, use <tt class="docutils literal"><span class="pre">hive.s3.pin-client-to-current-region=true</span></tt>
+in your Hive catalog properties file. Enabling this feature is required
+to access S3 data in the China isolated region, but prevents accessing
+data outside the current region.</li>
+<li>Server-side encryption is now supported for S3. To enable this feature,
+use <tt class="docutils literal"><span class="pre">hive.s3.sse.enabled=true</span></tt> in your Hive catalog properties file.</li>
+<li>Add support for the <tt class="docutils literal"><span class="pre">retention_days</span></tt> table property.</li>
+<li>Add support for S3 <tt class="docutils literal"><span class="pre">EncryptionMaterialsProvider</span></tt>.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="../release.html">10. Release Notes</a>
+    </span>
+    <span class="right">
+        <a href="release-0.128.html">10.2. Release 0.128</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer">
+    </div>
+  </body>
+</html>

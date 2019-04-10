@@ -1,0 +1,99 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7.2. CALL &mdash; Presto 0.144 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.144',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Presto 0.144 Documentation" href="../index.html" />
+    <link rel="up" title="7. SQL Statement Syntax" href="../sql.html" />
+    <link rel="next" title="7.3. COMMIT" href="commit.html" />
+    <link rel="prev" title="7.1. ALTER TABLE" href="alter-table.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.144 Documentation</span></a></h1>
+    <h2 class="heading"><span>7.2. CALL</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="alter-table.html">7.1. ALTER TABLE</a>
+    </span>
+    <span class="right">
+        <a href="commit.html">7.3. COMMIT</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="call">
+<h1>7.2. CALL</h1>
+<div class="section" id="synopsis">
+<h2>Synopsis</h2>
+<div class="highlight-none"><div class="highlight"><pre>CALL procedure_name ( [ name =&gt; ] expression [, ...] )
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description</h2>
+<p>Call a procedure.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples</h2>
+<p>Call a procedure using positional arguments:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">CALL</span> <span class="n">test</span><span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Call a procedure using named arguments:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">CALL</span> <span class="n">test</span><span class="p">(</span><span class="n">name</span> <span class="o">=&gt;</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="n">id</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Call a procedure using a fully qualified name:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">CALL</span> <span class="k">catalog</span><span class="p">.</span><span class="k">schema</span><span class="p">.</span><span class="n">test</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="alter-table.html">7.1. ALTER TABLE</a>
+    </span>
+    <span class="right">
+        <a href="commit.html">7.3. COMMIT</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer">
+    </div>
+  </body>
+</html>

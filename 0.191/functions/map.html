@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6.16. Map Functions and Operators &#8212; Presto 0.191 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.191',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="Presto 0.191 Documentation" href="../index.html" />
+    <link rel="up" title="6. Functions and Operators" href="../functions.html" />
+    <link rel="next" title="6.17. Lambda Expressions and Functions" href="lambda.html" />
+    <link rel="prev" title="6.15. Array Functions and Operators" href="array.html" /> 
+  </head>
+  <body role="document">
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.191 Documentation</span></a></h1>
+    <h2 class="heading"><span>6.16. Map Functions and Operators</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="array.html">6.15. Array Functions and Operators</a>
+    </span>
+    <span class="right">
+        <a href="lambda.html">6.17. Lambda Expressions and Functions</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="map-functions-and-operators">
+<h1>6.16. Map Functions and Operators</h1>
+<div class="section" id="subscript-operator">
+<h2>Subscript Operator: []</h2>
+<p>The <code class="docutils literal"><span class="pre">[]</span></code> operator is used to retrieve the value corresponding to a given key from a map:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">name_to_age_map</span><span class="p">[</span><span class="s1">&#39;Bob&#39;</span><span class="p">]</span> <span class="k">AS</span> <span class="n">bob_age</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="map-functions">
+<h2>Map Functions</h2>
+<dl class="function">
+<dt>
+<code class="descname">cardinality</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span> &rarr; bigint</dt>
+<dd><p>Returns the cardinality (size) of the map <code class="docutils literal"><span class="pre">x</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">element_at</code><span class="sig-paren">(</span><em>map&lt;K</em>, <em>V&gt;</em>, <em>key</em><span class="sig-paren">)</span> &rarr; V</dt>
+<dd><p>Returns value for given <code class="docutils literal"><span class="pre">key</span></code>, or <code class="docutils literal"><span class="pre">NULL</span></code> if the key is not contained in the map.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="map">
+<code class="descname">map</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; map&lt;unknown, unknown&gt;</dt>
+<dd><p>Returns an empty map.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">map</span><span class="p">();</span> <span class="c1">-- {}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">map</code><span class="sig-paren">(</span><em>array&lt;K&gt;</em>, <em>array&lt;V&gt;</em><span class="sig-paren">)</span> &rarr; map&lt;K,V&gt;</dt>
+<dd><p>Returns a map created using the given key/value arrays.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">map</span><span class="p">(</span><span class="nb">ARRAY</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="nb">ARRAY</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]);</span> <span class="c1">-- {1 -&gt; 2, 3 -&gt; 4}</span>
+</pre></div>
+</div>
+<p>See also <a class="reference internal" href="aggregate.html#map_agg" title="map_agg"><code class="xref py py-func docutils literal"><span class="pre">map_agg()</span></code></a> and <a class="reference internal" href="aggregate.html#multimap_agg" title="multimap_agg"><code class="xref py py-func docutils literal"><span class="pre">multimap_agg()</span></code></a> for creating a map as an aggregation.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="map_from_entries">
+<code class="descname">map_from_entries</code><span class="sig-paren">(</span><em>array&lt;row&lt;K</em>, <em>V&gt;&gt;</em><span class="sig-paren">)</span> &rarr; map&lt;K,V&gt;</dt>
+<dd><p>Returns a map created from the given array of entries.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">map_from_entries</span><span class="p">(</span><span class="nb">ARRAY</span><span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">)]);</span> <span class="c1">-- {1 -&gt; &#39;x&#39;, 2 -&gt; &#39;y&#39;}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="map_entries">
+<code class="descname">map_entries</code><span class="sig-paren">(</span><em>map&lt;K</em>, <em>V&gt;</em><span class="sig-paren">)</span> &rarr; array&lt;row&lt;K,V&gt;&gt;</dt>
+<dd><p>Returns an array of all entries in the given map.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">map_entries</span><span class="p">(</span><span class="k">MAP</span><span class="p">(</span><span class="nb">ARRAY</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="nb">ARRAY</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">]));</span> <span class="c1">-- [ROW(1, &#39;x&#39;), ROW(2, &#39;y&#39;)]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="map_concat">
+<code class="descname">map_concat</code><span class="sig-paren">(</span><em>map1&lt;K</em>, <em>V&gt;</em>, <em>map2&lt;K</em>, <em>V&gt;</em>, <em>...</em>, <em>mapN&lt;K</em>, <em>V&gt;</em><span class="sig-paren">)</span> &rarr; map&lt;K,V&gt;</dt>
+<dd><p>Returns the union of all the given maps. If a key is found in multiple given maps,
+that key&#8217;s value in the resulting map comes from the last one of those maps.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">map_filter</code><span class="sig-paren">(</span><em>map&lt;K</em>, <em>V&gt;</em>, <em>function</em><span class="sig-paren">)</span> &rarr; map&lt;K,V&gt;</dt>
+<dd><p>See <a class="reference internal" href="lambda.html#map_filter" title="map_filter"><code class="xref py py-func docutils literal"><span class="pre">map_filter()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">transform_keys</code><span class="sig-paren">(</span><em>map&lt;K1</em>, <em>V&gt;</em>, <em>function</em><span class="sig-paren">)</span> &rarr; MAP&lt;K2,V&gt;</dt>
+<dd><p>See <a class="reference internal" href="lambda.html#transform_keys" title="transform_keys"><code class="xref py py-func docutils literal"><span class="pre">transform_keys()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">transform_values</code><span class="sig-paren">(</span><em>map&lt;K</em>, <em>V1&gt;</em>, <em>function</em><span class="sig-paren">)</span> &rarr; MAP&lt;K,V2&gt;</dt>
+<dd><p>See <a class="reference internal" href="lambda.html#transform_values" title="transform_values"><code class="xref py py-func docutils literal"><span class="pre">transform_values()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="map_keys">
+<code class="descname">map_keys</code><span class="sig-paren">(</span><em>x&lt;K</em>, <em>V&gt;</em><span class="sig-paren">)</span> &rarr; array&lt;K&gt;</dt>
+<dd><p>Returns all the keys in the map <code class="docutils literal"><span class="pre">x</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="map_values">
+<code class="descname">map_values</code><span class="sig-paren">(</span><em>x&lt;K</em>, <em>V&gt;</em><span class="sig-paren">)</span> &rarr; array&lt;V&gt;</dt>
+<dd><p>Returns all the values in the map <code class="docutils literal"><span class="pre">x</span></code>.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="array.html">6.15. Array Functions and Operators</a>
+    </span>
+    <span class="right">
+        <a href="lambda.html">6.17. Lambda Expressions and Functions</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

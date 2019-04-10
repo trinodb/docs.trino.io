@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>11.1. Release 0.214 &#8212; Presto 0.214 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.214',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="Presto 0.214 Documentation" href="../index.html" />
+    <link rel="up" title="11. Release Notes" href="../release.html" />
+    <link rel="next" title="11.2. Release 0.213" href="release-0.213.html" />
+    <link rel="prev" title="11. Release Notes" href="../release.html" /> 
+  </head>
+  <body role="document">
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.214 Documentation</span></a></h1>
+    <h2 class="heading"><span>11.1. Release 0.214</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="../release.html">11. Release Notes</a>
+    </span>
+    <span class="right">
+        <a href="release-0.213.html">11.2. Release 0.213</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-214">
+<h1>11.1. Release 0.214</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix history leak in coordinator for failed or canceled queries.</li>
+<li>Fix memory leak related to query tracking in coordinator that was introduced
+in <a class="reference internal" href="release-0.213.html"><span class="doc">Release 0.213</span></a>.</li>
+<li>Fix planning failures when lambdas are used in join filter expression.</li>
+<li>Fix responses to client for certain types of errors that are encountered
+during query creation.</li>
+<li>Improve error message when an invalid comparator is provided to the
+<a class="reference internal" href="../functions/array.html#array_sort" title="array_sort"><code class="xref py py-func docutils literal"><span class="pre">array_sort()</span></code></a> function.</li>
+<li>Improve performance of lookup operations on map data types.</li>
+<li>Improve planning and query performance for queries with <code class="docutils literal"><span class="pre">TINYINT</span></code>,
+<code class="docutils literal"><span class="pre">SMALLINT</span></code> and <code class="docutils literal"><span class="pre">VARBINARY</span></code> literals.</li>
+<li>Fix issue where queries containing distributed <code class="docutils literal"><span class="pre">ORDER</span> <span class="pre">BY</span></code> and aggregation
+could sometimes fail to make progress when data was spilled.</li>
+<li>Make top N row number optimization work in some cases when columns are pruned.</li>
+<li>Add session property <code class="docutils literal"><span class="pre">optimize-top-n-row-number</span></code> and configuration property
+<code class="docutils literal"><span class="pre">optimizer.optimize-top-n-row-number</span></code> to toggle the top N row number
+optimization.</li>
+<li>Add <a class="reference internal" href="../functions/array.html#ngrams" title="ngrams"><code class="xref py py-func docutils literal"><span class="pre">ngrams()</span></code></a> function to generate N-grams from an array.</li>
+<li>Add <a class="reference internal" href="../language/types.html#qdigest-type"><span class="std std-ref">qdigest</span></a> type and associated <a class="reference internal" href="../functions/qdigest.html"><span class="doc">Quantile Digest Functions</span></a>.</li>
+<li>Add functionality to delay query execution until a minimum number of workers
+nodes are available. The minimum number of workers can be set with the
+<code class="docutils literal"><span class="pre">query-manager.required-workers</span></code> configuration property, and the max wait
+time with the <code class="docutils literal"><span class="pre">query-manager.required-workers-max-wait</span></code> configuration property.</li>
+<li>Remove experimental pre-allocated memory system, and the related configuration
+property <code class="docutils literal"><span class="pre">experimental.preallocate-memory-threshold</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="security-changes">
+<h2>Security Changes</h2>
+<ul class="simple">
+<li>Add functionality to refresh the configuration of file-based access controllers.
+The refresh interval can be set using the <code class="docutils literal"><span class="pre">security.refresh-period</span></code>
+configuration property.</li>
+</ul>
+</div>
+<div class="section" id="jdbc-driver-changes">
+<h2>JDBC Driver Changes</h2>
+<ul class="simple">
+<li>Clear update count after calling <code class="docutils literal"><span class="pre">Statement.getMoreResults()</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="web-ui-changes">
+<h2>Web UI Changes</h2>
+<ul class="simple">
+<li>Show query warnings on the query detail page.</li>
+<li>Allow selecting non-default sort orders in query list view.</li>
+</ul>
+</div>
+<div class="section" id="hive-connector-changes">
+<h2>Hive Connector Changes</h2>
+<ul class="simple">
+<li>Prevent ORC writer from writing stripes larger than the maximum configured size.</li>
+<li>Add <code class="docutils literal"><span class="pre">hive.s3.upload-acl-type</span></code> configuration property to specify the type of
+ACL to use while uploading files to S3.</li>
+<li>Add Hive metastore API recording tool for remote debugging purposes.</li>
+<li>Add support for retrying on metastore connection errors.</li>
+</ul>
+</div>
+<div class="section" id="verifier-changes">
+<h2>Verifier Changes</h2>
+<ul class="simple">
+<li>Handle SQL execution timeouts while rewriting queries.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="../release.html">11. Release Notes</a>
+    </span>
+    <span class="right">
+        <a href="release-0.213.html">11.2. Release 0.213</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

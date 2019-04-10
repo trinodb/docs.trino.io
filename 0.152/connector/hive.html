@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5.3. Hive Connector &mdash; Presto 0.152 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.152',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Presto 0.152 Documentation" href="../index.html" />
+    <link rel="up" title="5. Connectors" href="../connector.html" />
+    <link rel="next" title="5.4. Hive Security Configuration" href="hive-security.html" />
+    <link rel="prev" title="5.2. Cassandra Connector" href="cassandra.html" /> 
+  </head>
+  <body role="document">
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.152 Documentation</span></a></h1>
+    <h2 class="heading"><span>5.3. Hive Connector</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="cassandra.html">5.2. Cassandra Connector</a>
+    </span>
+    <span class="right">
+        <a href="hive-security.html">5.4. Hive Security Configuration</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="hive-connector">
+<h1>5.3. Hive Connector</h1>
+<p>The Hive connector allows querying data stored in a Hive
+data warehouse. Hive is a combination of three components:</p>
+<ul class="simple">
+<li>Data files in varying formats that are typically stored in the
+Hadoop Distributed File System (HDFS) or in Amazon S3.</li>
+<li>Metadata about how the data files are mapped to schemas and tables.
+This metadata is stored in a database such as MySQL and is accessed
+via the Hive metastore service.</li>
+<li>A query language called HiveQL. This query language is executed
+on a distributed computing framework such as MapReduce or Tez.</li>
+</ul>
+<p>Presto only uses the first two components: the data and the metadata.
+It does not use HiveQL or any part of Hive&#8217;s execution environment.</p>
+<div class="section" id="supported-file-types">
+<h2>Supported File Types</h2>
+<p>The following file types are supported for the Hive connector:</p>
+<ul class="simple">
+<li>ORC</li>
+<li>Parquet</li>
+<li>RCFile</li>
+<li>SequenceFile</li>
+<li>Text</li>
+</ul>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration</h2>
+<p>Presto includes Hive connectors for multiple versions of Hadoop:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">hive-hadoop1</span></code>: Apache Hadoop 1.x</li>
+<li><code class="docutils literal"><span class="pre">hive-hadoop2</span></code>: Apache Hadoop 2.x</li>
+<li><code class="docutils literal"><span class="pre">hive-cdh4</span></code>: Cloudera CDH 4</li>
+<li><code class="docutils literal"><span class="pre">hive-cdh5</span></code>: Cloudera CDH 5</li>
+</ul>
+<p>Create <code class="docutils literal"><span class="pre">etc/catalog/hive.properties</span></code> with the following contents
+to mount the <code class="docutils literal"><span class="pre">hive-cdh4</span></code> connector as the <code class="docutils literal"><span class="pre">hive</span></code> catalog,
+replacing <code class="docutils literal"><span class="pre">hive-cdh4</span></code> with the proper connector for your version
+of Hadoop and <code class="docutils literal"><span class="pre">example.net:9083</span></code> with the correct host and port
+for your Hive metastore Thrift service:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>connector.name=hive-cdh4
+hive.metastore.uri=thrift://example.net:9083
+</pre></div>
+</div>
+<div class="section" id="multiple-hive-clusters">
+<h3>Multiple Hive Clusters</h3>
+<p>You can have as many catalogs as you need, so if you have additional
+Hive clusters, simply add another properties file to <code class="docutils literal"><span class="pre">etc/catalog</span></code>
+with a different name (making sure it ends in <code class="docutils literal"><span class="pre">.properties</span></code>). For
+example, if you name the property file <code class="docutils literal"><span class="pre">sales.properties</span></code>, Presto
+will create a catalog named <code class="docutils literal"><span class="pre">sales</span></code> using the configured connector.</p>
+</div>
+<div class="section" id="hdfs-configuration">
+<h3>HDFS Configuration</h3>
+<p>For basic setups, Presto configures the HDFS client automatically and
+does not require any configuration files. In some cases, such as when using
+federated HDFS or NameNode high availability, it is necessary to specify
+additional HDFS client options in order to access your HDFS cluster. To do so,
+add the <code class="docutils literal"><span class="pre">hive.config.resources</span></code> property to reference your HDFS config files:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>hive.config.resources=/etc/hadoop/conf/core-site.xml,/etc/hadoop/conf/hdfs-site.xml
+</pre></div>
+</div>
+<p>Only specify additional configuration files if necessary for your setup.
+We also recommend reducing the configuration files to have the minimum
+set of required properties, as additional properties may cause problems.</p>
+<p>The configuration files must exist on all Presto nodes. If you are
+referencing existing Hadoop config files, make sure to copy them to
+any Presto nodes that are not running Hadoop.</p>
+</div>
+<div class="section" id="hdfs-username">
+<h3>HDFS Username</h3>
+<p>When not using Kerberos with HDFS, Presto will access HDFS using the
+OS user of the Presto process. For example, if Presto is running as
+<code class="docutils literal"><span class="pre">nobody</span></code>, it will access HDFS as <code class="docutils literal"><span class="pre">nobody</span></code>. You can override this
+username by setting the <code class="docutils literal"><span class="pre">HADOOP_USER_NAME</span></code> system property in the
+Presto <a class="reference internal" href="../installation/deployment.html#presto-jvm-config"><span class="std std-ref">JVM Config</span></a>, replacing <code class="docutils literal"><span class="pre">hdfs_user</span></code> with the
+appropriate username:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>-DHADOOP_USER_NAME=hdfs_user
+</pre></div>
+</div>
+</div>
+<div class="section" id="accessing-hadoop-clusters-protected-with-kerberos-authentication">
+<h3>Accessing Hadoop clusters protected with Kerberos authentication</h3>
+<p>Kerberos authentication is currently supported for both HDFS and the Hive
+metastore.</p>
+<p>However there are still a few limitations:</p>
+<ul class="simple">
+<li>Kerberos authentication is only supported for the <code class="docutils literal"><span class="pre">hive-hadoop2</span></code> and
+<code class="docutils literal"><span class="pre">hive-cdh5</span></code> connectors.</li>
+<li>Kerberos authentication by ticket cache is not yet supported.</li>
+</ul>
+<p>The properties that apply to Hive connector security are listed in the
+<a class="reference internal" href="#configuration-properties">Configuration Properties</a> table. Please see the
+<a class="reference internal" href="hive-security.html"><span class="doc">Hive Security Configuration</span></a> section for a more detailed discussion of the
+security options in the Hive connector.</p>
+</div>
+</div>
+<div class="section" id="configuration-properties">
+<h2>Configuration Properties</h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="41%" />
+<col width="49%" />
+<col width="10%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Property Name</th>
+<th class="head">Description</th>
+<th class="head">Default</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">hive.metastore.uri</span></code></td>
+<td>The URI(s) of the Hive metastore to connect to using the
+Thrift protocol. If multiple URIs are provided, the first
+URI is used by default and the rest of the URIs are
+fallback metastores. This property is required.
+Example: <code class="docutils literal"><span class="pre">thrift://192.0.2.3:9083</span></code> or
+<code class="docutils literal"><span class="pre">thrift://192.0.2.3:9083,thrift://192.0.2.4:9083</span></code></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">hive.config.resources</span></code></td>
+<td>An optional comma-separated list of HDFS
+configuration files. These files must exist on the
+machines running Presto. Only specify this if
+absolutely necessary to access HDFS.
+Example: <code class="docutils literal"><span class="pre">/etc/hdfs-site.xml</span></code></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">hive.storage-format</span></code></td>
+<td>The default file format used when creating new tables.</td>
+<td><code class="docutils literal"><span class="pre">RCBINARY</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">hive.compression-codec</span></code></td>
+<td>The compression codec to use when writing files.</td>
+<td><code class="docutils literal"><span class="pre">GZIP</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">hive.force-local-scheduling</span></code></td>
+<td>Force splits to be scheduled on the same node as the Hadoop
+DataNode process serving the split data.  This is useful for
+installations where Presto is collocated with every
+DataNode.</td>
+<td><code class="docutils literal"><span class="pre">false</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">hive.allow-drop-table</span></code></td>
+<td>Allow the Hive connector to drop tables.</td>
+<td><code class="docutils literal"><span class="pre">false</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">hive.allow-rename-table</span></code></td>
+<td>Allow the Hive connector to rename tables.</td>
+<td><code class="docutils literal"><span class="pre">false</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">hive.respect-table-format</span></code></td>
+<td>Should new partitions be written using the existing table
+format or the default Presto format?</td>
+<td><code class="docutils literal"><span class="pre">true</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">hive.immutable-partitions</span></code></td>
+<td>Can new data be inserted into existing partitions?</td>
+<td><code class="docutils literal"><span class="pre">false</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">hive.max-partitions-per-writers</span></code></td>
+<td>Maximum number of partitions per writer.</td>
+<td>100</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">hive.s3.sse.enabled</span></code></td>
+<td>Enable S3 server-side encryption.</td>
+<td><code class="docutils literal"><span class="pre">false</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">hive.metastore.authentication.type</span></code></td>
+<td>Hive metastore authentication type.
+Possible values are <code class="docutils literal"><span class="pre">NONE</span></code> or <code class="docutils literal"><span class="pre">KERBEROS</span></code>.</td>
+<td><code class="docutils literal"><span class="pre">NONE</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">hive.metastore.service.principal</span></code></td>
+<td>The Kerberos principal of the Hive metastore service.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">hive.metastore.client.principal</span></code></td>
+<td>The Kerberos principal that Presto will use when connecting
+to the Hive metastore service.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">hive.metastore.client.keytab</span></code></td>
+<td>Hive metastore client keytab location.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">hive.hdfs.authentication.type</span></code></td>
+<td>HDFS authentication type.
+Possible values are <code class="docutils literal"><span class="pre">NONE</span></code> or <code class="docutils literal"><span class="pre">KERBEROS</span></code>.</td>
+<td><code class="docutils literal"><span class="pre">NONE</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">hive.hdfs.impersonation.enabled</span></code></td>
+<td>Enable HDFS end user impersonation.</td>
+<td><code class="docutils literal"><span class="pre">false</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">hive.hdfs.presto.principal</span></code></td>
+<td>The Kerberos principal that Presto will use when connecting
+to HDFS.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">hive.hdfs.presto.keytab</span></code></td>
+<td>HDFS client keytab location.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">hive.security</span></code></td>
+<td>See <a class="reference internal" href="hive-security.html"><span class="doc">Hive Security Configuration</span></a>.</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">security.config-file</span></code></td>
+<td>Path of config file to use when <code class="docutils literal"><span class="pre">hive.security=file</span></code>.
+See <a class="reference internal" href="hive-security.html#hive-file-based-authorization"><span class="std std-ref">File Based Authorization</span></a> for details.</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="querying-hive-tables">
+<h2>Querying Hive Tables</h2>
+<p>The following table is an example Hive table from the <a class="reference external" href="https://cwiki.apache.org/confluence/display/Hive/Tutorial#Tutorial-UsageandExamples">Hive Tutorial</a>.
+It can be created in Hive (not in Presto) using the following
+Hive <code class="docutils literal"><span class="pre">CREATE</span> <span class="pre">TABLE</span></code> command:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>hive&gt; CREATE TABLE page_view (
+    &gt;   viewTime INT,
+    &gt;   userid BIGINT,
+    &gt;   page_url STRING,
+    &gt;   referrer_url STRING,
+    &gt;   ip STRING COMMENT &#39;IP Address of the User&#39;)
+    &gt; COMMENT &#39;This is the page view table&#39;
+    &gt; PARTITIONED BY (dt STRING, country STRING)
+    &gt; STORED AS SEQUENCEFILE;
+OK
+Time taken: 3.644 seconds
+</pre></div>
+</div>
+<p>Assuming that this table was created in the <code class="docutils literal"><span class="pre">web</span></code> schema in
+Hive, this table can be described in Presto:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">DESCRIBE</span> <span class="n">hive</span><span class="p">.</span><span class="n">web</span><span class="p">.</span><span class="n">page_view</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre><span></span>    Column    |  Type   | Null | Partition Key |        Comment
+--------------+---------+------+---------------+------------------------
+ viewtime     | bigint  | true | false         |
+ userid       | bigint  | true | false         |
+ page_url     | varchar | true | false         |
+ referrer_url | varchar | true | false         |
+ ip           | varchar | true | false         | IP Address of the User
+ dt           | varchar | true | true          |
+ country      | varchar | true | true          |
+(7 rows)
+</pre></div>
+</div>
+<p>This table can then be queried in Presto:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">hive</span><span class="p">.</span><span class="n">web</span><span class="p">.</span><span class="n">page_view</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hive-connector-limitations">
+<h2>Hive Connector Limitations</h2>
+<p><a class="reference internal" href="../sql/delete.html"><span class="doc">DELETE</span></a> is only supported if the <code class="docutils literal"><span class="pre">WHERE</span></code> clause matches entire partitions.</p>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="cassandra.html">5.2. Cassandra Connector</a>
+    </span>
+    <span class="right">
+        <a href="hive-security.html">5.4. Hive Security Configuration</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

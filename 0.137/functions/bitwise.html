@@ -1,0 +1,111 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5.6. Bitwise Functions &mdash; Presto 0.137 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.137',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Presto 0.137 Documentation" href="../index.html" />
+    <link rel="up" title="5. Functions and Operators" href="../functions.html" />
+    <link rel="next" title="5.7. String Functions and Operators" href="string.html" />
+    <link rel="prev" title="5.5. Mathematical Functions and Operators" href="math.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.137 Documentation</span></a></h1>
+    <h2 class="heading"><span>5.6. Bitwise Functions</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="math.html">5.5. Mathematical Functions and Operators</a>
+    </span>
+    <span class="right">
+        <a href="string.html">5.7. String Functions and Operators</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="bitwise-functions">
+<h1>5.6. Bitwise Functions</h1>
+<dl class="function">
+<dt id="bit_count">
+<tt class="descname">bit_count</tt><big>(</big><em>x</em>, <em>bits</em><big>)</big> &rarr; bigint</dt>
+<dd><p>Count the number of bits set in <tt class="docutils literal"><span class="pre">x</span></tt> (treated as <tt class="docutils literal"><span class="pre">bits</span></tt>-bit signed
+integer) in 2&#8217;s complement representation:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">bit_count</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">64</span><span class="p">);</span> <span class="o">=&gt;</span> <span class="mi">2</span>
+<span class="k">SELECT</span> <span class="n">bit_count</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span> <span class="o">=&gt;</span> <span class="mi">2</span>
+<span class="k">SELECT</span> <span class="n">bit_count</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">64</span><span class="p">);</span> <span class="o">=&gt;</span> <span class="mi">62</span>
+<span class="k">SELECT</span> <span class="n">bit_count</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span> <span class="o">=&gt;</span> <span class="mi">6</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="bitwise_and">
+<tt class="descname">bitwise_and</tt><big>(</big><em>x</em>, <em>y</em><big>)</big> &rarr; bigint</dt>
+<dd><p>Returns the bitwise AND of <tt class="docutils literal"><span class="pre">x</span></tt> and <tt class="docutils literal"><span class="pre">y</span></tt> in 2&#8217;s complement arithmetic.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="bitwise_not">
+<tt class="descname">bitwise_not</tt><big>(</big><em>x</em><big>)</big> &rarr; bigint</dt>
+<dd><p>Returns the bitwise NOT of <tt class="docutils literal"><span class="pre">x</span></tt> in 2&#8217;s complement arithmetic.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="bitwise_or">
+<tt class="descname">bitwise_or</tt><big>(</big><em>x</em>, <em>y</em><big>)</big> &rarr; bigint</dt>
+<dd><p>Returns the bitwise OR of <tt class="docutils literal"><span class="pre">x</span></tt> and <tt class="docutils literal"><span class="pre">y</span></tt> in 2&#8217;s complement arithmetic.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="bitwise_xor">
+<tt class="descname">bitwise_xor</tt><big>(</big><em>x</em>, <em>y</em><big>)</big> &rarr; bigint</dt>
+<dd><p>Returns the bitwise XOR of <tt class="docutils literal"><span class="pre">x</span></tt> and <tt class="docutils literal"><span class="pre">y</span></tt> in 2&#8217;s complement arithmetic.</p>
+</dd></dl>
+
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="math.html">5.5. Mathematical Functions and Operators</a>
+    </span>
+    <span class="right">
+        <a href="string.html">5.7. String Functions and Operators</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer">
+    </div>
+  </body>
+</html>
