@@ -87,7 +87,7 @@ for <code class="docutils literal"><span class="pre">char</span></code> and <cod
 <ul class="simple">
 <li>Fix regression that could cause queries to fail with <code class="docutils literal"><span class="pre">Query</span> <span class="pre">can</span> <span class="pre">potentially</span>
 <span class="pre">read</span> <span class="pre">more</span> <span class="pre">than</span> <span class="pre">X</span> <span class="pre">partitions</span></code> error. (<a class="reference external" href="https://github.com/prestosql/presto/issues/619">#619</a>)</li>
-<li>Improve ORC read performance significantly. For TCP-DS, this saves about 9.5% of
+<li>Improve ORC read performance significantly. For TPC-DS, this saves about 9.5% of
 total CPU when running over gzip-compressed data. (<a class="reference external" href="https://github.com/prestosql/presto/issues/555">#555</a>)</li>
 <li>Require access to a table (any privilege) in order to list the columns. (<a class="reference external" href="https://github.com/prestosql/presto/issues/507">#507</a>)</li>
 <li>Add directory listing cache for specific tables. The list of tables is specified
