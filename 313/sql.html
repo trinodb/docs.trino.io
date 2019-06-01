@@ -1,0 +1,132 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>9. SQL Statement Syntax &#8212; Presto 313 Documentation</title>
+    <link rel="stylesheet" href="_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '313',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="9.1. ALTER SCHEMA" href="sql/alter-schema.html" />
+    <link rel="prev" title="8.3. Legacy and New Timestamp" href="language/timestamp.html" /> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133457846-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-133457846-1');
+    </script>
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="index.html">
+        <span>Presto 313 Documentation</span></a></h1>
+    <h2 class="heading"><span>9. SQL Statement Syntax</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="language/timestamp.html">8.3. Legacy and New Timestamp</a>
+    </span>
+    <span class="right">
+        <a href="sql/alter-schema.html">9.1. ALTER SCHEMA</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="sql-statement-syntax">
+<h1>9. SQL Statement Syntax</h1>
+<p>This chapter describes the SQL syntax used in Presto.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sql/alter-schema.html">9.1. ALTER SCHEMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/alter-table.html">9.2. ALTER TABLE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/analyze.html">9.3. ANALYZE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/call.html">9.4. CALL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/comment.html">9.5. COMMENT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/commit.html">9.6. COMMIT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/create-role.html">9.7. CREATE ROLE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/create-schema.html">9.8. CREATE SCHEMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/create-table.html">9.9. CREATE TABLE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/create-table-as.html">9.10. CREATE TABLE AS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/create-view.html">9.11. CREATE VIEW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/deallocate-prepare.html">9.12. DEALLOCATE PREPARE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/delete.html">9.13. DELETE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/describe.html">9.14. DESCRIBE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/describe-input.html">9.15. DESCRIBE INPUT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/describe-output.html">9.16. DESCRIBE OUTPUT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/drop-role.html">9.17. DROP ROLE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/drop-schema.html">9.18. DROP SCHEMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/drop-table.html">9.19. DROP TABLE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/drop-view.html">9.20. DROP VIEW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/execute.html">9.21. EXECUTE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/explain.html">9.22. EXPLAIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/explain-analyze.html">9.23. EXPLAIN ANALYZE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/grant.html">9.24. GRANT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/grant-roles.html">9.25. GRANT ROLES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/insert.html">9.26. INSERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/prepare.html">9.27. PREPARE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/reset-session.html">9.28. RESET SESSION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/revoke.html">9.29. REVOKE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/revoke-roles.html">9.30. REVOKE ROLES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/rollback.html">9.31. ROLLBACK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/select.html">9.32. SELECT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/set-role.html">9.33. SET ROLE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/set-session.html">9.34. SET SESSION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/show-catalogs.html">9.35. SHOW CATALOGS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/show-columns.html">9.36. SHOW COLUMNS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/show-create-table.html">9.37. SHOW CREATE TABLE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/show-create-view.html">9.38. SHOW CREATE VIEW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/show-functions.html">9.39. SHOW FUNCTIONS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/show-grants.html">9.40. SHOW GRANTS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/show-role-grants.html">9.41. SHOW ROLE GRANTS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/show-roles.html">9.42. SHOW ROLES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/show-schemas.html">9.43. SHOW SCHEMAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/show-session.html">9.44. SHOW SESSION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/show-stats.html">9.45. SHOW STATS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/show-tables.html">9.46. SHOW TABLES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/start-transaction.html">9.47. START TRANSACTION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/use.html">9.48. USE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sql/values.html">9.49. VALUES</a></li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="language/timestamp.html">8.3. Legacy and New Timestamp</a>
+    </span>
+    <span class="right">
+        <a href="sql/alter-schema.html">9.1. ALTER SCHEMA</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>
