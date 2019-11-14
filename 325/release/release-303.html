@@ -1,0 +1,134 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>12.23. Release 303 &#8212; Presto 325 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '325',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12.24. Release 302" href="release-302.html" />
+    <link rel="prev" title="12.22. Release 304" href="release-304.html" /> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133457846-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-133457846-1');
+    </script>
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 325 Documentation</span></a></h1>
+    <h2 class="heading"><span>12.23. Release 303</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-304.html">12.22. Release 304</a>
+    </span>
+    <span class="right">
+        <a href="release-302.html">12.24. Release 302</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-303">
+<h1>12.23. Release 303</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix incorrect padding for <code class="docutils literal"><span class="pre">CHAR</span></code> values containing Unicode supplementary characters.
+Previously, such values would be incorrectly padded with too few spaces. (<a class="reference external" href="https://github.com/prestosql/presto/issues/195">#195</a>)</li>
+<li>Fix an issue where a union of a table with a <code class="docutils literal"><span class="pre">VALUES</span></code> statement would execute on a
+single node,  which could lead to out of memory errors. (<a class="reference external" href="https://github.com/prestosql/presto/issues/207">#207</a>)</li>
+<li>Fix <code class="docutils literal"><span class="pre">/v1/info</span></code> to report started status after all plugins have been registered and initialized. (<a class="reference external" href="https://github.com/prestosql/presto/issues/213">#213</a>)</li>
+<li>Improve performance of window functions by avoiding unnecessary data exchanges over the network. (<a class="reference external" href="https://github.com/prestosql/presto/issues/177">#177</a>)</li>
+<li>Choose the distribution type for semi joins based on cost when the
+<code class="docutils literal"><span class="pre">join_distribution_type</span></code> session property is set to <code class="docutils literal"><span class="pre">AUTOMATIC</span></code>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/160">#160</a>)</li>
+<li>Expand grouped execution support to window functions, making it possible
+to execute them with less peak memory usage. (<a class="reference external" href="https://github.com/prestosql/presto/issues/169">#169</a>)</li>
+</ul>
+</div>
+<div class="section" id="web-ui-changes">
+<h2>Web UI Changes</h2>
+<ul class="simple">
+<li>Add additional details to and improve rendering of live plan. (<a class="reference external" href="https://github.com/prestosql/presto/issues/182">#182</a>)</li>
+</ul>
+</div>
+<div class="section" id="cli-changes">
+<h2>CLI Changes</h2>
+<ul class="simple">
+<li>Add <code class="docutils literal"><span class="pre">--progress</span></code> option to show query progress in batch mode. (<a class="reference external" href="https://github.com/prestosql/presto/issues/34">#34</a>)</li>
+</ul>
+</div>
+<div class="section" id="hive-connector-changes">
+<h2>Hive Connector Changes</h2>
+<ul class="simple">
+<li>Fix query failure when reading Parquet data with no columns selected.
+This affects queries such as <code class="docutils literal"><span class="pre">SELECT</span> <span class="pre">count(*)</span></code>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/203">#203</a>)</li>
+</ul>
+</div>
+<div class="section" id="mongo-connector-changes">
+<h2>Mongo Connector Changes</h2>
+<ul class="simple">
+<li>Fix failure for queries involving joins or aggregations on <code class="docutils literal"><span class="pre">ObjectId</span></code> type. (<a class="reference external" href="https://github.com/prestosql/presto/issues/215">#215</a>)</li>
+</ul>
+</div>
+<div class="section" id="base-jdbc-connector-library-changes">
+<h2>Base-JDBC Connector Library Changes</h2>
+<ul class="simple">
+<li>Allow customizing how query predicates are pushed down to the underlying database. (<a class="reference external" href="https://github.com/prestosql/presto/issues/109">#109</a>)</li>
+<li>Allow customizing how values are written to the underlying database. (<a class="reference external" href="https://github.com/prestosql/presto/issues/109">#109</a>)</li>
+</ul>
+</div>
+<div class="section" id="spi-changes">
+<h2>SPI Changes</h2>
+<ul class="simple">
+<li>Remove deprecated methods <code class="docutils literal"><span class="pre">getSchemaName</span></code> and <code class="docutils literal"><span class="pre">getTableName</span></code> from the <code class="docutils literal"><span class="pre">SchemaTablePrefix</span></code>
+class. These were replaced by the <code class="docutils literal"><span class="pre">getSchema</span></code> and <code class="docutils literal"><span class="pre">getTable</span></code> methods. (<a class="reference external" href="https://github.com/prestosql/presto/issues/89">#89</a>)</li>
+<li>Remove deprecated variants of methods <code class="docutils literal"><span class="pre">listTables</span></code> and <code class="docutils literal"><span class="pre">listViews</span></code>
+from the <code class="docutils literal"><span class="pre">ConnectorMetadata</span></code> class. (<a class="reference external" href="https://github.com/prestosql/presto/issues/89">#89</a>)</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-304.html">12.22. Release 304</a>
+    </span>
+    <span class="right">
+        <a href="release-302.html">12.24. Release 302</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>
