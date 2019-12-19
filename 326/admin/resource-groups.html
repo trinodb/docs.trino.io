@@ -78,6 +78,9 @@ which can be an absolute path, or a path relative to the Presto data directory.<
 <li><p class="first"><code class="docutils literal"><span class="pre">maxQueued</span></code> (required): maximum number of queued queries. Once this limit is reached
 new queries are rejected.</p>
 </li>
+<li><p class="first"><code class="docutils literal"><span class="pre">softConcurrencyLimit</span></code> (optional): number of concurrently running queries after which
+new queries will only run if all peer resource groups below their soft limits are ineligible or if all eligible peers are above soft limits.</p>
+</li>
 <li><p class="first"><code class="docutils literal"><span class="pre">hardConcurrencyLimit</span></code> (required): maximum number of running queries.</p>
 </li>
 <li><p class="first"><code class="docutils literal"><span class="pre">softMemoryLimit</span></code> (required): maximum amount of distributed memory this
