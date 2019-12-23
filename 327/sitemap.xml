@@ -904,6 +904,9 @@
     <loc>https://prestosql.io/docs/current/security/ldap.html</loc>
   </url>
   <url>
+    <loc>https://prestosql.io/docs/current/security/password-file.html</loc>
+  </url>
+  <url>
     <loc>https://prestosql.io/docs/current/security/server.html</loc>
   </url>
   <url>
