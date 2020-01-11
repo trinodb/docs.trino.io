@@ -1,0 +1,127 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>12.3. Release 326 (27 Nov 2019) &#8212; Presto 328 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '328',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12.4. Release 325 (14 Nov 2019)" href="release-325.html" />
+    <link rel="prev" title="12.2. Release 327 (20 Dec 2019)" href="release-327.html" /> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133457846-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-133457846-1');
+    </script>
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 328 Documentation</span></a></h1>
+    <h2 class="heading"><span>12.3. Release 326 (27 Nov 2019)</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-327.html">12.2. Release 327 (20 Dec 2019)</a>
+    </span>
+    <span class="right">
+        <a href="release-325.html">12.4. Release 325 (14 Nov 2019)</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-326-27-nov-2019">
+<h1>12.3. Release 326 (27 Nov 2019)</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix incorrect query results when query contains <code class="docutils literal"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code> over <code class="docutils literal"><span class="pre">UNNEST</span></code>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2097">#2097</a>)</li>
+<li>Fix performance regression in queries involving <code class="docutils literal"><span class="pre">JOIN</span></code>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2047">#2047</a>)</li>
+<li>Fix accounting of semantic analysis time when queued queries are cancelled. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2055">#2055</a>)</li>
+<li>Add <a class="reference internal" href="../connector/memsql.html"><span class="doc">MemSQL Connector</span></a>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/1906">#1906</a>)</li>
+<li>Improve performance of <code class="docutils literal"><span class="pre">INSERT</span></code> and <code class="docutils literal"><span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">...</span> <span class="pre">AS</span></code> queries containing redundant
+<code class="docutils literal"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clauses. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2044">#2044</a>)</li>
+<li>Improve performance when processing columns of <code class="docutils literal"><span class="pre">map</span></code> type. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2015">#2015</a>)</li>
+</ul>
+</div>
+<div class="section" id="security-changes">
+<h2>Security Changes</h2>
+<ul class="simple">
+<li>Deprecate Kerberos in favor of JWT for <a class="reference internal" href="../security/internal-communication.html"><span class="doc">Secure Internal Communication</span></a>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2032">#2032</a>)</li>
+</ul>
+</div>
+<div class="section" id="hive-changes">
+<h2>Hive Changes</h2>
+<ul class="simple">
+<li>Fix table creation error for tables with S3 location when using <code class="docutils literal"><span class="pre">file</span></code> metastore. (<a class="reference external" href="https://github.com/prestosql/presto/issues/1664">#1664</a>)</li>
+<li>Fix a compatibility issue with the CDH 5.x metastore which results in stats
+not being recorded for <a class="reference internal" href="../sql/analyze.html"><span class="doc">ANALYZE</span></a>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/973">#973</a>)</li>
+<li>Improve performance for Glue metastore by fetching partitions in parallel. (<a class="reference external" href="https://github.com/prestosql/presto/issues/1465">#1465</a>)</li>
+<li>Improve performance of <code class="docutils literal"><span class="pre">sql-standard</span></code> security. (<a class="reference external" href="https://github.com/prestosql/presto/issues/1922">#1922</a>, <a class="reference external" href="https://github.com/prestosql/presto/issues/1929">#1929</a>)</li>
+</ul>
+</div>
+<div class="section" id="rpm-changes">
+<h2>RPM Changes</h2>
+<ul class="simple">
+<li>Allow running Presto with Java 11 or newer. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2057">#2057</a>)</li>
+</ul>
+</div>
+<div class="section" id="phoenix-connector-changes">
+<h2>Phoenix Connector Changes</h2>
+<ul class="simple">
+<li>Collect statistics on the count and duration of each call to Phoenix. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2024">#2024</a>)</li>
+</ul>
+</div>
+<div class="section" id="other-connector-changes">
+<h2>Other Connector Changes</h2>
+<p>These changes apply to the MySQL, PostgreSQL, Redshift, and SQL Server connectors.</p>
+<ul class="simple">
+<li>Collect statistics on the count and duration of operations to create
+and destroy <code class="docutils literal"><span class="pre">JDBC</span></code> connections. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2024">#2024</a>)</li>
+<li>Add support for showing column comments. (<a class="reference external" href="https://github.com/prestosql/presto/issues/1840">#1840</a>)</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-327.html">12.2. Release 327 (20 Dec 2019)</a>
+    </span>
+    <span class="right">
+        <a href="release-325.html">12.4. Release 325 (14 Nov 2019)</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

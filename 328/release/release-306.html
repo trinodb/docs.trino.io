@@ -1,0 +1,160 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>12.23. Release 306 &#8212; Presto 328 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '328',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12.24. Release 305" href="release-305.html" />
+    <link rel="prev" title="12.22. Release 307" href="release-307.html" /> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133457846-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-133457846-1');
+    </script>
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 328 Documentation</span></a></h1>
+    <h2 class="heading"><span>12.23. Release 306</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-307.html">12.22. Release 307</a>
+    </span>
+    <span class="right">
+        <a href="release-305.html">12.24. Release 305</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-306">
+<h1>12.23. Release 306</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix planning failure for queries containing a <code class="docutils literal"><span class="pre">LIMIT</span></code> after a global
+aggregation. (<a class="reference external" href="https://github.com/prestosql/presto/issues/437">#437</a>)</li>
+<li>Fix missing column types in <code class="docutils literal"><span class="pre">EXPLAIN</span></code> output. (<a class="reference external" href="https://github.com/prestosql/presto/issues/328">#328</a>)</li>
+<li>Fix accounting of peak revocable memory reservation. (<a class="reference external" href="https://github.com/prestosql/presto/issues/413">#413</a>)</li>
+<li>Fix double memory accounting for aggregations when spilling is active. (<a class="reference external" href="https://github.com/prestosql/presto/issues/413">#413</a>)</li>
+<li>Fix excessive CPU usage that can occur when spilling for window functions. (<a class="reference external" href="https://github.com/prestosql/presto/issues/468">#468</a>)</li>
+<li>Fix incorrect view name displayed by <code class="docutils literal"><span class="pre">SHOW</span> <span class="pre">CREATE</span> <span class="pre">VIEW</span></code>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/433">#433</a>)</li>
+<li>Allow specifying <code class="docutils literal"><span class="pre">NOT</span> <span class="pre">NULL</span></code> when creating tables or adding columns. (<a class="reference external" href="https://github.com/prestosql/presto/issues/418">#418</a>)</li>
+<li>Add a config option (<code class="docutils literal"><span class="pre">query.stage-count-warning-threshold</span></code>) to specify a
+per-query threshold for the number of stages. When this threshold is exceeded,
+a <code class="docutils literal"><span class="pre">TOO_MANY_STAGES</span></code> warning is raised. (<a class="reference external" href="https://github.com/prestosql/presto/issues/330">#330</a>)</li>
+<li>Support session property values with special characters (e.g., comma or equals sign). (<a class="reference external" href="https://github.com/prestosql/presto/issues/407">#407</a>)</li>
+<li>Remove the <code class="docutils literal"><span class="pre">deprecated.legacy-unnest-array-rows</span></code> configuration option.
+The legacy behavior for <code class="docutils literal"><span class="pre">UNNEST</span></code> of arrays containing <code class="docutils literal"><span class="pre">ROW</span></code> values is no
+longer supported. (<a class="reference external" href="https://github.com/prestosql/presto/issues/430">#430</a>)</li>
+<li>Remove the <code class="docutils literal"><span class="pre">deprecated.legacy-row-field-ordinal-access</span></code> configuration option.
+The legacy mechanism for accessing fields of anonymous <code class="docutils literal"><span class="pre">ROW</span></code> types is no longer
+supported. (<a class="reference external" href="https://github.com/prestosql/presto/issues/428">#428</a>)</li>
+<li>Remove the <code class="docutils literal"><span class="pre">deprecated.group-by-uses-equal</span></code> configuration option. The legacy equality
+semantics for <code class="docutils literal"><span class="pre">GROUP</span> <span class="pre">BY</span></code> are not longer supported. (<a class="reference external" href="https://github.com/prestosql/presto/issues/432">#432</a>)</li>
+<li>Remove the <code class="docutils literal"><span class="pre">deprecated.legacy-map-subscript</span></code>. The legacy behavior for the map subscript
+operator on missing keys is no longer supported. (<a class="reference external" href="https://github.com/prestosql/presto/issues/429">#429</a>)</li>
+<li>Remove the <code class="docutils literal"><span class="pre">deprecated.legacy-char-to-varchar-coercion</span></code> configuration option. The
+legacy coercion rules between <code class="docutils literal"><span class="pre">CHAR</span></code> and <code class="docutils literal"><span class="pre">VARCHAR</span></code> types are no longer
+supported. (<a class="reference external" href="https://github.com/prestosql/presto/issues/431">#431</a>)</li>
+<li>Remove deprecated <code class="docutils literal"><span class="pre">distributed_join</span></code> system property. Use <code class="docutils literal"><span class="pre">join_distribution_type</span></code>
+instead. (<a class="reference external" href="https://github.com/prestosql/presto/issues/452">#452</a>)</li>
+</ul>
+</div>
+<div class="section" id="hive-connector-changes">
+<h2>Hive Connector Changes</h2>
+<ul class="simple">
+<li>Fix calling procedures immediately after startup, before any other queries are run.
+Previously, the procedure call would fail and also cause all subsequent Hive queries
+to fail. (<a class="reference external" href="https://github.com/prestosql/presto/issues/414">#414</a>)</li>
+<li>Improve ORC reader performance for decoding <code class="docutils literal"><span class="pre">REAL</span></code> and <code class="docutils literal"><span class="pre">DOUBLE</span></code> types. (<a class="reference external" href="https://github.com/prestosql/presto/issues/465">#465</a>)</li>
+</ul>
+</div>
+<div class="section" id="mysql-connector-changes">
+<h2>MySQL Connector Changes</h2>
+<ul class="simple">
+<li>Allow creating or renaming tables, and adding, renaming, or dropping columns. (<a class="reference external" href="https://github.com/prestosql/presto/issues/418">#418</a>)</li>
+</ul>
+</div>
+<div class="section" id="postgresql-connector-changes">
+<h2>PostgreSQL Connector Changes</h2>
+<ul class="simple">
+<li>Fix predicate pushdown for PostgreSQL <code class="docutils literal"><span class="pre">ENUM</span></code> type. (<a class="reference external" href="https://github.com/prestosql/presto/issues/408">#408</a>)</li>
+<li>Allow creating or renaming tables, and adding, renaming, or dropping columns. (<a class="reference external" href="https://github.com/prestosql/presto/issues/418">#418</a>)</li>
+</ul>
+</div>
+<div class="section" id="redshift-connector-changes">
+<h2>Redshift Connector Changes</h2>
+<ul class="simple">
+<li>Allow creating or renaming tables, and adding, renaming, or dropping columns. (<a class="reference external" href="https://github.com/prestosql/presto/issues/418">#418</a>)</li>
+</ul>
+</div>
+<div class="section" id="sql-server-connector-changes">
+<h2>SQL Server Connector Changes</h2>
+<ul class="simple">
+<li>Allow creating or renaming tables, and adding, renaming, or dropping columns. (<a class="reference external" href="https://github.com/prestosql/presto/issues/418">#418</a>)</li>
+</ul>
+</div>
+<div class="section" id="base-jdbc-connector-library-changes">
+<h2>Base-JDBC Connector Library Changes</h2>
+<ul class="simple">
+<li>Allow mapping column type to Presto type based on <code class="docutils literal"><span class="pre">Block</span></code>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/454">#454</a>)</li>
+</ul>
+</div>
+<div class="section" id="spi-changes">
+<h2>SPI Changes</h2>
+<ul class="simple">
+<li>Deprecate Table Layout APIs. Connectors can opt out of the legacy behavior by implementing
+<code class="docutils literal"><span class="pre">ConnectorMetadata.usesLegacyTableLayouts()</span></code>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/420">#420</a>)</li>
+<li>Add support for limit pushdown into connectors via the <code class="docutils literal"><span class="pre">ConnectorMetadata.applyLimit()</span></code>
+method. (<a class="reference external" href="https://github.com/prestosql/presto/issues/421">#421</a>)</li>
+<li>Add time spent waiting for resources to <code class="docutils literal"><span class="pre">QueryCompletedEvent</span></code>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/461">#461</a>)</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-307.html">12.22. Release 307</a>
+    </span>
+    <span class="right">
+        <a href="release-305.html">12.24. Release 305</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>
