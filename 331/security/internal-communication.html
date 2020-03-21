@@ -59,11 +59,11 @@
 <div class="content">
     
   <div class="section" id="secure-internal-communication">
-<h1>3.8. Secure Internal Communication</h1>
+<h1>3.8. Secure Internal Communication<a class="headerlink" href="#secure-internal-communication" title="Permalink to this headline">#</a></h1>
 <p>The Presto cluster can be configured to use secured communication. Communication
 between Presto nodes can be secured with SSL/TLS.</p>
 <div class="section" id="internal-authentication">
-<h2>Internal Authentication</h2>
+<h2>Internal Authentication<a class="headerlink" href="#internal-authentication" title="Permalink to this headline">#</a></h2>
 <p>Requests between Presto nodes are authenticated using a shared secret. For secure
 internal communication, the shared secret must be configured on all nodes in the cluster:</p>
 <blockquote>
@@ -80,7 +80,7 @@ command:</p>
 </div></blockquote>
 </div>
 <div class="section" id="internal-ssl-tls-configuration">
-<h2>Internal SSL/TLS configuration</h2>
+<h2>Internal SSL/TLS configuration<a class="headerlink" href="#internal-ssl-tls-configuration" title="Permalink to this headline">#</a></h2>
 <p>SSL/TLS is configured in the <code class="docutils literal"><span class="pre">config.properties</span></code> file.  The SSL/TLS on the
 worker and coordinator nodes are configured using the same set of properties.
 Every node in the cluster must be configured. Nodes that have not been
@@ -190,7 +190,7 @@ internal-communication.https.keystore.key=&lt;keystore password&gt;
 </ol>
 </div>
 <div class="section" id="performance-with-ssl-tls-enabled">
-<h2>Performance with SSL/TLS enabled</h2>
+<h2>Performance with SSL/TLS enabled<a class="headerlink" href="#performance-with-ssl-tls-enabled" title="Permalink to this headline">#</a></h2>
 <p>Enabling encryption impacts performance. The performance degradation can vary
 based on the environment, queries, and concurrency.</p>
 <p>For queries that do not require transferring too much data between the Presto
@@ -202,7 +202,7 @@ considerable. The slowdown may vary from 10% to even 100%+, depending on the net
 traffic and the CPU utilization.</p>
 </div>
 <div class="section" id="advanced-performance-tuning">
-<h2>Advanced Performance Tuning</h2>
+<h2>Advanced Performance Tuning<a class="headerlink" href="#advanced-performance-tuning" title="Permalink to this headline">#</a></h2>
 <p>In some cases, changing the source of random numbers improves performance
 significantly.</p>
 <p>By default, TLS encryption uses the <code class="docutils literal"><span class="pre">/dev/urandom</span></code> system device as a source of entropy.

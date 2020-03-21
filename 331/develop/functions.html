@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="functions">
-<h1>11.5. Functions</h1>
+<h1>11.5. Functions<a class="headerlink" href="#functions" title="Permalink to this headline">#</a></h1>
 <div class="section" id="plugin-implementation">
-<h2>Plugin Implementation</h2>
+<h2>Plugin Implementation<a class="headerlink" href="#plugin-implementation" title="Permalink to this headline">#</a></h2>
 <p>The function framework is used to implement SQL functions. Presto includes a
 number of built-in functions. In order to implement new functions, you can
 write a plugin that returns one or more functions from <code class="docutils literal"><span class="pre">getFunctions()</span></code>:</p>
@@ -90,7 +90,7 @@ learning functions or the <code class="docutils literal"><span class="pre">prest
 functions, both in the root of the Presto source.</p>
 </div>
 <div class="section" id="scalar-function-implementation">
-<h2>Scalar Function Implementation</h2>
+<h2>Scalar Function Implementation<a class="headerlink" href="#scalar-function-implementation" title="Permalink to this headline">#</a></h2>
 <p>The function framework uses annotations to indicate relevant information
 about functions, including name, description, return type and parameter
 types. Below is a sample function which implements <code class="docutils literal"><span class="pre">is_null</span></code>:</p>
@@ -127,7 +127,7 @@ native container type when using <code class="docutils literal"><span class="pre
 </ul>
 </div>
 <div class="section" id="parametric-scalar-functions">
-<h2>Parametric Scalar Functions</h2>
+<h2>Parametric Scalar Functions<a class="headerlink" href="#parametric-scalar-functions" title="Permalink to this headline">#</a></h2>
 <p>Scalar functions that have type parameters have some additional complexity.
 To make our previous example work with any type we need the following:</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="nd">@ScalarFunction</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;is_null&quot;</span><span class="o">)</span>
@@ -196,7 +196,7 @@ defined:</p>
 </div>
 </div>
 <div class="section" id="another-scalar-function-example">
-<h2>Another Scalar Function Example</h2>
+<h2>Another Scalar Function Example<a class="headerlink" href="#another-scalar-function-example" title="Permalink to this headline">#</a></h2>
 <p>The <code class="docutils literal"><span class="pre">lowercaser</span></code> function takes a single <code class="docutils literal"><span class="pre">VARCHAR</span></code> argument and returns a
 <code class="docutils literal"><span class="pre">VARCHAR</span></code>, which is the argument converted to lower case:</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExampleStringFunction</span>
@@ -219,7 +219,7 @@ has no <code class="docutils literal"><span class="pre">&#64;SqlNullable</span><
 the result will automatically be <code class="docutils literal"><span class="pre">NULL</span></code> (the function will not be called).</p>
 </div>
 <div class="section" id="aggregation-function-implementation">
-<h2>Aggregation Function Implementation</h2>
+<h2>Aggregation Function Implementation<a class="headerlink" href="#aggregation-function-implementation" title="Permalink to this headline">#</a></h2>
 <p>Aggregation functions use a similar framework to scalar functions, but are
 a bit more complex.</p>
 <ul>
@@ -320,7 +320,7 @@ will be automatically generated for you, if you don’t specify a
 </ul>
 </div>
 <div class="section" id="deprecated-function">
-<h2>Deprecated Function</h2>
+<h2>Deprecated Function<a class="headerlink" href="#deprecated-function" title="Permalink to this headline">#</a></h2>
 <p>The <code class="docutils literal"><span class="pre">&#64;Deprecated</span></code> annotation has to be used on any function that should no longer be
 used. The annotation causes Presto to generate a warning whenever a SQL statement
 uses a deprecated function. When a function is deprecated, the <code class="docutils literal"><span class="pre">&#64;Description</span></code>

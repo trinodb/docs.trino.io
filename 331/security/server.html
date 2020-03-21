@@ -59,7 +59,7 @@
 <div class="content">
     
   <div class="section" id="coordinator-kerberos-authentication">
-<h1>3.1. Coordinator Kerberos Authentication</h1>
+<h1>3.1. Coordinator Kerberos Authentication<a class="headerlink" href="#coordinator-kerberos-authentication" title="Permalink to this headline">#</a></h1>
 <p>The Presto coordinator can be configured to enable Kerberos authentication over
 HTTPS for clients, such as the <a class="reference internal" href="cli.html"><span class="doc">Presto CLI</span></a>, or the
 JDBC and ODBC drivers.</p>
@@ -69,9 +69,9 @@ The worker nodes continue to connect to the coordinator over
 unauthenticated HTTP. However, if you want to secure the communication between
 Presto nodes with SSL/TLS, configure <a class="reference internal" href="internal-communication.html"><span class="doc">Secure Internal Communication</span></a>.</p>
 <div class="section" id="environment-configuration">
-<h2>Environment Configuration</h2>
+<h2>Environment Configuration<a class="headerlink" href="#environment-configuration" title="Permalink to this headline">#</a></h2>
 <div class="section" id="kerberos-services">
-<span id="server-kerberos-services"></span><h3>Kerberos Services</h3>
+<span id="server-kerberos-services"></span><h3>Kerberos Services<a class="headerlink" href="#kerberos-services" title="Permalink to this headline">#</a></h3>
 <p>You will need a Kerberos <abbr title="Key Distribution Center">KDC</abbr> running on a
 node that the Presto coordinator can reach over the network. The KDC is
 responsible for authenticating principals and issuing session keys that can be
@@ -79,7 +79,7 @@ used with Kerberos-enabled services. KDCs typically run on port 88, which is
 the IANA-assigned port for Kerberos.</p>
 </div>
 <div class="section" id="mit-kerberos-configuration">
-<span id="server-kerberos-configuration"></span><h3>MIT Kerberos Configuration</h3>
+<span id="server-kerberos-configuration"></span><h3>MIT Kerberos Configuration<a class="headerlink" href="#mit-kerberos-configuration" title="Permalink to this headline">#</a></h3>
 <p>Kerberos needs to be configured on the Presto coordinator. At a minimum, there needs
 to be a <code class="docutils literal"><span class="pre">kdc</span></code> entry in the <code class="docutils literal"><span class="pre">[realms]</span></code> section of the <code class="docutils literal"><span class="pre">/etc/krb5.conf</span></code>
 file. You may also want to include an <code class="docutils literal"><span class="pre">admin_server</span></code> entry and ensure that
@@ -101,7 +101,7 @@ different implementation of the Kerberos protocol, you will need to adapt the
 configuration to your environment.</p>
 </div>
 <div class="section" id="kerberos-principals-and-keytab-files">
-<span id="server-kerberos-principals"></span><h3>Kerberos Principals and Keytab Files</h3>
+<span id="server-kerberos-principals"></span><h3>Kerberos Principals and Keytab Files<a class="headerlink" href="#kerberos-principals-and-keytab-files" title="Permalink to this headline">#</a></h3>
 <p>The Presto coordinator needs a Kerberos principal, as do users who are going to
 connect to the Presto coordinator. You need to create these users in
 Kerberos using <a class="reference external" href="http://web.mit.edu/kerberos/krb5-latest/doc/admin/admin_commands/kadmin_local.html">kadmin</a>.</p>
@@ -122,7 +122,7 @@ password or a keytab, use the <code class="docutils literal"><span class="pre">-
 </div>
 </div>
 <div class="section" id="java-cryptography-extension-policy-files">
-<h3>Java Cryptography Extension Policy Files</h3>
+<h3>Java Cryptography Extension Policy Files<a class="headerlink" href="#java-cryptography-extension-policy-files" title="Permalink to this headline">#</a></h3>
 <p>The Java Runtime Environment is shipped with policy files that limit the
 strength of the cryptographic keys that can be used. Kerberos, by default, uses
 keys that are larger than those supported by the included policy files. There
@@ -143,20 +143,20 @@ the ZIP archive. You need administrative access to install the policy
 files, if you are installing them in a system JRE.</p>
 </div>
 <div class="section" id="java-keystore-file-for-tls">
-<h3>Java Keystore File for TLS</h3>
+<h3>Java Keystore File for TLS<a class="headerlink" href="#java-keystore-file-for-tls" title="Permalink to this headline">#</a></h3>
 <p>When using Kerberos authentication, access to the Presto coordinator should be
 through HTTPS. You can do it by creating a <a class="reference internal" href="tls.html#server-java-keystore"><span class="std std-ref">Java Keystore File for TLS</span></a> on the
 coordinator.</p>
 </div>
 </div>
 <div class="section" id="system-access-control-plugin">
-<h2>System Access Control Plugin</h2>
+<h2>System Access Control Plugin<a class="headerlink" href="#system-access-control-plugin" title="Permalink to this headline">#</a></h2>
 <p>A Presto coordinator with Kerberos enabled probably needs a
 <a class="reference internal" href="../develop/system-access-control.html"><span class="doc">System Access Control</span></a> plugin to achieve
 the desired level of security.</p>
 </div>
 <div class="section" id="presto-coordinator-node-configuration">
-<h2>Presto Coordinator Node Configuration</h2>
+<h2>Presto Coordinator Node Configuration<a class="headerlink" href="#presto-coordinator-node-configuration" title="Permalink to this headline">#</a></h2>
 <p>You must make the above changes to the environment prior to configuring the
 Presto coordinator to use Kerberos authentication and HTTPS. After making the
 following environment changes, you can make the changes to the Presto
@@ -169,7 +169,7 @@ configuration files.</p>
 <li><a class="reference internal" href="../develop/system-access-control.html"><span class="doc">System Access Control Plugin</span></a></li>
 </ul>
 <div class="section" id="config-properties">
-<h3>config.properties</h3>
+<h3>config.properties<a class="headerlink" href="#config-properties" title="Permalink to this headline">#</a></h3>
 <p>Kerberos authentication is configured in the coordinator node’s
 <code class="file docutils literal"><span class="pre">config.properties</span></code> file. The entries that need to be added are listed below.</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>http-server.authentication.type=KERBEROS
@@ -264,7 +264,7 @@ http-server.https.excluded-cipher=
 </div>
 </div>
 <div class="section" id="access-controls-properties">
-<h3>access-controls.properties</h3>
+<h3>access-controls.properties<a class="headerlink" href="#access-controls-properties" title="Permalink to this headline">#</a></h3>
 <p>At a minimum, an <code class="file docutils literal"><span class="pre">access-control.properties</span></code> file must contain an
 <code class="docutils literal"><span class="pre">access-control.name</span></code> property.  All other configuration is specific
 for the implementation being configured.
@@ -272,7 +272,7 @@ See <a class="reference internal" href="../develop/system-access-control.html"><
 </div>
 </div>
 <div class="section" id="user-mapping">
-<span id="coordinator-troubleshooting"></span><h2>User Mapping</h2>
+<span id="coordinator-troubleshooting"></span><h2>User Mapping<a class="headerlink" href="#user-mapping" title="Permalink to this headline">#</a></h2>
 <p>After authenticating with Kerberos, the Presto server receives the user’s principal which is typically similar to
 an email address.  For example, when <code class="docutils literal"><span class="pre">alice</span></code> logs in in Presto might receive <code class="docutils literal"><span class="pre">alice&#64;example.com</span></code>.  By default,
 Presto will use the full Kerberos principal name, but this can be mapped to a shorter name using a user-mapping
@@ -282,12 +282,12 @@ regular expression does not match, the authentication is denied.  For more compl
 <a class="reference internal" href="user-mapping.html"><span class="doc">User Mapping</span></a>.</p>
 </div>
 <div class="section" id="troubleshooting">
-<h2>Troubleshooting</h2>
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">#</a></h2>
 <p>Getting Kerberos authentication working can be challenging. You can
 independently verify some of the configuration outside of Presto, to help narrow
 your focus when trying to solve a problem.</p>
 <div class="section" id="kerberos-verification">
-<h3>Kerberos Verification</h3>
+<h3>Kerberos Verification<a class="headerlink" href="#kerberos-verification" title="Permalink to this headline">#</a></h3>
 <p>Ensure that you can connect to the KDC from the Presto coordinator using
 <strong class="command">telnet</strong>.</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>$ telnet kdc.example.com 88
@@ -302,12 +302,12 @@ $ klist
 </div>
 </div>
 <div class="section" id="java-keystore-file-verification">
-<h3>Java Keystore File Verification</h3>
+<h3>Java Keystore File Verification<a class="headerlink" href="#java-keystore-file-verification" title="Permalink to this headline">#</a></h3>
 <p>Verify the password for a keystore file and view its contents using
 <a class="reference internal" href="tls.html#troubleshooting-keystore"><span class="std std-ref">Java Keystore File Verification</span></a></p>
 </div>
 <div class="section" id="additional-kerberos-debugging-information">
-<h3>Additional Kerberos Debugging Information</h3>
+<h3>Additional Kerberos Debugging Information<a class="headerlink" href="#additional-kerberos-debugging-information" title="Permalink to this headline">#</a></h3>
 <p>You can enable additional Kerberos debugging information for the Presto
 coordinator process by adding the following lines to the Presto <code class="docutils literal"><span class="pre">jvm.config</span></code>
 file</p>
@@ -325,7 +325,7 @@ Exception messages and stack traces can provide useful clues about the
 nature of the problem.</p>
 </div>
 <div class="section" id="additional-resources">
-<span id="server-additional-resources"></span><h3>Additional resources</h3>
+<span id="server-additional-resources"></span><h3>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">#</a></h3>
 <p><a class="reference external" href="http://docs.oracle.com/cd/E19253-01/816-4557/trouble-6/index.html">Common Kerberos Error Messages (A-M)</a></p>
 <p><a class="reference external" href="http://docs.oracle.com/cd/E19253-01/816-4557/trouble-27/index.html">Common Kerberos Error Messages (N-Z)</a></p>
 <p><a class="reference external" href="http://web.mit.edu/kerberos/krb5-latest/doc/admin/troubleshoot.html">MIT Kerberos Documentation: Troubleshooting</a></p>

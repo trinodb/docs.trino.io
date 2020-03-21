@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-211">
-<h1>12.37. Release 0.211</h1>
+<h1>12.37. Release 0.211<a class="headerlink" href="#release-0-211" title="Permalink to this headline">#</a></h1>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix missing final query plan in <code class="docutils literal"><span class="pre">QueryCompletedEvent</span></code>. Statistics and cost estimates
 are removed from the plan text because they may not be available during event generation.</li>
@@ -83,7 +83,7 @@ to automate the setting of session properties based on query characteristics.</l
 </ul>
 </div>
 <div class="section" id="hive-connector-changes">
-<h2>Hive Connector Changes</h2>
+<h2>Hive Connector Changes<a class="headerlink" href="#hive-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix regression in 0.210 that causes query failure when writing ORC or DWRF files
 that occurs for specific patterns of input data. When the writer attempts to give up
@@ -94,13 +94,13 @@ transitioning to use direct encoding instead can fail.</li>
 </ul>
 </div>
 <div class="section" id="thrift-connector-changes">
-<h2>Thrift Connector Changes</h2>
+<h2>Thrift Connector Changes<a class="headerlink" href="#thrift-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix lack of retry for network errors while sending requests.</li>
 </ul>
 </div>
 <div class="section" id="resource-group-changes">
-<h2>Resource Group Changes</h2>
+<h2>Resource Group Changes<a class="headerlink" href="#resource-group-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add documentation for new resource group scheduling policies.</li>
 <li>Remove running and queue time limits from resource group configuration.
@@ -110,7 +110,7 @@ to set session properties.</li>
 </ul>
 </div>
 <div class="section" id="spi-changes">
-<h2>SPI Changes</h2>
+<h2>SPI Changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Clarify semantics of <code class="docutils literal"><span class="pre">predicate</span></code> in <code class="docutils literal"><span class="pre">ConnectorTableLayout</span></code>.</li>
 <li>Reduce flexibility of <code class="docutils literal"><span class="pre">unenforcedConstraint</span></code> that a connector can return in <code class="docutils literal"><span class="pre">getTableLayouts</span></code>.

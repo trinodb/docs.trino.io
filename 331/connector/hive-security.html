@@ -59,7 +59,7 @@
 <div class="content">
     
   <div class="section" id="hive-security-configuration">
-<h1>6.9. Hive Security Configuration</h1>
+<h1>6.9. Hive Security Configuration<a class="headerlink" href="#hive-security-configuration" title="Permalink to this headline">#</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><a class="reference internal" href="#authorization" id="id3">Authorization</a></li>
@@ -71,7 +71,7 @@
 </ul>
 </div>
 <div class="section" id="authorization">
-<h2>Authorization</h2>
+<h2>Authorization<a class="headerlink" href="#authorization" title="Permalink to this headline">#</a></h2>
 <p>You can enable authorization checks for the <a class="reference internal" href="hive.html"><span class="doc">Hive Connector</span></a> by setting
 the <code class="docutils literal"><span class="pre">hive.security</span></code> property in the Hive catalog properties file. This
 property must be one of the following values:</p>
@@ -116,7 +116,7 @@ See <a class="reference internal" href="#hive-sql-standard-based-authorization">
 </tbody>
 </table>
 <div class="section" id="sql-standard-based-authorization">
-<span id="hive-sql-standard-based-authorization"></span><h3>SQL Standard Based Authorization</h3>
+<span id="hive-sql-standard-based-authorization"></span><h3>SQL Standard Based Authorization<a class="headerlink" href="#sql-standard-based-authorization" title="Permalink to this headline">#</a></h3>
 <p>When <code class="docutils literal"><span class="pre">sql-standard</span></code> security is enabled, Presto enforces the same SQL
 standard based authorization as Hive does.</p>
 <p>Since Presto’s <code class="docutils literal"><span class="pre">ROLE</span></code> syntax support matches the SQL standard, and
@@ -136,7 +136,7 @@ limitations and differences:</p>
 </div>
 </div>
 <div class="section" id="authentication">
-<h2>Authentication</h2>
+<h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">#</a></h2>
 <p>The default security configuration of the <a class="reference internal" href="hive.html"><span class="doc">Hive Connector</span></a> does not use
 authentication when connecting to a Hadoop cluster. All queries are executed as
 the user who runs the Presto process, regardless of which user submits the
@@ -158,7 +158,7 @@ for information on setting up Kerberos authentication.</p>
 </div>
 </div>
 <div class="section" id="kerberos-support">
-<h2>Kerberos Support</h2>
+<h2>Kerberos Support<a class="headerlink" href="#kerberos-support" title="Permalink to this headline">#</a></h2>
 <p>In order to use the Hive connector with a Hadoop cluster that uses <code class="docutils literal"><span class="pre">kerberos</span></code>
 authentication, you need to configure the connector to work with two
 services on the Hadoop cluster:</p>
@@ -176,7 +176,7 @@ in <code class="docutils literal"><span class="pre">jvm.config</span></code> fil
 <p class="last">Example: <code class="docutils literal"><span class="pre">-Djava.security.krb5.conf=/example/path/krb5.conf</span></code>.</p>
 </div>
 <div class="section" id="hive-metastore-thrift-service-authentication">
-<h3>Hive Metastore Thrift Service Authentication</h3>
+<h3>Hive Metastore Thrift Service Authentication<a class="headerlink" href="#hive-metastore-thrift-service-authentication" title="Permalink to this headline">#</a></h3>
 <p>In a Kerberized Hadoop cluster, Presto connects to the Hive metastore Thrift
 service using <abbr title="Simple Authentication and Security Layer">SASL</abbr> and
 authenticates using Kerberos. Kerberos authentication for the metastore is
@@ -211,7 +211,7 @@ to the Hive metastore service.</td>
 </tbody>
 </table>
 <div class="section" id="hive-metastore-authentication-type">
-<h4><code class="docutils literal"><span class="pre">hive.metastore.authentication.type</span></code></h4>
+<h4><code class="docutils literal"><span class="pre">hive.metastore.authentication.type</span></code><a class="headerlink" href="#hive-metastore-authentication-type" title="Permalink to this headline">#</a></h4>
 <p>One of <code class="docutils literal"><span class="pre">NONE</span></code> or <code class="docutils literal"><span class="pre">KERBEROS</span></code>. When using the default value of <code class="docutils literal"><span class="pre">NONE</span></code>,
 Kerberos authentication is disabled, and no other properties need to be
 configured.</p>
@@ -220,13 +220,13 @@ Thrift service using SASL and authenticate using Kerberos.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">NONE</span></code>.</p>
 </div>
 <div class="section" id="hive-metastore-thrift-impersonation-enabled">
-<h4><code class="docutils literal"><span class="pre">hive.metastore.thrift.impersonation.enabled</span></code></h4>
+<h4><code class="docutils literal"><span class="pre">hive.metastore.thrift.impersonation.enabled</span></code><a class="headerlink" href="#hive-metastore-thrift-impersonation-enabled" title="Permalink to this headline">#</a></h4>
 <p>Enable end-user Hive metastore impersonation.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">false</span></code>.
 See <a class="reference internal" href="#hive-security-metastore-impersonation"><span class="std std-ref">Impersonation Accessing the Hive Metastore</span></a> for more information.</p>
 </div>
 <div class="section" id="hive-metastore-service-principal">
-<h4><code class="docutils literal"><span class="pre">hive.metastore.service.principal</span></code></h4>
+<h4><code class="docutils literal"><span class="pre">hive.metastore.service.principal</span></code><a class="headerlink" href="#hive-metastore-service-principal" title="Permalink to this headline">#</a></h4>
 <p>The Kerberos principal of the Hive metastore service. The Presto coordinator
 uses this to authenticate the Hive metastore.</p>
 <p>The <code class="docutils literal"><span class="pre">_HOST</span></code> placeholder can be used in this property value. When connecting
@@ -237,7 +237,7 @@ runs on multiple hosts.</p>
 <p>This property is optional; no default value.</p>
 </div>
 <div class="section" id="hive-metastore-client-principal">
-<h4><code class="docutils literal"><span class="pre">hive.metastore.client.principal</span></code></h4>
+<h4><code class="docutils literal"><span class="pre">hive.metastore.client.principal</span></code><a class="headerlink" href="#hive-metastore-client-principal" title="Permalink to this headline">#</a></h4>
 <p>The Kerberos principal that Presto uses when connecting to the Hive
 metastore.</p>
 <p>The <code class="docutils literal"><span class="pre">_HOST</span></code> placeholder can be used in this property value. When connecting
@@ -261,14 +261,14 @@ impersonated. Errors deleting data are silently ignored.</p>
 </div>
 </div>
 <div class="section" id="hive-metastore-client-keytab">
-<h4><code class="docutils literal"><span class="pre">hive.metastore.client.keytab</span></code></h4>
+<h4><code class="docutils literal"><span class="pre">hive.metastore.client.keytab</span></code><a class="headerlink" href="#hive-metastore-client-keytab" title="Permalink to this headline">#</a></h4>
 <p>The path to the keytab file that contains a key for the principal specified by
 <code class="docutils literal"><span class="pre">hive.metastore.client.principal</span></code>. This file must be readable by the
 operating system user running Presto.</p>
 <p>This property is optional; no default value.</p>
 </div>
 <div class="section" id="example-configuration-with-none-authentication">
-<h4>Example configuration with <code class="docutils literal"><span class="pre">NONE</span></code> authentication</h4>
+<h4>Example configuration with <code class="docutils literal"><span class="pre">NONE</span></code> authentication<a class="headerlink" href="#example-configuration-with-none-authentication" title="Permalink to this headline">#</a></h4>
 <div class="highlight-none"><div class="highlight"><pre><span></span>hive.metastore.authentication.type=NONE
 </pre></div>
 </div>
@@ -277,7 +277,7 @@ authentication type is <code class="docutils literal"><span class="pre">NONE</sp
 metastore. Kerberos is not used.</p>
 </div>
 <div class="section" id="example-configuration-with-kerberos-authentication">
-<h4>Example configuration with <code class="docutils literal"><span class="pre">KERBEROS</span></code> authentication</h4>
+<h4>Example configuration with <code class="docutils literal"><span class="pre">KERBEROS</span></code> authentication<a class="headerlink" href="#example-configuration-with-kerberos-authentication" title="Permalink to this headline">#</a></h4>
 <div class="highlight-none"><div class="highlight"><pre><span></span>hive.metastore.authentication.type=KERBEROS
 hive.metastore.thrift.impersonation.enabled=true
 hive.metastore.service.principal=hive/hive-metastore-host.example.com@EXAMPLE.COM
@@ -296,7 +296,7 @@ property, and verifies that the identity of the metastore matches
 </div>
 </div>
 <div class="section" id="hdfs-authentication">
-<h3>HDFS Authentication</h3>
+<h3>HDFS Authentication<a class="headerlink" href="#hdfs-authentication" title="Permalink to this headline">#</a></h3>
 <p>In a Kerberized Hadoop cluster, Presto authenticates to HDFS using Kerberos.
 Kerberos authentication for HDFS is configured in the connector’s properties
 file using the following properties:</p>
@@ -331,7 +331,7 @@ to HDFS.</td>
 </tbody>
 </table>
 <div class="section" id="hive-hdfs-authentication-type">
-<h4><code class="docutils literal"><span class="pre">hive.hdfs.authentication.type</span></code></h4>
+<h4><code class="docutils literal"><span class="pre">hive.hdfs.authentication.type</span></code><a class="headerlink" href="#hive-hdfs-authentication-type" title="Permalink to this headline">#</a></h4>
 <p>One of <code class="docutils literal"><span class="pre">NONE</span></code> or <code class="docutils literal"><span class="pre">KERBEROS</span></code>. When using the default value of <code class="docutils literal"><span class="pre">NONE</span></code>,
 Kerberos authentication is disabled, and no other properties need to be
 configured.</p>
@@ -340,14 +340,14 @@ Kerberos.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">NONE</span></code>.</p>
 </div>
 <div class="section" id="hive-hdfs-impersonation-enabled">
-<h4><code class="docutils literal"><span class="pre">hive.hdfs.impersonation.enabled</span></code></h4>
+<h4><code class="docutils literal"><span class="pre">hive.hdfs.impersonation.enabled</span></code><a class="headerlink" href="#hive-hdfs-impersonation-enabled" title="Permalink to this headline">#</a></h4>
 <p>Enable end-user HDFS impersonation.</p>
 <p>The section <a class="reference internal" href="#hive-security-impersonation"><span class="std std-ref">End User Impersonation</span></a> gives an
 in-depth explanation of HDFS impersonation.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">false</span></code>.</p>
 </div>
 <div class="section" id="hive-hdfs-presto-principal">
-<h4><code class="docutils literal"><span class="pre">hive.hdfs.presto.principal</span></code></h4>
+<h4><code class="docutils literal"><span class="pre">hive.hdfs.presto.principal</span></code><a class="headerlink" href="#hive-hdfs-presto-principal" title="Permalink to this headline">#</a></h4>
 <p>The Kerberos principal Presto uses when connecting to HDFS.</p>
 <p>The <code class="docutils literal"><span class="pre">_HOST</span></code> placeholder can be used in this property value. When connecting
 to HDFS, the Hive connector substitutes in the hostname of the <strong>worker</strong>
@@ -358,20 +358,20 @@ Kerberos principal.</p>
 <p>This property is optional; no default value.</p>
 </div>
 <div class="section" id="hive-hdfs-presto-keytab">
-<h4><code class="docutils literal"><span class="pre">hive.hdfs.presto.keytab</span></code></h4>
+<h4><code class="docutils literal"><span class="pre">hive.hdfs.presto.keytab</span></code><a class="headerlink" href="#hive-hdfs-presto-keytab" title="Permalink to this headline">#</a></h4>
 <p>The path to the keytab file that contains a key for the principal specified by
 <code class="docutils literal"><span class="pre">hive.hdfs.presto.principal</span></code>. This file must be readable by the operating
 system user running Presto.</p>
 <p>This property is optional; no default value.</p>
 </div>
 <div class="section" id="hive-hdfs-wire-encryption-enabled">
-<h4><code class="docutils literal"><span class="pre">hive.hdfs.wire-encryption.enabled</span></code></h4>
+<h4><code class="docutils literal"><span class="pre">hive.hdfs.wire-encryption.enabled</span></code><a class="headerlink" href="#hive-hdfs-wire-encryption-enabled" title="Permalink to this headline">#</a></h4>
 <p>In a Kerberized Hadoop cluster that uses HDFS wire encryption, this should be
 set to <code class="docutils literal"><span class="pre">true</span></code> to enable Presto to access HDFS. Note that using wire encryption
 may impact query execution performance.</p>
 </div>
 <div class="section" id="hive-security-simple">
-<span id="id1"></span><h4>Example configuration with <code class="docutils literal"><span class="pre">NONE</span></code> authentication</h4>
+<span id="id1"></span><h4>Example configuration with <code class="docutils literal"><span class="pre">NONE</span></code> authentication<a class="headerlink" href="#hive-security-simple" title="Permalink to this headline">#</a></h4>
 <div class="highlight-none"><div class="highlight"><pre><span></span>hive.hdfs.authentication.type=NONE
 </pre></div>
 </div>
@@ -380,7 +380,7 @@ type is <code class="docutils literal"><span class="pre">NONE</span></code>, Pre
 mechanism. Kerberos is not used.</p>
 </div>
 <div class="section" id="hive-security-kerberos">
-<span id="id2"></span><h4>Example configuration with <code class="docutils literal"><span class="pre">KERBEROS</span></code> authentication</h4>
+<span id="id2"></span><h4>Example configuration with <code class="docutils literal"><span class="pre">KERBEROS</span></code> authentication<a class="headerlink" href="#hive-security-kerberos" title="Permalink to this headline">#</a></h4>
 <div class="highlight-none"><div class="highlight"><pre><span></span>hive.hdfs.authentication.type=KERBEROS
 hive.hdfs.presto.principal=hdfs@EXAMPLE.COM
 hive.hdfs.presto.keytab=/etc/presto/hdfs.keytab
@@ -396,9 +396,9 @@ authenticates this principal using the keytab specified by the
 </div>
 </div>
 <div class="section" id="end-user-impersonation">
-<span id="hive-security-impersonation"></span><h2>End User Impersonation</h2>
+<span id="hive-security-impersonation"></span><h2>End User Impersonation<a class="headerlink" href="#end-user-impersonation" title="Permalink to this headline">#</a></h2>
 <div class="section" id="impersonation-accessing-hdfs">
-<h3>Impersonation Accessing HDFS</h3>
+<h3>Impersonation Accessing HDFS<a class="headerlink" href="#impersonation-accessing-hdfs" title="Permalink to this headline">#</a></h3>
 <p>Presto can impersonate the end user who is running a query. In the case of a
 user running a query from the command line interface, the end user is the
 username associated with the Presto CLI process or argument to the optional
@@ -406,7 +406,7 @@ username associated with the Presto CLI process or argument to the optional
 when accessing HDFS if HDFS permissions or ACLs are used.</p>
 <p>HDFS Permissions and ACLs are explained in the <a class="reference external" href="https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsPermissionsGuide.html">HDFS Permissions Guide</a>.</p>
 <div class="section" id="none-authentication-with-hdfs-impersonation">
-<span id="hive-security-simple-impersonation"></span><h4><code class="docutils literal"><span class="pre">NONE</span></code> authentication with HDFS impersonation</h4>
+<span id="hive-security-simple-impersonation"></span><h4><code class="docutils literal"><span class="pre">NONE</span></code> authentication with HDFS impersonation<a class="headerlink" href="#none-authentication-with-hdfs-impersonation" title="Permalink to this headline">#</a></h4>
 <div class="highlight-none"><div class="highlight"><pre><span></span>hive.hdfs.authentication.type=NONE
 hive.hdfs.impersonation.enabled=true
 </pre></div>
@@ -417,7 +417,7 @@ running as must be allowed to impersonate this user, as discussed in the
 section <a class="reference internal" href="#configuring-hadoop-impersonation"><span class="std std-ref">Impersonation in Hadoop</span></a>. Kerberos is not used.</p>
 </div>
 <div class="section" id="kerberos-authentication-with-hdfs-impersonation">
-<span id="hive-security-kerberos-impersonation"></span><h4><code class="docutils literal"><span class="pre">KERBEROS</span></code> Authentication With HDFS Impersonation</h4>
+<span id="hive-security-kerberos-impersonation"></span><h4><code class="docutils literal"><span class="pre">KERBEROS</span></code> Authentication With HDFS Impersonation<a class="headerlink" href="#kerberos-authentication-with-hdfs-impersonation" title="Permalink to this headline">#</a></h4>
 <div class="highlight-none"><div class="highlight"><pre><span></span>hive.hdfs.authentication.type=KERBEROS
 hive.hdfs.impersonation.enabled=true
 hive.hdfs.presto.principal=presto@EXAMPLE.COM
@@ -436,7 +436,7 @@ impersonate the current Presto user, as discussed in the section
 </div>
 </div>
 <div class="section" id="impersonation-accessing-the-hive-metastore">
-<span id="hive-security-metastore-impersonation"></span><h3>Impersonation Accessing the Hive Metastore</h3>
+<span id="hive-security-metastore-impersonation"></span><h3>Impersonation Accessing the Hive Metastore<a class="headerlink" href="#impersonation-accessing-the-hive-metastore" title="Permalink to this headline">#</a></h3>
 <p>Presto supports impersonating the end user when accessing the Hive metastore.
 Metastore impersonation can be enabled with</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>hive.metastore.thrift.impersonation.enabled=true
@@ -462,7 +462,7 @@ Presto is fully responsible for doing all relevant security checks.</p>
 </ul>
 </div>
 <div class="section" id="impersonation-in-hadoop">
-<span id="configuring-hadoop-impersonation"></span><h3>Impersonation in Hadoop</h3>
+<span id="configuring-hadoop-impersonation"></span><h3>Impersonation in Hadoop<a class="headerlink" href="#impersonation-in-hadoop" title="Permalink to this headline">#</a></h3>
 <p>In order to use impersonation, the Hadoop cluster must be
 configured to allow the user or principal that Presto is running as to
 impersonate the users who log in to Presto. Impersonation in Hadoop is
@@ -471,7 +471,7 @@ configuration options can be found in the <a class="reference external" href="ht
 </div>
 </div>
 <div class="section" id="additional-information-about-keytab-files">
-<span id="hive-security-additional-keytab"></span><h2>Additional Information About Keytab Files</h2>
+<span id="hive-security-additional-keytab"></span><h2>Additional Information About Keytab Files<a class="headerlink" href="#additional-information-about-keytab-files" title="Permalink to this headline">#</a></h2>
 <p>Keytab files contain encryption keys that are used to authenticate principals
 to the Kerberos <abbr title="Key Distribution Center">KDC</abbr>. These encryption keys
 must be stored securely; you need to take the same precautions to protect them
@@ -488,13 +488,13 @@ node.</p>
 node after distributing them.</p>
 </div>
 <div class="section" id="file-based-authorization">
-<span id="hive-file-based-authorization"></span><h2>File Based Authorization</h2>
+<span id="hive-file-based-authorization"></span><h2>File Based Authorization<a class="headerlink" href="#file-based-authorization" title="Permalink to this headline">#</a></h2>
 <p>The config file is specified using JSON and is composed of three sections,
 each of which is a list of rules that are matched in the order specified
 in the config file. The user is granted the privileges from the first
 matching rule. All regexes default to <code class="docutils literal"><span class="pre">.*</span></code> if not specified.</p>
 <div class="section" id="schema-rules">
-<h3>Schema Rules</h3>
+<h3>Schema Rules<a class="headerlink" href="#schema-rules" title="Permalink to this headline">#</a></h3>
 <p>These rules govern who is considered an owner of a schema.</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">user</span></code> (optional): regex to match against user name.</li>
@@ -504,7 +504,7 @@ matching rule. All regexes default to <code class="docutils literal"><span class
 </ul>
 </div>
 <div class="section" id="table-rules">
-<h3>Table Rules</h3>
+<h3>Table Rules<a class="headerlink" href="#table-rules" title="Permalink to this headline">#</a></h3>
 <p>These rules govern the privileges granted on specific tables.</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">user</span></code> (optional): regex to match against user name.</li>
@@ -516,7 +516,7 @@ matching rule. All regexes default to <code class="docutils literal"><span class
 </ul>
 </div>
 <div class="section" id="session-property-rules">
-<h3>Session Property Rules</h3>
+<h3>Session Property Rules<a class="headerlink" href="#session-property-rules" title="Permalink to this headline">#</a></h3>
 <p>These rules govern who may set session properties.</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">user</span></code> (optional): regex to match against user name.</li>

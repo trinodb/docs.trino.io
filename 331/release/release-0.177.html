@@ -59,7 +59,7 @@
 <div class="content">
     
   <div class="section" id="release-0-177">
-<h1>12.71. Release 0.177</h1>
+<h1>12.71. Release 0.177<a class="headerlink" href="#release-0-177" title="Permalink to this headline">#</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">Query may incorrectly produce <code class="docutils literal"><span class="pre">NULL</span></code> when no row qualifies for the aggregation
@@ -68,7 +68,7 @@ the <code class="docutils literal"><span class="pre">optimizer.optimize-mixed-di
 This optimization was introduced in Presto version 0.156.</p>
 </div>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix correctness issue when performing range comparisons over columns of type <code class="docutils literal"><span class="pre">CHAR</span></code>.</li>
 <li>Fix correctness issue due to mishandling of nulls and non-deterministic expressions in
@@ -99,7 +99,7 @@ session property.</li>
 </ul>
 </div>
 <div class="section" id="hive-changes">
-<h2>Hive Changes</h2>
+<h2>Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix handling of trailing spaces for the <code class="docutils literal"><span class="pre">CHAR</span></code> type when reading RCFile.</li>
 <li>Allow inserts into tables that have more partitions than the partitions-per-scan limit.</li>
@@ -109,7 +109,7 @@ can be turned on via the <code class="docutils literal"><span class="pre">statis
 </ul>
 </div>
 <div class="section" id="cassandra-changes">
-<h2>Cassandra Changes</h2>
+<h2>Cassandra Changes<a class="headerlink" href="#cassandra-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Remove caching of metadata in the Cassandra connector. Metadata caching makes Presto violate
 the consistency defined by the Cassandra cluster. It’s also unnecessary because the Cassandra
@@ -120,7 +120,7 @@ been removed.</li>
 </ul>
 </div>
 <div class="section" id="web-ui-changes">
-<h2>Web UI Changes</h2>
+<h2>Web UI Changes<a class="headerlink" href="#web-ui-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Change cluster HUD realtime statistics to be aggregated across all running queries.</li>
 <li>Change parallelism statistic on cluster HUD to be averaged per-worker.</li>
@@ -132,7 +132,7 @@ been removed.</li>
 </ul>
 </div>
 <div class="section" id="cli-changes">
-<h2>CLI Changes</h2>
+<h2>CLI Changes<a class="headerlink" href="#cli-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add support for preprocessing commands.  When the <code class="docutils literal"><span class="pre">PRESTO_PREPROCESSOR</span></code> environment
 variable is set, all commands are piped through the specified program before being sent to

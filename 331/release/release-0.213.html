@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-213">
-<h1>12.35. Release 0.213</h1>
+<h1>12.35. Release 0.213<a class="headerlink" href="#release-0-213" title="Permalink to this headline">#</a></h1>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix split scheduling backpressure when plan contains colocated join. Previously, splits
 for the second and subsequent scan nodes (in scheduling order) were scheduled continuously
@@ -99,7 +99,7 @@ of a table that can be broadcast when using <code class="docutils literal"><span
 </ul>
 </div>
 <div class="section" id="geospatial-changes">
-<h2>Geospatial Changes</h2>
+<h2>Geospatial Changes<a class="headerlink" href="#geospatial-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix <a class="reference internal" href="../functions/geospatial.html#ST_Distance" title="ST_Distance"><code class="xref py py-func docutils literal"><span class="pre">ST_Distance()</span></code></a> function to return <code class="docutils literal"><span class="pre">NULL</span></code> if any of the inputs is an
 empty geometry as required by the SQL/MM specification.</li>
@@ -109,13 +109,13 @@ empty geometry as required by the SQL/MM specification.</li>
 </ul>
 </div>
 <div class="section" id="server-rpm-changes">
-<h2>Server RPM Changes</h2>
+<h2>Server RPM Changes<a class="headerlink" href="#server-rpm-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Allow running on a JVM from any vendor.</li>
 </ul>
 </div>
 <div class="section" id="web-ui-changes">
-<h2>Web UI Changes</h2>
+<h2>Web UI Changes<a class="headerlink" href="#web-ui-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Remove legacy plan UI.</li>
 <li>Add support for filtering queries by all error categories.</li>
@@ -124,7 +124,7 @@ empty geometry as required by the SQL/MM specification.</li>
 </ul>
 </div>
 <div class="section" id="hive-connector-changes">
-<h2>Hive Connector Changes</h2>
+<h2>Hive Connector Changes<a class="headerlink" href="#hive-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix LZO and LZOP decompression to work with certain data compressed by Hadoop.</li>
 <li>Fix ORC writer validation percentage so that zero does not result in 100% validation.</li>
@@ -152,20 +152,20 @@ configuration properties and <code class="docutils literal"><span class="pre">pa
 </ul>
 </div>
 <div class="section" id="memory-connector-changes">
-<h2>Memory Connector Changes</h2>
+<h2>Memory Connector Changes<a class="headerlink" href="#memory-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Improve table data size accounting.</li>
 </ul>
 </div>
 <div class="section" id="thrift-connector-changes">
-<h2>Thrift Connector Changes</h2>
+<h2>Thrift Connector Changes<a class="headerlink" href="#thrift-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Include constraint in explain plan for index joins.</li>
 <li>Improve readability of columns, tables, layouts, and indexes in explain plans.</li>
 </ul>
 </div>
 <div class="section" id="verifier-changes">
-<h2>Verifier Changes</h2>
+<h2>Verifier Changes<a class="headerlink" href="#verifier-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Rewrite queries in parallel when shadowing writes.</li>
 </ul>

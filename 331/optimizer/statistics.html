@@ -59,14 +59,14 @@
 <div class="content">
     
   <div class="section" id="table-statistics">
-<h1>5.1. Table Statistics</h1>
+<h1>5.1. Table Statistics<a class="headerlink" href="#table-statistics" title="Permalink to this headline">#</a></h1>
 <p>Presto supports statistics based optimizations for queries. For a query to take
 advantage of these optimizations, Presto must have statistical information for
 the tables in that query.</p>
 <p>Table statistics are provided to the query planner by connectors.  Currently, the
 only connector that supports statistics is the <a class="reference internal" href="../connector/hive.html"><span class="doc">Hive Connector</span></a>.</p>
 <div class="section" id="table-layouts">
-<h2>Table Layouts</h2>
+<h2>Table Layouts<a class="headerlink" href="#table-layouts" title="Permalink to this headline">#</a></h2>
 <p>Statistics are exposed to the query planner by a table layout. A table layout
 represents a subset of a table’s data, and contains information about the
 organizational properties of that data, like sort order and bucketing.</p>
@@ -81,7 +81,7 @@ predicates from the query.</li>
 </ul>
 </div>
 <div class="section" id="available-statistics">
-<h2>Available Statistics</h2>
+<h2>Available Statistics<a class="headerlink" href="#available-statistics" title="Permalink to this headline">#</a></h2>
 <p>The following statistics are available in Presto:</p>
 <blockquote>
 <div><ul class="simple">

@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-116">
-<h1>12.143. Release 0.116</h1>
+<h1>12.143. Release 0.116<a class="headerlink" href="#release-0-116" title="Permalink to this headline">#</a></h1>
 <div class="section" id="cast-between-json-and-varchar">
-<h2>Cast between JSON and VARCHAR</h2>
+<h2>Cast between JSON and VARCHAR<a class="headerlink" href="#cast-between-json-and-varchar" title="Permalink to this headline">#</a></h2>
 <p>Casts of both directions between JSON and VARCHAR have been removed. If you
 have such casts in your scripts or views, they will fail with a message when
 you move to release 0.116. To get the semantics of the current casts, use:</p>
@@ -77,7 +77,7 @@ cast between JSON and VARCHAR in old scripts and views will produce unexpected
 result.</p>
 </div>
 <div class="section" id="cluster-memory-manager-improvements">
-<h2>Cluster Memory Manager Improvements</h2>
+<h2>Cluster Memory Manager Improvements<a class="headerlink" href="#cluster-memory-manager-improvements" title="Permalink to this headline">#</a></h2>
 <p>The cluster memory manager now has a low memory killer. If the cluster runs low
 on memory, the killer will kill queries to improve throughput. It can be enabled
 with the <code class="docutils literal"><span class="pre">query.low-memory-killer.enabled</span></code> config flag, and the delay between
@@ -85,7 +85,7 @@ when the cluster runs low on memory and when the killer will be invoked can be
 configured with the <code class="docutils literal"><span class="pre">query.low-memory-killer.delay</span></code> option.</p>
 </div>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add <a class="reference internal" href="../functions/aggregate.html#multimap_agg" title="multimap_agg"><code class="xref py py-func docutils literal"><span class="pre">multimap_agg()</span></code></a> function.</li>
 <li>Add <a class="reference internal" href="../functions/aggregate.html#checksum" title="checksum"><code class="xref py py-func docutils literal"><span class="pre">checksum()</span></code></a> function.</li>

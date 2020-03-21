@@ -59,13 +59,13 @@
 <div class="content">
     
   <div class="section" id="release-0-90">
-<h1>12.169. Release 0.90</h1>
+<h1>12.169. Release 0.90<a class="headerlink" href="#release-0-90" title="Permalink to this headline">#</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">This release has a memory leak and should not be used.</p>
 </div>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Initial support for partition and placement awareness in the query planner. This can
 result in better plans for queries involving <code class="docutils literal"><span class="pre">JOIN</span></code> and <code class="docutils literal"><span class="pre">GROUP</span> <span class="pre">BY</span></code> over the same
@@ -89,7 +89,7 @@ methods now throw <code class="docutils literal"><span class="pre">SQLException<
 </ul>
 </div>
 <div class="section" id="functions-and-language-features">
-<h2>Functions and Language Features</h2>
+<h2>Functions and Language Features<a class="headerlink" href="#functions-and-language-features" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add <a class="reference internal" href="../functions/aggregate.html#bool_and" title="bool_and"><code class="xref py py-func docutils literal"><span class="pre">bool_and()</span></code></a> and <a class="reference internal" href="../functions/aggregate.html#bool_or" title="bool_or"><code class="xref py py-func docutils literal"><span class="pre">bool_or()</span></code></a> aggregation functions.</li>
 <li>Add standard SQL function <a class="reference internal" href="../functions/aggregate.html#every" title="every"><code class="xref py py-func docutils literal"><span class="pre">every()</span></code></a> as an alias for <a class="reference internal" href="../functions/aggregate.html#bool_and" title="bool_and"><code class="xref py py-func docutils literal"><span class="pre">bool_and()</span></code></a>.</li>
@@ -104,7 +104,7 @@ information such as output layout, task placement policy and partitioning functi
 </ul>
 </div>
 <div class="section" id="hive-changes">
-<h2>Hive Changes</h2>
+<h2>Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Disable optimized metastore partition fetching for non-string partition keys.
 This fixes an issue were Presto might silently ignore data with non-canonical
@@ -114,7 +114,7 @@ to the coordinator and worker config properties.</li>
 </ul>
 </div>
 <div class="section" id="spi-changes">
-<h2>SPI Changes</h2>
+<h2>SPI Changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add <code class="docutils literal"><span class="pre">getColumnTypes</span></code> to <code class="docutils literal"><span class="pre">RecordSink</span></code>.</li>
 <li>Use <code class="docutils literal"><span class="pre">Slice</span></code> for table writer fragments.</li>

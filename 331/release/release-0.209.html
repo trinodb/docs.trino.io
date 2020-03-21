@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-209">
-<h1>12.39. Release 0.209</h1>
+<h1>12.39. Release 0.209<a class="headerlink" href="#release-0-209" title="Permalink to this headline">#</a></h1>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix incorrect predicate pushdown when grouping sets contain the empty grouping set (<a class="reference external" href="https://github.com/prestodb/presto/issues/11296">#11296</a>).</li>
 <li>Fix <code class="docutils literal"><span class="pre">X-Forwarded-Proto</span></code> header handling for requests to the <code class="docutils literal"><span class="pre">/</span></code> path (<a class="reference external" href="https://github.com/prestodb/presto/issues/11168">#11168</a>).</li>
@@ -92,25 +92,25 @@ map to map cast when running under some earlier JVM versions, including 8u92.</l
 </ul>
 </div>
 <div class="section" id="web-ui-changes">
-<h2>Web UI Changes</h2>
+<h2>Web UI Changes<a class="headerlink" href="#web-ui-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix the kill query button on the live plan and stage performance pages.</li>
 </ul>
 </div>
 <div class="section" id="cli-changes">
-<h2>CLI Changes</h2>
+<h2>CLI Changes<a class="headerlink" href="#cli-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Prevent spurious <em>“No route to host”</em> errors on macOS when using IPv6.</li>
 </ul>
 </div>
 <div class="section" id="jdbc-driver-changes">
-<h2>JDBC Driver Changes</h2>
+<h2>JDBC Driver Changes<a class="headerlink" href="#jdbc-driver-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Prevent spurious <em>“No route to host”</em> errors on macOS when using IPv6.</li>
 </ul>
 </div>
 <div class="section" id="hive-connector-changes">
-<h2>Hive Connector Changes</h2>
+<h2>Hive Connector Changes<a class="headerlink" href="#hive-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix data loss when writing bucketed sorted tables. Partitions would
 be missing arbitrary rows if any of the temporary files for a bucket
@@ -128,14 +128,14 @@ This correctly handles missing or extra struct fields in the ORC file.</li>
 </ul>
 </div>
 <div class="section" id="kafka-connector-changes">
-<h2>Kafka Connector Changes</h2>
+<h2>Kafka Connector Changes<a class="headerlink" href="#kafka-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Support Avro formatted Kafka messages.</li>
 <li>Support backward compatible Avro schema evolution.</li>
 </ul>
 </div>
 <div class="section" id="spi-changes">
-<h2>SPI Changes</h2>
+<h2>SPI Changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Allow using <code class="docutils literal"><span class="pre">Object</span></code> as a parameter type or return type for SQL
 functions when the corresponding SQL type is an unbounded generic.</li>

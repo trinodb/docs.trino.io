@@ -59,11 +59,11 @@
 <div class="content">
     
   <div class="section" id="hive-connector-gcs-tutorial">
-<h1>6.8. Hive Connector GCS Tutorial</h1>
+<h1>6.8. Hive Connector GCS Tutorial<a class="headerlink" href="#hive-connector-gcs-tutorial" title="Permalink to this headline">#</a></h1>
 <div class="section" id="preliminary-steps">
-<h2>Preliminary Steps</h2>
+<h2>Preliminary Steps<a class="headerlink" href="#preliminary-steps" title="Permalink to this headline">#</a></h2>
 <div class="section" id="ensure-access-to-gcs">
-<h3>Ensure Access to GCS</h3>
+<h3>Ensure Access to GCS<a class="headerlink" href="#ensure-access-to-gcs" title="Permalink to this headline">#</a></h3>
 <p>Access to <a class="reference external" href="https://cloud.google.com/storage/">Google Cloud Storage</a>
 data is possible thanks to the
 <a class="reference external" href="https://cloud.google.com/dataproc/docs/concepts/connectors/cloud-storage">Hadoop Cloud Storage connector</a>.</p>
@@ -75,7 +75,7 @@ You can do this on the
 Once you create a service account, create a key for it and download the key in JSON format.</p>
 </div>
 <div class="section" id="hive-connector-configuration">
-<h3>Hive Connector configuration</h3>
+<h3>Hive Connector configuration<a class="headerlink" href="#hive-connector-configuration" title="Permalink to this headline">#</a></h3>
 <p>Another requirement is that you have enabled and configured a Hive connector in Presto.
 The connector uses Hive metastore for data discovery and is not limited to data residing on HDFS.</p>
 <p><strong>Configuring Hive Connector</strong></p>
@@ -118,7 +118,7 @@ catalog properties file:</p>
 </ul>
 </div>
 <div class="section" id="hive-metastore-configuration">
-<h3>Hive Metastore configuration</h3>
+<h3>Hive Metastore configuration<a class="headerlink" href="#hive-metastore-configuration" title="Permalink to this headline">#</a></h3>
 <p>If your Hive metastore uses StorageBasedAuthorization, it needs to access GCS
 to perform POSIX permission checks.
 Configuring GCS access for Hive is outside the scope of this tutorial, but there
@@ -144,15 +144,15 @@ with a value of <code class="docutils literal"><span class="pre">777</span></cod
 </div>
 </div>
 <div class="section" id="accessing-gcs-data-from-presto-for-the-first-time">
-<h2>Accessing GCS Data From Presto for the First Time</h2>
+<h2>Accessing GCS Data From Presto for the First Time<a class="headerlink" href="#accessing-gcs-data-from-presto-for-the-first-time" title="Permalink to this headline">#</a></h2>
 <div class="section" id="accessing-data-already-mapped-in-the-hive-metastore">
-<h3>Accessing Data Already Mapped in the Hive metastore</h3>
+<h3>Accessing Data Already Mapped in the Hive metastore<a class="headerlink" href="#accessing-data-already-mapped-in-the-hive-metastore" title="Permalink to this headline">#</a></h3>
 <p>If you migrate to Presto from Hive, chances are that your GCS data is already mapped to
 SQL tables in the metastore.
 In that case, you should be able to query it.</p>
 </div>
 <div class="section" id="accessing-data-not-yet-mapped-in-the-hive-metastore">
-<h3>Accessing Data Not Yet Mapped in the Hive metastore</h3>
+<h3>Accessing Data Not Yet Mapped in the Hive metastore<a class="headerlink" href="#accessing-data-not-yet-mapped-in-the-hive-metastore" title="Permalink to this headline">#</a></h3>
 <p>To access GCS data that is not yet mapped in the Hive metastore you need to provide the
 schema of the data, the file format, and the data location.
 For example, if you have ORC or Parquet files in an GCS bucket <code class="docutils literal"><span class="pre">my_bucket</span></code>, you need to execute a query:</p>
@@ -183,14 +183,14 @@ For example, if you have ORC or Parquet files in an GCS bucket <code class="docu
 </div>
 </div>
 <div class="section" id="writing-gcs-data-with-presto">
-<h2>Writing GCS Data with Presto</h2>
+<h2>Writing GCS Data with Presto<a class="headerlink" href="#writing-gcs-data-with-presto" title="Permalink to this headline">#</a></h2>
 <div class="section" id="prerequisites">
-<h3>Prerequisites</h3>
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">#</a></h3>
 <p>Before you attempt to write data to GCS, make sure you have configured everything
 necessary to read data from GCS.</p>
 </div>
 <div class="section" id="create-export-schema">
-<h3>Create Export Schema</h3>
+<h3>Create Export Schema<a class="headerlink" href="#create-export-schema" title="Permalink to this headline">#</a></h3>
 <p>If Hive metastore contains schema(s) mapped to GCS locations, you can use them to
 export data to GCS.
 If you don’t want to use existing schemas, or there are no appropriate schemas in
@@ -200,7 +200,7 @@ the Hive metastore, you need to create a new one:</p>
 </div>
 </div>
 <div class="section" id="export-data-to-gcs">
-<h3>Export Data to GCS</h3>
+<h3>Export Data to GCS<a class="headerlink" href="#export-data-to-gcs" title="Permalink to this headline">#</a></h3>
 <p>Once you have a schema pointing to a location, where you want to export the data, you can issue
 the export using a <code class="docutils literal"><span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">AS</span></code> statement and select your desired file format. The data
 is written to one or more files within the <code class="docutils literal"><span class="pre">gs://my_bucket/some/path/my_table</span></code> namespace.

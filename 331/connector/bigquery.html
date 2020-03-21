@@ -59,13 +59,13 @@
 <div class="content">
     
   <div class="section" id="bigquery-connector">
-<h1>6.2. BigQuery Connector</h1>
+<h1>6.2. BigQuery Connector<a class="headerlink" href="#bigquery-connector" title="Permalink to this headline">#</a></h1>
 <p>The BigQuery connector allows querying the data stored in <a class="reference external" href="https://cloud.google.com/bigquery/">BigQuery</a>. This can be used to join data between
 different systems like BigQuery and Hive. The connector uses the <a class="reference external" href="https://cloud.google.com/bigquery/docs/reference/storage/">BigQuery
 Storage API</a> to
 read the data from the tables.</p>
 <div class="section" id="beta-disclaimer">
-<h2>Beta Disclaimer</h2>
+<h2>Beta Disclaimer<a class="headerlink" href="#beta-disclaimer" title="Permalink to this headline">#</a></h2>
 <p>The BigQuery Storage API and this connector are in Beta and are subject to change.</p>
 <p>Changes may include, but are not limited to:</p>
 <ul class="simple">
@@ -75,7 +75,7 @@ read the data from the tables.</p>
 </ul>
 </div>
 <div class="section" id="id1">
-<h2>BigQuery Storage API</h2>
+<h2>BigQuery Storage API<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <p>The Storage API streams data in parallel directly from BigQuery via gRPC without
 using Google Cloud Storage as an intermediary.
 It has a number of advantages over using the previous export-based read flow
@@ -96,13 +96,13 @@ that all Map phases will finish nearly concurrently. See this blog article on
 <a class="reference external" href="https://cloud.google.com/blog/big-data/2016/05/no-shard-left-behind-dynamic-work-rebalancing-in-google-cloud-dataflow">how dynamic sharding is similarly used in Google Cloud Dataflow</a>.</div></blockquote>
 </div>
 <div class="section" id="requirements">
-<h2>Requirements</h2>
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">#</a></h2>
 <div class="section" id="enable-the-bigquery-storage-api">
-<h3>Enable the BigQuery Storage API</h3>
+<h3>Enable the BigQuery Storage API<a class="headerlink" href="#enable-the-bigquery-storage-api" title="Permalink to this headline">#</a></h3>
 <p>Follow <a class="reference external" href="https://cloud.google.com/bigquery/docs/reference/storage/#enabling_the_api">these instructions</a>.</p>
 </div>
 <div class="section" id="authentication">
-<h3>Authentication</h3>
+<h3>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">#</a></h3>
 <p><strong>On GCE/Dataproc</strong> the authentication is taken from the machine’s role.</p>
 <p><strong>Outside GCE/Dataproc</strong> you have 3 options:</p>
 <ul class="simple">
@@ -116,7 +116,7 @@ It should point to the location of the JSON file.</li>
 </div>
 </div>
 <div class="section" id="configuration">
-<h2>Configuration</h2>
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h2>
 <p>To configure the BigQuery connector, create a catalog properties file in
 <code class="docutils literal"><span class="pre">etc/catalog</span></code> named, for example, <code class="docutils literal"><span class="pre">bigquery.properties</span></code>, to mount the
 BigQuery connector as the <code class="docutils literal"><span class="pre">bigquery</span></code> catalog. Create the file with the
@@ -127,7 +127,7 @@ bigquery.project-id=&lt;your Google Cloud Platform project id&gt;
 </pre></div>
 </div>
 <div class="section" id="multiple-gcp-projects">
-<h3>Multiple GCP Projects</h3>
+<h3>Multiple GCP Projects<a class="headerlink" href="#multiple-gcp-projects" title="Permalink to this headline">#</a></h3>
 <p>The BigQuery connector can only access a single GCP project.Thus, if you have
 data in multiple GCP projects, You need to create several catalogs, each
 pointingto a different GCP project. For example, if you have two GCP projects,
@@ -137,7 +137,7 @@ having <code class="docutils literal"><span class="pre">connector.name=bigquery<
 create the two catalogs, <code class="docutils literal"><span class="pre">sales</span></code> and <code class="docutils literal"><span class="pre">analytics</span></code> respectively.</p>
 </div>
 <div class="section" id="configuring-partitioning">
-<h3>Configuring Partitioning</h3>
+<h3>Configuring Partitioning<a class="headerlink" href="#configuring-partitioning" title="Permalink to this headline">#</a></h3>
 <p>By default the connector creates one partition per 400MB in the table being
 read (before filtering). This should roughly correspond to the maximum number
 of readers supported by the BigQuery Storage API. This can be configured
@@ -145,7 +145,7 @@ explicitly with the <code class="docutils literal"><span class="pre">bigquery.pa
 number of partitions based on server constraints.</p>
 </div>
 <div class="section" id="reading-from-views">
-<h3>Reading From Views</h3>
+<h3>Reading From Views<a class="headerlink" href="#reading-from-views" title="Permalink to this headline">#</a></h3>
 <p>The connector has a preliminary support for reading from <a class="reference external" href="https://cloud.google.com/bigquery/docs/views-intro">BigQuery views</a>. Please note there are
 a few caveats:</p>
 <ul class="simple">
@@ -163,7 +163,7 @@ order to materialize the view.</li>
 </ul>
 </div>
 <div class="section" id="configuration-properties">
-<h3>Configuration Properties</h3>
+<h3>Configuration Properties<a class="headerlink" href="#configuration-properties" title="Permalink to this headline">#</a></h3>
 <p>All configuration properties are optional.</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -221,7 +221,7 @@ enabling this feature.</td>
 </div>
 </div>
 <div class="section" id="data-types">
-<h2>Data Types</h2>
+<h2>Data Types<a class="headerlink" href="#data-types" title="Permalink to this headline">#</a></h2>
 <p>With a few exceptions, all BigQuery types are mapped directly to their Presto
 counterparts. Here are all the mappings:</p>
 <table border="1" class="docutils">
@@ -289,9 +289,9 @@ counterparts. Here are all the mappings:</p>
 </table>
 </div>
 <div class="section" id="faq">
-<h2>FAQ</h2>
+<h2>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">#</a></h2>
 <div class="section" id="what-is-the-pricing-for-the-storage-api">
-<h3>What is the Pricing for the Storage API?</h3>
+<h3>What is the Pricing for the Storage API?<a class="headerlink" href="#what-is-the-pricing-for-the-storage-api" title="Permalink to this headline">#</a></h3>
 <p>See the <a class="reference external" href="https://cloud.google.com/bigquery/pricing#storage-api">BigQuery pricing documentation</a>.</p>
 </div>
 </div>

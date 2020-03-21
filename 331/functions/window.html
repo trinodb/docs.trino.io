@@ -59,7 +59,7 @@
 <div class="content">
     
   <div class="section" id="window-functions">
-<h1>7.15. Window Functions</h1>
+<h1>7.15. Window Functions<a class="headerlink" href="#window-functions" title="Permalink to this headline">#</a></h1>
 <p>Window functions perform calculations across rows of the query result.
 They run after the <code class="docutils literal"><span class="pre">HAVING</span></code> clause but before the <code class="docutils literal"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clause.
 Invoking a window function requires special syntax using the <code class="docutils literal"><span class="pre">OVER</span></code>
@@ -85,7 +85,7 @@ rows from the start of the partition up to the last peer of the current row.</li
 </pre></div>
 </div>
 <div class="section" id="aggregate-functions">
-<h2>Aggregate Functions</h2>
+<h2>Aggregate Functions<a class="headerlink" href="#aggregate-functions" title="Permalink to this headline">#</a></h2>
 <p>All <a class="reference internal" href="aggregate.html"><span class="doc">Aggregate Functions</span></a> can be used as window functions by adding the <code class="docutils literal"><span class="pre">OVER</span></code>
 clause. The aggregate function is computed for each row over the rows within
 the current row’s window frame.</p>
@@ -100,10 +100,10 @@ by day for each clerk:</p>
 </div>
 </div>
 <div class="section" id="ranking-functions">
-<h2>Ranking Functions</h2>
+<h2>Ranking Functions<a class="headerlink" href="#ranking-functions" title="Permalink to this headline">#</a></h2>
 <dl class="function">
 <dt id="cume_dist">
-<code class="descname">cume_dist</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bigint</dt>
+<code class="descname">cume_dist</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bigint<a class="headerlink" href="#cume_dist" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the cumulative distribution of a value in a group of values.
 The result is the number of rows preceding or peer with the row in the
 window ordering of the window partition divided by the total number of
@@ -113,14 +113,14 @@ evaluate to the same distribution value.</p>
 
 <dl class="function">
 <dt id="dense_rank">
-<code class="descname">dense_rank</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bigint</dt>
+<code class="descname">dense_rank</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bigint<a class="headerlink" href="#dense_rank" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the rank of a value in a group of values. This is similar to
 <a class="reference internal" href="#rank" title="rank"><code class="xref py py-func docutils literal"><span class="pre">rank()</span></code></a>, except that tie values do not produce gaps in the sequence.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="ntile">
-<code class="descname">ntile</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span> &#x2192; bigint</dt>
+<code class="descname">ntile</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span> &#x2192; bigint<a class="headerlink" href="#ntile" title="Permalink to this definition">#</a></dt>
 <dd><p>Divides the rows for each window partition into <code class="docutils literal"><span class="pre">n</span></code> buckets ranging
 from <code class="docutils literal"><span class="pre">1</span></code> to at most <code class="docutils literal"><span class="pre">n</span></code>. Bucket values will differ by at most <code class="docutils literal"><span class="pre">1</span></code>.
 If the number of rows in the partition does not divide evenly into the
@@ -132,7 +132,7 @@ be as follows: <code class="docutils literal"><span class="pre">1</span></code> 
 
 <dl class="function">
 <dt id="percent_rank">
-<code class="descname">percent_rank</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; double</dt>
+<code class="descname">percent_rank</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; double<a class="headerlink" href="#percent_rank" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the percentage ranking of a value in group of values. The result
 is <code class="docutils literal"><span class="pre">(r</span> <span class="pre">-</span> <span class="pre">1)</span> <span class="pre">/</span> <span class="pre">(n</span> <span class="pre">-</span> <span class="pre">1)</span></code> where <code class="docutils literal"><span class="pre">r</span></code> is the <a class="reference internal" href="#rank" title="rank"><code class="xref py py-func docutils literal"><span class="pre">rank()</span></code></a> of the row and
 <code class="docutils literal"><span class="pre">n</span></code> is the total number of rows in the window partition.</p>
@@ -140,7 +140,7 @@ is <code class="docutils literal"><span class="pre">(r</span> <span class="pre">
 
 <dl class="function">
 <dt id="rank">
-<code class="descname">rank</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bigint</dt>
+<code class="descname">rank</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bigint<a class="headerlink" href="#rank" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the rank of a value in a group of values. The rank is one plus
 the number of rows preceding the row that are not peer with the row.
 Thus, tie values in the ordering will produce gaps in the sequence.
@@ -149,33 +149,33 @@ The ranking is performed for each window partition.</p>
 
 <dl class="function">
 <dt id="row_number">
-<code class="descname">row_number</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bigint</dt>
+<code class="descname">row_number</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bigint<a class="headerlink" href="#row_number" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns a unique, sequential number for each row, starting with one,
 according to the ordering of rows within the window partition.</p>
 </dd></dl>
 
 </div>
 <div class="section" id="value-functions">
-<h2>Value Functions</h2>
+<h2>Value Functions<a class="headerlink" href="#value-functions" title="Permalink to this headline">#</a></h2>
 <p>By default, null values are respected. If <code class="docutils literal"><span class="pre">IGNORE</span> <span class="pre">NULLS</span></code> is specified, all rows where
 <code class="docutils literal"><span class="pre">x</span></code> is null are excluded from the calculation. If <code class="docutils literal"><span class="pre">IGNORE</span> <span class="pre">NULLS</span></code> is specified and <code class="docutils literal"><span class="pre">x</span></code>
 is null for all rows, the <code class="docutils literal"><span class="pre">default_value</span></code> is returned, or if it is not specified,
 <code class="docutils literal"><span class="pre">null</span></code> is returned.</p>
 <dl class="function">
 <dt id="first_value">
-<code class="descname">first_value</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span> &#x2192; [same as input]</dt>
+<code class="descname">first_value</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span> &#x2192; [same as input]<a class="headerlink" href="#first_value" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the first value of the window.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="last_value">
-<code class="descname">last_value</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span> &#x2192; [same as input]</dt>
+<code class="descname">last_value</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span> &#x2192; [same as input]<a class="headerlink" href="#last_value" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the last value of the window.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="nth_value">
-<code class="descname">nth_value</code><span class="sig-paren">(</span><em>x</em>, <em>offset</em><span class="sig-paren">)</span> &#x2192; [same as input]</dt>
+<code class="descname">nth_value</code><span class="sig-paren">(</span><em>x</em>, <em>offset</em><span class="sig-paren">)</span> &#x2192; [same as input]<a class="headerlink" href="#nth_value" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the value at the specified offset from the beginning of the window.
 Offsets start at <code class="docutils literal"><span class="pre">1</span></code>. The offset can be any scalar
 expression.  If the offset is null or greater than the number of values in
@@ -185,7 +185,7 @@ negative.</p>
 
 <dl class="function">
 <dt id="lead">
-<code class="descname">lead</code><span class="sig-paren">(</span><em>x</em><span class="optional">[</span>, <em>offset</em><span class="optional">[</span>, <em>default_value</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; [same as input]</dt>
+<code class="descname">lead</code><span class="sig-paren">(</span><em>x</em><span class="optional">[</span>, <em>offset</em><span class="optional">[</span>, <em>default_value</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; [same as input]<a class="headerlink" href="#lead" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the value at <code class="docutils literal"><span class="pre">offset</span></code> rows after the current row in the window partition.
 Offsets start at <code class="docutils literal"><span class="pre">0</span></code>, which is the current row. The
 offset can be any scalar expression.  The default <code class="docutils literal"><span class="pre">offset</span></code> is <code class="docutils literal"><span class="pre">1</span></code>. If the
@@ -198,7 +198,7 @@ Window frame must not be specified.</p>
 
 <dl class="function">
 <dt id="lag">
-<code class="descname">lag</code><span class="sig-paren">(</span><em>x</em><span class="optional">[</span>, <em>offset</em><span class="optional">[</span>, <em>default_value</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; [same as input]</dt>
+<code class="descname">lag</code><span class="sig-paren">(</span><em>x</em><span class="optional">[</span>, <em>offset</em><span class="optional">[</span>, <em>default_value</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span> &#x2192; [same as input]<a class="headerlink" href="#lag" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the value at <code class="docutils literal"><span class="pre">offset</span></code> rows before the current row in the window partition.
 Offsets start at <code class="docutils literal"><span class="pre">0</span></code>, which is the current row. The
 offset can be any scalar expression.  The default <code class="docutils literal"><span class="pre">offset</span></code> is <code class="docutils literal"><span class="pre">1</span></code>. If the

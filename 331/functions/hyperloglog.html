@@ -59,11 +59,11 @@
 <div class="content">
     
   <div class="section" id="hyperloglog-functions">
-<h1>7.20. HyperLogLog Functions</h1>
+<h1>7.20. HyperLogLog Functions<a class="headerlink" href="#hyperloglog-functions" title="Permalink to this headline">#</a></h1>
 <p>Presto implements the <a class="reference internal" href="aggregate.html#approx_distinct" title="approx_distinct"><code class="xref py py-func docutils literal"><span class="pre">approx_distinct()</span></code></a> function using the
 <a class="reference external" href="https://en.wikipedia.org/wiki/HyperLogLog">HyperLogLog</a> data structure.</p>
 <div class="section" id="data-structures">
-<h2>Data Structures</h2>
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">#</a></h2>
 <p>Presto implements HyperLogLog data sketches as a set of 32-bit buckets which
 store a <em>maximum hash</em>. They can be stored sparsely (as a map from bucket ID
 to bucket), or densely (as a contiguous memory block). The HyperLogLog data
@@ -77,7 +77,7 @@ while one can explicitly cast <code class="docutils literal"><span class="pre">H
 </div>
 </div>
 <div class="section" id="serialization">
-<h2>Serialization</h2>
+<h2>Serialization<a class="headerlink" href="#serialization" title="Permalink to this headline">#</a></h2>
 <p>Data sketches can be serialized to and deserialized from <code class="docutils literal"><span class="pre">varbinary</span></code>. This
 allows them to be stored for later use.  Combined with the ability to merge
 multiple sketches, this allows one to calculate <a class="reference internal" href="aggregate.html#approx_distinct" title="approx_distinct"><code class="xref py py-func docutils literal"><span class="pre">approx_distinct()</span></code></a> of the
@@ -105,10 +105,10 @@ Uses of <a class="reference internal" href="aggregate.html#approx_distinct" titl
 </div>
 </div>
 <div class="section" id="functions">
-<h2>Functions</h2>
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">#</a></h2>
 <dl class="function">
 <dt id="approx_set">
-<code class="descname">approx_set</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span> &#x2192; HyperLogLog</dt>
+<code class="descname">approx_set</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span> &#x2192; HyperLogLog<a class="headerlink" href="#approx_set" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the <code class="docutils literal"><span class="pre">HyperLogLog</span></code> sketch of the input data set of <code class="docutils literal"><span class="pre">x</span></code>. This
 data sketch underlies <a class="reference internal" href="aggregate.html#approx_distinct" title="approx_distinct"><code class="xref py py-func docutils literal"><span class="pre">approx_distinct()</span></code></a> and can be stored and
 used later by calling <code class="docutils literal"><span class="pre">cardinality()</span></code>.</p>
@@ -123,13 +123,13 @@ used later by calling <code class="docutils literal"><span class="pre">cardinali
 
 <dl class="function">
 <dt id="empty_approx_set">
-<code class="descname">empty_approx_set</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; HyperLogLog</dt>
+<code class="descname">empty_approx_set</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; HyperLogLog<a class="headerlink" href="#empty_approx_set" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns an empty <code class="docutils literal"><span class="pre">HyperLogLog</span></code>.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="merge">
-<code class="descname">merge</code><span class="sig-paren">(</span><em>HyperLogLog</em><span class="sig-paren">)</span> &#x2192; HyperLogLog</dt>
+<code class="descname">merge</code><span class="sig-paren">(</span><em>HyperLogLog</em><span class="sig-paren">)</span> &#x2192; HyperLogLog<a class="headerlink" href="#merge" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the <code class="docutils literal"><span class="pre">HyperLogLog</span></code> of the aggregate union of the individual <code class="docutils literal"><span class="pre">hll</span></code>
 HyperLogLog structures.</p>
 </dd></dl>

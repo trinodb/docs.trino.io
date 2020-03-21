@@ -59,13 +59,13 @@
 <div class="content">
     
   <div class="section" id="connectors">
-<h1>11.2. Connectors</h1>
+<h1>11.2. Connectors<a class="headerlink" href="#connectors" title="Permalink to this headline">#</a></h1>
 <p>Connectors are the source of all data for queries in Presto. Even if
 your data source doesn’t have underlying tables backing it, as long as
 you adapt your data source to the API expected by Presto, you can write
 queries against this data.</p>
 <div class="section" id="connectorfactory">
-<h2>ConnectorFactory</h2>
+<h2>ConnectorFactory<a class="headerlink" href="#connectorfactory" title="Permalink to this headline">#</a></h2>
 <p>Instances of your connector are created by a <code class="docutils literal"><span class="pre">ConnectorFactory</span></code>
 instance which is created when Presto calls <code class="docutils literal"><span class="pre">getConnectorFactory()</span></code> on the
 plugin. The connector factory is a simple interface responsible for creating an
@@ -78,7 +78,7 @@ following services:</p>
 <li><code class="docutils literal"><span class="pre">ConnectorRecordSetProvider</span></code></li>
 </ul>
 <div class="section" id="connectormetadata">
-<h3>ConnectorMetadata</h3>
+<h3>ConnectorMetadata<a class="headerlink" href="#connectormetadata" title="Permalink to this headline">#</a></h3>
 <p>The connector metadata interface has a large number of important
 methods that are responsible for allowing Presto to look at lists of
 schemas, lists of tables, lists of columns, and other metadata about a
@@ -93,7 +93,7 @@ connector does), you may need to get creative about how you map your
 data source to Presto’s schema, table, and column concepts.</p>
 </div>
 <div class="section" id="connectorsplitmanager">
-<h3>ConnectorSplitManager</h3>
+<h3>ConnectorSplitManager<a class="headerlink" href="#connectorsplitmanager" title="Permalink to this headline">#</a></h3>
 <p>The split manager partitions the data for a table into the individual
 chunks that Presto will distribute to workers for processing.
 For example, the Hive connector lists the files for each Hive
@@ -103,7 +103,7 @@ here is to simply return a single split for the entire table. This
 is the strategy employed by the Example HTTP connector.</p>
 </div>
 <div class="section" id="connectorrecordsetprovider">
-<h3>ConnectorRecordSetProvider</h3>
+<h3>ConnectorRecordSetProvider<a class="headerlink" href="#connectorrecordsetprovider" title="Permalink to this headline">#</a></h3>
 <p>Given a split and a list of columns, the record set provider is
 responsible for delivering data to the Presto execution engine.
 It creates a <code class="docutils literal"><span class="pre">RecordSet</span></code>, which in turn creates a <code class="docutils literal"><span class="pre">RecordCursor</span></code>

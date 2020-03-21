@@ -59,27 +59,27 @@
 <div class="content">
     
   <div class="section" id="release-0-77">
-<h1>12.182. Release 0.77</h1>
+<h1>12.182. Release 0.77<a class="headerlink" href="#release-0-77" title="Permalink to this headline">#</a></h1>
 <div class="section" id="parametric-types">
-<h2>Parametric Types</h2>
+<h2>Parametric Types<a class="headerlink" href="#parametric-types" title="Permalink to this headline">#</a></h2>
 <p>Presto now has a framework for implementing parametric types and functions.
 Support for <a class="reference internal" href="../language/types.html#array-type"><span class="std std-ref">ARRAY</span></a> and <a class="reference internal" href="../language/types.html#map-type"><span class="std std-ref">MAP</span></a> types has been added, including the element accessor
 operator <code class="docutils literal"><span class="pre">[]</span></code>, and new <a class="reference internal" href="../functions/array.html"><span class="doc">Array Functions and Operators</span></a>.</p>
 </div>
 <div class="section" id="streaming-index-joins">
-<h2>Streaming Index Joins</h2>
+<h2>Streaming Index Joins<a class="headerlink" href="#streaming-index-joins" title="Permalink to this headline">#</a></h2>
 <p>Index joins will now switch to use a key-by-key streaming join if index
 results fail to fit in the allocated index memory space.</p>
 </div>
 <div class="section" id="distributed-joins">
-<h2>Distributed Joins</h2>
+<h2>Distributed Joins<a class="headerlink" href="#distributed-joins" title="Permalink to this headline">#</a></h2>
 <p>Joins where both tables are distributed are now supported. This allows larger tables to be joined,
 and can be enabled with the <code class="docutils literal"><span class="pre">distributed-joins-enabled</span></code> flag. It may perform worse than the existing
 broadcast join implementation because it requires redistributing both tables.
 This feature is still experimental, and should be used with caution.</p>
 </div>
 <div class="section" id="hive-changes">
-<h2>Hive Changes</h2>
+<h2>Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Handle spurious <code class="docutils literal"><span class="pre">AbortedException</span></code> when closing S3 input streams</li>
 <li>Add support for ORC, DWRF and Parquet in Hive</li>
@@ -88,14 +88,14 @@ This feature is still experimental, and should be used with caution.</p>
 </ul>
 </div>
 <div class="section" id="kafka-changes">
-<h2>Kafka Changes</h2>
+<h2>Kafka Changes<a class="headerlink" href="#kafka-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix Kafka handling of default port</li>
 <li>Add support for Kafka messages with a null key</li>
 </ul>
 </div>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix race condition in scheduler that could cause queries to hang</li>
 <li>Add ConnectorPageSource which is a more efficient interface for column-oriented sources</li>

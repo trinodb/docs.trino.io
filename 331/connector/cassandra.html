@@ -59,15 +59,15 @@
 <div class="content">
     
   <div class="section" id="cassandra-connector">
-<h1>6.4. Cassandra Connector</h1>
+<h1>6.4. Cassandra Connector<a class="headerlink" href="#cassandra-connector" title="Permalink to this headline">#</a></h1>
 <p>The Cassandra connector allows querying data stored in
 <a class="reference external" href="https://cassandra.apache.org/">Apache Cassandra</a>.</p>
 <div class="section" id="compatibility">
-<h2>Compatibility</h2>
+<h2>Compatibility<a class="headerlink" href="#compatibility" title="Permalink to this headline">#</a></h2>
 <p>Connector is compatible with all Cassandra versions newer than 2.1.5.</p>
 </div>
 <div class="section" id="configuration">
-<h2>Configuration</h2>
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h2>
 <p>To configure the Cassandra connector, create a catalog properties file
 <code class="docutils literal"><span class="pre">etc/catalog/cassandra.properties</span></code> with the following contents,
 replacing <code class="docutils literal"><span class="pre">host1,host2</span></code> with a comma-separated list of the Cassandra
@@ -79,7 +79,7 @@ cassandra.contact-points=host1,host2
 <p>You also need to set <code class="docutils literal"><span class="pre">cassandra.native-protocol-port</span></code>, if your
 Cassandra nodes are not using the default port 9042.</p>
 <div class="section" id="multiple-cassandra-clusters">
-<h3>Multiple Cassandra Clusters</h3>
+<h3>Multiple Cassandra Clusters<a class="headerlink" href="#multiple-cassandra-clusters" title="Permalink to this headline">#</a></h3>
 <p>You can have as many catalogs as you need, so if you have additional
 Cassandra clusters, simply add another properties file to <code class="docutils literal"><span class="pre">etc/catalog</span></code>
 with a different name, making sure it ends in <code class="docutils literal"><span class="pre">.properties</span></code>. For
@@ -88,7 +88,7 @@ creates a catalog named <code class="docutils literal"><span class="pre">sales</
 </div>
 </div>
 <div class="section" id="configuration-properties">
-<h2>Configuration Properties</h2>
+<h2>Configuration Properties<a class="headerlink" href="#configuration-properties" title="Permalink to this headline">#</a></h2>
 <p>The following configuration properties are available:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -256,7 +256,7 @@ defaults to <code class="docutils literal"><span class="pre">false</span></code>
 </table>
 </div>
 <div class="section" id="querying-cassandra-tables">
-<h2>Querying Cassandra Tables</h2>
+<h2>Querying Cassandra Tables<a class="headerlink" href="#querying-cassandra-tables" title="Permalink to this headline">#</a></h2>
 <p>The <code class="docutils literal"><span class="pre">users</span></code> table is an example Cassandra table from the Cassandra
 <a class="reference external" href="https://wiki.apache.org/cassandra/GettingStarted">Getting Started</a> guide. It can be created along with the <code class="docutils literal"><span class="pre">mykeyspace</span></code>
 keyspace using Cassandra’s cqlsh (CQL interactive terminal):</p>
@@ -288,7 +288,7 @@ cqlsh:mykeyspace&gt; CREATE TABLE users (
 </div>
 </div>
 <div class="section" id="data-types">
-<h2>Data types</h2>
+<h2>Data types<a class="headerlink" href="#data-types" title="Permalink to this headline">#</a></h2>
 <p>The data types mappings are as follows:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -382,7 +382,7 @@ mapped to VARCHAR. Additionally, blobs have the limitation that they cannot be e
 | TIMEUUID</p>
 </div>
 <div class="section" id="limitations">
-<h2>Limitations</h2>
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Queries without filters containing the partition key result in fetching all partitions.
 This causes a full scan of the entire data set, therefore it’s much slower compared to a similar

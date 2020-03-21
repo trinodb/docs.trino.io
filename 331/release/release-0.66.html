@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-66">
-<h1>12.193. Release 0.66</h1>
+<h1>12.193. Release 0.66<a class="headerlink" href="#release-0-66" title="Permalink to this headline">#</a></h1>
 <div class="section" id="type-system">
-<h2>Type System</h2>
+<h2>Type System<a class="headerlink" href="#type-system" title="Permalink to this headline">#</a></h2>
 <p>In this release we have replaced the existing simple fixed type system
 with a fully extensible type system and have added several new types.
 We have also expanded the function system to support custom
@@ -79,7 +79,7 @@ for custom types unique as we will add other common SQL types to Presto
 in the near future.</p>
 </div>
 <div class="section" id="date-time-types">
-<h2>Date/Time Types</h2>
+<h2>Date/Time Types<a class="headerlink" href="#date-time-types" title="Permalink to this headline">#</a></h2>
 <p>Presto now supports all standard SQL date/time types:
 <code class="docutils literal"><span class="pre">DATE</span></code>, <code class="docutils literal"><span class="pre">TIME</span></code>, <code class="docutils literal"><span class="pre">TIMESTAMP</span></code> and <code class="docutils literal"><span class="pre">INTERVAL</span></code>.
 All of the date/time functions and language constructs now operate on these
@@ -98,7 +98,7 @@ can perform an aggregation by hour:</p>
 </pre></div>
 </div>
 <div class="section" id="time-zones">
-<h3>Time Zones</h3>
+<h3>Time Zones<a class="headerlink" href="#time-zones" title="Permalink to this headline">#</a></h3>
 <p>This release has full support for time zone rules, which are needed to
 perform date/time calculations correctly. Typically, the session time
 zone is used for temporal calculations. This is the time zone of the
@@ -151,7 +151,7 @@ they differ only in the time zone used to print them.</p>
 <code class="docutils literal"><span class="pre">PrestoConnection.setTimeZoneId(String)</span></code> method in the JDBC driver.</p>
 </div>
 <div class="section" id="localization">
-<h3>Localization</h3>
+<h3>Localization<a class="headerlink" href="#localization" title="Permalink to this headline">#</a></h3>
 <p>In addition to time zones, the language of the user is important when
 parsing and printing date/time types. This release adds localization
 support to the Presto engine and functions that require it:
@@ -170,7 +170,7 @@ For example, if we set the language to Spanish:</p>
 </div>
 </div>
 <div class="section" id="optimizations">
-<h2>Optimizations</h2>
+<h2>Optimizations<a class="headerlink" href="#optimizations" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>We have upgraded the Hive connector to Hive 0.12 which includes
 performance improvements for RCFile.</li>
@@ -187,7 +187,7 @@ buffer management resulting in high CPU usage.</li>
 </ul>
 </div>
 <div class="section" id="spi-changes">
-<h2>SPI changes</h2>
+<h2>SPI changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
 <p>In this release we have made a number of backward incompatible changes to the SPI:</p>
 <ul class="simple">
 <li>Added <code class="docutils literal"><span class="pre">Type</span></code> and related interfaces</li>
@@ -203,7 +203,7 @@ buffer management resulting in high CPU usage.</li>
 </ul>
 </div>
 <div class="section" id="general-bug-fixes">
-<h2>General Bug Fixes</h2>
+<h2>General Bug Fixes<a class="headerlink" href="#general-bug-fixes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fixed CLI hang after using <code class="docutils literal"><span class="pre">USE</span> <span class="pre">CATALOG</span></code> or <code class="docutils literal"><span class="pre">USE</span> <span class="pre">SCHEMA</span></code></li>
 <li>Implicit coercions in aggregations now work as expected</li>
@@ -215,14 +215,14 @@ buffer management resulting in high CPU usage.</li>
 </ul>
 </div>
 <div class="section" id="hive-bug-fixes">
-<h2>Hive Bug Fixes</h2>
+<h2>Hive Bug Fixes<a class="headerlink" href="#hive-bug-fixes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fixed parsing of timestamps in the Hive RCFile Text SerDe (<code class="docutils literal"><span class="pre">ColumnarSerDe</span></code>)
 by adding configuration to set the time zone originally used when writing data</li>
 </ul>
 </div>
 <div class="section" id="cassandra-bug-fixes">
-<h2>Cassandra Bug Fixes</h2>
+<h2>Cassandra Bug Fixes<a class="headerlink" href="#cassandra-bug-fixes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Auto-reconnect if Cassandra session dies</li>
 <li>Format collection types as JSON</li>

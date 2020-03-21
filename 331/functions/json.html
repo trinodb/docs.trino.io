@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="json-functions-and-operators">
-<h1>7.12. JSON Functions and Operators</h1>
+<h1>7.12. JSON Functions and Operators<a class="headerlink" href="#json-functions-and-operators" title="Permalink to this headline">#</a></h1>
 <div class="section" id="cast-to-json">
-<h2>Cast to JSON</h2>
+<h2>Cast to JSON<a class="headerlink" href="#cast-to-json" title="Permalink to this headline">#</a></h2>
 <blockquote>
 <div><p>Casting from <code class="docutils literal"><span class="pre">BOOLEAN</span></code>, <code class="docutils literal"><span class="pre">TINYINT</span></code>, <code class="docutils literal"><span class="pre">SMALLINT</span></code>, <code class="docutils literal"><span class="pre">INTEGER</span></code>,
 <code class="docutils literal"><span class="pre">BIGINT</span></code>, <code class="docutils literal"><span class="pre">REAL</span></code>, <code class="docutils literal"><span class="pre">DOUBLE</span></code> or <code class="docutils literal"><span class="pre">VARCHAR</span></code> is supported.
@@ -99,7 +99,7 @@ names for rows in SQL.</p>
 </div>
 </div>
 <div class="section" id="cast-from-json">
-<h2>Cast from JSON</h2>
+<h2>Cast from JSON<a class="headerlink" href="#cast-from-json" title="Permalink to this headline">#</a></h2>
 <blockquote>
 <div><p>Casting to <code class="docutils literal"><span class="pre">BOOLEAN</span></code>, <code class="docutils literal"><span class="pre">TINYINT</span></code>, <code class="docutils literal"><span class="pre">SMALLINT</span></code>, <code class="docutils literal"><span class="pre">INTEGER</span></code>,
 <code class="docutils literal"><span class="pre">BIGINT</span></code>, <code class="docutils literal"><span class="pre">REAL</span></code>, <code class="docutils literal"><span class="pre">DOUBLE</span></code> or <code class="docutils literal"><span class="pre">VARCHAR</span></code> is supported.
@@ -139,10 +139,10 @@ some cases. To address this, Presto supports partial casting of arrays and maps:
 </div>
 </div>
 <div class="section" id="json-functions">
-<h2>JSON Functions</h2>
+<h2>JSON Functions<a class="headerlink" href="#json-functions" title="Permalink to this headline">#</a></h2>
 <dl class="function">
 <dt id="is_json_scalar">
-<code class="descname">is_json_scalar</code><span class="sig-paren">(</span><em>json</em><span class="sig-paren">)</span> &#x2192; boolean</dt>
+<code class="descname">is_json_scalar</code><span class="sig-paren">(</span><em>json</em><span class="sig-paren">)</span> &#x2192; boolean<a class="headerlink" href="#is_json_scalar" title="Permalink to this definition">#</a></dt>
 <dd><p>Determine if <code class="docutils literal"><span class="pre">json</span></code> is a scalar (i.e. a JSON number, a JSON string, <code class="docutils literal"><span class="pre">true</span></code>, <code class="docutils literal"><span class="pre">false</span></code> or <code class="docutils literal"><span class="pre">null</span></code>):</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">is_json_scalar</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">);</span> <span class="c1">-- true</span>
 <span class="k">SELECT</span> <span class="n">is_json_scalar</span><span class="p">(</span><span class="s1">&#39;[1, 2, 3]&#39;</span><span class="p">);</span> <span class="c1">-- false</span>
@@ -152,7 +152,7 @@ some cases. To address this, Presto supports partial casting of arrays and maps:
 
 <dl class="function">
 <dt id="json_array_contains">
-<code class="descname">json_array_contains</code><span class="sig-paren">(</span><em>json</em>, <em>value</em><span class="sig-paren">)</span> &#x2192; boolean</dt>
+<code class="descname">json_array_contains</code><span class="sig-paren">(</span><em>json</em>, <em>value</em><span class="sig-paren">)</span> &#x2192; boolean<a class="headerlink" href="#json_array_contains" title="Permalink to this definition">#</a></dt>
 <dd><p>Determine if <code class="docutils literal"><span class="pre">value</span></code> exists in <code class="docutils literal"><span class="pre">json</span></code> (a string containing a JSON array):</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">json_array_contains</span><span class="p">(</span><span class="s1">&#39;[1, 2, 3]&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
 </pre></div>
@@ -161,7 +161,7 @@ some cases. To address this, Presto supports partial casting of arrays and maps:
 
 <dl class="function">
 <dt id="json_array_get">
-<code class="descname">json_array_get</code><span class="sig-paren">(</span><em>json_array</em>, <em>index</em><span class="sig-paren">)</span> &#x2192; json</dt>
+<code class="descname">json_array_get</code><span class="sig-paren">(</span><em>json_array</em>, <em>index</em><span class="sig-paren">)</span> &#x2192; json<a class="headerlink" href="#json_array_get" title="Permalink to this definition">#</a></dt>
 <dd><div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p>The semantics of this function are broken. If the extracted element
@@ -193,7 +193,7 @@ from the end of an array:</p>
 
 <dl class="function">
 <dt id="json_array_length">
-<code class="descname">json_array_length</code><span class="sig-paren">(</span><em>json</em><span class="sig-paren">)</span> &#x2192; bigint</dt>
+<code class="descname">json_array_length</code><span class="sig-paren">(</span><em>json</em><span class="sig-paren">)</span> &#x2192; bigint<a class="headerlink" href="#json_array_length" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the array length of <code class="docutils literal"><span class="pre">json</span></code> (a string containing a JSON array):</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">json_array_length</span><span class="p">(</span><span class="s1">&#39;[1, 2, 3]&#39;</span><span class="p">);</span>
 </pre></div>
@@ -202,7 +202,7 @@ from the end of an array:</p>
 
 <dl class="function">
 <dt id="json_extract">
-<code class="descname">json_extract</code><span class="sig-paren">(</span><em>json</em>, <em>json_path</em><span class="sig-paren">)</span> &#x2192; json</dt>
+<code class="descname">json_extract</code><span class="sig-paren">(</span><em>json</em>, <em>json_path</em><span class="sig-paren">)</span> &#x2192; json<a class="headerlink" href="#json_extract" title="Permalink to this definition">#</a></dt>
 <dd><p>Evaluates the <a class="reference external" href="http://goessner.net/articles/JsonPath/">JSONPath</a>-like expression <code class="docutils literal"><span class="pre">json_path</span></code> on <code class="docutils literal"><span class="pre">json</span></code>
 (a string containing JSON) and returns the result as a JSON string:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">json_extract</span><span class="p">(</span><span class="n">json</span><span class="p">,</span> <span class="s1">&#39;$.store.book&#39;</span><span class="p">);</span>
@@ -212,7 +212,7 @@ from the end of an array:</p>
 
 <dl class="function">
 <dt id="json_extract_scalar">
-<code class="descname">json_extract_scalar</code><span class="sig-paren">(</span><em>json</em>, <em>json_path</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">json_extract_scalar</code><span class="sig-paren">(</span><em>json</em>, <em>json_path</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#json_extract_scalar" title="Permalink to this definition">#</a></dt>
 <dd><p>Like <a class="reference internal" href="#json_extract" title="json_extract"><code class="xref py py-func docutils literal"><span class="pre">json_extract()</span></code></a>, but returns the result value as a string (as opposed
 to being encoded as JSON). The value referenced by <code class="docutils literal"><span class="pre">json_path</span></code> must be a
 scalar (boolean, number or string):</p>
@@ -224,7 +224,7 @@ scalar (boolean, number or string):</p>
 
 <dl class="function">
 <dt id="json_format">
-<code class="descname">json_format</code><span class="sig-paren">(</span><em>json</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">json_format</code><span class="sig-paren">(</span><em>json</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#json_format" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the JSON text serialized from the input JSON value.
 This is inverse function to <a class="reference internal" href="#json_parse" title="json_parse"><code class="xref py py-func docutils literal"><span class="pre">json_parse()</span></code></a>:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">json_format</span><span class="p">(</span><span class="n">JSON</span> <span class="s1">&#39;[1, 2, 3]&#39;</span><span class="p">);</span> <span class="c1">-- &#39;[1,2,3]&#39;</span>
@@ -263,7 +263,7 @@ cannot be cast to VARCHAR:</p>
 </div>
 <dl class="function">
 <dt id="json_parse">
-<code class="descname">json_parse</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; json</dt>
+<code class="descname">json_parse</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; json<a class="headerlink" href="#json_parse" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the JSON value deserialized from the input JSON text.
 This is inverse function to <a class="reference internal" href="#json_format" title="json_format"><code class="xref py py-func docutils literal"><span class="pre">json_format()</span></code></a>:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">json_parse</span><span class="p">(</span><span class="s1">&#39;[1, 2, 3]&#39;</span><span class="p">);</span> <span class="c1">-- JSON &#39;[1,2,3]&#39;</span>
@@ -303,7 +303,7 @@ a JSON string with its value set to input string:</p>
 </div>
 <dl class="function">
 <dt id="json_size">
-<code class="descname">json_size</code><span class="sig-paren">(</span><em>json</em>, <em>json_path</em><span class="sig-paren">)</span> &#x2192; bigint</dt>
+<code class="descname">json_size</code><span class="sig-paren">(</span><em>json</em>, <em>json_path</em><span class="sig-paren">)</span> &#x2192; bigint<a class="headerlink" href="#json_size" title="Permalink to this definition">#</a></dt>
 <dd><p>Like <a class="reference internal" href="#json_extract" title="json_extract"><code class="xref py py-func docutils literal"><span class="pre">json_extract()</span></code></a>, but returns the size of the value.
 For objects or arrays, the size is the number of members,
 and the size of a scalar value is zero:</p>

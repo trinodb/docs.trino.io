@@ -59,9 +59,27 @@
 <div class="content">
     
   <div class="section" id="select">
-<h1><a class="toc-backref" href="#id4">9.33. SELECT</a></h1>
+<h1>9.33. SELECT<a class="headerlink" href="#select" title="Permalink to this headline">#</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#synopsis" id="id4">Synopsis</a></li>
+<li><a class="reference internal" href="#description" id="id5">Description</a></li>
+<li><a class="reference internal" href="#with-clause" id="id6">WITH Clause</a></li>
+<li><a class="reference internal" href="#select-clause" id="id7">SELECT Clause</a></li>
+<li><a class="reference internal" href="#group-by-clause" id="id8">GROUP BY Clause</a></li>
+<li><a class="reference internal" href="#having-clause" id="id9">HAVING Clause</a></li>
+<li><a class="reference internal" href="#union-intersect-except-clause" id="id10">UNION | INTERSECT | EXCEPT Clause</a></li>
+<li><a class="reference internal" href="#order-by-clause" id="id11">ORDER BY Clause</a></li>
+<li><a class="reference internal" href="#offset-clause" id="id12">OFFSET Clause</a></li>
+<li><a class="reference internal" href="#limit-or-fetch-first-clauses" id="id13">LIMIT or FETCH FIRST Clauses</a></li>
+<li><a class="reference internal" href="#tablesample" id="id14">TABLESAMPLE</a></li>
+<li><a class="reference internal" href="#unnest" id="id15">UNNEST</a></li>
+<li><a class="reference internal" href="#joins" id="id16">Joins</a></li>
+<li><a class="reference internal" href="#subqueries" id="id17">Subqueries</a></li>
+</ul>
+</div>
 <div class="section" id="synopsis">
-<h2><a class="toc-backref" href="#id5">Synopsis</a></h2>
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">#</a></h2>
 <div class="highlight-none"><div class="highlight"><pre><span></span>[ WITH with_query [, ...] ]
 SELECT [ ALL | DISTINCT ] select_expression [, ...]
 [ FROM from_item [, ...] ]
@@ -99,43 +117,11 @@ ROLLUP ( column [, ...] )
 </div>
 </div>
 <div class="section" id="description">
-<h2><a class="toc-backref" href="#id6">Description</a></h2>
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">#</a></h2>
 <p>Retrieve rows from zero or more tables.</p>
-<div class="contents topic" id="contents">
-<p class="topic-title first">Contents</p>
-<ul class="simple">
-<li><a class="reference internal" href="#select" id="id4">SELECT</a><ul>
-<li><a class="reference internal" href="#synopsis" id="id5">Synopsis</a></li>
-<li><a class="reference internal" href="#description" id="id6">Description</a></li>
-<li><a class="reference internal" href="#with-clause" id="id7">WITH Clause</a></li>
-<li><a class="reference internal" href="#select-clause" id="id8">SELECT Clause</a></li>
-<li><a class="reference internal" href="#group-by-clause" id="id9">GROUP BY Clause</a></li>
-<li><a class="reference internal" href="#having-clause" id="id10">HAVING Clause</a></li>
-<li><a class="reference internal" href="#union-intersect-except-clause" id="id11">UNION | INTERSECT | EXCEPT Clause</a></li>
-<li><a class="reference internal" href="#order-by-clause" id="id12">ORDER BY Clause</a></li>
-<li><a class="reference internal" href="#offset-clause" id="id13">OFFSET Clause</a></li>
-<li><a class="reference internal" href="#limit-or-fetch-first-clauses" id="id14">LIMIT or FETCH FIRST Clauses</a></li>
-<li><a class="reference internal" href="#tablesample" id="id15">TABLESAMPLE</a></li>
-<li><a class="reference internal" href="#unnest" id="id16">UNNEST</a></li>
-<li><a class="reference internal" href="#joins" id="id17">Joins</a><ul>
-<li><a class="reference internal" href="#cross-join" id="id18">CROSS JOIN</a></li>
-<li><a class="reference internal" href="#lateral" id="id19">LATERAL</a></li>
-<li><a class="reference internal" href="#qualifying-column-names" id="id20">Qualifying Column Names</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#subqueries" id="id21">Subqueries</a><ul>
-<li><a class="reference internal" href="#exists" id="id22">EXISTS</a></li>
-<li><a class="reference internal" href="#in" id="id23">IN</a></li>
-<li><a class="reference internal" href="#scalar-subquery" id="id24">Scalar Subquery</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
 </div>
 <div class="section" id="with-clause">
-<h2><a class="toc-backref" href="#id7">WITH Clause</a></h2>
+<h2>WITH Clause<a class="headerlink" href="#with-clause" title="Permalink to this headline">#</a></h2>
 <p>The <code class="docutils literal"><span class="pre">WITH</span></code> clause defines named relations for use within a query.
 It allows flattening nested queries or simplifying subqueries.
 For example, the following queries are equivalent:</p>
@@ -173,7 +159,7 @@ is non-deterministic, the results may be different each time.</p>
 </div>
 </div>
 <div class="section" id="select-clause">
-<h2><a class="toc-backref" href="#id8">SELECT Clause</a></h2>
+<h2>SELECT Clause<a class="headerlink" href="#select-clause" title="Permalink to this headline">#</a></h2>
 <p>The <code class="docutils literal"><span class="pre">SELECT</span></code> clause specifies the output of the query. Each <code class="docutils literal"><span class="pre">select_expression</span></code>
 defines a column or columns to be included in the result.</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>SELECT [ ALL | DISTINCT ] select_expression [, ...]
@@ -245,7 +231,7 @@ or row field names:</p>
 </div>
 </div>
 <div class="section" id="group-by-clause">
-<h2><a class="toc-backref" href="#id9">GROUP BY Clause</a></h2>
+<h2>GROUP BY Clause<a class="headerlink" href="#group-by-clause" title="Permalink to this headline">#</a></h2>
 <p>The <code class="docutils literal"><span class="pre">GROUP</span> <span class="pre">BY</span></code> clause divides the output of a <code class="docutils literal"><span class="pre">SELECT</span></code> statement into
 groups of rows containing matching values. A simple <code class="docutils literal"><span class="pre">GROUP</span> <span class="pre">BY</span></code> clause may
 contain any expression composed of input columns or it may be an ordinal
@@ -542,7 +528,7 @@ the <code class="docutils literal"><span class="pre">origin_zip</span></code> an
 is <code class="docutils literal"><span class="pre">011</span></code> where the most significant bit represents <code class="docutils literal"><span class="pre">origin_state</span></code>.</p>
 </div>
 <div class="section" id="having-clause">
-<h2><a class="toc-backref" href="#id10">HAVING Clause</a></h2>
+<h2>HAVING Clause<a class="headerlink" href="#having-clause" title="Permalink to this headline">#</a></h2>
 <p>The <code class="docutils literal"><span class="pre">HAVING</span></code> clause is used in conjunction with aggregate functions and
 the <code class="docutils literal"><span class="pre">GROUP</span> <span class="pre">BY</span></code> clause to control which groups are selected. A <code class="docutils literal"><span class="pre">HAVING</span></code>
 clause eliminates groups that do not satisfy the given conditions.
@@ -571,7 +557,7 @@ with an account balance greater than the specified value:</p>
 </div>
 </div>
 <div class="section" id="union-intersect-except-clause">
-<h2><a class="toc-backref" href="#id11">UNION | INTERSECT | EXCEPT Clause</a></h2>
+<h2>UNION | INTERSECT | EXCEPT Clause<a class="headerlink" href="#union-intersect-except-clause" title="Permalink to this headline">#</a></h2>
 <p><code class="docutils literal"><span class="pre">UNION</span></code>  <code class="docutils literal"><span class="pre">INTERSECT</span></code> and <code class="docutils literal"><span class="pre">EXCEPT</span></code> are all set operations.  These clauses are used
 to combine the results of more than one select statement into a single result set:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>query UNION [ALL | DISTINCT] query
@@ -675,7 +661,7 @@ is also in the result set of the second query, it is not included in the final r
 </div>
 </div>
 <div class="section" id="order-by-clause">
-<span id="id1"></span><h2><a class="toc-backref" href="#id12">ORDER BY Clause</a></h2>
+<span id="id1"></span><h2>ORDER BY Clause<a class="headerlink" href="#order-by-clause" title="Permalink to this headline">#</a></h2>
 <p>The <code class="docutils literal"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clause is used to sort a result set by one or more
 output expressions:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>ORDER BY expression [ ASC | DESC ] [ NULLS { FIRST | LAST } ] [, ...]
@@ -711,7 +697,7 @@ the outcome of the overall statement, is a nested query:</p>
 <a class="reference external" href="https://prestosql.io/blog/2019/06/03/redundant-order-by.html">a blog post about this optimization</a>.</p>
 </div>
 <div class="section" id="offset-clause">
-<span id="id2"></span><h2><a class="toc-backref" href="#id13">OFFSET Clause</a></h2>
+<span id="id2"></span><h2>OFFSET Clause<a class="headerlink" href="#offset-clause" title="Permalink to this headline">#</a></h2>
 <p>The <code class="docutils literal"><span class="pre">OFFSET</span></code> clause is used to discard a number of leading rows
 from the result set:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>OFFSET count [ ROW | ROWS ]
@@ -736,7 +722,7 @@ If the count specified in the <code class="docutils literal"><span class="pre">O
 of the result set, the final result is empty.</p>
 </div>
 <div class="section" id="limit-or-fetch-first-clauses">
-<h2><a class="toc-backref" href="#id14">LIMIT or FETCH FIRST Clauses</a></h2>
+<h2>LIMIT or FETCH FIRST Clauses<a class="headerlink" href="#limit-or-fetch-first-clauses" title="Permalink to this headline">#</a></h2>
 <p>The <code class="docutils literal"><span class="pre">LIMIT</span></code> or <code class="docutils literal"><span class="pre">FETCH</span> <span class="pre">FIRST</span></code> clause restricts the number of rows
 in the result set.</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>LIMIT { count | ALL }
@@ -810,7 +796,7 @@ as established by the ordering in the <code class="docutils literal"><span class
 </div>
 </div>
 <div class="section" id="tablesample">
-<h2><a class="toc-backref" href="#id15">TABLESAMPLE</a></h2>
+<h2>TABLESAMPLE<a class="headerlink" href="#tablesample" title="Permalink to this headline">#</a></h2>
 <p>There are multiple sample methods:</p>
 <dl class="docutils">
 <dt><code class="docutils literal"><span class="pre">BERNOULLI</span></code></dt>
@@ -857,7 +843,7 @@ independent sampling probabilities.</p>
 </div>
 </div>
 <div class="section" id="unnest">
-<span id="id3"></span><h2><a class="toc-backref" href="#id16">UNNEST</a></h2>
+<span id="id3"></span><h2>UNNEST<a class="headerlink" href="#unnest" title="Permalink to this headline">#</a></h2>
 <p><code class="docutils literal"><span class="pre">UNNEST</span></code> can be used to expand an <a class="reference internal" href="../language/types.html#array-type"><span class="std std-ref">ARRAY</span></a> or <a class="reference internal" href="../language/types.html#map-type"><span class="std std-ref">MAP</span></a> into a relation.
 Arrays are expanded into a single column, and maps are expanded into two columns (key, value).
 <code class="docutils literal"><span class="pre">UNNEST</span></code> can also be used with multiple arguments, in which case they are expanded into multiple columns,
@@ -915,10 +901,10 @@ from relations on the left side of the join.</p>
 </div>
 </div>
 <div class="section" id="joins">
-<h2><a class="toc-backref" href="#id17">Joins</a></h2>
+<h2>Joins<a class="headerlink" href="#joins" title="Permalink to this headline">#</a></h2>
 <p>Joins allow you to combine data from multiple relations.</p>
 <div class="section" id="cross-join">
-<h3><a class="toc-backref" href="#id18">CROSS JOIN</a></h3>
+<h3>CROSS JOIN<a class="headerlink" href="#cross-join" title="Permalink to this headline">#</a></h3>
 <p>A cross join returns the Cartesian product (all combinations) of two
 relations. Cross joins can either be specified using the explit
 <code class="docutils literal"><span class="pre">CROSS</span> <span class="pre">JOIN</span></code> syntax or by specifying multiple relations in the
@@ -955,7 +941,7 @@ so a cross join between the two tables produces 125 rows:</p>
 </div>
 </div>
 <div class="section" id="lateral">
-<h3><a class="toc-backref" href="#id19">LATERAL</a></h3>
+<h3>LATERAL<a class="headerlink" href="#lateral" title="Permalink to this headline">#</a></h3>
 <p>Subqueries appearing in the <code class="docutils literal"><span class="pre">FROM</span></code> clause can be preceded by the keyword <code class="docutils literal"><span class="pre">LATERAL</span></code>.
 This allows them to reference columns provided by preceding <code class="docutils literal"><span class="pre">FROM</span></code> items.</p>
 <p>A <code class="docutils literal"><span class="pre">LATERAL</span></code> join can appear at the top level in the <code class="docutils literal"><span class="pre">FROM</span></code> list, or anywhere
@@ -976,7 +962,7 @@ computing the rows to be joined:</p>
 </div>
 </div>
 <div class="section" id="qualifying-column-names">
-<h3><a class="toc-backref" href="#id20">Qualifying Column Names</a></h3>
+<h3>Qualifying Column Names<a class="headerlink" href="#qualifying-column-names" title="Permalink to this headline">#</a></h3>
 <p>When two relations in a join have columns with the same name, the column
 references must be qualified using the relation alias (if the relation
 has an alias), or with the relation name:</p>
@@ -1002,7 +988,7 @@ has an alias), or with the relation name:</p>
 </div>
 </div>
 <div class="section" id="subqueries">
-<h2><a class="toc-backref" href="#id21">Subqueries</a></h2>
+<h2>Subqueries<a class="headerlink" href="#subqueries" title="Permalink to this headline">#</a></h2>
 <p>A subquery is an expression which is composed of a query. The subquery
 is correlated when it refers to columns outside of the subquery.
 Logically, the subquery will be evaluated for each row in the surrounding
@@ -1013,7 +999,7 @@ evaluation of the subquery.</p>
 <p class="last">Support for correlated subqueries is limited. Not every standard form is supported.</p>
 </div>
 <div class="section" id="exists">
-<h3><a class="toc-backref" href="#id22">EXISTS</a></h3>
+<h3>EXISTS<a class="headerlink" href="#exists" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal"><span class="pre">EXISTS</span></code> predicate determines if a subquery returns any rows:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">name</span>
 <span class="k">FROM</span> <span class="n">nation</span>
@@ -1022,7 +1008,7 @@ evaluation of the subquery.</p>
 </div>
 </div>
 <div class="section" id="in">
-<h3><a class="toc-backref" href="#id23">IN</a></h3>
+<h3>IN<a class="headerlink" href="#in" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal"><span class="pre">IN</span></code> predicate determines if any values produced by the subquery
 are equal to the provided expression. The result of <code class="docutils literal"><span class="pre">IN</span></code> follows the
 standard rules for nulls. The subquery must produce exactly one column:</p>
@@ -1033,7 +1019,7 @@ standard rules for nulls. The subquery must produce exactly one column:</p>
 </div>
 </div>
 <div class="section" id="scalar-subquery">
-<h3><a class="toc-backref" href="#id24">Scalar Subquery</a></h3>
+<h3>Scalar Subquery<a class="headerlink" href="#scalar-subquery" title="Permalink to this headline">#</a></h3>
 <p>A scalar subquery is a non-correlated subquery that returns zero or
 one row. It is an error for the subquery to produce more than one
 row. The returned value is <code class="docutils literal"><span class="pre">NULL</span></code> if the subquery produces no rows:</p>

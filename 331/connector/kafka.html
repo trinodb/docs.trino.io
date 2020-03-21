@@ -59,7 +59,7 @@
 <div class="content">
     
   <div class="section" id="kafka-connector">
-<h1>6.11. Kafka Connector</h1>
+<h1>6.11. Kafka Connector<a class="headerlink" href="#kafka-connector" title="Permalink to this headline">#</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><a class="reference internal" href="#overview" id="id1">Overview</a></li>
@@ -72,7 +72,7 @@
 </ul>
 </div>
 <div class="section" id="overview">
-<h2>Overview</h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
 <p>This connector allows the use of <a class="reference external" href="https://kafka.apache.org/">Apache Kafka</a>
 topics as tables in Presto.
 Each message is presented as a row in Presto.</p>
@@ -85,7 +85,7 @@ same table multiple times in a single query (e.g., performing a self join).</p>
 </div>
 </div>
 <div class="section" id="configuration">
-<h2>Configuration</h2>
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h2>
 <p>To configure the Kafka connector, create a catalog properties file
 <code class="docutils literal"><span class="pre">etc/catalog/kafka.properties</span></code> with the following contents,
 replacing the properties as appropriate:</p>
@@ -95,7 +95,7 @@ kafka.nodes=host1:port,host2:port
 </pre></div>
 </div>
 <div class="section" id="multiple-kafka-clusters">
-<h3>Multiple Kafka Clusters</h3>
+<h3>Multiple Kafka Clusters<a class="headerlink" href="#multiple-kafka-clusters" title="Permalink to this headline">#</a></h3>
 <p>You can have as many catalogs as you need, so if you have additional
 Kafka clusters, simply add another properties file to <code class="docutils literal"><span class="pre">etc/catalog</span></code>
 with a different name (making sure it ends in <code class="docutils literal"><span class="pre">.properties</span></code>). For
@@ -104,7 +104,7 @@ creates a catalog named <code class="docutils literal"><span class="pre">sales</
 </div>
 </div>
 <div class="section" id="configuration-properties">
-<h2>Configuration Properties</h2>
+<h2>Configuration Properties<a class="headerlink" href="#configuration-properties" title="Permalink to this headline">#</a></h2>
 <p>The following configuration properties are available:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -144,7 +144,7 @@ creates a catalog named <code class="docutils literal"><span class="pre">sales</
 </tbody>
 </table>
 <div class="section" id="kafka-table-names">
-<h3><code class="docutils literal"><span class="pre">kafka.table-names</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">kafka.table-names</span></code><a class="headerlink" href="#kafka-table-names" title="Permalink to this headline">#</a></h3>
 <p>Comma-separated list of all tables provided by this catalog. A table name can be
 unqualified (simple name), and is then placed into the default schema (see
 below), or it can be qualified with a schema name
@@ -156,13 +156,13 @@ table still contains all internal columns (see below).</p>
 <p>This property is required; there is no default and at least one table must be defined.</p>
 </div>
 <div class="section" id="kafka-default-schema">
-<h3><code class="docutils literal"><span class="pre">kafka.default-schema</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">kafka.default-schema</span></code><a class="headerlink" href="#kafka-default-schema" title="Permalink to this headline">#</a></h3>
 <p>Defines the schema which contains all tables that were defined without
 a qualifying schema name.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">default</span></code>.</p>
 </div>
 <div class="section" id="kafka-nodes">
-<h3><code class="docutils literal"><span class="pre">kafka.nodes</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">kafka.nodes</span></code><a class="headerlink" href="#kafka-nodes" title="Permalink to this headline">#</a></h3>
 <p>A comma separated list of <code class="docutils literal"><span class="pre">hostname:port</span></code> pairs for the Kafka data nodes.</p>
 <p>This property is required; there is no default and at least one node must be defined.</p>
 <div class="admonition note">
@@ -173,27 +173,27 @@ located only on a specific node.</p>
 </div>
 </div>
 <div class="section" id="kafka-connect-timeout">
-<h3><code class="docutils literal"><span class="pre">kafka.connect-timeout</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">kafka.connect-timeout</span></code><a class="headerlink" href="#kafka-connect-timeout" title="Permalink to this headline">#</a></h3>
 <p>Timeout for connecting to a data node. A busy Kafka cluster may take quite
 some time before accepting a connection; when seeing failed queries due to
 timeouts, increasing this value is a good strategy.</p>
 <p>This property is optional; the default is 10 seconds (<code class="docutils literal"><span class="pre">10s</span></code>).</p>
 </div>
 <div class="section" id="kafka-buffer-size">
-<h3><code class="docutils literal"><span class="pre">kafka.buffer-size</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">kafka.buffer-size</span></code><a class="headerlink" href="#kafka-buffer-size" title="Permalink to this headline">#</a></h3>
 <p>Size of the internal data buffer for reading data from Kafka. The data
 buffer must be able to hold at least one message and ideally can hold many
 messages. There is one data buffer allocated per worker and data node.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">64kb</span></code>.</p>
 </div>
 <div class="section" id="kafka-table-description-dir">
-<h3><code class="docutils literal"><span class="pre">kafka.table-description-dir</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">kafka.table-description-dir</span></code><a class="headerlink" href="#kafka-table-description-dir" title="Permalink to this headline">#</a></h3>
 <p>References a folder within Presto deployment that holds one or more JSON
 files (must end with <code class="docutils literal"><span class="pre">.json</span></code>) which contain table description files.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">etc/kafka</span></code>.</p>
 </div>
 <div class="section" id="kafka-hide-internal-columns">
-<h3><code class="docutils literal"><span class="pre">kafka.hide-internal-columns</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">kafka.hide-internal-columns</span></code><a class="headerlink" href="#kafka-hide-internal-columns" title="Permalink to this headline">#</a></h3>
 <p>In addition to the data columns defined in a table description file, the
 connector maintains a number of additional columns for each table. If
 these columns are hidden, they can still be used in queries but do not
@@ -202,7 +202,7 @@ show up in <code class="docutils literal"><span class="pre">DESCRIBE</span> <spa
 </div>
 </div>
 <div class="section" id="internal-columns">
-<h2>Internal Columns</h2>
+<h2>Internal Columns<a class="headerlink" href="#internal-columns" title="Permalink to this headline">#</a></h2>
 <p>For each defined table, the connector maintains the following columns:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -267,7 +267,7 @@ show up in <code class="docutils literal"><span class="pre">DESCRIBE</span> <spa
 <code class="docutils literal"><span class="pre">_message_corrupt</span></code> columns will always be <code class="docutils literal"><span class="pre">false</span></code>.</p>
 </div>
 <div class="section" id="table-definition-files">
-<h2>Table Definition Files</h2>
+<h2>Table Definition Files<a class="headerlink" href="#table-definition-files" title="Permalink to this headline">#</a></h2>
 <p>Kafka maintains topics only as byte messages and leaves it to producers
 and consumers to define how a message should be interpreted. For Presto,
 this data must be mapped into columns to allow queries against the data.</p>
@@ -344,7 +344,7 @@ name of the file can be arbitrary but must end in <code class="docutils literal"
 </table>
 </div>
 <div class="section" id="key-and-message-in-kafka">
-<h2>Key and Message in Kafka</h2>
+<h2>Key and Message in Kafka<a class="headerlink" href="#key-and-message-in-kafka" title="Permalink to this headline">#</a></h2>
 <p>Starting with Kafka 0.8, each message in a topic can have an optional key.
 A table definition file contains sections for both key and message to map
 the data onto table columns.</p>
@@ -449,7 +449,7 @@ JSON object that must contain two fields:</p>
 <p>There is no limit on field descriptions for either key or message.</p>
 </div>
 <div class="section" id="row-decoding">
-<h2>Row Decoding</h2>
+<h2>Row Decoding<a class="headerlink" href="#row-decoding" title="Permalink to this headline">#</a></h2>
 <p>For key and message, a decoder is used to map message and key data onto table columns.</p>
 <p>The Kafka connector contains the following decoders:</p>
 <ul class="simple">
@@ -464,7 +464,7 @@ JSON object that must contain two fields:</p>
 which does not expose any columns.</p>
 </div>
 <div class="section" id="raw-decoder">
-<h3><code class="docutils literal"><span class="pre">raw</span></code> Decoder</h3>
+<h3><code class="docutils literal"><span class="pre">raw</span></code> Decoder<a class="headerlink" href="#raw-decoder" title="Permalink to this headline">#</a></h3>
 <p>The raw decoder supports reading of raw (byte-based) values from Kafka message
 or key and converting it into Presto columns.</p>
 <p>For fields, the following attributes are supported:</p>
@@ -549,7 +549,7 @@ A sequence of bytes is read from input message and decoded according to either:<
 <p>For <code class="docutils literal"><span class="pre">VARCHAR</span></code> data type a sequence of bytes is interpreted according to UTF-8 encoding.</p>
 </div>
 <div class="section" id="csv-decoder">
-<h3><code class="docutils literal"><span class="pre">csv</span></code> Decoder</h3>
+<h3><code class="docutils literal"><span class="pre">csv</span></code> Decoder<a class="headerlink" href="#csv-decoder" title="Permalink to this headline">#</a></h3>
 <p>The CSV decoder converts the bytes representing a message or key into a
 string using UTF-8 encoding and then interprets the result as a CSV
 (comma-separated value) line.</p>
@@ -594,7 +594,7 @@ Other character sequences map to <code class="docutils literal"><span class="pre
 </table>
 </div>
 <div class="section" id="json-decoder">
-<h3><code class="docutils literal"><span class="pre">json</span></code> Decoder</h3>
+<h3><code class="docutils literal"><span class="pre">json</span></code> Decoder<a class="headerlink" href="#json-decoder" title="Permalink to this headline">#</a></h3>
 <p>The JSON decoder converts the bytes representing a message or key into a
 JSON according to <span class="target" id="index-0"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc4627.html"><strong>RFC 4627</strong></a>. Note that the message or key <em>MUST</em> convert
 into a JSON object, not an array or simple type.</p>
@@ -651,14 +651,14 @@ which can be specified via <code class="docutils literal"><span class="pre">data
 </table>
 </div>
 <div class="section" id="default-field-decoder">
-<h3>Default Field decoder</h3>
+<h3>Default Field decoder<a class="headerlink" href="#default-field-decoder" title="Permalink to this headline">#</a></h3>
 <p>This is the standard field decoder, supporting all the Presto physical data
 types. A field value is transformed under JSON conversion rules into
 boolean, long, double or string values. For non-date/time based columns,
 this decoder should be used.</p>
 </div>
 <div class="section" id="date-and-time-decoders">
-<h3>Date and Time Decoders</h3>
+<h3>Date and Time Decoders<a class="headerlink" href="#date-and-time-decoders" title="Permalink to this headline">#</a></h3>
 <p>To convert values from JSON objects into Presto <code class="docutils literal"><span class="pre">DATE</span></code>, <code class="docutils literal"><span class="pre">TIME</span></code>, <code class="docutils literal"><span class="pre">TIME</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code>,
 <code class="docutils literal"><span class="pre">TIMESTAMP</span></code> or <code class="docutils literal"><span class="pre">TIMESTAMP</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code> columns, special decoders must be selected using the
 <code class="docutils literal"><span class="pre">dataFormat</span></code> attribute of a field definition.</p>
@@ -678,7 +678,7 @@ to <a class="reference external" href="https://www.joda.org/joda-time/apidocs/or
 be used in Presto value. Otherwise result time zone will be set to <code class="docutils literal"><span class="pre">UTC</span></code>.</p>
 </div>
 <div class="section" id="avro-decoder">
-<h3><code class="docutils literal"><span class="pre">avro</span></code> Decoder</h3>
+<h3><code class="docutils literal"><span class="pre">avro</span></code> Decoder<a class="headerlink" href="#avro-decoder" title="Permalink to this headline">#</a></h3>
 <p>The Avro decoder converts the bytes representing a message or key in
 Avro format based on a schema. The message must have the Avro schema embedded.
 Presto does not support schema-less Avro decoding.</p>
@@ -728,7 +728,7 @@ The decoder fails if this location is not accessible from the Presto coordinator
 </tbody>
 </table>
 <div class="section" id="avro-schema-evolution">
-<h4>Avro schema evolution</h4>
+<h4>Avro schema evolution<a class="headerlink" href="#avro-schema-evolution" title="Permalink to this headline">#</a></h4>
 <p>The Avro decoder supports schema evolution feature with backward compatibility. With backward compatibility,
 a newer schema can be used to read Avro data created with an older schema. Any change in the Avro schema must also be
 reflected in Presto’s topic definition file. Newly added/renamed fields <em>must</em> have a default value in the Avro schema file.</p>

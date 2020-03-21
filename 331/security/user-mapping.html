@@ -59,14 +59,14 @@
 <div class="content">
     
   <div class="section" id="user-mapping">
-<h1>3.5. User Mapping</h1>
+<h1>3.5. User Mapping<a class="headerlink" href="#user-mapping" title="Permalink to this headline">#</a></h1>
 <p>User mapping defines rules for mapping from users in the authentication system to Presto users.  This
 mapping is particularly important for Kerberos or certificate authentication where the user names
 are complex like <code class="docutils literal"><span class="pre">alice&#64;example</span></code> or <code class="docutils literal"><span class="pre">CN=Alice</span> <span class="pre">Smith,</span> <span class="pre">OU=Finance,</span> <span class="pre">O=Acme,</span> <span class="pre">C=US</span></code>.</p>
 <p>User mapping can be configured with a simple regex extraction pattern, or more complex rules in a
 separate configuration file.</p>
 <div class="section" id="pattern-mapping-rule">
-<h2>Pattern Mapping Rule</h2>
+<h2>Pattern Mapping Rule<a class="headerlink" href="#pattern-mapping-rule" title="Permalink to this headline">#</a></h2>
 <p>The pattern mapping rule maps the authentication user to the first matching group in the regular
 expression.  If the regular expression does not match the authentication user, authentication is
 denied.</p>
@@ -99,7 +99,7 @@ when multiple authentication systems are enabled:</p>
 </table>
 </div>
 <div class="section" id="file-mapping-rules">
-<h2>File Mapping Rules</h2>
+<h2>File Mapping Rules<a class="headerlink" href="#file-mapping-rules" title="Permalink to this headline">#</a></h2>
 <p>The file mapping rules allow for more complex mappings from the authentication user.  These rules are
 loaded from a JSON file defined in a configuration property.  The mapping is based on the first matching
 rule, processed from top to bottom. If no rules match, authentication is denied.  Each rule is composed of the

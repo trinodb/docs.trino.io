@@ -59,16 +59,16 @@
 <div class="content">
     
   <div class="section" id="release-0-78">
-<h1>12.181. Release 0.78</h1>
+<h1>12.181. Release 0.78<a class="headerlink" href="#release-0-78" title="Permalink to this headline">#</a></h1>
 <div class="section" id="array-and-map-types-in-hive-connector">
-<h2>ARRAY and MAP Types in Hive Connector</h2>
+<h2>ARRAY and MAP Types in Hive Connector<a class="headerlink" href="#array-and-map-types-in-hive-connector" title="Permalink to this headline">#</a></h2>
 <p>The Hive connector now returns arrays and maps instead of json encoded strings,
 for columns whose underlying type is array or map. Please note that this is a backwards
 incompatible change, and the <a class="reference internal" href="../functions/json.html"><span class="doc">JSON Functions and Operators</span></a> will no longer work on these columns,
 unless you <a class="reference internal" href="../functions/conversion.html#cast" title="cast"><code class="xref py py-func docutils literal"><span class="pre">cast()</span></code></a> them to the <code class="docutils literal"><span class="pre">json</span></code> type.</p>
 </div>
 <div class="section" id="session-properties">
-<h2>Session Properties</h2>
+<h2>Session Properties<a class="headerlink" href="#session-properties" title="Permalink to this headline">#</a></h2>
 <p>The Presto session can now contain properties, which can be used by the Presto
 engine or connectors to customize the query execution. There is a separate
 namespace for the Presto engine and each catalog. A property for a catalog is
@@ -94,7 +94,7 @@ allow setting properties via a query.</p>
 </div>
 </div>
 <div class="section" id="hive-changes">
-<h2>Hive Changes</h2>
+<h2>Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add <code class="docutils literal"><span class="pre">storage_format</span></code> session property to override format used for creating tables.</li>
 <li>Add write support for <code class="docutils literal"><span class="pre">VARBINARY</span></code>, <code class="docutils literal"><span class="pre">DATE</span></code> and <code class="docutils literal"><span class="pre">TIMESTAMP</span></code>.</li>
@@ -104,7 +104,7 @@ allow setting properties via a query.</p>
 </ul>
 </div>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix expression optimizer, so that it runs in linear time instead of exponential time.</li>
 <li>Add <a class="reference internal" href="../functions/array.html#cardinality" title="cardinality"><code class="xref py py-func docutils literal"><span class="pre">cardinality()</span></code></a> for maps.</li>

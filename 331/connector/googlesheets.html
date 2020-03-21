@@ -59,10 +59,10 @@
 <div class="content">
     
   <div class="section" id="google-sheets-connector">
-<h1>6.6. Google Sheets Connector</h1>
+<h1>6.6. Google Sheets Connector<a class="headerlink" href="#google-sheets-connector" title="Permalink to this headline">#</a></h1>
 <p>The Google Sheets connector allows reading <a class="reference external" href="https://www.google.com/sheets/about/">Google Sheets</a> spreadsheets as tables in Presto.</p>
 <div class="section" id="configuration">
-<h2>Configuration</h2>
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h2>
 <p>Create <code class="docutils literal"><span class="pre">etc/catalog/sheets.properties</span></code>
 to mount the Google Sheets connector as the <code class="docutils literal"><span class="pre">sheets</span></code> catalog,
 replacing the properties as appropriate:</p>
@@ -73,7 +73,7 @@ metadata-sheet-id=exampleId
 </div>
 </div>
 <div class="section" id="configuration-properties">
-<h2>Configuration Properties</h2>
+<h2>Configuration Properties<a class="headerlink" href="#configuration-properties" title="Permalink to this headline">#</a></h2>
 <p>The following configuration properties are available:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -102,7 +102,7 @@ metadata-sheet-id=exampleId
 </table>
 </div>
 <div class="section" id="credentials">
-<h2>Credentials</h2>
+<h2>Credentials<a class="headerlink" href="#credentials" title="Permalink to this headline">#</a></h2>
 <p>The connector requires credentials in order to access the Google Sheets API.</p>
 <ol class="arabic simple">
 <li>Open the <a class="reference external" href="https://console.developers.google.com/apis/library/sheets.googleapis.com">Google Sheets API</a>
@@ -118,7 +118,7 @@ Set the <code class="docutils literal"><span class="pre">credentials-path</span>
 The exact name of the file does not matter – it can be named anything.</p>
 </div>
 <div class="section" id="metadata-sheet">
-<h2>Metadata Sheet</h2>
+<h2>Metadata Sheet<a class="headerlink" href="#metadata-sheet" title="Permalink to this headline">#</a></h2>
 <p>The metadata sheet is used to map table names to sheet IDs.
 Create a new metadata sheet. The first row must be a header row
 containing the following columns in this order:</p>
@@ -136,7 +136,7 @@ button to share the sheet with the email address of the service account.</p>
 <p>Set the <code class="docutils literal"><span class="pre">metadata-sheet-id</span></code> configuration property to the ID of this sheet.</p>
 </div>
 <div class="section" id="querying-sheets">
-<h2>Querying Sheets</h2>
+<h2>Querying Sheets<a class="headerlink" href="#querying-sheets" title="Permalink to this headline">#</a></h2>
 <p>The service account user must have access to the sheet in order for Presto
 to query it. Click the <em>Share</em> button to share the sheet with the email
 address of the service account.</p>
@@ -147,7 +147,7 @@ with <code class="docutils literal"><span class="pre">#</span></code>. If tab na
 the first tab in the sheet.</p>
 </div>
 <div class="section" id="api-usage-limits">
-<h2>API Usage Limits</h2>
+<h2>API Usage Limits<a class="headerlink" href="#api-usage-limits" title="Permalink to this headline">#</a></h2>
 <p>The Google Sheets API has <a class="reference external" href="https://developers.google.com/sheets/api/limits">usage limits</a>,
 that may impact the usage of this connector. Increasing the cache duration and/or size
 may prevent the limit from being reached. Running queries on the <code class="docutils literal"><span class="pre">information_schema.columns</span></code>

@@ -59,10 +59,10 @@
 <div class="content">
     
   <div class="section" id="bitwise-functions">
-<h1>7.7. Bitwise Functions</h1>
+<h1>7.7. Bitwise Functions<a class="headerlink" href="#bitwise-functions" title="Permalink to this headline">#</a></h1>
 <dl class="function">
 <dt id="bit_count">
-<code class="descname">bit_count</code><span class="sig-paren">(</span><em>x</em>, <em>bits</em><span class="sig-paren">)</span> &#x2192; bigint</dt>
+<code class="descname">bit_count</code><span class="sig-paren">(</span><em>x</em>, <em>bits</em><span class="sig-paren">)</span> &#x2192; bigint<a class="headerlink" href="#bit_count" title="Permalink to this definition">#</a></dt>
 <dd><p>Count the number of bits set in <code class="docutils literal"><span class="pre">x</span></code> (treated as <code class="docutils literal"><span class="pre">bits</span></code>-bit signed
 integer) in 2’s complement representation:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">bit_count</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">64</span><span class="p">);</span> <span class="c1">-- 2</span>
@@ -75,25 +75,25 @@ integer) in 2’s complement representation:</p>
 
 <dl class="function">
 <dt id="bitwise_and">
-<code class="descname">bitwise_and</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span> &#x2192; bigint</dt>
+<code class="descname">bitwise_and</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span> &#x2192; bigint<a class="headerlink" href="#bitwise_and" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the bitwise AND of <code class="docutils literal"><span class="pre">x</span></code> and <code class="docutils literal"><span class="pre">y</span></code> in 2’s complement representation.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="bitwise_not">
-<code class="descname">bitwise_not</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span> &#x2192; bigint</dt>
+<code class="descname">bitwise_not</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span> &#x2192; bigint<a class="headerlink" href="#bitwise_not" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the bitwise NOT of <code class="docutils literal"><span class="pre">x</span></code> in 2’s complement representation.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="bitwise_or">
-<code class="descname">bitwise_or</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span> &#x2192; bigint</dt>
+<code class="descname">bitwise_or</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span> &#x2192; bigint<a class="headerlink" href="#bitwise_or" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the bitwise OR of <code class="docutils literal"><span class="pre">x</span></code> and <code class="docutils literal"><span class="pre">y</span></code> in 2’s complement representation.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="bitwise_xor">
-<code class="descname">bitwise_xor</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span> &#x2192; bigint</dt>
+<code class="descname">bitwise_xor</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span> &#x2192; bigint<a class="headerlink" href="#bitwise_xor" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the bitwise XOR of <code class="docutils literal"><span class="pre">x</span></code> and <code class="docutils literal"><span class="pre">y</span></code> in 2’s complement representation.</p>
 </dd></dl>
 

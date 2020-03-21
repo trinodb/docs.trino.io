@@ -59,7 +59,7 @@
 <div class="content">
     
   <div class="section" id="thrift-connector">
-<h1>6.26. Thrift Connector</h1>
+<h1>6.26. Thrift Connector<a class="headerlink" href="#thrift-connector" title="Permalink to this headline">#</a></h1>
 <p>The Thrift connector makes it possible to integrate with external storage systems
 without a custom Presto connector implementation by using
 <a class="reference external" href="https://thrift.apache.org/">Apache Thrift</a> on these servers. It is therefore generic and can provide access any backend, as long as it exposes the expected API by using Thrift.</p>
@@ -71,7 +71,7 @@ splits and data. The connector randomly chooses a server to talk to from the ava
 instances for metadata calls, or for data calls unless the splits include a list of addresses.
 All requests are assumed to be idempotent and can be retried freely among any server.</p>
 <div class="section" id="configuration">
-<h2>Configuration</h2>
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h2>
 <p>To configure the Thrift connector, create a catalog properties file
 <code class="docutils literal"><span class="pre">etc/catalog/thrift.properties</span></code> with the following content,
 replacing the properties as appropriate:</p>
@@ -80,14 +80,14 @@ presto.thrift.client.addresses=host:port,host:port
 </pre></div>
 </div>
 <div class="section" id="multiple-thrift-systems">
-<h3>Multiple Thrift Systems</h3>
+<h3>Multiple Thrift Systems<a class="headerlink" href="#multiple-thrift-systems" title="Permalink to this headline">#</a></h3>
 <p>You can have as many catalogs as you need, so if you have additional
 Thrift systems to connect to, simply add another properties file to <code class="docutils literal"><span class="pre">etc/catalog</span></code>
 with a different name, making sure it ends in <code class="docutils literal"><span class="pre">.properties</span></code>.</p>
 </div>
 </div>
 <div class="section" id="configuration-properties">
-<h2>Configuration Properties</h2>
+<h2>Configuration Properties<a class="headerlink" href="#configuration-properties" title="Permalink to this headline">#</a></h2>
 <p>The following configuration properties are available:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -145,7 +145,7 @@ with a different name, making sure it ends in <code class="docutils literal"><sp
 </tbody>
 </table>
 <div class="section" id="presto-thrift-client-addresses">
-<h3><code class="docutils literal"><span class="pre">presto.thrift.client.addresses</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">presto.thrift.client.addresses</span></code><a class="headerlink" href="#presto-thrift-client-addresses" title="Permalink to this headline">#</a></h3>
 <p>Comma-separated list of thrift servers in the form of <code class="docutils literal"><span class="pre">host:port</span></code>. For example:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>presto.thrift.client.addresses=192.0.2.3:7777,192.0.2.4:7779
 </pre></div>
@@ -153,20 +153,20 @@ with a different name, making sure it ends in <code class="docutils literal"><sp
 <p>This property is required; there is no default.</p>
 </div>
 <div class="section" id="presto-thrift-max-response-size">
-<h3><code class="docutils literal"><span class="pre">presto-thrift.max-response-size</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">presto-thrift.max-response-size</span></code><a class="headerlink" href="#presto-thrift-max-response-size" title="Permalink to this headline">#</a></h3>
 <p>Maximum size of a data response that the connector accepts. This value is sent
 by the connector to the Thrift server when requesting data, allowing it to size
 the response appropriately.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">16MB</span></code>.</p>
 </div>
 <div class="section" id="presto-thrift-metadata-refresh-threads">
-<h3><code class="docutils literal"><span class="pre">presto-thrift.metadata-refresh-threads</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">presto-thrift.metadata-refresh-threads</span></code><a class="headerlink" href="#presto-thrift-metadata-refresh-threads" title="Permalink to this headline">#</a></h3>
 <p>Number of refresh threads for metadata cache.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">1</span></code>.</p>
 </div>
 </div>
 <div class="section" id="thrift-idl-file">
-<h2>Thrift IDL File</h2>
+<h2>Thrift IDL File<a class="headerlink" href="#thrift-idl-file" title="Permalink to this headline">#</a></h2>
 <p>The following IDL describes the <code class="docutils literal"><span class="pre">PrestoThriftService</span></code> that must be implemented:</p>
 <div class="highlight-thrift"><div class="highlight"><pre><span></span><span class="kd">enum</span><span class="w"> </span><span class="nc">PrestoThriftBound</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">BELOW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>

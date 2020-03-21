@@ -59,12 +59,12 @@
 <div class="content">
     
   <div class="section" id="cli-kerberos-authentication">
-<h1>3.2. CLI Kerberos Authentication</h1>
+<h1>3.2. CLI Kerberos Authentication<a class="headerlink" href="#cli-kerberos-authentication" title="Permalink to this headline">#</a></h1>
 <p>The Presto <a class="reference internal" href="../installation/cli.html"><span class="doc">Command Line Interface</span></a> can connect to a <a class="reference internal" href="server.html"><span class="doc">Presto coordinator</span></a>, that has Kerberos authentication enabled.</p>
 <div class="section" id="environment-configuration">
-<h2>Environment Configuration</h2>
+<h2>Environment Configuration<a class="headerlink" href="#environment-configuration" title="Permalink to this headline">#</a></h2>
 <div class="section" id="kerberos-services">
-<h3>Kerberos Services</h3>
+<h3>Kerberos Services<a class="headerlink" href="#kerberos-services" title="Permalink to this headline">#</a></h3>
 <p>You will need a Kerberos <abbr title="Key Distribution Center">KDC</abbr> running on a
 node that the client can reach over the network. The KDC is
 responsible for authenticating principals and issuing session keys that can be
@@ -72,7 +72,7 @@ used with Kerberos-enabled services. KDCs typically run on port 88, which is
 the IANA-assigned port for Kerberos.</p>
 </div>
 <div class="section" id="mit-kerberos-configuration">
-<h3>MIT Kerberos Configuration</h3>
+<h3>MIT Kerberos Configuration<a class="headerlink" href="#mit-kerberos-configuration" title="Permalink to this headline">#</a></h3>
 <p>Kerberos needs to be configured on the client. At a minimum, there needs
 to be a <code class="docutils literal"><span class="pre">kdc</span></code> entry in the <code class="docutils literal"><span class="pre">[realms]</span></code> section of the <code class="docutils literal"><span class="pre">/etc/krb5.conf</span></code>
 file. You may also want to include an <code class="docutils literal"><span class="pre">admin_server</span></code> entry and ensure that
@@ -94,7 +94,7 @@ different implementation of the Kerberos protocol, you will need to adapt the
 configuration to your environment.</p>
 </div>
 <div class="section" id="kerberos-principals-and-keytab-files">
-<h3>Kerberos Principals and Keytab Files</h3>
+<h3>Kerberos Principals and Keytab Files<a class="headerlink" href="#kerberos-principals-and-keytab-files" title="Permalink to this headline">#</a></h3>
 <p>Each user, who connects to the Presto coordinator, needs a Kerberos principal.
 You need to create these users in Kerberos using <a class="reference external" href="http://web.mit.edu/kerberos/krb5-latest/doc/admin/admin_commands/kadmin_local.html">kadmin</a>.</p>
 <p>Additionally, each user needs a <a class="reference external" href="http://web.mit.edu/kerberos/krb5-devel/doc/basic/keytab_def.html">keytab file</a>. The
@@ -114,7 +114,7 @@ password or a keytab, use the <code class="docutils literal"><span class="pre">-
 </div>
 </div>
 <div class="section" id="java-cryptography-extension-policy-files">
-<h3>Java Cryptography Extension Policy Files</h3>
+<h3>Java Cryptography Extension Policy Files<a class="headerlink" href="#java-cryptography-extension-policy-files" title="Permalink to this headline">#</a></h3>
 <p>The Java Runtime Environment is shipped with policy files that limit the
 strength of the cryptographic keys that can be used. Kerberos, by default, uses
 keys that are larger than those supported by the included policy files. There
@@ -135,14 +135,14 @@ the ZIP archive. You need administrative access to install the policy
 files, if you are installing them in a system JRE.</p>
 </div>
 <div class="section" id="java-keystore-file-for-tls">
-<h3>Java Keystore File for TLS</h3>
+<h3>Java Keystore File for TLS<a class="headerlink" href="#java-keystore-file-for-tls" title="Permalink to this headline">#</a></h3>
 <p>Access to the Presto coordinator must be through HTTPS when using Kerberos
 authentication. The Presto coordinator uses a <a class="reference internal" href="tls.html#server-java-keystore"><span class="std std-ref">Java Keystore</span></a> file for its TLS configuration. This file can be
 copied to the client machine and used for its configuration.</p>
 </div>
 </div>
 <div class="section" id="presto-cli-execution">
-<h2>Presto CLI execution</h2>
+<h2>Presto CLI execution<a class="headerlink" href="#presto-cli-execution" title="Permalink to this headline">#</a></h2>
 <p>In addition to the options that are required when connecting to a Presto
 coordinator, that does not require Kerberos authentication, invoking the CLI
 with Kerberos support enabled requires a number of additional command line
@@ -202,11 +202,11 @@ password you specified when creating the keystore.</td>
 </table>
 </div>
 <div class="section" id="troubleshooting">
-<h2>Troubleshooting</h2>
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">#</a></h2>
 <p>Many of the same steps, that can be used when troubleshooting the <a class="reference internal" href="server.html#coordinator-troubleshooting"><span class="std std-ref">Presto
 coordinator</span></a>, apply to troubleshooting the CLI.</p>
 <div class="section" id="additional-kerberos-debugging-information">
-<h3>Additional Kerberos Debugging Information</h3>
+<h3>Additional Kerberos Debugging Information<a class="headerlink" href="#additional-kerberos-debugging-information" title="Permalink to this headline">#</a></h3>
 <p>You can enable additional Kerberos debugging information for the Presto CLI
 process by passing <code class="docutils literal"><span class="pre">-Dsun.security.krb5.debug=true</span></code> as a JVM argument, when
 starting the CLI process. Doing so requires invoking the CLI JAR via <code class="docutils literal"><span class="pre">java</span></code>

@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-60">
-<h1>12.199. Release 0.60</h1>
+<h1>12.199. Release 0.60<a class="headerlink" href="#release-0-60" title="Permalink to this headline">#</a></h1>
 <div class="section" id="jdbc-improvements">
-<h2>JDBC improvements</h2>
+<h2>JDBC improvements<a class="headerlink" href="#jdbc-improvements" title="Permalink to this headline">#</a></h2>
 <p>The Presto version of the JDBC <code class="docutils literal"><span class="pre">DatabaseMetaData</span></code> interface now includes
 proper implementations of <code class="docutils literal"><span class="pre">getTables</span></code>, <code class="docutils literal"><span class="pre">getSchemas</span></code> and <code class="docutils literal"><span class="pre">getCatalogs</span></code>.</p>
 <p>The JDBC driver is now always packaged as a standalone jar without any
@@ -70,12 +70,12 @@ classifier <code class="docutils literal"><span class="pre">standalone</span></c
 anymore.</p>
 </div>
 <div class="section" id="use-catalog-and-use-schema">
-<h2>USE CATALOG and USE SCHEMA</h2>
+<h2>USE CATALOG and USE SCHEMA<a class="headerlink" href="#use-catalog-and-use-schema" title="Permalink to this headline">#</a></h2>
 <p>The <a class="reference internal" href="../installation/cli.html"><span class="doc">Command Line Interface</span></a> now supports <code class="docutils literal"><span class="pre">USE</span> <span class="pre">CATALOG</span></code> and
 <code class="docutils literal"><span class="pre">USE</span> <span class="pre">SCHEMA</span></code>.</p>
 </div>
 <div class="section" id="tpch-connector">
-<h2>TPCH Connector</h2>
+<h2>TPCH Connector<a class="headerlink" href="#tpch-connector" title="Permalink to this headline">#</a></h2>
 <p>We have added a new connector that will generate synthetic data following the
 TPC-H specification. This connector makes it easy to generate large datasets for
 testing and bug reports. When generating bug reports, we encourage users to use
@@ -91,7 +91,7 @@ with the following contents:</p>
 <code class="docutils literal"><span class="pre">etc/config.properties</span></code>, for the workers to include <code class="docutils literal"><span class="pre">tpch</span></code>.</p>
 </div>
 <div class="section" id="spi-changes">
-<h2>SPI changes</h2>
+<h2>SPI changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
 <p>The <code class="docutils literal"><span class="pre">Connector</span></code> interface now has explicit methods for supplying the services
 expected by the query engine. Previously, this was handled by a generic
 <code class="docutils literal"><span class="pre">getService</span></code> method.</p>
@@ -115,9 +115,9 @@ the following to the <code class="docutils literal"><span class="pre">Plugin</sp
 </div>
 </div>
 <div class="section" id="optimizations">
-<h2>Optimizations</h2>
+<h2>Optimizations<a class="headerlink" href="#optimizations" title="Permalink to this headline">#</a></h2>
 <div class="section" id="distinct-limit">
-<h3>DISTINCT LIMIT</h3>
+<h3>DISTINCT LIMIT<a class="headerlink" href="#distinct-limit" title="Permalink to this headline">#</a></h3>
 <p>For queries with the following form:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="p">...</span>
 <span class="k">FROM</span> <span class="n">T</span>
@@ -128,7 +128,7 @@ the following to the <code class="docutils literal"><span class="pre">Plugin</sp
 rows are found.</p>
 </div>
 <div class="section" id="range-predicates">
-<h3>Range predicates</h3>
+<h3>Range predicates<a class="headerlink" href="#range-predicates" title="Permalink to this headline">#</a></h3>
 <p>When optimizing a join, Presto analyzes the ranges of the partitions on each
 side of a join and pushes these ranges to the other side.  When tables have a
 lot of partitions, this can result in a very large filter with one expression
@@ -136,18 +136,18 @@ for each partition.  The optimizer now summarizes the predicate ranges to reduce
 the complexity of the filters.</p>
 </div>
 <div class="section" id="compound-filters">
-<h3>Compound filters</h3>
+<h3>Compound filters<a class="headerlink" href="#compound-filters" title="Permalink to this headline">#</a></h3>
 <p>Complex expressions involving <code class="docutils literal"><span class="pre">AND</span></code>, <code class="docutils literal"><span class="pre">OR</span></code>, or <code class="docutils literal"><span class="pre">NOT</span></code> are now optimized by
 the expression optimizer.</p>
 </div>
 <div class="section" id="window-functions">
-<h3>Window functions</h3>
+<h3>Window functions<a class="headerlink" href="#window-functions" title="Permalink to this headline">#</a></h3>
 <p>Window functions with a <code class="docutils literal"><span class="pre">PARTITION</span> <span class="pre">BY</span></code> clause are now distributed based on the
 partition key.</p>
 </div>
 </div>
 <div class="section" id="bug-fixes">
-<h2>Bug fixes</h2>
+<h2>Bug fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">#</a></h2>
 <ul>
 <li><p class="first">Scheduling</p>
 <p>In the changes to schedule splits in batches, we introduced two bugs that

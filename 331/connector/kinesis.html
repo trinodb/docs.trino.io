@@ -59,7 +59,7 @@
 <div class="content">
     
   <div class="section" id="kinesis-connector">
-<h1>6.13. Kinesis Connector</h1>
+<h1>6.13. Kinesis Connector<a class="headerlink" href="#kinesis-connector" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://aws.amazon.com/kinesis/">Kinesis</a> is Amazon’s fully managed cloud-based service for real-time processing of large, distributed data streams.</p>
 <p>This connector allows the use of Kinesis streams as tables in Presto, such that each data-blob/message
 in a Kinesis stream is presented as a row in Presto. A flexible table mapping approach lets us
@@ -81,7 +81,7 @@ kinesis.secret-key=XXXXXX
 </pre></div>
 </div>
 <div class="section" id="configuration-properties">
-<h2>Configuration Properties</h2>
+<h2>Configuration Properties<a class="headerlink" href="#configuration-properties" title="Permalink to this headline">#</a></h2>
 <p>The following configuration properties are available:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -133,7 +133,7 @@ kinesis.secret-key=XXXXXX
 </tbody>
 </table>
 <div class="section" id="kinesis-access-key">
-<h3><code class="docutils literal"><span class="pre">kinesis.access-key</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">kinesis.access-key</span></code><a class="headerlink" href="#kinesis-access-key" title="Permalink to this headline">#</a></h3>
 <p>Defines the access key ID for AWS root account or IAM roles, which is used to sign programmatic requests to AWS Kinesis.</p>
 <p>This property is optional; if not defined, the connector tries to follow <code class="docutils literal"><span class="pre">Default-Credential-Provider-Chain</span></code> provided by AWS in the following order:</p>
 <ul class="simple">
@@ -144,39 +144,39 @@ kinesis.secret-key=XXXXXX
 </ul>
 </div>
 <div class="section" id="kinesis-secret-key">
-<h3><code class="docutils literal"><span class="pre">kinesis.secret-key</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">kinesis.secret-key</span></code><a class="headerlink" href="#kinesis-secret-key" title="Permalink to this headline">#</a></h3>
 <p>Defines the secret key for AWS root account or IAM roles, which together with Access Key ID, is used to sign programmatic requests to AWS Kinesis.</p>
 <p>This property is optional; if not defined, connector will try to follow <code class="docutils literal"><span class="pre">Default-Credential-Provider-Chain</span></code> same as above.</p>
 </div>
 <div class="section" id="kinesis-aws-region">
-<h3><code class="docutils literal"><span class="pre">kinesis.aws-region</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">kinesis.aws-region</span></code><a class="headerlink" href="#kinesis-aws-region" title="Permalink to this headline">#</a></h3>
 <p>Defines AWS Kinesis regional endpoint. Selecting appropriate region may reduce latency in fetching data.</p>
 <p>This field is optional; The default region is <code class="docutils literal"><span class="pre">us-east-1</span></code> referring to end point ‘kinesis.us-east-1.amazonaws.com’.</p>
 <p>See <a class="reference external" href="https://docs.aws.amazon.com/general/latest/gr/rande.html#ak_region">Kinesis Data Streams regions</a>
 for a current list of available regions.</p>
 </div>
 <div class="section" id="kinesis-default-schema">
-<h3><code class="docutils literal"><span class="pre">kinesis.default-schema</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">kinesis.default-schema</span></code><a class="headerlink" href="#kinesis-default-schema" title="Permalink to this headline">#</a></h3>
 <p>Defines the schema which contains all tables that were defined without a qualifying schema name.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">default</span></code>.</p>
 </div>
 <div class="section" id="kinesis-table-description-location">
-<h3><code class="docutils literal"><span class="pre">kinesis.table-description-location</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">kinesis.table-description-location</span></code><a class="headerlink" href="#kinesis-table-description-location" title="Permalink to this headline">#</a></h3>
 <p>References an S3 URL or a folder within Presto deployment that holds one or more JSON files ending with <code class="docutils literal"><span class="pre">.json</span></code>, which contain table description files.
 The S3 bucket and folder will be checked every 10 minutes for updates and changed files.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">etc/kinesis</span></code>.</p>
 </div>
 <div class="section" id="kinesis-batch-size">
-<h3><code class="docutils literal"><span class="pre">kinesis.batch-size</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">kinesis.batch-size</span></code><a class="headerlink" href="#kinesis-batch-size" title="Permalink to this headline">#</a></h3>
 <p>Defines the maximum number of records to return in one request to Kinesis Streams. Maximum limit is <code class="docutils literal"><span class="pre">10000</span></code> records.</p>
 <p>This field is optional; the default value is <code class="docutils literal"><span class="pre">10000</span></code>.</p>
 </div>
 <div class="section" id="kinesis-max-batches">
-<h3><code class="docutils literal"><span class="pre">kinesis.max-batches</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">kinesis.max-batches</span></code><a class="headerlink" href="#kinesis-max-batches" title="Permalink to this headline">#</a></h3>
 <p>The maximum number of batches to read in a single query. The default value is <code class="docutils literal"><span class="pre">1000</span></code>.</p>
 </div>
 <div class="section" id="kinesis-fetch-attempts">
-<h3><code class="docutils literal"><span class="pre">kinesis.fetch-attempts</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">kinesis.fetch-attempts</span></code><a class="headerlink" href="#kinesis-fetch-attempts" title="Permalink to this headline">#</a></h3>
 <p>Defines the number of attempts made to read a batch from Kinesis Streams, when no records are returned and the <em>millis behind latest</em>
 parameter shows we are not yet caught up. When records are returned no additional attempts are necessary.
 <code class="docutils literal"><span class="pre">GetRecords</span></code> has been observed to return no records even though the shard is not empty.
@@ -184,30 +184,30 @@ That is why multiple attempts need to be made.</p>
 <p>This field is optional; the default value is <code class="docutils literal"><span class="pre">2</span></code>.</p>
 </div>
 <div class="section" id="kinesis-sleep-time">
-<h3><code class="docutils literal"><span class="pre">kinesis.sleep-time</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">kinesis.sleep-time</span></code><a class="headerlink" href="#kinesis-sleep-time" title="Permalink to this headline">#</a></h3>
 <p>Defines the duration for which a thread needs to sleep between <code class="docutils literal"><span class="pre">kinesis.fetch-attempts</span></code> made to fetch data.</p>
 <p>This field is optional; the default value is <code class="docutils literal"><span class="pre">1000ms</span></code>.</p>
 </div>
 <div class="section" id="kinesis-iterator-from-timestamp">
-<h3><code class="docutils literal"><span class="pre">kinesis.iterator-from-timestamp</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">kinesis.iterator-from-timestamp</span></code><a class="headerlink" href="#kinesis-iterator-from-timestamp" title="Permalink to this headline">#</a></h3>
 <p>Use an initial shard iterator type of <code class="docutils literal"><span class="pre">AT_TIMESTAMP</span></code> starting <code class="docutils literal"><span class="pre">kinesis.iterator-offset-seconds</span></code> before the current time.
 When this is false, an iterator type of <code class="docutils literal"><span class="pre">TRIM_HORIZON</span></code> is used, meaning it starts from the oldest record in the stream.</p>
 <p>The default is true.</p>
 </div>
 <div class="section" id="kinesis-iterator-offset-seconds">
-<h3><code class="docutils literal"><span class="pre">kinesis.iterator-offset-seconds</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">kinesis.iterator-offset-seconds</span></code><a class="headerlink" href="#kinesis-iterator-offset-seconds" title="Permalink to this headline">#</a></h3>
 <p>When <code class="docutils literal"><span class="pre">kinesis.iterator-from-timestamp</span></code> is true, the shard iterator starts at <code class="docutils literal"><span class="pre">kinesis.iterator-offset-seconds</span></code> before the current time.</p>
 <p>The default is <code class="docutils literal"><span class="pre">86400</span></code> seconds (24 hours).</p>
 </div>
 <div class="section" id="kinesis-hide-internal-columns">
-<h3><code class="docutils literal"><span class="pre">kinesis.hide-internal-columns</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">kinesis.hide-internal-columns</span></code><a class="headerlink" href="#kinesis-hide-internal-columns" title="Permalink to this headline">#</a></h3>
 <p>In addition to the data columns defined in a table description file, the connector maintains a number of additional columns for each table.
 If these columns are hidden, they can still be used in queries, but they do not show up in <code class="docutils literal"><span class="pre">DESCRIBE</span> <span class="pre">&lt;table-name&gt;</span></code> or <code class="docutils literal"><span class="pre">SELECT</span> <span class="pre">*</span></code>.</p>
 <p>This property is optional; the default is true.</p>
 </div>
 </div>
 <div class="section" id="internal-columns">
-<h2>Internal Columns</h2>
+<h2>Internal Columns<a class="headerlink" href="#internal-columns" title="Permalink to this headline">#</a></h2>
 <p>For each defined table, the connector maintains the following columns:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -276,7 +276,7 @@ When false, data columns mapped from the message should be treated as invalid.</
 <p>For tables without a table definition file, the <code class="docutils literal"><span class="pre">_message_valid</span></code> column is always <code class="docutils literal"><span class="pre">true</span></code>.</p>
 </div>
 <div class="section" id="table-definition">
-<h2>Table Definition</h2>
+<h2>Table Definition<a class="headerlink" href="#table-definition" title="Permalink to this headline">#</a></h2>
 <p>A table definition file consists of a JSON definition for a table, which corresponds to one stream in Kinesis.
 The name of the file can be arbitrary but must end in <code class="docutils literal"><span class="pre">.json</span></code>. The structure of the table definition is as follows:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>{

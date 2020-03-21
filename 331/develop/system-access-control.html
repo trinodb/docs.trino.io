@@ -59,7 +59,7 @@
 <div class="content">
     
   <div class="section" id="system-access-control">
-<h1>11.6. System Access Control</h1>
+<h1>11.6. System Access Control<a class="headerlink" href="#system-access-control" title="Permalink to this headline">#</a></h1>
 <p>Presto separates the concept of the principal who authenticates to the
 coordinator from the username that is responsible for running queries. When
 running the Presto CLI, for example, the Presto username can be specified using
@@ -68,7 +68,7 @@ the <code class="docutils literal"><span class="pre">--user</span></code> option
 Presto user. In a secure environment, this is probably not desirable behavior
 and likely requires customization.</p>
 <div class="section" id="implementation">
-<h2>Implementation</h2>
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">#</a></h2>
 <p><code class="docutils literal"><span class="pre">SystemAccessControlFactory</span></code> is responsible for creating a
 <code class="docutils literal"><span class="pre">SystemAccessControl</span></code> instance. It also defines a <code class="docutils literal"><span class="pre">SystemAccessControl</span></code>
 name which is used by the administrator in a Presto configuration.</p>
@@ -84,7 +84,7 @@ be allowed by <code class="docutils literal"><span class="pre">ConnectorAccessCo
 must be wrapped as a plugin and installed on the Presto cluster.</p>
 </div>
 <div class="section" id="configuration">
-<h2>Configuration</h2>
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h2>
 <p>After a plugin that implements <code class="docutils literal"><span class="pre">SystemAccessControl</span></code> and
 <code class="docutils literal"><span class="pre">SystemAccessControlFactory</span></code> has been installed on the coordinator, it is
 configured using the file(s) specified by the <code class="docutils literal"><span class="pre">access-control.config-files</span></code>

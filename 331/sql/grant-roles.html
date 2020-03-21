@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="grant-roles">
-<h1>9.26. GRANT ROLES</h1>
+<h1>9.26. GRANT ROLES<a class="headerlink" href="#grant-roles" title="Permalink to this headline">#</a></h1>
 <div class="section" id="synopsis">
-<h2>Synopsis</h2>
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">#</a></h2>
 <div class="highlight-none"><div class="highlight"><pre><span></span>GRANT role [, ...]
 TO ( user | USER user | ROLE role) [, ...]
 [ GRANTED BY ( user | USER user | ROLE role | CURRENT_USER | CURRENT_ROLE ) ]
@@ -70,7 +70,7 @@ TO ( user | USER user | ROLE role) [, ...]
 </div>
 </div>
 <div class="section" id="description">
-<h2>Description</h2>
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">#</a></h2>
 <p>Grants the specified role(s) to the specified principal(s) in the current catalog.</p>
 <p>If the <code class="docutils literal"><span class="pre">WITH</span> <span class="pre">ADMIN</span> <span class="pre">OPTION</span></code> clause is specified, the role(s) are granted
 to the users with <code class="docutils literal"><span class="pre">GRANT</span></code> option.</p>
@@ -81,7 +81,7 @@ the specified principal as a grantor. If the <code class="docutils literal"><spa
 specified, the roles are granted with the current user as a grantor.</p>
 </div>
 <div class="section" id="examples">
-<h2>Examples</h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">#</a></h2>
 <p>Grant role <code class="docutils literal"><span class="pre">bar</span></code> to user <code class="docutils literal"><span class="pre">foo</span></code></p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">GRANT</span> <span class="n">bar</span> <span class="k">TO</span> <span class="k">USER</span> <span class="n">foo</span><span class="p">;</span>
 </pre></div>
@@ -92,12 +92,12 @@ specified, the roles are granted with the current user as a grantor.</p>
 </div>
 </div>
 <div class="section" id="limitations">
-<h2>Limitations</h2>
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">#</a></h2>
 <p>Some connectors do not support role management.
 See connector documentation for more details.</p>
 </div>
 <div class="section" id="see-also">
-<h2>See Also</h2>
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">#</a></h2>
 <p><a class="reference internal" href="create-role.html"><span class="doc">CREATE ROLE</span></a>, <a class="reference internal" href="drop-role.html"><span class="doc">DROP ROLE</span></a>, <a class="reference internal" href="set-role.html"><span class="doc">SET ROLE</span></a>, <a class="reference internal" href="revoke-roles.html"><span class="doc">REVOKE ROLES</span></a></p>
 </div>
 </div>

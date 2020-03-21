@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="explain">
-<h1>9.23. EXPLAIN</h1>
+<h1>9.23. EXPLAIN<a class="headerlink" href="#explain" title="Permalink to this headline">#</a></h1>
 <div class="section" id="synopsis">
-<h2>Synopsis</h2>
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">#</a></h2>
 <div class="highlight-none"><div class="highlight"><pre><span></span>EXPLAIN [ ( option [, ...] ) ] statement
 
 where option can be one of:
@@ -72,7 +72,7 @@ where option can be one of:
 </div>
 </div>
 <div class="section" id="description">
-<h2>Description</h2>
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">#</a></h2>
 <p>Show the logical or distributed execution plan of a statement, or validate the statement.
 Use <code class="docutils literal"><span class="pre">TYPE</span> <span class="pre">DISTRIBUTED</span></code> option to display fragmented plan. Each plan fragment is executed by
 a single or multiple Presto nodes. Fragments separation represent the data exchange between Presto nodes.
@@ -95,7 +95,7 @@ broadcasted to all nodes.</dd>
 </dl>
 </div>
 <div class="section" id="examples">
-<h2>Examples</h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">#</a></h2>
 <p>Logical plan:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>presto:tiny&gt; EXPLAIN SELECT regionkey, count(*) FROM nation GROUP BY 1;
                                                    Query Plan
@@ -240,7 +240,7 @@ broadcasted to all nodes.</dd>
 </div>
 </div>
 <div class="section" id="see-also">
-<h2>See Also</h2>
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">#</a></h2>
 <p><a class="reference internal" href="explain-analyze.html"><span class="doc">EXPLAIN ANALYZE</span></a></p>
 </div>
 </div>

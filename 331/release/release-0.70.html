@@ -59,14 +59,14 @@
 <div class="content">
     
   <div class="section" id="release-0-70">
-<h1>12.189. Release 0.70</h1>
+<h1>12.189. Release 0.70<a class="headerlink" href="#release-0-70" title="Permalink to this headline">#</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">This release contained a packaging error that resulted in an
 unusable server tarball. Do not use this release.</p>
 </div>
 <div class="section" id="views">
-<h2>Views</h2>
+<h2>Views<a class="headerlink" href="#views" title="Permalink to this headline">#</a></h2>
 <p>We have added support for creating views within Presto.
 Views are defined using Presto syntax but are stored (as blobs)
 by connectors. Currently, views are supported by the
@@ -77,17 +77,17 @@ be queried by Hive, nor can Hive views be queried by Presto.</p>
 for details and examples.</p>
 </div>
 <div class="section" id="dual-table">
-<h2>DUAL Table</h2>
+<h2>DUAL Table<a class="headerlink" href="#dual-table" title="Permalink to this headline">#</a></h2>
 <p>The synthetic <code class="docutils literal"><span class="pre">DUAL</span></code> table is no longer supported. As an alternative, please
 write your queries without a <code class="docutils literal"><span class="pre">FROM</span></code> clause or use the <code class="docutils literal"><span class="pre">VALUES</span></code> syntax.</p>
 </div>
 <div class="section" id="presto-verifier">
-<h2>Presto Verifier</h2>
+<h2>Presto Verifier<a class="headerlink" href="#presto-verifier" title="Permalink to this headline">#</a></h2>
 <p>There is a new project, <a class="reference internal" href="../installation/verifier.html"><span class="doc">Presto Verifier</span></a>, which can be used to
 verify a set of queries against two different clusters.</p>
 </div>
 <div class="section" id="connector-improvements">
-<h2>Connector Improvements</h2>
+<h2>Connector Improvements<a class="headerlink" href="#connector-improvements" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Connectors can now add hidden columns to a table. Hidden columns are not
 displayed in <code class="docutils literal"><span class="pre">DESCRIBE</span></code> or <code class="docutils literal"><span class="pre">information_schema</span></code>, and are not
@@ -99,14 +99,14 @@ connector development. For an example, see <code class="docutils literal"><span 
 </ul>
 </div>
 <div class="section" id="machine-learning-functions">
-<h2>Machine Learning Functions</h2>
+<h2>Machine Learning Functions<a class="headerlink" href="#machine-learning-functions" title="Permalink to this headline">#</a></h2>
 <p>We have added two new machine learning functions, which can be used
 by advanced users familiar with LIBSVM. The functions are
 <code class="docutils literal"><span class="pre">learn_libsvm_classifier</span></code> and <code class="docutils literal"><span class="pre">learn_libsvm_regressor</span></code>. Both take a
 parameters string which has the form <code class="docutils literal"><span class="pre">key=value,key=value</span></code></p>
 </div>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>New comparison functions: <a class="reference internal" href="../functions/comparison.html#greatest" title="greatest"><code class="xref py py-func docutils literal"><span class="pre">greatest()</span></code></a> and <a class="reference internal" href="../functions/comparison.html#least" title="least"><code class="xref py py-func docutils literal"><span class="pre">least()</span></code></a></li>
 <li>New window functions: <a class="reference internal" href="../functions/window.html#first_value" title="first_value"><code class="xref py py-func docutils literal"><span class="pre">first_value()</span></code></a>, <a class="reference internal" href="../functions/window.html#last_value" title="last_value"><code class="xref py py-func docutils literal"><span class="pre">last_value()</span></code></a>, and <a class="reference internal" href="../functions/window.html#nth_value" title="nth_value"><code class="xref py py-func docutils literal"><span class="pre">nth_value()</span></code></a></li>
@@ -127,7 +127,7 @@ garbage generation and improves coordinator stability.</li>
 </ul>
 </div>
 <div class="section" id="hive-changes">
-<h2>Hive Changes</h2>
+<h2>Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>There are two new configuration options for the Hive connector,
 <code class="docutils literal"><span class="pre">hive.max-initial-split-size</span></code>, which configures the size of the

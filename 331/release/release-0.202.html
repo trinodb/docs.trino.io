@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-202">
-<h1>12.46. Release 0.202</h1>
+<h1>12.46. Release 0.202<a class="headerlink" href="#release-0-202" title="Permalink to this headline">#</a></h1>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix correctness issue for queries involving aggregations over the result of an outer join (<a class="reference external" href="https://github.com/prestodb/presto/issues/10592">#10592</a>).</li>
 <li>Fix <a class="reference internal" href="../functions/map.html#map" title="map"><code class="xref py py-func docutils literal"><span class="pre">map()</span></code></a> to raise an error on duplicate keys rather than silently producing a corrupted map.</li>
@@ -96,7 +96,7 @@ Connectors have not yet been updated to take advantage of this support.</li>
 </ul>
 </div>
 <div class="section" id="hive-changes">
-<h2>Hive Changes</h2>
+<h2>Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix optimized ORC writer encoding of <code class="docutils literal"><span class="pre">TIMESTAMP</span></code> before <code class="docutils literal"><span class="pre">1970-01-01</span></code>.  Previously, the
 written value was off by one second.</li>
@@ -118,13 +118,13 @@ piggybacks on other properties.</li>
 </ul>
 </div>
 <div class="section" id="cli-changes">
-<h2>CLI Changes</h2>
+<h2>CLI Changes<a class="headerlink" href="#cli-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add peak memory usage to <code class="docutils literal"><span class="pre">--debug</span></code> output.</li>
 </ul>
 </div>
 <div class="section" id="spi-changes">
-<h2>SPI Changes</h2>
+<h2>SPI Changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Make <code class="docutils literal"><span class="pre">PageSorter</span></code> and <code class="docutils literal"><span class="pre">PageIndexer</span></code> supported interfaces.</li>
 </ul>

@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-94">
-<h1>12.165. Release 0.94</h1>
+<h1>12.165. Release 0.94<a class="headerlink" href="#release-0-94" title="Permalink to this headline">#</a></h1>
 <div class="section" id="orc-memory-usage">
-<h2>ORC Memory Usage</h2>
+<h2>ORC Memory Usage<a class="headerlink" href="#orc-memory-usage" title="Permalink to this headline">#</a></h2>
 <p>This release contains additional changes to the Presto ORC reader to favor
 small buffers when reading varchar and varbinary data. Some ORC files contain
 columns of data that are hundreds of megabytes compressed. When reading these
@@ -73,7 +73,7 @@ reduces heap fragmentation and excessive buffers in ORC at the expense of
 HDFS IOPS. The default value is <code class="docutils literal"><span class="pre">8MB</span></code>.</p>
 </div>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Update Hive CDH 4 connector to CDH 4.7.1</li>
 <li>Fix <code class="docutils literal"><span class="pre">ORDER</span> <span class="pre">BY</span></code> with <code class="docutils literal"><span class="pre">LIMIT</span> <span class="pre">0</span></code></li>

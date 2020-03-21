@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-315-14-jun-2019">
-<h1>12.17. Release 315 (14 Jun 2019)</h1>
+<h1>12.17. Release 315 (14 Jun 2019)<a class="headerlink" href="#release-315-14-jun-2019" title="Permalink to this headline">#</a></h1>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix incorrect results when dividing certain decimal numbers. (<a class="reference external" href="https://github.com/prestosql/presto/issues/958">#958</a>)</li>
 <li>Add support for <code class="docutils literal"><span class="pre">FETCH</span> <span class="pre">FIRST</span> <span class="pre">...</span> <span class="pre">WITH</span> <span class="pre">TIES</span></code> syntax. (<a class="reference external" href="https://github.com/prestosql/presto/issues/832">#832</a>)</li>
@@ -70,19 +70,19 @@
 </ul>
 </div>
 <div class="section" id="server-rpm-changes">
-<h2>Server RPM Changes</h2>
+<h2>Server RPM Changes<a class="headerlink" href="#server-rpm-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Require JDK version 8u161+ during installation, which is the version the server requires. (<a class="reference external" href="https://github.com/prestosql/presto/issues/983">#983</a>)</li>
 </ul>
 </div>
 <div class="section" id="cli-changes">
-<h2>CLI Changes</h2>
+<h2>CLI Changes<a class="headerlink" href="#cli-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix alignment of nulls for numeric columns in aligned output format. (<a class="reference external" href="https://github.com/prestosql/presto/issues/871">#871</a>)</li>
 </ul>
 </div>
 <div class="section" id="hive-connector-changes">
-<h2>Hive Connector Changes</h2>
+<h2>Hive Connector Changes<a class="headerlink" href="#hive-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix regression in partition pruning for certain query shapes. (<a class="reference external" href="https://github.com/prestosql/presto/issues/984">#984</a>)</li>
 <li>Correctly identify EMRFS as S3 when deciding to use a temporary location for writes. (<a class="reference external" href="https://github.com/prestosql/presto/issues/935">#935</a>)</li>
@@ -96,14 +96,14 @@ by turning on <code class="docutils literal"><span class="pre">DEBUG</span></cod
 </ul>
 </div>
 <div class="section" id="mongodb-connector-changes">
-<h2>MongoDB Connector Changes</h2>
+<h2>MongoDB Connector Changes<a class="headerlink" href="#mongodb-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix query failure when <code class="docutils literal"><span class="pre">ROW</span></code> with an <code class="docutils literal"><span class="pre">ObjectId</span></code> field is used as a join key. (<a class="reference external" href="https://github.com/prestosql/presto/issues/933">#933</a>)</li>
 <li>Add cast from <code class="docutils literal"><span class="pre">ObjectId</span></code> to <code class="docutils literal"><span class="pre">VARCHAR</span></code>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/933">#933</a>)</li>
 </ul>
 </div>
 <div class="section" id="spi-changes">
-<h2>SPI Changes</h2>
+<h2>SPI Changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Allow connectors to provide view definitions. <code class="docutils literal"><span class="pre">ConnectorViewDefinition</span></code> now contains
 the real view definition rather than an opaque blob. Connectors that support view storage

@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-198">
-<h1>12.50. Release 0.198</h1>
+<h1>12.50. Release 0.198<a class="headerlink" href="#release-0-198" title="Permalink to this headline">#</a></h1>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Perform semantic analysis before enqueuing queries.</li>
 <li>Add support for selective aggregates (<code class="docutils literal"><span class="pre">FILTER</span></code>) with <code class="docutils literal"><span class="pre">DISTINCT</span></code> argument qualifiers.</li>
@@ -94,7 +94,7 @@ property or the <code class="docutils literal"><span class="pre">optimizer.use-m
 </ul>
 </div>
 <div class="section" id="resource-groups-changes">
-<h2>Resource Groups Changes</h2>
+<h2>Resource Groups Changes<a class="headerlink" href="#resource-groups-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Query Queues have been removed. Resource Groups are always enabled. The
 config property <code class="docutils literal"><span class="pre">experimental.resource-groups-enabled</span></code> has been removed.</li>
@@ -103,7 +103,7 @@ of groups where utilization and share are identical.</li>
 </ul>
 </div>
 <div class="section" id="cli-changes">
-<h2>CLI Changes</h2>
+<h2>CLI Changes<a class="headerlink" href="#cli-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>The <code class="docutils literal"><span class="pre">--enable-authentication</span></code> option has been removed. Kerberos authentication
 is automatically enabled when <code class="docutils literal"><span class="pre">--krb5-remote-service-name</span></code> is specified.</li>
@@ -111,7 +111,7 @@ is automatically enabled when <code class="docutils literal"><span class="pre">-
 </ul>
 </div>
 <div class="section" id="hive-changes">
-<h2>Hive Changes</h2>
+<h2>Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add support for using <a class="reference external" href="https://aws.amazon.com/glue/">AWS Glue</a> as the metastore.
 Enable it by setting the <code class="docutils literal"><span class="pre">hive.metastore</span></code> config property to <code class="docutils literal"><span class="pre">glue</span></code>.</li>
@@ -120,13 +120,13 @@ into files.</li>
 </ul>
 </div>
 <div class="section" id="jmx-changes">
-<h2>JMX Changes</h2>
+<h2>JMX Changes<a class="headerlink" href="#jmx-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add wildcard character <code class="docutils literal"><span class="pre">*</span></code> which allows querying several MBeans with a single query.</li>
 </ul>
 </div>
 <div class="section" id="spi-changes">
-<h2>SPI Changes</h2>
+<h2>SPI Changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add performance statistics to query plan in <code class="docutils literal"><span class="pre">QueryCompletedEvent</span></code>.</li>
 <li>Remove <code class="docutils literal"><span class="pre">Page.getBlocks()</span></code>. This call was rarely used and performed an expensive copy.

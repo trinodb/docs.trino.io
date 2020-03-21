@@ -59,10 +59,10 @@
 <div class="content">
     
   <div class="section" id="cost-based-optimizations">
-<h1>5.3. Cost based optimizations</h1>
+<h1>5.3. Cost based optimizations<a class="headerlink" href="#cost-based-optimizations" title="Permalink to this headline">#</a></h1>
 <p>Presto supports several cost based optimizations, described below.</p>
 <div class="section" id="join-enumeration">
-<h2>Join Enumeration</h2>
+<h2>Join Enumeration<a class="headerlink" href="#join-enumeration" title="Permalink to this headline">#</a></h2>
 <p>The order in which joins are executed in a query can have a significant impact
 on the query’s performance. The aspect of join ordering that has the largest
 impact on performance is the size of the data being processed and transferred
@@ -91,7 +91,7 @@ reason a cost could not be computed, the <code class="docutils literal"><span cl
 used instead.</p>
 </div>
 <div class="section" id="join-distribution-selection">
-<h2>Join Distribution Selection</h2>
+<h2>Join Distribution Selection<a class="headerlink" href="#join-distribution-selection" title="Permalink to this headline">#</a></h2>
 <p>Presto uses a hash based join algorithm. That implies that for each join
 operator a hash table must be created from one join input, called build side.
 The other input, called probe side, is then iterated, and for each row the hash table is
@@ -130,7 +130,7 @@ for each join</li>
 </dd>
 </dl>
 <div class="section" id="capping-replicated-table-size">
-<h3>Capping replicated table size</h3>
+<h3>Capping replicated table size<a class="headerlink" href="#capping-replicated-table-size" title="Permalink to this headline">#</a></h3>
 <p>Join distribution type will be chosen automatically when join reordering strategy
 is set to <code class="docutils literal"><span class="pre">COST_BASED</span></code> or when join distribution type is set to <code class="docutils literal"><span class="pre">AUTOMATIC</span></code>.
 In such case it is possible to cap the maximum size of replicated table via
@@ -141,7 +141,7 @@ This allows to improve cluster concurrency and to prevent bad plans when CBO mis
 </div>
 </div>
 <div class="section" id="connector-implementations">
-<h2>Connector Implementations</h2>
+<h2>Connector Implementations<a class="headerlink" href="#connector-implementations" title="Permalink to this headline">#</a></h2>
 <p>In order for the Presto optimizer to use the cost based strategies,
 the connector implementation must provide <a class="reference internal" href="statistics.html"><span class="doc">Table Statistics</span></a>.</p>
 </div>

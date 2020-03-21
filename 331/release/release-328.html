@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-328-10-jan-2020">
-<h1>12.4. Release 328 (10 Jan 2020)</h1>
+<h1>12.4. Release 328 (10 Jan 2020)<a class="headerlink" href="#release-328-10-jan-2020" title="Permalink to this headline">#</a></h1>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix correctness issue for certain correlated join queries when the correlated subquery on
 the right produces no rows. (<a class="reference external" href="https://github.com/prestosql/presto/issues/1969">#1969</a>)</li>
@@ -77,7 +77,7 @@ cause an error at runtime. (<a class="reference external" href="https://github.c
 </ul>
 </div>
 <div class="section" id="security-changes">
-<h2>Security Changes</h2>
+<h2>Security Changes<a class="headerlink" href="#security-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix a security issue allowing users to gain unauthorized access to Presto cluster
 when using password authenticator with LDAP. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2356">#2356</a>)</li>
@@ -85,7 +85,7 @@ when using password authenticator with LDAP. (<a class="reference external" href
 </ul>
 </div>
 <div class="section" id="jdbc-driver">
-<h2>JDBC Driver</h2>
+<h2>JDBC Driver<a class="headerlink" href="#jdbc-driver" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix behavior of <code class="docutils literal"><span class="pre">java.sql.Connection#commit()</span></code> and <code class="docutils literal"><span class="pre">java.sql.Connection#rollback()</span></code>
 methods when no statements performed in a transaction. Previously, these methods
@@ -95,7 +95,7 @@ would fail. (<a class="reference external" href="https://github.com/prestosql/pr
 </ul>
 </div>
 <div class="section" id="hive-connector-changes">
-<h2>Hive Connector Changes</h2>
+<h2>Hive Connector Changes<a class="headerlink" href="#hive-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Reduce query latency and Hive metastore load when using the
 <code class="docutils literal"><span class="pre">AUTOMATIC</span></code> join reordering strategy. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2184">#2184</a>)</li>
@@ -105,7 +105,7 @@ would fail. (<a class="reference external" href="https://github.com/prestosql/pr
 </ul>
 </div>
 <div class="section" id="kafka-connector-changes">
-<h2>Kafka Connector Changes</h2>
+<h2>Kafka Connector Changes<a class="headerlink" href="#kafka-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Remove internal columns: <code class="docutils literal"><span class="pre">_segment_start</span></code>, <code class="docutils literal"><span class="pre">_segment_end</span></code> and
 <code class="docutils literal"><span class="pre">_segment_count</span></code>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2303">#2303</a>)</li>
@@ -114,7 +114,7 @@ messages will be processed by a single Presto split. (<a class="reference extern
 </ul>
 </div>
 <div class="section" id="elasticsearch-connector-changes">
-<h2>Elasticsearch Connector Changes</h2>
+<h2>Elasticsearch Connector Changes<a class="headerlink" href="#elasticsearch-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix query failure when an object in an Elasticsearch document
 does not have any fields. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2217">#2217</a>)</li>
@@ -122,7 +122,7 @@ does not have any fields. (<a class="reference external" href="https://github.co
 </ul>
 </div>
 <div class="section" id="phoenix-connector-changes">
-<h2>Phoenix Connector Changes</h2>
+<h2>Phoenix Connector Changes<a class="headerlink" href="#phoenix-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add support for mapping unsupported data types to <code class="docutils literal"><span class="pre">VARCHAR</span></code>. This can be enabled by setting
 the <code class="docutils literal"><span class="pre">unsupported-type-handling</span></code> configuration property or the <code class="docutils literal"><span class="pre">unsupported_type_handling</span></code> session
@@ -130,7 +130,7 @@ property to <code class="docutils literal"><span class="pre">CONVERT_TO_VARCHAR<
 </ul>
 </div>
 <div class="section" id="other-connector-changes">
-<h2>Other Connector Changes</h2>
+<h2>Other Connector Changes<a class="headerlink" href="#other-connector-changes" title="Permalink to this headline">#</a></h2>
 <p>These changes apply to the MySQL, PostgreSQL, Redshift and SQL Server connectors:</p>
 <ul class="simple">
 <li>Add support for creating schemas. (<a class="reference external" href="https://github.com/prestosql/presto/issues/1874">#1874</a>)</li>

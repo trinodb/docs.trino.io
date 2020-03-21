@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="deploying-presto">
-<h1>2.1. Deploying Presto</h1>
+<h1>2.1. Deploying Presto<a class="headerlink" href="#deploying-presto" title="Permalink to this headline">#</a></h1>
 <div class="section" id="installing-presto">
-<h2>Installing Presto</h2>
+<h2>Installing Presto<a class="headerlink" href="#installing-presto" title="Permalink to this headline">#</a></h2>
 <p>Download the Presto server tarball, <a class="reference external" href="https://repo1.maven.org/maven2/io/prestosql/presto-server/331/presto-server-331.tar.gz">presto-server-331.tar.gz</a>, and unpack it.
 The tarball contains a single top-level directory,
 <code class="docutils literal"><span class="pre">presto-server-331</span></code>, which we call the <em>installation</em> directory.</p>
@@ -70,7 +70,7 @@ We recommend creating a data directory outside of the installation directory,
 which allows it to be easily preserved when upgrading Presto.</p>
 </div>
 <div class="section" id="configuring-presto">
-<h2>Configuring Presto</h2>
+<h2>Configuring Presto<a class="headerlink" href="#configuring-presto" title="Permalink to this headline">#</a></h2>
 <p>Create an <code class="docutils literal"><span class="pre">etc</span></code> directory inside the installation directory.
 This holds the following configuration:</p>
 <ul class="simple">
@@ -80,7 +80,7 @@ This holds the following configuration:</p>
 <li>Catalog Properties: configuration for <a class="reference internal" href="../connector.html"><span class="doc">Connectors</span></a> (data sources)</li>
 </ul>
 <div class="section" id="node-properties">
-<span id="presto-node-properties"></span><h3>Node Properties</h3>
+<span id="presto-node-properties"></span><h3>Node Properties<a class="headerlink" href="#node-properties" title="Permalink to this headline">#</a></h3>
 <p>The node properties file, <code class="docutils literal"><span class="pre">etc/node.properties</span></code>, contains configuration
 specific to each node. A <em>node</em> is a single installed instance of Presto
 on a machine. This file is typically created by the deployment system when
@@ -110,7 +110,7 @@ logs and other data here.</li>
 </ul>
 </div>
 <div class="section" id="jvm-config">
-<span id="presto-jvm-config"></span><h3>JVM Config</h3>
+<span id="presto-jvm-config"></span><h3>JVM Config<a class="headerlink" href="#jvm-config" title="Permalink to this headline">#</a></h3>
 <p>The JVM config file, <code class="docutils literal"><span class="pre">etc/jvm.config</span></code>, contains a list of command line
 options used for launching the Java Virtual Machine. The format of the file
 is a list of options, one per line. These options are not interpreted by
@@ -142,7 +142,7 @@ temporary directory by adding <code class="docutils literal"><span class="pre">-
 list of JVM options.</p>
 </div>
 <div class="section" id="config-properties">
-<span id="id1"></span><h3>Config Properties</h3>
+<span id="id1"></span><h3>Config Properties<a class="headerlink" href="#config-properties" title="Permalink to this headline">#</a></h3>
 <p>The config properties file, <code class="docutils literal"><span class="pre">etc/config.properties</span></code>, contains the
 configuration for the Presto server. Every Presto server can function
 as both a coordinator and a worker, but dedicating a single machine
@@ -228,7 +228,7 @@ Please see <a class="reference internal" href="../admin.html"><span class="doc">
 In particular, see <a class="reference internal" href="../admin/resource-groups.html"><span class="doc">Resource Groups</span></a> for configuring queuing policies.</p>
 </div>
 <div class="section" id="log-levels">
-<h3>Log Levels</h3>
+<h3>Log Levels<a class="headerlink" href="#log-levels" title="Permalink to this headline">#</a></h3>
 <p>The optional log levels file, <code class="docutils literal"><span class="pre">etc/log.properties</span></code>, allows setting the
 minimum log level for named logger hierarchies. Every logger has a name,
 which is typically the fully qualified name of the class that uses the logger.
@@ -244,7 +244,7 @@ thus the above example does not actually change anything.
 There are four levels: <code class="docutils literal"><span class="pre">DEBUG</span></code>, <code class="docutils literal"><span class="pre">INFO</span></code>, <code class="docutils literal"><span class="pre">WARN</span></code> and <code class="docutils literal"><span class="pre">ERROR</span></code>.</p>
 </div>
 <div class="section" id="catalog-properties">
-<h3>Catalog Properties</h3>
+<h3>Catalog Properties<a class="headerlink" href="#catalog-properties" title="Permalink to this headline">#</a></h3>
 <p>Presto accesses data via <em>connectors</em>, which are mounted in catalogs.
 The connector provides all of the schemas and tables inside of the catalog.
 For example, the Hive connector maps each Hive database to a schema.
@@ -262,7 +262,7 @@ contents to mount the <code class="docutils literal"><span class="pre">jmx</span
 </div>
 </div>
 <div class="section" id="running-presto">
-<span id="id2"></span><h2>Running Presto</h2>
+<span id="id2"></span><h2>Running Presto<a class="headerlink" href="#running-presto" title="Permalink to this headline">#</a></h2>
 <p>The installation directory contains the launcher script in <code class="docutils literal"><span class="pre">bin/launcher</span></code>.
 Presto can be started as a daemon by running the following:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>bin/launcher start

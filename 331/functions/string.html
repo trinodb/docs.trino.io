@@ -59,15 +59,15 @@
 <div class="content">
     
   <div class="section" id="string-functions-and-operators">
-<h1>7.9. String Functions and Operators</h1>
+<h1>7.9. String Functions and Operators<a class="headerlink" href="#string-functions-and-operators" title="Permalink to this headline">#</a></h1>
 <div class="section" id="string-operators">
-<h2>String Operators</h2>
+<h2>String Operators<a class="headerlink" href="#string-operators" title="Permalink to this headline">#</a></h2>
 <p>The <code class="docutils literal"><span class="pre">||</span></code> operator performs concatenation.</p>
 <p>The <code class="docutils literal"><span class="pre">LIKE</span></code> statement can be used for pattern matching and is documented in
 <a class="reference internal" href="comparison.html#like-operator"><span class="std std-ref">Pattern Comparison: LIKE</span></a>.</p>
 </div>
 <div class="section" id="string-functions">
-<h2>String Functions</h2>
+<h2>String Functions<a class="headerlink" href="#string-functions" title="Permalink to this headline">#</a></h2>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>These functions assume that the input strings contain valid UTF-8 encoded
@@ -86,19 +86,19 @@ Lithuanian, Turkish and Azeri.</p>
 </div>
 <dl class="function">
 <dt id="chr">
-<code class="descname">chr</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">chr</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#chr" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the Unicode code point <code class="docutils literal"><span class="pre">n</span></code> as a single character string.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="codepoint">
-<code class="descname">codepoint</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; integer</dt>
+<code class="descname">codepoint</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; integer<a class="headerlink" href="#codepoint" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the Unicode code point of the only character of <code class="docutils literal"><span class="pre">string</span></code>.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="concat">
-<code class="descname">concat</code><span class="sig-paren">(</span><em>string1</em>, <em>...</em>, <em>stringN</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">concat</code><span class="sig-paren">(</span><em>string1</em>, <em>...</em>, <em>stringN</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#concat" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the concatenation of <code class="docutils literal"><span class="pre">string1</span></code>, <code class="docutils literal"><span class="pre">string2</span></code>, <code class="docutils literal"><span class="pre">...</span></code>, <code class="docutils literal"><span class="pre">stringN</span></code>.
 This function provides the same functionality as the
 SQL-standard concatenation operator (<code class="docutils literal"><span class="pre">||</span></code>).</p>
@@ -106,7 +106,7 @@ SQL-standard concatenation operator (<code class="docutils literal"><span class=
 
 <dl class="function">
 <dt id="hamming_distance">
-<code class="descname">hamming_distance</code><span class="sig-paren">(</span><em>string1</em>, <em>string2</em><span class="sig-paren">)</span> &#x2192; bigint</dt>
+<code class="descname">hamming_distance</code><span class="sig-paren">(</span><em>string1</em>, <em>string2</em><span class="sig-paren">)</span> &#x2192; bigint<a class="headerlink" href="#hamming_distance" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the Hamming distance of <code class="docutils literal"><span class="pre">string1</span></code> and <code class="docutils literal"><span class="pre">string2</span></code>,
 i.e. the number of positions at which the corresponding characters are different.
 Note that the two strings must have the same length.</p>
@@ -114,13 +114,13 @@ Note that the two strings must have the same length.</p>
 
 <dl class="function">
 <dt id="length">
-<code class="descname">length</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; bigint</dt>
+<code class="descname">length</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; bigint<a class="headerlink" href="#length" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the length of <code class="docutils literal"><span class="pre">string</span></code> in characters.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="levenshtein_distance">
-<code class="descname">levenshtein_distance</code><span class="sig-paren">(</span><em>string1</em>, <em>string2</em><span class="sig-paren">)</span> &#x2192; bigint</dt>
+<code class="descname">levenshtein_distance</code><span class="sig-paren">(</span><em>string1</em>, <em>string2</em><span class="sig-paren">)</span> &#x2192; bigint<a class="headerlink" href="#levenshtein_distance" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the Levenshtein edit distance of <code class="docutils literal"><span class="pre">string1</span></code> and <code class="docutils literal"><span class="pre">string2</span></code>,
 i.e. the minimum number of single-character edits (insertions,
 deletions or substitutions) needed to change <code class="docutils literal"><span class="pre">string1</span></code> into <code class="docutils literal"><span class="pre">string2</span></code>.</p>
@@ -128,13 +128,13 @@ deletions or substitutions) needed to change <code class="docutils literal"><spa
 
 <dl class="function">
 <dt id="lower">
-<code class="descname">lower</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">lower</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#lower" title="Permalink to this definition">#</a></dt>
 <dd><p>Converts <code class="docutils literal"><span class="pre">string</span></code> to lowercase.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="lpad">
-<code class="descname">lpad</code><span class="sig-paren">(</span><em>string</em>, <em>size</em>, <em>padstring</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">lpad</code><span class="sig-paren">(</span><em>string</em>, <em>size</em>, <em>padstring</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#lpad" title="Permalink to this definition">#</a></dt>
 <dd><p>Left pads <code class="docutils literal"><span class="pre">string</span></code> to <code class="docutils literal"><span class="pre">size</span></code> characters with <code class="docutils literal"><span class="pre">padstring</span></code>.
 If <code class="docutils literal"><span class="pre">size</span></code> is less than the length of <code class="docutils literal"><span class="pre">string</span></code>, the result is
 truncated to <code class="docutils literal"><span class="pre">size</span></code> characters. <code class="docutils literal"><span class="pre">size</span></code> must not be negative
@@ -143,13 +143,13 @@ and <code class="docutils literal"><span class="pre">padstring</span></code> mus
 
 <dl class="function">
 <dt id="ltrim">
-<code class="descname">ltrim</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">ltrim</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#ltrim" title="Permalink to this definition">#</a></dt>
 <dd><p>Removes leading whitespace from <code class="docutils literal"><span class="pre">string</span></code>.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="replace">
-<code class="descname">replace</code><span class="sig-paren">(</span><em>string</em>, <em>search</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">replace</code><span class="sig-paren">(</span><em>string</em>, <em>search</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#replace" title="Permalink to this definition">#</a></dt>
 <dd><p>Removes all instances of <code class="docutils literal"><span class="pre">search</span></code> from <code class="docutils literal"><span class="pre">string</span></code>.</p>
 </dd></dl>
 
@@ -161,13 +161,13 @@ and <code class="docutils literal"><span class="pre">padstring</span></code> mus
 
 <dl class="function">
 <dt id="reverse">
-<code class="descname">reverse</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">reverse</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#reverse" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns <code class="docutils literal"><span class="pre">string</span></code> with the characters in reverse order.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="rpad">
-<code class="descname">rpad</code><span class="sig-paren">(</span><em>string</em>, <em>size</em>, <em>padstring</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">rpad</code><span class="sig-paren">(</span><em>string</em>, <em>size</em>, <em>padstring</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#rpad" title="Permalink to this definition">#</a></dt>
 <dd><p>Right pads <code class="docutils literal"><span class="pre">string</span></code> to <code class="docutils literal"><span class="pre">size</span></code> characters with <code class="docutils literal"><span class="pre">padstring</span></code>.
 If <code class="docutils literal"><span class="pre">size</span></code> is less than the length of <code class="docutils literal"><span class="pre">string</span></code>, the result is
 truncated to <code class="docutils literal"><span class="pre">size</span></code> characters. <code class="docutils literal"><span class="pre">size</span></code> must not be negative
@@ -176,13 +176,13 @@ and <code class="docutils literal"><span class="pre">padstring</span></code> mus
 
 <dl class="function">
 <dt id="rtrim">
-<code class="descname">rtrim</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">rtrim</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#rtrim" title="Permalink to this definition">#</a></dt>
 <dd><p>Removes trailing whitespace from <code class="docutils literal"><span class="pre">string</span></code>.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="split">
-<code class="descname">split</code><span class="sig-paren">(</span><em>string</em>, <em>delimiter) -&gt; array(varchar</em><span class="sig-paren">)</span></dt>
+<code class="descname">split</code><span class="sig-paren">(</span><em>string</em>, <em>delimiter) -&gt; array(varchar</em><span class="sig-paren">)</span><a class="headerlink" href="#split" title="Permalink to this definition">#</a></dt>
 <dd><p>Splits <code class="docutils literal"><span class="pre">string</span></code> on <code class="docutils literal"><span class="pre">delimiter</span></code> and returns an array.</p>
 </dd></dl>
 
@@ -196,7 +196,7 @@ left in the <code class="docutils literal"><span class="pre">string</span></code
 
 <dl class="function">
 <dt id="split_part">
-<code class="descname">split_part</code><span class="sig-paren">(</span><em>string</em>, <em>delimiter</em>, <em>index</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">split_part</code><span class="sig-paren">(</span><em>string</em>, <em>delimiter</em>, <em>index</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#split_part" title="Permalink to this definition">#</a></dt>
 <dd><p>Splits <code class="docutils literal"><span class="pre">string</span></code> on <code class="docutils literal"><span class="pre">delimiter</span></code> and returns the field <code class="docutils literal"><span class="pre">index</span></code>.
 Field indexes start with <code class="docutils literal"><span class="pre">1</span></code>. If the index is larger than than
 the number of fields, then null is returned.</p>
@@ -204,7 +204,7 @@ the number of fields, then null is returned.</p>
 
 <dl class="function">
 <dt id="split_to_map">
-<code class="descname">split_to_map</code><span class="sig-paren">(</span><em>string</em>, <em>entryDelimiter</em>, <em>keyValueDelimiter</em><span class="sig-paren">)</span> &#x2192; map&lt;varchar, varchar&gt;</dt>
+<code class="descname">split_to_map</code><span class="sig-paren">(</span><em>string</em>, <em>entryDelimiter</em>, <em>keyValueDelimiter</em><span class="sig-paren">)</span> &#x2192; map&lt;varchar, varchar&gt;<a class="headerlink" href="#split_to_map" title="Permalink to this definition">#</a></dt>
 <dd><p>Splits <code class="docutils literal"><span class="pre">string</span></code> by <code class="docutils literal"><span class="pre">entryDelimiter</span></code> and <code class="docutils literal"><span class="pre">keyValueDelimiter</span></code> and returns a map.
 <code class="docutils literal"><span class="pre">entryDelimiter</span></code> splits <code class="docutils literal"><span class="pre">string</span></code> into key-value pairs. <code class="docutils literal"><span class="pre">keyValueDelimiter</span></code> splits
 each pair into key and value.</p>
@@ -212,7 +212,7 @@ each pair into key and value.</p>
 
 <dl class="function">
 <dt id="split_to_multimap">
-<code class="descname">split_to_multimap</code><span class="sig-paren">(</span><em>string</em>, <em>entryDelimiter</em>, <em>keyValueDelimiter) -&gt; map(varchar</em>, <em>array(varchar)</em><span class="sig-paren">)</span></dt>
+<code class="descname">split_to_multimap</code><span class="sig-paren">(</span><em>string</em>, <em>entryDelimiter</em>, <em>keyValueDelimiter) -&gt; map(varchar</em>, <em>array(varchar)</em><span class="sig-paren">)</span><a class="headerlink" href="#split_to_multimap" title="Permalink to this definition">#</a></dt>
 <dd><p>Splits <code class="docutils literal"><span class="pre">string</span></code> by <code class="docutils literal"><span class="pre">entryDelimiter</span></code> and <code class="docutils literal"><span class="pre">keyValueDelimiter</span></code> and returns a map
 containing an array of values for each unique key. <code class="docutils literal"><span class="pre">entryDelimiter</span></code> splits <code class="docutils literal"><span class="pre">string</span></code>
 into key-value pairs. <code class="docutils literal"><span class="pre">keyValueDelimiter</span></code> splits each pair into key and value. The
@@ -221,7 +221,7 @@ values for each key will be in the same order as they appeared in <code class="d
 
 <dl class="function">
 <dt id="strpos">
-<code class="descname">strpos</code><span class="sig-paren">(</span><em>string</em>, <em>substring</em><span class="sig-paren">)</span> &#x2192; bigint</dt>
+<code class="descname">strpos</code><span class="sig-paren">(</span><em>string</em>, <em>substring</em><span class="sig-paren">)</span> &#x2192; bigint<a class="headerlink" href="#strpos" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the starting position of the first instance of <code class="docutils literal"><span class="pre">substring</span></code> in
 <code class="docutils literal"><span class="pre">string</span></code>. Positions start with <code class="docutils literal"><span class="pre">1</span></code>. If not found, <code class="docutils literal"><span class="pre">0</span></code> is returned.</p>
 </dd></dl>
@@ -236,14 +236,14 @@ Positions start with <code class="docutils literal"><span class="pre">1</span></
 
 <dl class="function">
 <dt id="position">
-<code class="descname">position</code><span class="sig-paren">(</span><em>substring IN string</em><span class="sig-paren">)</span> &#x2192; bigint</dt>
+<code class="descname">position</code><span class="sig-paren">(</span><em>substring IN string</em><span class="sig-paren">)</span> &#x2192; bigint<a class="headerlink" href="#position" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the starting position of the first instance of <code class="docutils literal"><span class="pre">substring</span></code> in
 <code class="docutils literal"><span class="pre">string</span></code>. Positions start with <code class="docutils literal"><span class="pre">1</span></code>. If not found, <code class="docutils literal"><span class="pre">0</span></code> is returned.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="substr">
-<code class="descname">substr</code><span class="sig-paren">(</span><em>string</em>, <em>start</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">substr</code><span class="sig-paren">(</span><em>string</em>, <em>start</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#substr" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the rest of <code class="docutils literal"><span class="pre">string</span></code> from the starting position <code class="docutils literal"><span class="pre">start</span></code>.
 Positions start with <code class="docutils literal"><span class="pre">1</span></code>. A negative starting position is interpreted
 as being relative to the end of the string.</p>
@@ -259,19 +259,19 @@ position is interpreted as being relative to the end of the string.</p>
 
 <dl class="function">
 <dt id="trim">
-<code class="descname">trim</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">trim</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#trim" title="Permalink to this definition">#</a></dt>
 <dd><p>Removes leading and trailing whitespace from <code class="docutils literal"><span class="pre">string</span></code>.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="upper">
-<code class="descname">upper</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">upper</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#upper" title="Permalink to this definition">#</a></dt>
 <dd><p>Converts <code class="docutils literal"><span class="pre">string</span></code> to uppercase.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="word_stem">
-<code class="descname">word_stem</code><span class="sig-paren">(</span><em>word</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">word_stem</code><span class="sig-paren">(</span><em>word</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#word_stem" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the stem of <code class="docutils literal"><span class="pre">word</span></code> in the English language.</p>
 </dd></dl>
 
@@ -283,10 +283,10 @@ position is interpreted as being relative to the end of the string.</p>
 
 </div>
 <div class="section" id="unicode-functions">
-<h2>Unicode Functions</h2>
+<h2>Unicode Functions<a class="headerlink" href="#unicode-functions" title="Permalink to this headline">#</a></h2>
 <dl class="function">
 <dt id="normalize">
-<code class="descname">normalize</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">normalize</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#normalize" title="Permalink to this definition">#</a></dt>
 <dd><p>Transforms <code class="docutils literal"><span class="pre">string</span></code> with NFC normalization form.</p>
 </dd></dl>
 
@@ -329,13 +329,13 @@ specifying <code class="docutils literal"><span class="pre">form</span></code> a
 
 <dl class="function">
 <dt id="to_utf8">
-<code class="descname">to_utf8</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; varbinary</dt>
+<code class="descname">to_utf8</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; varbinary<a class="headerlink" href="#to_utf8" title="Permalink to this definition">#</a></dt>
 <dd><p>Encodes <code class="docutils literal"><span class="pre">string</span></code> into a UTF-8 varbinary representation.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="from_utf8">
-<code class="descname">from_utf8</code><span class="sig-paren">(</span><em>binary</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">from_utf8</code><span class="sig-paren">(</span><em>binary</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#from_utf8" title="Permalink to this definition">#</a></dt>
 <dd><p>Decodes a UTF-8 encoded string from <code class="docutils literal"><span class="pre">binary</span></code>. Invalid UTF-8 sequences
 are replaced with the Unicode replacement character <code class="docutils literal"><span class="pre">U+FFFD</span></code>.</p>
 </dd></dl>

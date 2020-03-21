@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-330-18-feb-2020">
-<h1>12.2. Release 330 (18 Feb 2020)</h1>
+<h1>12.2. Release 330 (18 Feb 2020)<a class="headerlink" href="#release-330-18-feb-2020" title="Permalink to this headline">#</a></h1>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix incorrect behavior of <a class="reference internal" href="../functions/conversion.html#format" title="format"><code class="xref py py-func docutils literal"><span class="pre">format()</span></code></a> for <code class="docutils literal"><span class="pre">char</span></code> values. Previously, the function
 did not preserve trailing whitespace of the value being formatted. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2629">#2629</a>)</li>
@@ -88,7 +88,7 @@ processing starts. (<a class="reference external" href="https://github.com/prest
 </ul>
 </div>
 <div class="section" id="server-changes">
-<h2>Server Changes</h2>
+<h2>Server Changes<a class="headerlink" href="#server-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Require running on Java 11. This requirement may be temporarily relaxed by adding
 <code class="docutils literal"><span class="pre">-Dpresto-temporarily-allow-java8=true</span></code> to the Presto <a class="reference internal" href="../installation/deployment.html#presto-jvm-config"><span class="std std-ref">JVM Config</span></a>.
@@ -97,7 +97,7 @@ This fallback will be removed in future versions of Presto after March 2020. (<a
 </ul>
 </div>
 <div class="section" id="security-changes">
-<h2>Security Changes</h2>
+<h2>Security Changes<a class="headerlink" href="#security-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="../security/built-in-system-access-control.html#principal-rules"><span class="std std-ref">Principal Rules</span></a> are deprecated and will be removed in a future release.
 These rules have been replaced with <a class="reference internal" href="../security/user-mapping.html"><span class="doc">User Mapping</span></a>, which
@@ -113,13 +113,13 @@ HTTP basic authentication with an empty password. (<a class="reference external"
 </ul>
 </div>
 <div class="section" id="web-ui-changes">
-<h2>Web UI Changes</h2>
+<h2>Web UI Changes<a class="headerlink" href="#web-ui-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Display physical read time in detailed query view. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2805">#2805</a>)</li>
 </ul>
 </div>
 <div class="section" id="jdbc-driver-changes">
-<h2>JDBC Driver Changes</h2>
+<h2>JDBC Driver Changes<a class="headerlink" href="#jdbc-driver-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix a performance issue on JDK 11+ when connecting using HTTP/2. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2633">#2633</a>)</li>
 <li>Implement <code class="docutils literal"><span class="pre">PreparedStatement.setTimestamp()</span></code> variant that takes a <code class="docutils literal"><span class="pre">Calendar</span></code>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2732">#2732</a>)</li>
@@ -131,19 +131,19 @@ HTTP basic authentication with an empty password. (<a class="reference external"
 </ul>
 </div>
 <div class="section" id="cli-changes">
-<h2>CLI Changes</h2>
+<h2>CLI Changes<a class="headerlink" href="#cli-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix a performance issue on JDK 11+ when connecting using HTTP/2. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2633">#2633</a>)</li>
 </ul>
 </div>
 <div class="section" id="cassandra-connector-changes">
-<h2>Cassandra Connector Changes</h2>
+<h2>Cassandra Connector Changes<a class="headerlink" href="#cassandra-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix query failure when identifiers should be quoted. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2455">#2455</a>)</li>
 </ul>
 </div>
 <div class="section" id="hive-connector-changes">
-<h2>Hive Connector Changes</h2>
+<h2>Hive Connector Changes<a class="headerlink" href="#hive-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix reading symlinks from HDFS when using Kerberos. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2720">#2720</a>)</li>
 <li>Reduce Hive metastore load when updating partition statistics. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2734">#2734</a>)</li>
@@ -175,28 +175,28 @@ procedures for adding partitions to and removing partitions from a partitioned t
 </ul>
 </div>
 <div class="section" id="elasticsearch-connector-changes">
-<h2>Elasticsearch Connector Changes</h2>
+<h2>Elasticsearch Connector Changes<a class="headerlink" href="#elasticsearch-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Improve performance of queries containing a <code class="docutils literal"><span class="pre">LIMIT</span></code> clause. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2781">#2781</a>)</li>
 <li>Add support for <code class="docutils literal"><span class="pre">nested</span></code> data type. (<a class="reference external" href="https://github.com/prestosql/presto/issues/754">#754</a>)</li>
 </ul>
 </div>
 <div class="section" id="postgresql-connector-changes">
-<h2>PostgreSQL Connector Changes</h2>
+<h2>PostgreSQL Connector Changes<a class="headerlink" href="#postgresql-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add read support for PostgreSQL <code class="docutils literal"><span class="pre">money</span></code> data type. The type is mapped to <code class="docutils literal"><span class="pre">varchar</span></code> in Presto.
 (<a class="reference external" href="https://github.com/prestosql/presto/issues/2601">#2601</a>)</li>
 </ul>
 </div>
 <div class="section" id="other-connector-changes">
-<h2>Other Connector Changes</h2>
+<h2>Other Connector Changes<a class="headerlink" href="#other-connector-changes" title="Permalink to this headline">#</a></h2>
 <p>These changes apply to the MySQL, PostgreSQL, Redshift, Phoenix and SQL Server connectors.</p>
 <ul class="simple">
 <li>Respect <code class="docutils literal"><span class="pre">DEFAULT</span></code> column clause when writing to a table. (<a class="reference external" href="https://github.com/prestosql/presto/issues/1185">#1185</a>)</li>
 </ul>
 </div>
 <div class="section" id="spi-changes">
-<h2>SPI Changes</h2>
+<h2>SPI Changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Allow procedures to have optional arguments with default values. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2706">#2706</a>)</li>
 <li><code class="docutils literal"><span class="pre">SystemAccessControl.checkCanSetUser()</span></code> is is deprecated and has been replaced

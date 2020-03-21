@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-306">
-<h1>12.26. Release 306</h1>
+<h1>12.26. Release 306<a class="headerlink" href="#release-306" title="Permalink to this headline">#</a></h1>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix planning failure for queries containing a <code class="docutils literal"><span class="pre">LIMIT</span></code> after a global
 aggregation. (<a class="reference external" href="https://github.com/prestosql/presto/issues/437">#437</a>)</li>
@@ -93,7 +93,7 @@ instead. (<a class="reference external" href="https://github.com/prestosql/prest
 </ul>
 </div>
 <div class="section" id="hive-connector-changes">
-<h2>Hive Connector Changes</h2>
+<h2>Hive Connector Changes<a class="headerlink" href="#hive-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix calling procedures immediately after startup, before any other queries are run.
 Previously, the procedure call would fail and also cause all subsequent Hive queries
@@ -102,38 +102,38 @@ to fail. (<a class="reference external" href="https://github.com/prestosql/prest
 </ul>
 </div>
 <div class="section" id="mysql-connector-changes">
-<h2>MySQL Connector Changes</h2>
+<h2>MySQL Connector Changes<a class="headerlink" href="#mysql-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Allow creating or renaming tables, and adding, renaming, or dropping columns. (<a class="reference external" href="https://github.com/prestosql/presto/issues/418">#418</a>)</li>
 </ul>
 </div>
 <div class="section" id="postgresql-connector-changes">
-<h2>PostgreSQL Connector Changes</h2>
+<h2>PostgreSQL Connector Changes<a class="headerlink" href="#postgresql-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix predicate pushdown for PostgreSQL <code class="docutils literal"><span class="pre">ENUM</span></code> type. (<a class="reference external" href="https://github.com/prestosql/presto/issues/408">#408</a>)</li>
 <li>Allow creating or renaming tables, and adding, renaming, or dropping columns. (<a class="reference external" href="https://github.com/prestosql/presto/issues/418">#418</a>)</li>
 </ul>
 </div>
 <div class="section" id="redshift-connector-changes">
-<h2>Redshift Connector Changes</h2>
+<h2>Redshift Connector Changes<a class="headerlink" href="#redshift-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Allow creating or renaming tables, and adding, renaming, or dropping columns. (<a class="reference external" href="https://github.com/prestosql/presto/issues/418">#418</a>)</li>
 </ul>
 </div>
 <div class="section" id="sql-server-connector-changes">
-<h2>SQL Server Connector Changes</h2>
+<h2>SQL Server Connector Changes<a class="headerlink" href="#sql-server-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Allow creating or renaming tables, and adding, renaming, or dropping columns. (<a class="reference external" href="https://github.com/prestosql/presto/issues/418">#418</a>)</li>
 </ul>
 </div>
 <div class="section" id="base-jdbc-connector-library-changes">
-<h2>Base-JDBC Connector Library Changes</h2>
+<h2>Base-JDBC Connector Library Changes<a class="headerlink" href="#base-jdbc-connector-library-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Allow mapping column type to Presto type based on <code class="docutils literal"><span class="pre">Block</span></code>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/454">#454</a>)</li>
 </ul>
 </div>
 <div class="section" id="spi-changes">
-<h2>SPI Changes</h2>
+<h2>SPI Changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Deprecate Table Layout APIs. Connectors can opt out of the legacy behavior by implementing
 <code class="docutils literal"><span class="pre">ConnectorMetadata.usesLegacyTableLayouts()</span></code>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/420">#420</a>)</li>

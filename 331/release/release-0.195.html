@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-195">
-<h1>12.53. Release 0.195</h1>
+<h1>12.53. Release 0.195<a class="headerlink" href="#release-0-195" title="Permalink to this headline">#</a></h1>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix <a class="reference internal" href="../functions/aggregate.html#histogram" title="histogram"><code class="xref py py-func docutils literal"><span class="pre">histogram()</span></code></a> for map type when type coercion is required.</li>
 <li>Fix <code class="docutils literal"><span class="pre">nullif</span></code> for map type when type coercion is required.</li>
@@ -79,7 +79,7 @@ the system when workers are offline for long periods due to GC or network errors
 </ul>
 </div>
 <div class="section" id="security-changes">
-<h2>Security Changes</h2>
+<h2>Security Changes<a class="headerlink" href="#security-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Presto now supports generic password authentication using a pluggable <a class="reference internal" href="../develop/password-authenticator.html"><span class="doc">Password Authenticator</span></a>.
 Enable password authentication by setting <code class="docutils literal"><span class="pre">http-server.authentication.type</span></code> to include <code class="docutils literal"><span class="pre">PASSWORD</span></code> as an
@@ -89,19 +89,19 @@ plugin. You will need to update your configuration if you are using it.</li>
 </ul>
 </div>
 <div class="section" id="cli-and-jdbc-changes">
-<h2>CLI and JDBC Changes</h2>
+<h2>CLI and JDBC Changes<a class="headerlink" href="#cli-and-jdbc-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Provide a better error message when TLS client certificates are expired or not yet valid.</li>
 </ul>
 </div>
 <div class="section" id="mysql-changes">
-<h2>MySQL Changes</h2>
+<h2>MySQL Changes<a class="headerlink" href="#mysql-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix an error that can occur while listing tables if one of the listed tables is dropped.</li>
 </ul>
 </div>
 <div class="section" id="hive-changes">
-<h2>Hive Changes</h2>
+<h2>Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add support for LZ4 compressed ORC files.</li>
 <li>Add support for reading Zstandard compressed ORC files.</li>
@@ -110,7 +110,7 @@ plugin. You will need to update your configuration if you are using it.</li>
 </ul>
 </div>
 <div class="section" id="mysql-redis-kafka-and-mongodb-changes">
-<h2>MySQL, Redis, Kafka, and MongoDB Changes</h2>
+<h2>MySQL, Redis, Kafka, and MongoDB Changes<a class="headerlink" href="#mysql-redis-kafka-and-mongodb-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix failure when querying <code class="docutils literal"><span class="pre">information_schema.columns</span></code> when there is no equality predicate on <code class="docutils literal"><span class="pre">table_name</span></code>.</li>
 </ul>

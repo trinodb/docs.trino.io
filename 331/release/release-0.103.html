@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-103">
-<h1>12.156. Release 0.103</h1>
+<h1>12.156. Release 0.103<a class="headerlink" href="#release-0-103" title="Permalink to this headline">#</a></h1>
 <div class="section" id="cluster-resource-management">
-<h2>Cluster Resource Management</h2>
+<h2>Cluster Resource Management<a class="headerlink" href="#cluster-resource-management" title="Permalink to this headline">#</a></h2>
 <p>There is a new cluster resource manager, which can be enabled via the
 <code class="docutils literal"><span class="pre">experimental.cluster-memory-manager-enabled</span></code> flag. Currently, the only
 resource that’s tracked is memory, and the cluster resource manager guarantees
@@ -74,7 +74,7 @@ of memory a query may use on any one node. On each worker, the
 for internal Presto data structures and temporary allocations.</p>
 </div>
 <div class="section" id="task-parallelism">
-<h2>Task Parallelism</h2>
+<h2>Task Parallelism<a class="headerlink" href="#task-parallelism" title="Permalink to this headline">#</a></h2>
 <p>Queries involving a large number of aggregations or a large hash table for a
 join can be slow due to single threaded execution in the intermediate stages.
 This release adds experimental configuration and session properties to execute
@@ -91,7 +91,7 @@ is also expected that this will eventually be handled automatically by the
 query planner and these options will be removed entirely.</p>
 </div>
 <div class="section" id="hive-changes">
-<h2>Hive Changes</h2>
+<h2>Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Removed the <code class="docutils literal"><span class="pre">hive.max-split-iterator-threads</span></code> parameter and renamed
 <code class="docutils literal"><span class="pre">hive.max-global-split-iterator-threads</span></code> to <code class="docutils literal"><span class="pre">hive.max-split-iterator-threads</span></code>.</li>
@@ -100,7 +100,7 @@ query planner and these options will be removed entirely.</p>
 </ul>
 </div>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add <a class="reference internal" href="../functions/array.html#array_remove" title="array_remove"><code class="xref py py-func docutils literal"><span class="pre">array_remove()</span></code></a>.</li>
 <li>Fix NPE in <a class="reference internal" href="../functions/aggregate.html#max_by" title="max_by"><code class="xref py py-func docutils literal"><span class="pre">max_by()</span></code></a> and <a class="reference internal" href="../functions/aggregate.html#min_by" title="min_by"><code class="xref py py-func docutils literal"><span class="pre">min_by()</span></code></a> caused when few rows were present in the aggregation.</li>

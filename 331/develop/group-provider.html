@@ -59,11 +59,11 @@
 <div class="content">
     
   <div class="section" id="group-provider">
-<h1>11.8. Group provider</h1>
+<h1>11.8. Group provider<a class="headerlink" href="#group-provider" title="Permalink to this headline">#</a></h1>
 <p>Presto can map user names onto groups for easier access control management.
 This mapping is performed by a <code class="docutils literal"><span class="pre">GroupProvider</span></code> implementation.</p>
 <div class="section" id="implementation">
-<h2>Implementation</h2>
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">#</a></h2>
 <p><code class="docutils literal"><span class="pre">GroupProviderFactory</span></code> is responsible for creating a <code class="docutils literal"><span class="pre">GroupProvider</span></code> instance.
 It also defines the name of the group provider as used in the configuration file.</p>
 <p><code class="docutils literal"><span class="pre">GroupProvider</span></code> contains a one method, <code class="docutils literal"><span class="pre">getGroups(String</span> <span class="pre">user)</span></code>
@@ -74,7 +74,7 @@ objects representing the user, and can then be used by <a class="reference inter
 must be wrapped as a Presto plugin and installed on the cluster.</p>
 </div>
 <div class="section" id="configuration">
-<h2>Configuration</h2>
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h2>
 <p>After a plugin that implements <code class="docutils literal"><span class="pre">GroupProviderFactory</span></code> has been installed on the coordinator,
 it is configured using an <code class="docutils literal"><span class="pre">etc/group-provider.properties</span></code> file.
 All of the properties other than <code class="docutils literal"><span class="pre">group-provider.name</span></code> are specific to

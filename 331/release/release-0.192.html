@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-192">
-<h1>12.56. Release 0.192</h1>
+<h1>12.56. Release 0.192<a class="headerlink" href="#release-0-192" title="Permalink to this headline">#</a></h1>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix performance regression in split scheduling introduced in 0.191. If a query
 scans a non-trivial number of splits (~1M splits in an hour), the coordinator
@@ -89,13 +89,13 @@ session property.</li>
 </ul>
 </div>
 <div class="section" id="web-ui-changes">
-<h2>Web UI Changes</h2>
+<h2>Web UI Changes<a class="headerlink" href="#web-ui-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix incorrect reporting of input size and positions in live plan view.</li>
 </ul>
 </div>
 <div class="section" id="cli-changes">
-<h2>CLI Changes</h2>
+<h2>CLI Changes<a class="headerlink" href="#cli-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix update of prompt after <code class="docutils literal"><span class="pre">USE</span></code> statement.</li>
 <li>Fix correctness issue when rendering arrays of Bing tiles that causes
@@ -103,7 +103,7 @@ the first entry to be repeated multiple times.</li>
 </ul>
 </div>
 <div class="section" id="hive-changes">
-<h2>Hive Changes</h2>
+<h2>Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix reading partitioned table statistics from newer Hive metastores.</li>
 <li>Do not treat file system errors as corruptions for ORC.</li>
@@ -120,7 +120,7 @@ maximum stripe size, and memory limit for dictionaries.</li>
 </ul>
 </div>
 <div class="section" id="mysql-changes">
-<h2>MySQL Changes</h2>
+<h2>MySQL Changes<a class="headerlink" href="#mysql-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Remove support for <code class="docutils literal"><span class="pre">TIME</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code> and <code class="docutils literal"><span class="pre">TIMESTAMP</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code>
 types due to MySQL types not being able to store timezone information.</li>
@@ -128,13 +128,13 @@ types due to MySQL types not being able to store timezone information.</li>
 </ul>
 </div>
 <div class="section" id="postgresql-changes">
-<h2>PostgreSQL Changes</h2>
+<h2>PostgreSQL Changes<a class="headerlink" href="#postgresql-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add support for <code class="docutils literal"><span class="pre">VARBINARY</span></code> type, which maps to PostgreSQL’s <code class="docutils literal"><span class="pre">BYTEA</span></code> type.</li>
 </ul>
 </div>
 <div class="section" id="mongodb-changes">
-<h2>MongoDB Changes</h2>
+<h2>MongoDB Changes<a class="headerlink" href="#mongodb-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix support for pushing down inequality operators for string types.</li>
 <li>Add support for reading documents as <code class="docutils literal"><span class="pre">MAP</span></code> values.</li>
@@ -143,13 +143,13 @@ types due to MySQL types not being able to store timezone information.</li>
 </ul>
 </div>
 <div class="section" id="jmx-changes">
-<h2>JMX Changes</h2>
+<h2>JMX Changes<a class="headerlink" href="#jmx-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Allow nulls in history table values.</li>
 </ul>
 </div>
 <div class="section" id="spi-changes">
-<h2>SPI Changes</h2>
+<h2>SPI Changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Remove <code class="docutils literal"><span class="pre">SliceArrayBlock</span></code> class.</li>
 <li>Add <code class="docutils literal"><span class="pre">offset</span></code> and <code class="docutils literal"><span class="pre">length</span></code> parameters to <code class="docutils literal"><span class="pre">Block.getPositions()</span></code>.</li>

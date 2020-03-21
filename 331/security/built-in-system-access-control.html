@@ -59,7 +59,7 @@
 <div class="content">
     
   <div class="section" id="built-in-system-access-control">
-<h1>3.7. Built-in System Access Control</h1>
+<h1>3.7. Built-in System Access Control<a class="headerlink" href="#built-in-system-access-control" title="Permalink to this headline">#</a></h1>
 <p>A system access control plugin enforces authorization at a global level,
 before any connector level authorization. You can use one of the built-in
 plugins in Presto, or provide your own by following the guidelines in
@@ -97,11 +97,11 @@ See <a class="reference internal" href="#file-based-system-access-control"><span
 </tbody>
 </table>
 <div class="section" id="allow-all-system-access-control">
-<h2>Allow All System Access Control</h2>
+<h2>Allow All System Access Control<a class="headerlink" href="#allow-all-system-access-control" title="Permalink to this headline">#</a></h2>
 <p>All operations are permitted under this plugin. This plugin is enabled by default.</p>
 </div>
 <div class="section" id="read-only-system-access-control">
-<span id="id1"></span><h2>Read Only System Access Control</h2>
+<span id="id1"></span><h2>Read Only System Access Control<a class="headerlink" href="#read-only-system-access-control" title="Permalink to this headline">#</a></h2>
 <p>Under this plugin, you are allowed to execute any operation that reads data or
 metadata, such as <code class="docutils literal"><span class="pre">SELECT</span></code> or <code class="docutils literal"><span class="pre">SHOW</span></code>. Setting system level or catalog level
 session properties is also permitted. However, any operation that writes data or
@@ -113,7 +113,7 @@ file with the following contents:</p>
 </div>
 </div>
 <div class="section" id="file-based-system-access-control">
-<span id="id2"></span><h2>File Based System Access Control</h2>
+<span id="id2"></span><h2>File Based System Access Control<a class="headerlink" href="#file-based-system-access-control" title="Permalink to this headline">#</a></h2>
 <p>This plugin allows you to specify access control rules in a file. To use this
 plugin, add an <code class="docutils literal"><span class="pre">etc/access-control.properties</span></code> file containing two required
 properties: <code class="docutils literal"><span class="pre">access-control.name</span></code>, which must be equal to <code class="docutils literal"><span class="pre">file</span></code>, and
@@ -137,7 +137,7 @@ rules. If you want to limit access on a system level in any other way, you
 must implement a custom SystemAccessControl plugin
 (see <a class="reference internal" href="../develop/system-access-control.html"><span class="doc">System Access Control</span></a>).</p>
 <div class="section" id="refresh">
-<h3>Refresh</h3>
+<h3>Refresh<a class="headerlink" href="#refresh" title="Permalink to this headline">#</a></h3>
 <p>By default, when a change is made to the <code class="docutils literal"><span class="pre">security.config-file</span></code>, Presto must be restarted
 to load the changes. There is an optional property to refresh the properties without requiring a
 Presto restart. The refresh period is specified in the <code class="docutils literal"><span class="pre">etc/access-control.properties</span></code>:</p>
@@ -146,7 +146,7 @@ Presto restart. The refresh period is specified in the <code class="docutils lit
 </div>
 </div>
 <div class="section" id="catalog-rules">
-<h3>Catalog Rules</h3>
+<h3>Catalog Rules<a class="headerlink" href="#catalog-rules" title="Permalink to this headline">#</a></h3>
 <p>These rules govern the catalogs particular users can access. The user is
 granted access to a catalog, based on the first matching rule read from top to
 bottom. If no rule matches, access is denied. Each rule is composed of the
@@ -209,7 +209,7 @@ following rules:</p>
 <a class="reference internal" href="../develop/group-provider.html"><span class="doc">Group provider</span></a>.</p>
 </div>
 <div class="section" id="query-rules">
-<span id="id3"></span><h3>Query Rules</h3>
+<span id="id3"></span><h3>Query Rules<a class="headerlink" href="#query-rules" title="Permalink to this headline">#</a></h3>
 <p>These rules control the ability of a user to execute, view, or kill a query. The user is
 granted or denied access, based on the first matching rule read from top to bottom. If no
 rules are specified, all users are allowed to execute queries, and to view or kill queries
@@ -251,7 +251,7 @@ the following rules:</p>
 </div>
 </div>
 <div class="section" id="impersonation-rules">
-<span id="id4"></span><h3>Impersonation Rules</h3>
+<span id="id4"></span><h3>Impersonation Rules<a class="headerlink" href="#impersonation-rules" title="Permalink to this headline">#</a></h3>
 <p>These rules control the ability of a user to impersonate another user.  In
 some environments it is desirable for an administrator (or managed system) to
 run queries on behalf of other users.  In these cases, the administrator
@@ -304,7 +304,7 @@ impersonate the <code class="docutils literal"><span class="pre">test</span></co
 </div>
 </div>
 <div class="section" id="principal-rules">
-<span id="id5"></span><h3>Principal Rules</h3>
+<span id="id5"></span><h3>Principal Rules<a class="headerlink" href="#principal-rules" title="Permalink to this headline">#</a></h3>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Principal rules are deprecated and will be removed in a future release.

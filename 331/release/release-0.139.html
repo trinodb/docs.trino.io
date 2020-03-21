@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-139">
-<h1>12.120. Release 0.139</h1>
+<h1>12.120. Release 0.139<a class="headerlink" href="#release-0-139" title="Permalink to this headline">#</a></h1>
 <div class="section" id="dynamic-split-concurrency">
-<h2>Dynamic Split Concurrency</h2>
+<h2>Dynamic Split Concurrency<a class="headerlink" href="#dynamic-split-concurrency" title="Permalink to this headline">#</a></h2>
 <p>The number of running leaf splits per query is now dynamically adjusted to improve
 overall cluster throughput. <code class="docutils literal"><span class="pre">task.initial-splits-per-node</span></code> can be used to set
 the initial number of splits, and <code class="docutils literal"><span class="pre">task.split-concurrency-adjustment-interval</span></code>
@@ -70,7 +70,7 @@ can be used to change how frequently adjustments happen. The session properties
 also be used.</p>
 </div>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix planning bug that causes some joins to not be redistributed when
 <code class="docutils literal"><span class="pre">distributed-joins-enabled</span></code> is true.</li>
@@ -80,7 +80,7 @@ concurrency for the probe side of joins.</li>
 </ul>
 </div>
 <div class="section" id="hive-changes">
-<h2>Hive Changes</h2>
+<h2>Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Remove cursor-based readers for ORC and DWRF file formats, as they have been
 replaced by page-based readers.</li>

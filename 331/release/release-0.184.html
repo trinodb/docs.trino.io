@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-184">
-<h1>12.64. Release 0.184</h1>
+<h1>12.64. Release 0.184<a class="headerlink" href="#release-0-184" title="Permalink to this headline">#</a></h1>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix query execution failure for <code class="docutils literal"><span class="pre">split_to_map(...)[...]</span></code>.</li>
 <li>Fix issue that caused queries containing <code class="docutils literal"><span class="pre">CROSS</span> <span class="pre">JOIN</span></code> to continue using CPU resources
@@ -77,13 +77,13 @@ proportional to the size of the map.</li>
 </ul>
 </div>
 <div class="section" id="jdbc-driver-changes">
-<h2>JDBC Driver Changes</h2>
+<h2>JDBC Driver Changes<a class="headerlink" href="#jdbc-driver-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Always invoke the progress callback with the final stats at query completion.</li>
 </ul>
 </div>
 <div class="section" id="web-ui-changes">
-<h2>Web UI Changes</h2>
+<h2>Web UI Changes<a class="headerlink" href="#web-ui-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add worker status page with information about currently running threads
 and resource utilization (CPU, heap, memory pools). This page is accessible
@@ -91,7 +91,7 @@ by clicking a hostname on a query task list.</li>
 </ul>
 </div>
 <div class="section" id="hive-changes">
-<h2>Hive Changes</h2>
+<h2>Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix partition filtering for keys of <code class="docutils literal"><span class="pre">CHAR</span></code>, <code class="docutils literal"><span class="pre">DECIMAL</span></code>, or <code class="docutils literal"><span class="pre">DATE</span></code> type.</li>
 <li>Reduce system memory usage when reading table columns containing string values
@@ -99,13 +99,13 @@ from ORC or DWRF files. This can prevent high GC overhead or out-of-memory crash
 </ul>
 </div>
 <div class="section" id="tpcds-changes">
-<h2>TPCDS Changes</h2>
+<h2>TPCDS Changes<a class="headerlink" href="#tpcds-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix display of table statistics when running <code class="docutils literal"><span class="pre">SHOW</span> <span class="pre">STATS</span> <span class="pre">FOR</span> <span class="pre">...</span></code>.</li>
 </ul>
 </div>
 <div class="section" id="spi-changes">
-<h2>SPI Changes</h2>
+<h2>SPI Changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Row columns or values represented with <code class="docutils literal"><span class="pre">ArrayBlock</span></code> and <code class="docutils literal"><span class="pre">InterleavedBlock</span></code> are
 no longer supported. They must be represented as <code class="docutils literal"><span class="pre">RowBlock</span></code> or <code class="docutils literal"><span class="pre">SingleRowBlock</span></code>.</li>

@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-148">
-<h1>12.104. Release 0.148</h1>
+<h1>12.104. Release 0.148<a class="headerlink" href="#release-0-148" title="Permalink to this headline">#</a></h1>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix issue where auto-commit transaction can be rolled back for a successfully
 completed query.</li>
@@ -96,7 +96,7 @@ connectors that expose node-partitioned data.</li>
 </ul>
 </div>
 <div class="section" id="interval-fixes">
-<h2>Interval Fixes</h2>
+<h2>Interval Fixes<a class="headerlink" href="#interval-fixes" title="Permalink to this headline">#</a></h2>
 <p>This release fixes several problems with large and negative intervals.</p>
 <ul class="simple">
 <li>Fix parsing of negative interval literals. Previously, the sign of each field was treated
@@ -120,7 +120,7 @@ along with the server.</p>
 </div>
 </div>
 <div class="section" id="functions-and-language-features">
-<h2>Functions and Language Features</h2>
+<h2>Functions and Language Features<a class="headerlink" href="#functions-and-language-features" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add <a class="reference internal" href="../functions/array.html#element_at" title="element_at"><code class="xref py py-func docutils literal"><span class="pre">element_at()</span></code></a> function for map type.</li>
 <li>Add <a class="reference internal" href="../functions/string.html#split_to_map" title="split_to_map"><code class="xref py py-func docutils literal"><span class="pre">split_to_map()</span></code></a> function.</li>
@@ -133,7 +133,7 @@ along with the server.</p>
 </ul>
 </div>
 <div class="section" id="verifier-changes">
-<h2>Verifier Changes</h2>
+<h2>Verifier Changes<a class="headerlink" href="#verifier-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add <code class="docutils literal"><span class="pre">skip-cpu-check-regex</span></code> config property which can be used to skip the CPU
 time comparison for queries that match the given regex.</li>
@@ -141,7 +141,7 @@ time comparison for queries that match the given regex.</li>
 </ul>
 </div>
 <div class="section" id="hive-changes">
-<h2>Hive Changes</h2>
+<h2>Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix <code class="docutils literal"><span class="pre">NoClassDefFoundError</span></code> for <code class="docutils literal"><span class="pre">KMSClientProvider</span></code> in HDFS client.</li>
 <li>Fix creating tables on S3 in an empty database.</li>
@@ -154,32 +154,32 @@ time comparison for queries that match the given regex.</li>
 </ul>
 </div>
 <div class="section" id="cassandra-changes">
-<h2>Cassandra Changes</h2>
+<h2>Cassandra Changes<a class="headerlink" href="#cassandra-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Allow configuring load balancing policy and no host available retry.</li>
 <li>Add support for <code class="docutils literal"><span class="pre">varchar(n)</span></code>.</li>
 </ul>
 </div>
 <div class="section" id="kafka-changes">
-<h2>Kafka Changes</h2>
+<h2>Kafka Changes<a class="headerlink" href="#kafka-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Update to Kafka client 0.8.2.2. This enables support for LZ4 data.</li>
 </ul>
 </div>
 <div class="section" id="jmx-changes">
-<h2>JMX Changes</h2>
+<h2>JMX Changes<a class="headerlink" href="#jmx-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add <code class="docutils literal"><span class="pre">jmx.history</span></code> schema with in-memory periodic samples of values from JMX MBeans.</li>
 </ul>
 </div>
 <div class="section" id="mysql-and-postgresql-changes">
-<h2>MySQL and PostgreSQL Changes</h2>
+<h2>MySQL and PostgreSQL Changes<a class="headerlink" href="#mysql-and-postgresql-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Push down predicates for <code class="docutils literal"><span class="pre">VARCHAR</span></code>, <code class="docutils literal"><span class="pre">DATE</span></code>, <code class="docutils literal"><span class="pre">TIME</span></code> and <code class="docutils literal"><span class="pre">TIMESTAMP</span></code> types.</li>
 </ul>
 </div>
 <div class="section" id="other-connector-changes">
-<h2>Other Connector Changes</h2>
+<h2>Other Connector Changes<a class="headerlink" href="#other-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add support for <code class="docutils literal"><span class="pre">varchar(n)</span></code> to the Redis, TPCH, MongoDB, Local File
 and Example HTTP connectors.</li>

@@ -59,7 +59,7 @@
 <div class="content">
     
   <div class="section" id="spill-to-disk">
-<h1>4.5. Spill to Disk</h1>
+<h1>4.5. Spill to Disk<a class="headerlink" href="#spill-to-disk" title="Permalink to this headline">#</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><a class="reference internal" href="#overview" id="id1">Overview</a></li>
@@ -71,7 +71,7 @@
 </ul>
 </div>
 <div class="section" id="overview">
-<h2>Overview</h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
 <p>In the case of memory intensive operations, Presto allows offloading
 intermediate operation results to disk. The goal of this mechanism is to
 enable execution of queries that require amounts of memory exceeding per query
@@ -81,7 +81,7 @@ implemented on the application level to address specific needs of Presto.</p>
 <p>Properties related to spilling are described in <a class="reference internal" href="properties.html#tuning-spilling"><span class="std std-ref">Spilling Properties</span></a>.</p>
 </div>
 <div class="section" id="memory-management-and-spill">
-<h2>Memory Management and Spill</h2>
+<h2>Memory Management and Spill<a class="headerlink" href="#memory-management-and-spill" title="Permalink to this headline">#</a></h2>
 <p>By default, Presto kills queries, if the memory requested by the query execution
 exceeds session properties <code class="docutils literal"><span class="pre">query_max_memory</span></code> or
 <code class="docutils literal"><span class="pre">query_max_memory_per_node</span></code>. This mechanism ensures fairness in allocation
@@ -105,7 +105,7 @@ to divide intermediate data into chunks small enough so that every chunk fits in
 memory, leading to <code class="docutils literal"><span class="pre">Out</span> <span class="pre">of</span> <span class="pre">memory</span></code> errors while loading the data from disk.</p>
 </div>
 <div class="section" id="spill-disk-space">
-<h2>Spill Disk Space</h2>
+<h2>Spill Disk Space<a class="headerlink" href="#spill-disk-space" title="Permalink to this headline">#</a></h2>
 <p>Spilling intermediate results to disk, and retrieving them back, is expensive
 in terms of IO operations. Thus, queries that use spill likely become
 throttled by disk. To increase query performance, it is recommended to
@@ -118,14 +118,14 @@ it is recommended to monitor the disk saturation of the configured spill paths.<
 there is no need to use RAID for spill.</p>
 </div>
 <div class="section" id="spill-compression">
-<h2>Spill Compression</h2>
+<h2>Spill Compression<a class="headerlink" href="#spill-compression" title="Permalink to this headline">#</a></h2>
 <p>When spill compression is enabled (<code class="docutils literal"><span class="pre">spill-compression-enabled</span></code> property in
 <a class="reference internal" href="properties.html#tuning-spilling"><span class="std std-ref">Spilling Properties</span></a>), spilled pages are compressed, before being
 written to disk. Enabling this feature can reduce disk IO at the cost
 of extra CPU load to compress and decompress spilled pages.</p>
 </div>
 <div class="section" id="spill-encryption">
-<h2>Spill Encryption</h2>
+<h2>Spill Encryption<a class="headerlink" href="#spill-encryption" title="Permalink to this headline">#</a></h2>
 <p>When spill encryption is enabled (<code class="docutils literal"><span class="pre">spill-encryption-enabled</span></code> property in
 <a class="reference internal" href="properties.html#tuning-spilling"><span class="std std-ref">Spilling Properties</span></a>), spill contents are encrypted with a randomly generated
 (per spill file) secret key. Enabling this increases CPU load and reduces throughput
@@ -134,12 +134,12 @@ Consider reducing the value of <code class="docutils literal"><span class="pre">
 encryption is enabled, to account for the increase in latency of spilling.</p>
 </div>
 <div class="section" id="supported-operations">
-<h2>Supported Operations</h2>
+<h2>Supported Operations<a class="headerlink" href="#supported-operations" title="Permalink to this headline">#</a></h2>
 <p>Not all operations support spilling to disk, and each handles spilling
 differently. Currently, the mechanism is implemented for the following
 operations.</p>
 <div class="section" id="joins">
-<h3>Joins</h3>
+<h3>Joins<a class="headerlink" href="#joins" title="Permalink to this headline">#</a></h3>
 <p>During the join operation, one of the tables being joined is stored in memory.
 This table is called the build table. The rows from the other table stream
 through and are passed onto the next operation, if they match rows in the build
@@ -159,7 +159,7 @@ to the size of the largest build table partition. Assuming no data skew, this
 is <code class="docutils literal"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">task.concurrency</span></code> times the size of the whole build table.</p>
 </div>
 <div class="section" id="aggregations">
-<h3>Aggregations</h3>
+<h3>Aggregations<a class="headerlink" href="#aggregations" title="Permalink to this headline">#</a></h3>
 <p>Aggregation functions perform an operation on a group of values and return one
 value. If the number of groups you’re aggregating over is large, a significant
 amount of memory may be needed. When spill-to-disk is enabled, if there is not
@@ -167,14 +167,14 @@ enough memory, intermediate cumulated aggregation results are written to disk.
 They are loaded back and merged with a lower memory footprint.</p>
 </div>
 <div class="section" id="order-by">
-<h3>Order By</h3>
+<h3>Order By<a class="headerlink" href="#order-by" title="Permalink to this headline">#</a></h3>
 <p>If your trying to sort a larger amount of data, a significant amount of memory
 may be needed. When spill to disk for <code class="docutils literal"><span class="pre">order</span> <span class="pre">by</span></code> is enabled, if there is not enough
 memory, intermediate sorted results are written to disk. They are loaded back and
 merged with a lower memory footprint.</p>
 </div>
 <div class="section" id="window-functions">
-<h3>Window Functions</h3>
+<h3>Window Functions<a class="headerlink" href="#window-functions" title="Permalink to this headline">#</a></h3>
 <p>Window functions perform an operator over a window of rows, and return one value
 for each row. If this window of rows is large, a significant amount of memory may
 be needed. When spill to disk for window functions is enabled, if there is not enough

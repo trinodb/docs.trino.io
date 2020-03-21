@@ -59,14 +59,14 @@
 <div class="content">
     
   <div class="section" id="mongodb-connector">
-<h1>6.18. MongoDB Connector</h1>
+<h1>6.18. MongoDB Connector<a class="headerlink" href="#mongodb-connector" title="Permalink to this headline">#</a></h1>
 <p>The <code class="docutils literal"><span class="pre">mongodb</span></code> connector allows the use of <a class="reference external" href="https://www.mongodb.com/">MongoDB</a> collections as tables in Presto.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">MongoDB 2.6+ is supported, although it is highly recommend to use 3.0 or later.</p>
 </div>
 <div class="section" id="configuration">
-<h2>Configuration</h2>
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h2>
 <p>To configure the MongoDB connector, create a catalog properties file
 <code class="docutils literal"><span class="pre">etc/catalog/mongodb.properties</span></code> with the following contents,
 replacing the properties as appropriate:</p>
@@ -75,7 +75,7 @@ mongodb.seeds=host1,host:port
 </pre></div>
 </div>
 <div class="section" id="multiple-mongodb-clusters">
-<h3>Multiple MongoDB Clusters</h3>
+<h3>Multiple MongoDB Clusters<a class="headerlink" href="#multiple-mongodb-clusters" title="Permalink to this headline">#</a></h3>
 <p>You can have as many catalogs as you need, so if you have additional
 MongoDB clusters, simply add another properties file to <code class="docutils literal"><span class="pre">etc/catalog</span></code>
 with a different name, making sure it ends in <code class="docutils literal"><span class="pre">.properties</span></code>). For
@@ -84,7 +84,7 @@ will create a catalog named <code class="docutils literal"><span class="pre">sal
 </div>
 </div>
 <div class="section" id="configuration-properties">
-<h2>Configuration Properties</h2>
+<h2>Configuration Properties<a class="headerlink" href="#configuration-properties" title="Permalink to this headline">#</a></h2>
 <p>The following configuration properties are available:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -142,72 +142,72 @@ will create a catalog named <code class="docutils literal"><span class="pre">sal
 </tbody>
 </table>
 <div class="section" id="mongodb-seeds">
-<h3><code class="docutils literal"><span class="pre">mongodb.seeds</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">mongodb.seeds</span></code><a class="headerlink" href="#mongodb-seeds" title="Permalink to this headline">#</a></h3>
 <p>Comma-separated list of <code class="docutils literal"><span class="pre">hostname[:port]</span></code> all MongoDB servers in the same replica set, or a list of MongoDB servers in the same sharded cluster. If a port is not specified, port 27017 will be used.</p>
 <p>This property is required; there is no default and at least one seed must be defined.</p>
 </div>
 <div class="section" id="mongodb-schema-collection">
-<h3><code class="docutils literal"><span class="pre">mongodb.schema-collection</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">mongodb.schema-collection</span></code><a class="headerlink" href="#mongodb-schema-collection" title="Permalink to this headline">#</a></h3>
 <p>As MongoDB is a document database, there is no fixed schema information in the system. So a special collection in each MongoDB database should define the schema of all tables. Please refer the <a class="reference internal" href="#table-definition-label"><span class="std std-ref">Table Definition</span></a> section for the details.</p>
 <p>At startup, this connector tries guessing fields’ types, but it might not be correct for your collection. In that case, you need to modify it manually. <code class="docutils literal"><span class="pre">CREATE</span> <span class="pre">TABLE</span></code> and <code class="docutils literal"><span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">AS</span> <span class="pre">SELECT</span></code> will create an entry for you.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">_schema</span></code>.</p>
 </div>
 <div class="section" id="mongodb-credentials">
-<h3><code class="docutils literal"><span class="pre">mongodb.credentials</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">mongodb.credentials</span></code><a class="headerlink" href="#mongodb-credentials" title="Permalink to this headline">#</a></h3>
 <p>A comma separated list of <code class="docutils literal"><span class="pre">username:password&#64;database</span></code> credentials.</p>
 <p>This property is optional; no default value. The <code class="docutils literal"><span class="pre">database</span></code> should be the authentication database for the user (e.g. <code class="docutils literal"><span class="pre">admin</span></code>).</p>
 </div>
 <div class="section" id="mongodb-min-connections-per-host">
-<h3><code class="docutils literal"><span class="pre">mongodb.min-connections-per-host</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">mongodb.min-connections-per-host</span></code><a class="headerlink" href="#mongodb-min-connections-per-host" title="Permalink to this headline">#</a></h3>
 <p>The minimum number of connections per host for this MongoClient instance. Those connections are kept in a pool when idle, and the pool ensures over time that it contains at least this minimum number.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">0</span></code>.</p>
 </div>
 <div class="section" id="mongodb-connections-per-host">
-<h3><code class="docutils literal"><span class="pre">mongodb.connections-per-host</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">mongodb.connections-per-host</span></code><a class="headerlink" href="#mongodb-connections-per-host" title="Permalink to this headline">#</a></h3>
 <p>The maximum number of connections allowed per host for this MongoClient instance. Those connections are kept in a pool when idle. Once the pool is exhausted, any operation requiring a connection blocks waiting for an available connection.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">100</span></code>.</p>
 </div>
 <div class="section" id="mongodb-max-wait-time">
-<h3><code class="docutils literal"><span class="pre">mongodb.max-wait-time</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">mongodb.max-wait-time</span></code><a class="headerlink" href="#mongodb-max-wait-time" title="Permalink to this headline">#</a></h3>
 <p>The maximum wait time in milliseconds, that a thread may wait for a connection to become available.
 A value of <code class="docutils literal"><span class="pre">0</span></code> means that it does not wait. A negative value means to wait indefinitely for a connection to become available.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">120000</span></code>.</p>
 </div>
 <div class="section" id="mongodb-connection-timeout">
-<h3><code class="docutils literal"><span class="pre">mongodb.connection-timeout</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">mongodb.connection-timeout</span></code><a class="headerlink" href="#mongodb-connection-timeout" title="Permalink to this headline">#</a></h3>
 <p>The connection timeout in milliseconds. A value of <code class="docutils literal"><span class="pre">0</span></code> means no timeout. It is used solely when establishing a new connection.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">10000</span></code>.</p>
 </div>
 <div class="section" id="mongodb-socket-timeout">
-<h3><code class="docutils literal"><span class="pre">mongodb.socket-timeout</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">mongodb.socket-timeout</span></code><a class="headerlink" href="#mongodb-socket-timeout" title="Permalink to this headline">#</a></h3>
 <p>The socket timeout in milliseconds. It is used for I/O socket read and write operations.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">0</span></code> and means no timeout.</p>
 </div>
 <div class="section" id="mongodb-socket-keep-alive">
-<h3><code class="docutils literal"><span class="pre">mongodb.socket-keep-alive</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">mongodb.socket-keep-alive</span></code><a class="headerlink" href="#mongodb-socket-keep-alive" title="Permalink to this headline">#</a></h3>
 <p>This flag controls the socket keep alive feature that keeps a connection alive through firewalls.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">false</span></code>.</p>
 </div>
 <div class="section" id="mongodb-ssl-enabled">
-<h3><code class="docutils literal"><span class="pre">mongodb.ssl.enabled</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">mongodb.ssl.enabled</span></code><a class="headerlink" href="#mongodb-ssl-enabled" title="Permalink to this headline">#</a></h3>
 <p>This flag enables SSL connections to MongoDB servers.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">false</span></code>.</p>
 </div>
 <div class="section" id="mongodb-read-preference">
-<h3><code class="docutils literal"><span class="pre">mongodb.read-preference</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">mongodb.read-preference</span></code><a class="headerlink" href="#mongodb-read-preference" title="Permalink to this headline">#</a></h3>
 <p>The read preference to use for queries, map-reduce, aggregation, and count.
 The available values are <code class="docutils literal"><span class="pre">PRIMARY</span></code>, <code class="docutils literal"><span class="pre">PRIMARY_PREFERRED</span></code>, <code class="docutils literal"><span class="pre">SECONDARY</span></code>, <code class="docutils literal"><span class="pre">SECONDARY_PREFERRED</span></code> and <code class="docutils literal"><span class="pre">NEAREST</span></code>.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">PRIMARY</span></code>.</p>
 </div>
 <div class="section" id="mongodb-write-concern">
-<h3><code class="docutils literal"><span class="pre">mongodb.write-concern</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">mongodb.write-concern</span></code><a class="headerlink" href="#mongodb-write-concern" title="Permalink to this headline">#</a></h3>
 <p>The write concern to use. The available values are
 <code class="docutils literal"><span class="pre">ACKNOWLEDGED</span></code>, <code class="docutils literal"><span class="pre">FSYNC_SAFE</span></code>, <code class="docutils literal"><span class="pre">FSYNCED</span></code>, <code class="docutils literal"><span class="pre">JOURNAL_SAFEY</span></code>, <code class="docutils literal"><span class="pre">JOURNALED</span></code>, <code class="docutils literal"><span class="pre">MAJORITY</span></code>,
 <code class="docutils literal"><span class="pre">NORMAL</span></code>, <code class="docutils literal"><span class="pre">REPLICA_ACKNOWLEDGED</span></code>, <code class="docutils literal"><span class="pre">REPLICAS_SAFE</span></code> and <code class="docutils literal"><span class="pre">UNACKNOWLEDGED</span></code>.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">ACKNOWLEDGED</span></code>.</p>
 </div>
 <div class="section" id="mongodb-required-replica-set">
-<h3><code class="docutils literal"><span class="pre">mongodb.required-replica-set</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">mongodb.required-replica-set</span></code><a class="headerlink" href="#mongodb-required-replica-set" title="Permalink to this headline">#</a></h3>
 <p>The required replica set name. With this option set, the MongoClient instance performs the following actions:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="o">#</span><span class="p">.</span> <span class="k">Connect</span> <span class="k">in</span> <span class="n">replica</span> <span class="k">set</span> <span class="k">mode</span><span class="p">,</span> <span class="k">and</span> <span class="n">discover</span> <span class="k">all</span> <span class="n">members</span> <span class="k">of</span> <span class="n">the</span> <span class="k">set</span> <span class="n">based</span> <span class="k">on</span> <span class="n">the</span> <span class="n">given</span> <span class="n">servers</span>
 <span class="o">#</span><span class="p">.</span> <span class="n">Make</span> <span class="n">sure</span> <span class="n">that</span> <span class="n">the</span> <span class="k">set</span> <span class="n">name</span> <span class="n">reported</span> <span class="k">by</span> <span class="k">all</span> <span class="n">members</span> <span class="n">matches</span> <span class="n">the</span> <span class="n">required</span> <span class="k">set</span> <span class="n">name</span><span class="p">.</span>
@@ -217,7 +217,7 @@ The available values are <code class="docutils literal"><span class="pre">PRIMAR
 <p>This property is optional; no default value.</p>
 </div>
 <div class="section" id="mongodb-cursor-batch-size">
-<h3><code class="docutils literal"><span class="pre">mongodb.cursor-batch-size</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">mongodb.cursor-batch-size</span></code><a class="headerlink" href="#mongodb-cursor-batch-size" title="Permalink to this headline">#</a></h3>
 <p>Limits the number of elements returned in one batch. A cursor typically fetches a batch of result objects and stores them locally.
 If batchSize is 0, Driver’s default are used.
 If batchSize is positive, it represents the size of each batch of objects retrieved. It can be adjusted to optimize performance and limit data transfer.
@@ -230,7 +230,7 @@ If batchSize is negative, it limits the number of objects returned, that fit wit
 </div>
 </div>
 <div class="section" id="table-definition">
-<span id="table-definition-label"></span><h2>Table Definition</h2>
+<span id="table-definition-label"></span><h2>Table Definition<a class="headerlink" href="#table-definition" title="Permalink to this headline">#</a></h2>
 <p>MongoDB maintains table definitions on the special collection where <code class="docutils literal"><span class="pre">mongodb.schema-collection</span></code> configuration value specifies.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -321,7 +321,7 @@ Or drop a collection by running <code class="docutils literal"><span class="pre"
 <p>There is no limit on field descriptions for either key or message.</p>
 </div>
 <div class="section" id="objectid">
-<h2>ObjectId</h2>
+<h2>ObjectId<a class="headerlink" href="#objectid" title="Permalink to this headline">#</a></h2>
 <p>MongoDB collection has the special field <code class="docutils literal"><span class="pre">_id</span></code>. The connector tries to follow the same rules for this special field, so there will be hidden field <code class="docutils literal"><span class="pre">_id</span></code>.</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">orders</span> <span class="p">(</span>
     <span class="n">orderkey</span> <span class="nb">bigint</span><span class="p">,</span>

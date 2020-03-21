@@ -59,11 +59,11 @@
 <div class="content">
     
   <div class="section" id="local-file-connector">
-<h1>6.15. Local File Connector</h1>
+<h1>6.15. Local File Connector<a class="headerlink" href="#local-file-connector" title="Permalink to this headline">#</a></h1>
 <p>The local file connector allows querying data stored on the local
 file system of each worker.</p>
 <div class="section" id="configuration">
-<h2>Configuration</h2>
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h2>
 <p>To configure the local file connector, create a catalog properties file
 under <code class="docutils literal"><span class="pre">etc/catalog</span></code> named, for example, <code class="docutils literal"><span class="pre">localfile.properties</span></code> with the following contents:</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>connector.name=localfile
@@ -71,7 +71,7 @@ under <code class="docutils literal"><span class="pre">etc/catalog</span></code>
 </div>
 </div>
 <div class="section" id="configuration-properties">
-<h2>Configuration Properties</h2>
+<h2>Configuration Properties<a class="headerlink" href="#configuration-properties" title="Permalink to this headline">#</a></h2>
 <table border="1" class="docutils">
 <colgroup>
 <col width="40%" />
@@ -94,14 +94,14 @@ to match file names in the directory</td>
 </table>
 </div>
 <div class="section" id="local-file-connector-schemas-and-tables">
-<h2>Local File Connector Schemas and Tables</h2>
+<h2>Local File Connector Schemas and Tables<a class="headerlink" href="#local-file-connector-schemas-and-tables" title="Permalink to this headline">#</a></h2>
 <p>The local file connector provides a single schema named <code class="docutils literal"><span class="pre">logs</span></code>.
 You can see all the available tables by running <code class="docutils literal"><span class="pre">SHOW</span> <span class="pre">TABLES</span></code>:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SHOW</span> <span class="n">TABLES</span> <span class="k">FROM</span> <span class="n">localfile</span><span class="p">.</span><span class="n">logs</span><span class="p">;</span>
 </pre></div>
 </div>
 <div class="section" id="http-request-log">
-<h3><code class="docutils literal"><span class="pre">http_request_log</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">http_request_log</span></code><a class="headerlink" href="#http-request-log" title="Permalink to this headline">#</a></h3>
 <p>This table contains the HTTP request logs from each node on the cluster.</p>
 </div>
 </div>

@@ -59,7 +59,7 @@
 <div class="content">
     
   <div class="section" id="event-listener">
-<h1>11.9. Event Listener</h1>
+<h1>11.9. Event Listener<a class="headerlink" href="#event-listener" title="Permalink to this headline">#</a></h1>
 <p>Presto supports custom event listeners that are invoked for the following
 events:</p>
 <ul class="simple">
@@ -71,7 +71,7 @@ events:</p>
 performance analysis plugins. In a Presto cluster, only a single event
 listener plugin can be active at a time .</p>
 <div class="section" id="implementation">
-<h2>Implementation</h2>
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">#</a></h2>
 <p><code class="docutils literal"><span class="pre">EventListenerFactory</span></code> is responsible for creating an
 <code class="docutils literal"><span class="pre">EventListener</span></code> instance. It also defines an <code class="docutils literal"><span class="pre">EventListener</span></code>
 name which is used by the administrator in a Presto configuration.
@@ -81,7 +81,7 @@ they are interested in handling.</p>
 must be wrapped as a plugin and installed on the Presto cluster.</p>
 </div>
 <div class="section" id="configuration">
-<h2>Configuration</h2>
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h2>
 <p>After a plugin that implements <code class="docutils literal"><span class="pre">EventListener</span></code> and
 <code class="docutils literal"><span class="pre">EventListenerFactory</span></code> has been installed on the coordinator, it is
 configured using an <code class="docutils literal"><span class="pre">etc/event-listener.properties</span></code> file. All of the

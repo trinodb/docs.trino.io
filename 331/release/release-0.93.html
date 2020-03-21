@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-93">
-<h1>12.166. Release 0.93</h1>
+<h1>12.166. Release 0.93<a class="headerlink" href="#release-0-93" title="Permalink to this headline">#</a></h1>
 <div class="section" id="orc-memory-usage">
-<h2>ORC Memory Usage</h2>
+<h2>ORC Memory Usage<a class="headerlink" href="#orc-memory-usage" title="Permalink to this headline">#</a></h2>
 <p>This release changes the Presto ORC reader to favor small buffers when reading
 varchar and varbinary data. Some ORC files contain columns of data that are
 hundreds of megabytes when decompressed. In the previous Presto ORC reader, we
@@ -73,7 +73,7 @@ This reduces heap fragmentation and excessive memory retention at the expense
 of object creation.</p>
 </div>
 <div class="section" id="verifier">
-<h2>Verifier</h2>
+<h2>Verifier<a class="headerlink" href="#verifier" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add support for setting username and password per query</li>
 </ul>
@@ -86,7 +86,7 @@ of object creation.</p>
 </div>
 </div>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add optimizer for <code class="docutils literal"><span class="pre">LIMIT</span> <span class="pre">0</span></code></li>
 <li>Fix incorrect check to disable string statistics in ORC</li>

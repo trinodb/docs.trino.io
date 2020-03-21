@@ -59,7 +59,7 @@
 <div class="content">
     
   <div class="section" id="redis-connector">
-<h1>6.22. Redis Connector</h1>
+<h1>6.22. Redis Connector<a class="headerlink" href="#redis-connector" title="Permalink to this headline">#</a></h1>
 <p>The Redis connector allows querying of live data stored in <a class="reference external" href="https://redis.io/">Redis</a>. This can be
 used to join data between different systems like Redis and Hive.</p>
 <p>Each Redis key/value pair is presented as a single row in Presto. Rows can be
@@ -68,7 +68,7 @@ broken down into cells by using table definition files.</p>
 queried from Presto.</p>
 <p>The connector requires Redis 2.8.0 or later.</p>
 <div class="section" id="configuration">
-<h2>Configuration</h2>
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h2>
 <p>To configure the Redis connector, create a catalog properties file
 <code class="docutils literal"><span class="pre">etc/catalog/redis.properties</span></code> with the following content,
 replacing the properties as appropriate:</p>
@@ -78,14 +78,14 @@ redis.nodes=host:port
 </pre></div>
 </div>
 <div class="section" id="multiple-redis-servers">
-<h3>Multiple Redis Servers</h3>
+<h3>Multiple Redis Servers<a class="headerlink" href="#multiple-redis-servers" title="Permalink to this headline">#</a></h3>
 <p>You can have as many catalogs as you need. If you have additional
 Redis servers, simply add another properties file to <code class="docutils literal"><span class="pre">etc/catalog</span></code>
 with a different name, making sure it ends in <code class="docutils literal"><span class="pre">.properties</span></code>.</p>
 </div>
 </div>
 <div class="section" id="configuration-properties">
-<h2>Configuration Properties</h2>
+<h2>Configuration Properties<a class="headerlink" href="#configuration-properties" title="Permalink to this headline">#</a></h2>
 <p>The following configuration properties are available:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -131,7 +131,7 @@ with a different name, making sure it ends in <code class="docutils literal"><sp
 </tbody>
 </table>
 <div class="section" id="redis-table-names">
-<h3><code class="docutils literal"><span class="pre">redis.table-names</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">redis.table-names</span></code><a class="headerlink" href="#redis-table-names" title="Permalink to this headline">#</a></h3>
 <p>Comma-separated list of all tables provided by this catalog. A table name
 can be unqualified (simple name) and is placed into the default schema
 (see below), or qualified with a schema name (<code class="docutils literal"><span class="pre">&lt;schema-name&gt;.&lt;table-name&gt;</span></code>).</p>
@@ -142,45 +142,45 @@ table only contains internal columns (see below).</p>
 defined.</p>
 </div>
 <div class="section" id="redis-default-schema">
-<h3><code class="docutils literal"><span class="pre">redis.default-schema</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">redis.default-schema</span></code><a class="headerlink" href="#redis-default-schema" title="Permalink to this headline">#</a></h3>
 <p>Defines the schema which will contain all tables that were defined without
 a qualifying schema name.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">default</span></code>.</p>
 </div>
 <div class="section" id="redis-nodes">
-<h3><code class="docutils literal"><span class="pre">redis.nodes</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">redis.nodes</span></code><a class="headerlink" href="#redis-nodes" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal"><span class="pre">hostname:port</span></code> pair for the Redis server.</p>
 <p>This property is required; there is no default.</p>
 <p>Redis clusters are not supported.</p>
 </div>
 <div class="section" id="redis-scan-count">
-<h3><code class="docutils literal"><span class="pre">redis.scan-count</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">redis.scan-count</span></code><a class="headerlink" href="#redis-scan-count" title="Permalink to this headline">#</a></h3>
 <p>The internal COUNT parameter for the Redis SCAN command when connector is using
 SCAN to find keys for the data. This parameter can be used to tune performance
 of the Redis connector.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">100</span></code>.</p>
 </div>
 <div class="section" id="redis-key-prefix-schema-table">
-<h3><code class="docutils literal"><span class="pre">redis.key-prefix-schema-table</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">redis.key-prefix-schema-table</span></code><a class="headerlink" href="#redis-key-prefix-schema-table" title="Permalink to this headline">#</a></h3>
 <p>If true, only keys prefixed with the <code class="docutils literal"><span class="pre">schema-name:table-name</span></code> are scanned
 for a table, and all other keys are filtered out.  If false, all keys are
 scanned.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">false</span></code>.</p>
 </div>
 <div class="section" id="redis-key-delimiter">
-<h3><code class="docutils literal"><span class="pre">redis.key-delimiter</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">redis.key-delimiter</span></code><a class="headerlink" href="#redis-key-delimiter" title="Permalink to this headline">#</a></h3>
 <p>The character used for separating <code class="docutils literal"><span class="pre">schema-name</span></code> and <code class="docutils literal"><span class="pre">table-name</span></code> when
 <code class="docutils literal"><span class="pre">redis.key-prefix-schema-table</span></code> is <code class="docutils literal"><span class="pre">true</span></code></p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">:</span></code>.</p>
 </div>
 <div class="section" id="redis-table-description-dir">
-<h3><code class="docutils literal"><span class="pre">redis.table-description-dir</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">redis.table-description-dir</span></code><a class="headerlink" href="#redis-table-description-dir" title="Permalink to this headline">#</a></h3>
 <p>References a folder within Presto deployment that holds one or more JSON
 files, which must end with <code class="docutils literal"><span class="pre">.json</span></code> and contain table description files.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">etc/redis</span></code>.</p>
 </div>
 <div class="section" id="redis-hide-internal-columns">
-<h3><code class="docutils literal"><span class="pre">redis.hide-internal-columns</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">redis.hide-internal-columns</span></code><a class="headerlink" href="#redis-hide-internal-columns" title="Permalink to this headline">#</a></h3>
 <p>In addition to the data columns defined in a table description file, the
 connector maintains a number of additional columns for each table. If
 these columns are hidden, they can still be used in queries, but they do not
@@ -188,18 +188,18 @@ show up in <code class="docutils literal"><span class="pre">DESCRIBE</span> <spa
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">true</span></code>.</p>
 </div>
 <div class="section" id="redis-database-index">
-<h3><code class="docutils literal"><span class="pre">redis.database-index</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">redis.database-index</span></code><a class="headerlink" href="#redis-database-index" title="Permalink to this headline">#</a></h3>
 <p>The Redis database to query.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">0</span></code>.</p>
 </div>
 <div class="section" id="redis-password">
-<h3><code class="docutils literal"><span class="pre">redis.password</span></code></h3>
+<h3><code class="docutils literal"><span class="pre">redis.password</span></code><a class="headerlink" href="#redis-password" title="Permalink to this headline">#</a></h3>
 <p>The password for password-protected Redis server.</p>
 <p>This property is optional; the default is <code class="docutils literal"><span class="pre">null</span></code>.</p>
 </div>
 </div>
 <div class="section" id="internal-columns">
-<h2>Internal Columns</h2>
+<h2>Internal Columns<a class="headerlink" href="#internal-columns" title="Permalink to this headline">#</a></h2>
 <p>For each defined table, the connector maintains the following columns:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -244,7 +244,7 @@ show up in <code class="docutils literal"><span class="pre">DESCRIBE</span> <spa
 <code class="docutils literal"><span class="pre">_value_corrupt</span></code> columns are <code class="docutils literal"><span class="pre">false</span></code>.</p>
 </div>
 <div class="section" id="table-definition-files">
-<h2>Table Definition Files</h2>
+<h2>Table Definition Files<a class="headerlink" href="#table-definition-files" title="Permalink to this headline">#</a></h2>
 <p>With the Redis connector it’s possible to further reduce Redis key/value pairs into
 granular cells provided the key/value sting follow a particular format. This process
 defines new columns that can be further queried from Presto.</p>

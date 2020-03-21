@@ -59,13 +59,13 @@
 <div class="content">
     
   <div class="section" id="quantile-digest-functions">
-<h1>7.21. Quantile Digest Functions</h1>
+<h1>7.21. Quantile Digest Functions<a class="headerlink" href="#quantile-digest-functions" title="Permalink to this headline">#</a></h1>
 <p>Presto implements the <code class="docutils literal"><span class="pre">approx_percentile</span></code>  function with the quantile digest
 data structure.  The underlying data structure, <a class="reference internal" href="../language/types.html#qdigest-type"><span class="std std-ref">qdigest</span></a>,
 is exposed as a data type in Presto, and can be created, queried and stored
 separately from <code class="docutils literal"><span class="pre">approx_percentile</span></code>.</p>
 <div class="section" id="data-structures">
-<h2>Data Structures</h2>
+<h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">#</a></h2>
 <p>A quantile digest is a data sketch which stores approximate percentile
 information.  The presto type for this data structure is called <code class="docutils literal"><span class="pre">qdigest</span></code>,
 and it takes a parameter which must be one of <code class="docutils literal"><span class="pre">bigint</span></code>, <code class="docutils literal"><span class="pre">double</span></code> or
@@ -74,7 +74,7 @@ and it takes a parameter which must be one of <code class="docutils literal"><sp
 and retrieval they may be cast to/from <code class="docutils literal"><span class="pre">VARBINARY</span></code>.</p>
 </div>
 <div class="section" id="functions">
-<h2>Functions</h2>
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">#</a></h2>
 <dl class="function">
 <dt>
 <code class="descname">merge</code><span class="sig-paren">(</span><em>qdigest</em><span class="sig-paren">)</span> &#x2192; qdigest</dt>
@@ -83,14 +83,14 @@ and retrieval they may be cast to/from <code class="docutils literal"><span clas
 
 <dl class="function">
 <dt id="value_at_quantile">
-<code class="descname">value_at_quantile</code><span class="sig-paren">(</span><em>qdigest(T)</em>, <em>quantile</em><span class="sig-paren">)</span> &#x2192; T</dt>
+<code class="descname">value_at_quantile</code><span class="sig-paren">(</span><em>qdigest(T)</em>, <em>quantile</em><span class="sig-paren">)</span> &#x2192; T<a class="headerlink" href="#value_at_quantile" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the approximate percentile values from the quantile digest given
 the number <code class="docutils literal"><span class="pre">quantile</span></code> between 0 and 1.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="values_at_quantiles">
-<code class="descname">values_at_quantiles</code><span class="sig-paren">(</span><em>qdigest(T)</em>, <em>quantiles</em><span class="sig-paren">)</span> &#x2192; T</dt>
+<code class="descname">values_at_quantiles</code><span class="sig-paren">(</span><em>qdigest(T)</em>, <em>quantiles</em><span class="sig-paren">)</span> &#x2192; T<a class="headerlink" href="#values_at_quantiles" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the approximate percentile values as an array given the input
 quantile digest and array of values between 0 and 1 which
 represent the quantiles to return.</p>
@@ -98,7 +98,7 @@ represent the quantiles to return.</p>
 
 <dl class="function">
 <dt id="qdigest_agg">
-<code class="descname">qdigest_agg</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span> &#x2192; qdigest&lt;[same as x]&gt;</dt>
+<code class="descname">qdigest_agg</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span> &#x2192; qdigest&lt;[same as x]&gt;<a class="headerlink" href="#qdigest_agg" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the <code class="docutils literal"><span class="pre">qdigest</span></code> which is composed of  all input values of <code class="docutils literal"><span class="pre">x</span></code>.</p>
 </dd></dl>
 

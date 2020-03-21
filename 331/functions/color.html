@@ -59,10 +59,10 @@
 <div class="content">
     
   <div class="section" id="color-functions">
-<h1>7.23. Color Functions</h1>
+<h1>7.23. Color Functions<a class="headerlink" href="#color-functions" title="Permalink to this headline">#</a></h1>
 <dl class="function">
 <dt id="bar">
-<code class="descname">bar</code><span class="sig-paren">(</span><em>x</em>, <em>width</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">bar</code><span class="sig-paren">(</span><em>x</em>, <em>width</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#bar" title="Permalink to this definition">#</a></dt>
 <dd><p>Renders a single bar in an ANSI bar chart using a default
 <code class="docutils literal"><span class="pre">low_color</span></code> of red and a <code class="docutils literal"><span class="pre">high_color</span></code> of green.  For example,
 if <code class="docutils literal"><span class="pre">x</span></code> of 25% and width of 40 are passed to this function. A
@@ -90,7 +90,7 @@ character bar will be padded with spaces.</p>
 
 <dl class="function">
 <dt id="color">
-<code class="descname">color</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; color</dt>
+<code class="descname">color</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span> &#x2192; color<a class="headerlink" href="#color" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns a color capturing a decoded RGB value from a 4-character
 string of the format “#000”.  The input string should be varchar
 containing a CSS-style short rgb string or one of <code class="docutils literal"><span class="pre">black</span></code>,
@@ -121,7 +121,7 @@ truncated to either a 0 or a 1 value.</p>
 
 <dl class="function">
 <dt id="render">
-<code class="descname">render</code><span class="sig-paren">(</span><em>x</em>, <em>color</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">render</code><span class="sig-paren">(</span><em>x</em>, <em>color</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#render" title="Permalink to this definition">#</a></dt>
 <dd><p>Renders value <code class="docutils literal"><span class="pre">x</span></code> using the specific color using ANSI
 color codes. <code class="docutils literal"><span class="pre">x</span></code> can be either a double, bigint, or varchar.</p>
 </dd></dl>
@@ -135,7 +135,7 @@ false using ANSI color codes.</p>
 
 <dl class="function">
 <dt id="rgb">
-<code class="descname">rgb</code><span class="sig-paren">(</span><em>red</em>, <em>green</em>, <em>blue</em><span class="sig-paren">)</span> &#x2192; color</dt>
+<code class="descname">rgb</code><span class="sig-paren">(</span><em>red</em>, <em>green</em>, <em>blue</em><span class="sig-paren">)</span> &#x2192; color<a class="headerlink" href="#rgb" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns a color value capturing the RGB value of three
 component color values supplied as int parameters ranging from 0
 to 255: <code class="docutils literal"><span class="pre">red</span></code>, <code class="docutils literal"><span class="pre">green</span></code>, <code class="docutils literal"><span class="pre">blue</span></code>.</p>

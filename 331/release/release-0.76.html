@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-76">
-<h1>12.183. Release 0.76</h1>
+<h1>12.183. Release 0.76<a class="headerlink" href="#release-0-76" title="Permalink to this headline">#</a></h1>
 <div class="section" id="kafka-connector">
-<h2>Kafka Connector</h2>
+<h2>Kafka Connector<a class="headerlink" href="#kafka-connector" title="Permalink to this headline">#</a></h2>
 <p>This release adds a connector that allows querying of <a class="reference external" href="https://kafka.apache.org/">Apache Kafka</a> topic data
 from Presto. Topics can be live and repeated queries will pick up new data.</p>
 <p>Apache Kafka 0.8+ is supported although Apache Kafka 0.8.1+ is recommended.
@@ -69,14 +69,14 @@ There is extensive <a class="reference internal" href="../connector/kafka.html">
 the connector and a <a class="reference internal" href="../connector/kafka-tutorial.html"><span class="doc">tutorial</span></a> to get started.</p>
 </div>
 <div class="section" id="mysql-and-postgresql-connectors">
-<h2>MySQL and PostgreSQL Connectors</h2>
+<h2>MySQL and PostgreSQL Connectors<a class="headerlink" href="#mysql-and-postgresql-connectors" title="Permalink to this headline">#</a></h2>
 <p>This release adds the <a class="reference internal" href="../connector/mysql.html"><span class="doc">MySQL Connector</span></a> and <a class="reference internal" href="../connector/postgresql.html"><span class="doc">PostgreSQL Connector</span></a>
 for querying and creating tables in external relational databases. These can
 be used to join or copy data between different systems like MySQL and Hive,
 or between two different MySQL or PostgreSQL instances, or any combination.</p>
 </div>
 <div class="section" id="cassandra-changes">
-<h2>Cassandra Changes</h2>
+<h2>Cassandra Changes<a class="headerlink" href="#cassandra-changes" title="Permalink to this headline">#</a></h2>
 <p>The <a class="reference internal" href="../connector/cassandra.html"><span class="doc">Cassandra Connector</span></a> configuration properties
 <code class="docutils literal"><span class="pre">cassandra.client.read-timeout</span></code> and <code class="docutils literal"><span class="pre">cassandra.client.connect-timeout</span></code>
 are now specified using a duration rather than milliseconds (this makes
@@ -87,7 +87,7 @@ previously specifying a value such as <code class="docutils literal"><span class
 retry policy may be useful.</p>
 </div>
 <div class="section" id="hive-changes">
-<h2>Hive Changes</h2>
+<h2>Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <p>The new <a class="reference internal" href="../connector/hive.html"><span class="doc">Hive Connector</span></a> configuration property <code class="docutils literal"><span class="pre">hive.s3.socket-timeout</span></code>
 allows changing the socket timeout for queries that read or write to Amazon S3.
 Additionally, the previously added <code class="docutils literal"><span class="pre">hive.s3.max-connections</span></code> property
@@ -106,7 +106,7 @@ sets the storage format on the metadata but always writes the table using
 <code class="docutils literal"><span class="pre">RCBINARY</span></code>. This will be implemented in a future release.</p>
 </div>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix hang in verifier when an exception occurs.</li>
 <li>Fix <a class="reference internal" href="../functions/string.html#chr" title="chr"><code class="xref py py-func docutils literal"><span class="pre">chr()</span></code></a> function to work with Unicode code points instead of ASCII code points.</li>

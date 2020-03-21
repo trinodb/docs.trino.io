@@ -59,13 +59,13 @@
 <div class="content">
     
   <div class="section" id="postgresql-connector">
-<h1>6.21. PostgreSQL Connector</h1>
+<h1>6.21. PostgreSQL Connector<a class="headerlink" href="#postgresql-connector" title="Permalink to this headline">#</a></h1>
 <p>The PostgreSQL connector allows querying and creating tables in an
 external <a class="reference external" href="https://www.postgresql.org/">PostgreSQL</a> database. This can be used to join data between
 different systems like PostgreSQL and Hive, or between different
 PostgreSQL instances.</p>
 <div class="section" id="configuration">
-<h2>Configuration</h2>
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h2>
 <p>To configure the PostgreSQL connector, create a catalog properties file
 in <code class="docutils literal"><span class="pre">etc/catalog</span></code> named, for example, <code class="docutils literal"><span class="pre">postgresql.properties</span></code>, to
 mount the PostgreSQL connector as the <code class="docutils literal"><span class="pre">postgresql</span></code> catalog.
@@ -78,7 +78,7 @@ connection-password=secret
 </pre></div>
 </div>
 <div class="section" id="multiple-postgresql-databases-or-servers">
-<h3>Multiple PostgreSQL Databases or Servers</h3>
+<h3>Multiple PostgreSQL Databases or Servers<a class="headerlink" href="#multiple-postgresql-databases-or-servers" title="Permalink to this headline">#</a></h3>
 <p>The PostgreSQL connector can only access a single database within
 a PostgreSQL server. Thus, if you have multiple PostgreSQL databases,
 or want to connect to multiple PostgreSQL servers, you must configure
@@ -90,7 +90,7 @@ catalog named <code class="docutils literal"><span class="pre">sales</span></cod
 </div>
 </div>
 <div class="section" id="decimal-type-handling">
-<h2>Decimal Type Handling</h2>
+<h2>Decimal Type Handling<a class="headerlink" href="#decimal-type-handling" title="Permalink to this headline">#</a></h2>
 <p><code class="docutils literal"><span class="pre">DECIMAL</span></code> types with precision larger than 38 can be mapped to a Presto <code class="docutils literal"><span class="pre">DECIMAL</span></code>
 by setting the <code class="docutils literal"><span class="pre">decimal-mapping</span></code> configuration property or the <code class="docutils literal"><span class="pre">decimal_mapping</span></code> session property to
 <code class="docutils literal"><span class="pre">allow_overflow</span></code>. The scale of the resulting type is controlled via the <code class="docutils literal"><span class="pre">decimal-default-scale</span></code>
@@ -102,7 +102,7 @@ property, which can be set to <code class="docutils literal"><span class="pre">U
 (see <a class="reference external" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/RoundingMode.html#enum.constant.summary">RoundingMode</a>).</p>
 </div>
 <div class="section" id="array-type-handling">
-<h2>Array Type Handling</h2>
+<h2>Array Type Handling<a class="headerlink" href="#array-type-handling" title="Permalink to this headline">#</a></h2>
 <p>The PostgreSQL array implementation does not support fixed dimensions whereas Presto
 support only arrays with fixed dimensions.
 You can configure how the PostgreSQL connector handles arrays with the <code class="docutils literal"><span class="pre">postgresql.array-mapping</span></code> configuration property in your catalog file
@@ -115,7 +115,7 @@ The following values are accepted for this property:</p>
 </ul>
 </div>
 <div class="section" id="querying-postgresql">
-<h2>Querying PostgreSQL</h2>
+<h2>Querying PostgreSQL<a class="headerlink" href="#querying-postgresql" title="Permalink to this headline">#</a></h2>
 <p>The PostgreSQL connector provides a schema for every PostgreSQL schema.
 You can see the available PostgreSQL schemas by running <code class="docutils literal"><span class="pre">SHOW</span> <span class="pre">SCHEMAS</span></code>:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SHOW</span> <span class="n">SCHEMAS</span> <span class="k">FROM</span> <span class="n">postgresql</span><span class="p">;</span>
@@ -140,7 +140,7 @@ using either of the following:</p>
 that catalog name instead of <code class="docutils literal"><span class="pre">postgresql</span></code> in the above examples.</p>
 </div>
 <div class="section" id="postgresql-connector-limitations">
-<h2>PostgreSQL Connector Limitations</h2>
+<h2>PostgreSQL Connector Limitations<a class="headerlink" href="#postgresql-connector-limitations" title="Permalink to this headline">#</a></h2>
 <p>The following SQL statements are not yet supported:</p>
 <ul class="simple">
 <li><a class="reference internal" href="../sql/delete.html"><span class="doc">DELETE</span></a></li>

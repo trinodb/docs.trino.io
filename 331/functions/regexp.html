@@ -59,7 +59,7 @@
 <div class="content">
     
   <div class="section" id="regular-expression-functions">
-<h1>7.10. Regular Expression Functions</h1>
+<h1>7.10. Regular Expression Functions<a class="headerlink" href="#regular-expression-functions" title="Permalink to this headline">#</a></h1>
 <p>All of the regular expression functions use the <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html">Java pattern</a> syntax,
 with a few notable exceptions:</p>
 <ul class="simple">
@@ -96,7 +96,7 @@ Example: <code class="docutils literal"><span class="pre">\p{NoncharacterCodePoi
 </ul>
 <dl class="function">
 <dt id="regexp_count">
-<code class="descname">regexp_count</code><span class="sig-paren">(</span><em>string</em>, <em>pattern</em><span class="sig-paren">)</span> &#x2192; bigint</dt>
+<code class="descname">regexp_count</code><span class="sig-paren">(</span><em>string</em>, <em>pattern</em><span class="sig-paren">)</span> &#x2192; bigint<a class="headerlink" href="#regexp_count" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the number of occurrence of <code class="docutils literal"><span class="pre">pattern</span></code> in <code class="docutils literal"><span class="pre">string</span></code>:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">regexp_count</span><span class="p">(</span><span class="s1">&#39;1a 2b 14m&#39;</span><span class="p">,</span> <span class="s1">&#39;\s*[a-z]+\s*&#39;</span><span class="p">);</span> <span class="c1">-- 3</span>
 </pre></div>
@@ -105,7 +105,7 @@ Example: <code class="docutils literal"><span class="pre">\p{NoncharacterCodePoi
 
 <dl class="function">
 <dt id="regexp_extract_all">
-<code class="descname">regexp_extract_all</code><span class="sig-paren">(</span><em>string</em>, <em>pattern) -&gt; array(varchar</em><span class="sig-paren">)</span></dt>
+<code class="descname">regexp_extract_all</code><span class="sig-paren">(</span><em>string</em>, <em>pattern) -&gt; array(varchar</em><span class="sig-paren">)</span><a class="headerlink" href="#regexp_extract_all" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the substring(s) matched by the regular expression <code class="docutils literal"><span class="pre">pattern</span></code>
 in <code class="docutils literal"><span class="pre">string</span></code>:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">regexp_extract_all</span><span class="p">(</span><span class="s1">&#39;1a 2b 14m&#39;</span><span class="p">,</span> <span class="s1">&#39;\d+&#39;</span><span class="p">);</span> <span class="c1">-- [1, 2, 14]</span>
@@ -125,7 +125,7 @@ and returns the <a class="reference external" href="http://docs.oracle.com/javas
 
 <dl class="function">
 <dt id="regexp_extract">
-<code class="descname">regexp_extract</code><span class="sig-paren">(</span><em>string</em>, <em>pattern</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">regexp_extract</code><span class="sig-paren">(</span><em>string</em>, <em>pattern</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#regexp_extract" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the first substring matched by the regular expression <code class="docutils literal"><span class="pre">pattern</span></code>
 in <code class="docutils literal"><span class="pre">string</span></code>:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">regexp_extract</span><span class="p">(</span><span class="s1">&#39;1a 2b 14m&#39;</span><span class="p">,</span> <span class="s1">&#39;\d+&#39;</span><span class="p">);</span> <span class="c1">-- 1</span>
@@ -145,7 +145,7 @@ in <code class="docutils literal"><span class="pre">string</span></code>:</p>
 
 <dl class="function">
 <dt id="regexp_like">
-<code class="descname">regexp_like</code><span class="sig-paren">(</span><em>string</em>, <em>pattern</em><span class="sig-paren">)</span> &#x2192; boolean</dt>
+<code class="descname">regexp_like</code><span class="sig-paren">(</span><em>string</em>, <em>pattern</em><span class="sig-paren">)</span> &#x2192; boolean<a class="headerlink" href="#regexp_like" title="Permalink to this definition">#</a></dt>
 <dd><p>Evaluates the regular expression <code class="docutils literal"><span class="pre">pattern</span></code> and determines if it is
 contained within <code class="docutils literal"><span class="pre">string</span></code>.</p>
 <p>This function is similar to the <code class="docutils literal"><span class="pre">LIKE</span></code> operator, except that the
@@ -160,7 +160,7 @@ the entire string by anchoring the pattern using <code class="docutils literal">
 
 <dl class="function">
 <dt id="regexp_position">
-<code class="descname">regexp_position</code><span class="sig-paren">(</span><em>string</em>, <em>pattern</em><span class="sig-paren">)</span> &#x2192; integer</dt>
+<code class="descname">regexp_position</code><span class="sig-paren">(</span><em>string</em>, <em>pattern</em><span class="sig-paren">)</span> &#x2192; integer<a class="headerlink" href="#regexp_position" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the index of the first occurrence (counting from 1) of <code class="docutils literal"><span class="pre">pattern</span></code> in <code class="docutils literal"><span class="pre">string</span></code>.
 Returns -1 if not found:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">regexp_position</span><span class="p">(</span><span class="s1">&#39;I have 23 apples, 5 pears and 13 oranges&#39;</span><span class="p">,</span> <span class="s1">&#39;\b\d+\b&#39;</span><span class="p">);</span> <span class="c1">-- 8</span>
@@ -193,7 +193,7 @@ starting from <code class="docutils literal"><span class="pre">start</span></cod
 
 <dl class="function">
 <dt id="regexp_replace">
-<code class="descname">regexp_replace</code><span class="sig-paren">(</span><em>string</em>, <em>pattern</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<code class="descname">regexp_replace</code><span class="sig-paren">(</span><em>string</em>, <em>pattern</em><span class="sig-paren">)</span> &#x2192; varchar<a class="headerlink" href="#regexp_replace" title="Permalink to this definition">#</a></dt>
 <dd><p>Removes every instance of the substring matched by the regular expression
 <code class="docutils literal"><span class="pre">pattern</span></code> from <code class="docutils literal"><span class="pre">string</span></code>:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">regexp_replace</span><span class="p">(</span><span class="s1">&#39;1a 2b 14m&#39;</span><span class="p">,</span> <span class="s1">&#39;\d+[ab] &#39;</span><span class="p">);</span> <span class="c1">-- &#39;14m&#39;</span>
@@ -229,7 +229,7 @@ array. Capturing group numbers start at one; there is no group for the entire ma
 
 <dl class="function">
 <dt id="regexp_split">
-<code class="descname">regexp_split</code><span class="sig-paren">(</span><em>string</em>, <em>pattern) -&gt; array(varchar</em><span class="sig-paren">)</span></dt>
+<code class="descname">regexp_split</code><span class="sig-paren">(</span><em>string</em>, <em>pattern) -&gt; array(varchar</em><span class="sig-paren">)</span><a class="headerlink" href="#regexp_split" title="Permalink to this definition">#</a></dt>
 <dd><p>Splits <code class="docutils literal"><span class="pre">string</span></code> using the regular expression <code class="docutils literal"><span class="pre">pattern</span></code> and returns an
 array. Trailing empty strings are preserved:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">regexp_split</span><span class="p">(</span><span class="s1">&#39;1a 2b 14m&#39;</span><span class="p">,</span> <span class="s1">&#39;\s*[a-z]+\s*&#39;</span><span class="p">);</span> <span class="c1">-- [1, 2, 14, ]</span>

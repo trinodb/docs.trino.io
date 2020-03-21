@@ -59,7 +59,7 @@
 <div class="content">
     
   <div class="section" id="resource-groups">
-<h1>4.6. Resource Groups</h1>
+<h1>4.6. Resource Groups<a class="headerlink" href="#resource-groups" title="Permalink to this headline">#</a></h1>
 <p>Resource groups place limits on resource usage, and can enforce queueing policies on
 queries that run within them, or divide their resources among sub-groups. A query
 belongs to a single resource group, and consumes resources from that group (and its ancestors).
@@ -76,7 +76,7 @@ resource-groups.config-file=etc/resource-groups.json
 <p>Change the value of <code class="docutils literal"><span class="pre">resource-groups.config-file</span></code> to point to a JSON config file,
 which can be an absolute path, or a path relative to the Presto data directory.</p>
 <div class="section" id="resource-group-properties">
-<h2>Resource Group Properties</h2>
+<h2>Resource Group Properties<a class="headerlink" href="#resource-group-properties" title="Permalink to this headline">#</a></h2>
 <ul>
 <li><p class="first"><code class="docutils literal"><span class="pre">name</span></code> (required): name of the group. May be a template (see below).</p>
 </li>
@@ -129,7 +129,7 @@ Defaults to <code class="docutils literal"><span class="pre">false</span></code>
 </ul>
 </div>
 <div class="section" id="selector-rules">
-<h2>Selector Rules</h2>
+<h2>Selector Rules<a class="headerlink" href="#selector-rules" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">user</span></code> (optional): regex to match against user name.</li>
 <li><code class="docutils literal"><span class="pre">userGroup</span></code> (optional): regex to match against every user group the user belongs to.</li>
@@ -155,13 +155,13 @@ client-provided tags associated with the query.</li>
 <p>Selectors are processed sequentially and the first one that matches will be used.</p>
 </div>
 <div class="section" id="global-properties">
-<h2>Global Properties</h2>
+<h2>Global Properties<a class="headerlink" href="#global-properties" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">cpuQuotaPeriod</span></code> (optional): the period in which cpu quotas are enforced.</li>
 </ul>
 </div>
 <div class="section" id="providing-selector-properties">
-<h2>Providing Selector Properties</h2>
+<h2>Providing Selector Properties<a class="headerlink" href="#providing-selector-properties" title="Permalink to this headline">#</a></h2>
 <p>The source name can be set as follows:</p>
 <blockquote>
 <div><ul class="simple">
@@ -178,7 +178,7 @@ client-provided tags associated with the query.</li>
 </div></blockquote>
 </div>
 <div class="section" id="example">
-<h2>Example</h2>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h2>
 <p>In the example configuration below, there are several resource groups, some of which are templates.
 Templates allow administrators to construct resource group trees dynamically. For example, in
 the <code class="docutils literal"><span class="pre">pipeline_${USER}</span></code> group, <code class="docutils literal"><span class="pre">${USER}</span></code> is expanded to the name of the user that submitted

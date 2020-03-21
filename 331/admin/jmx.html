@@ -59,7 +59,7 @@
 <div class="content">
     
   <div class="section" id="monitoring-with-jmx">
-<h1>4.3. Monitoring with JMX</h1>
+<h1>4.3. Monitoring with JMX<a class="headerlink" href="#monitoring-with-jmx" title="Permalink to this headline">#</a></h1>
 <p>Presto exposes a large number of different metrics via the Java Management Extensions (JMX).</p>
 <p>You can configure the ports used by JMX in <code class="docutils literal"><span class="pre">jvm.config</span></code> as described in <a class="reference internal" href="../installation/deployment.html#config-properties"><span class="std std-ref">Config Properties</span></a>.</p>
 <p>JConsole (supplied with the JDK), <a class="reference external" href="https://visualvm.github.io/">VisualVM</a>, and
@@ -71,14 +71,14 @@ that has a collection of related metrics. For example, <code class="docutils lit
 <code class="docutils literal"><span class="pre">InputPositions.TotalCount</span></code>, <code class="docutils literal"><span class="pre">InputPositions.OneMinute.Count</span></code>, and so on.</p>
 <p>A small subset of the available metrics are described below.</p>
 <div class="section" id="jvm">
-<h2>JVM</h2>
+<h2>JVM<a class="headerlink" href="#jvm" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Heap size: <code class="docutils literal"><span class="pre">java.lang:type=Memory:HeapMemoryUsage.used</span></code></li>
 <li>Thread count: <code class="docutils literal"><span class="pre">java.lang:type=Threading:ThreadCount</span></code></li>
 </ul>
 </div>
 <div class="section" id="presto-cluster-and-nodes">
-<h2>Presto Cluster and Nodes</h2>
+<h2>Presto Cluster and Nodes<a class="headerlink" href="#presto-cluster-and-nodes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Active nodes:
 <code class="docutils literal"><span class="pre">presto.failureDetector:name=HeartbeatFailureDetector:ActiveCount</span></code></li>
@@ -89,7 +89,7 @@ that has a collection of related metrics. For example, <code class="docutils lit
 </ul>
 </div>
 <div class="section" id="presto-queries">
-<h2>Presto Queries</h2>
+<h2>Presto Queries<a class="headerlink" href="#presto-queries" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Active queries currently executing or queued: <code class="docutils literal"><span class="pre">presto.execution:name=QueryManager:RunningQueries</span></code></li>
 <li>Queries started: <code class="docutils literal"><span class="pre">presto.execution:name=QueryManager:StartedQueries.FiveMinute.Count</span></code></li>
@@ -102,14 +102,14 @@ that has a collection of related metrics. For example, <code class="docutils lit
 </ul>
 </div>
 <div class="section" id="presto-tasks">
-<h2>Presto Tasks</h2>
+<h2>Presto Tasks<a class="headerlink" href="#presto-tasks" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Input data bytes: <code class="docutils literal"><span class="pre">presto.execution:name=TaskManager:InputDataSize.FiveMinute.Count</span></code></li>
 <li>Input rows: <code class="docutils literal"><span class="pre">presto.execution:name=TaskManager:InputPositions.FiveMinute.Count</span></code></li>
 </ul>
 </div>
 <div class="section" id="connectors">
-<h2>Connectors</h2>
+<h2>Connectors<a class="headerlink" href="#connectors" title="Permalink to this headline">#</a></h2>
 <p>Many connectors provide their own metrics. The metric names typically start with
 <code class="docutils literal"><span class="pre">presto.plugin</span></code>.</p>
 </div>

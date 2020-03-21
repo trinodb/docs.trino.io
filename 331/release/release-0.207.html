@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-207">
-<h1>12.41. Release 0.207</h1>
+<h1>12.41. Release 0.207<a class="headerlink" href="#release-0-207" title="Permalink to this headline">#</a></h1>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix a planning issue for queries where correlated references were used in <code class="docutils literal"><span class="pre">VALUES</span></code>.</li>
 <li>Remove support for legacy <code class="docutils literal"><span class="pre">JOIN</span> <span class="pre">...</span> <span class="pre">USING</span></code> behavior.</li>
@@ -92,20 +92,20 @@ can be reordered at once using cost-based join reordering.</li>
 </ul>
 </div>
 <div class="section" id="security-changes">
-<h2>Security Changes</h2>
+<h2>Security Changes<a class="headerlink" href="#security-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fail on startup when configuration for file based system access control is invalid.</li>
 <li>Add support for securing communication between cluster nodes with Kerberos authentication.</li>
 </ul>
 </div>
 <div class="section" id="web-ui-changes">
-<h2>Web UI Changes</h2>
+<h2>Web UI Changes<a class="headerlink" href="#web-ui-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add peak total (user + system) memory to query details UI.</li>
 </ul>
 </div>
 <div class="section" id="hive-connector-changes">
-<h2>Hive Connector Changes</h2>
+<h2>Hive Connector Changes<a class="headerlink" href="#hive-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix handling of <code class="docutils literal"><span class="pre">VARCHAR(length)</span></code> type in the optimized Parquet reader. Previously, predicate pushdown
 failed with <code class="docutils literal"><span class="pre">Mismatched</span> <span class="pre">Domain</span> <span class="pre">types:</span> <span class="pre">varchar(length)</span> <span class="pre">vs</span> <span class="pre">varchar</span></code>.</li>
@@ -118,13 +118,13 @@ changed by setting the <code class="docutils literal"><span class="pre">hive.par
 </ul>
 </div>
 <div class="section" id="memory-connector-changes">
-<h2>Memory Connector Changes</h2>
+<h2>Memory Connector Changes<a class="headerlink" href="#memory-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add support for dropping schemas.</li>
 </ul>
 </div>
 <div class="section" id="spi-changes">
-<h2>SPI Changes</h2>
+<h2>SPI Changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Remove deprecated table/view-level access control methods.</li>
 <li>Change predicate in constraint for accessing table layout to be optional.</li>

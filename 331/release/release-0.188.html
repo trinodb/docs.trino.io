@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-188">
-<h1>12.60. Release 0.188</h1>
+<h1>12.60. Release 0.188<a class="headerlink" href="#release-0-188" title="Permalink to this headline">#</a></h1>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix handling of negative start indexes in array <a class="reference internal" href="../functions/array.html#slice" title="slice"><code class="xref py py-func docutils literal"><span class="pre">slice()</span></code></a> function.</li>
 <li>Fix inverted sign for time zones <code class="docutils literal"><span class="pre">Etc/GMT-12</span></code>, <code class="docutils literal"><span class="pre">Etc/GMT-11</span></code>, …, <code class="docutils literal"><span class="pre">Etc/GMT-1</span></code>,
@@ -80,7 +80,7 @@ for multiple hours or days.</li>
 </ul>
 </div>
 <div class="section" id="cli-changes">
-<h2>CLI Changes</h2>
+<h2>CLI Changes<a class="headerlink" href="#cli-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix transaction support. Previously, after the first statement in the
 transaction, the transaction would be abandoned and the session would
@@ -88,13 +88,13 @@ silently revert to auto-commit mode.</li>
 </ul>
 </div>
 <div class="section" id="jdbc-driver-changes">
-<h2>JDBC Driver Changes</h2>
+<h2>JDBC Driver Changes<a class="headerlink" href="#jdbc-driver-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Support using <code class="docutils literal"><span class="pre">Statement.cancel()</span></code> for all types of statements.</li>
 </ul>
 </div>
 <div class="section" id="resource-group-changes">
-<h2>Resource Group Changes</h2>
+<h2>Resource Group Changes<a class="headerlink" href="#resource-group-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add environment support to the <code class="docutils literal"><span class="pre">db</span></code> resource groups manager.
 Previously, configurations for different clusters had to be stored in separate databases.
@@ -103,7 +103,7 @@ Presto will use the new <code class="docutils literal"><span class="pre">environ
 </ul>
 </div>
 <div class="section" id="spi-changes">
-<h2>SPI Changes</h2>
+<h2>SPI Changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add query plan to the query completed event.</li>
 </ul>

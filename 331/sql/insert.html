@@ -59,15 +59,15 @@
 <div class="content">
     
   <div class="section" id="insert">
-<h1>9.27. INSERT</h1>
+<h1>9.27. INSERT<a class="headerlink" href="#insert" title="Permalink to this headline">#</a></h1>
 <div class="section" id="synopsis">
-<h2>Synopsis</h2>
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">#</a></h2>
 <div class="highlight-none"><div class="highlight"><pre><span></span>INSERT INTO table_name [ ( column [, ... ] ) ] query
 </pre></div>
 </div>
 </div>
 <div class="section" id="description">
-<h2>Description</h2>
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">#</a></h2>
 <p>Insert new rows into a table.</p>
 <p>If the list of column names is specified, they must exactly match the list
 of columns produced by the query. Each column in the table not present in the
@@ -76,7 +76,7 @@ columns is not specified, the columns produced by the query must exactly match
 the columns in the table being inserted into.</p>
 </div>
 <div class="section" id="examples">
-<h2>Examples</h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">#</a></h2>
 <p>Load additional rows into the <code class="docutils literal"><span class="pre">orders</span></code> table from the <code class="docutils literal"><span class="pre">new_orders</span></code> table:</p>
 <div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">orders</span>
 <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">new_orders</span><span class="p">;</span>
@@ -103,7 +103,7 @@ That column will be <code class="docutils literal"><span class="pre">null</span>
 </div>
 </div>
 <div class="section" id="see-also">
-<h2>See Also</h2>
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">#</a></h2>
 <p><a class="reference internal" href="values.html"><span class="doc">VALUES</span></a></p>
 </div>
 </div>

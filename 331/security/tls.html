@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="java-keystores-and-truststores">
-<h1>3.6. Java Keystores and Truststores</h1>
+<h1>3.6. Java Keystores and Truststores<a class="headerlink" href="#java-keystores-and-truststores" title="Permalink to this headline">#</a></h1>
 <div class="section" id="java-keystore-file-for-tls">
-<span id="server-java-keystore"></span><h2>Java Keystore File for TLS</h2>
+<span id="server-java-keystore"></span><h2>Java Keystore File for TLS<a class="headerlink" href="#java-keystore-file-for-tls" title="Permalink to this headline">#</a></h2>
 <p>Access to the Presto coordinator must be through HTTPS when using Kerberos
 and LDAP authentication. The Presto coordinator uses a <a class="reference internal" href="#server-java-keystore"><span class="std std-ref">Java Keystore</span></a> file for its TLS configuration. These keys are
 generated using <strong class="command">keytool</strong> and stored in a Java Keystore file for the
@@ -96,7 +96,7 @@ Enter key password for &lt;presto&gt;
 </div>
 </div>
 <div class="section" id="java-truststore-file-for-tls">
-<span id="cli-java-truststore"></span><h2>Java Truststore File for TLS</h2>
+<span id="cli-java-truststore"></span><h2>Java Truststore File for TLS<a class="headerlink" href="#java-truststore-file-for-tls" title="Permalink to this headline">#</a></h2>
 <p>Truststore files contain certificates of trusted TLS/SSL servers, or of
 Certificate Authorities trusted to identify servers. For securing access
 to the Presto coordinator through HTTPS, the clients can configure truststores.
@@ -114,9 +114,9 @@ can be trusted or not.</p>
 </div>
 </div>
 <div class="section" id="troubleshooting">
-<h2>Troubleshooting</h2>
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">#</a></h2>
 <div class="section" id="java-keystore-file-verification">
-<span id="troubleshooting-keystore"></span><h3>Java Keystore File Verification</h3>
+<span id="troubleshooting-keystore"></span><h3>Java Keystore File Verification<a class="headerlink" href="#java-keystore-file-verification" title="Permalink to this headline">#</a></h3>
 <p>Verify the password for a keystore file and view its contents using <a class="reference external" href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/keytool.html">keytool</a>.</p>
 <div class="highlight-none"><div class="highlight"><pre><span></span>$ keytool -list -v -keystore /etc/presto/presto.jks
 </pre></div>

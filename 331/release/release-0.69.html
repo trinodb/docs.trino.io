@@ -59,7 +59,7 @@
 <div class="content">
     
   <div class="section" id="release-0-69">
-<h1>12.190. Release 0.69</h1>
+<h1>12.190. Release 0.69<a class="headerlink" href="#release-0-69" title="Permalink to this headline">#</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p>The following config properties must be removed from the
@@ -72,7 +72,7 @@
 and should also be removed (see <a class="reference internal" href="#datasource-configuration">Datasource Configuration</a>).</p>
 </div>
 <div class="section" id="prevent-scheduling-work-on-coordinator">
-<h2>Prevent Scheduling Work on Coordinator</h2>
+<h2>Prevent Scheduling Work on Coordinator<a class="headerlink" href="#prevent-scheduling-work-on-coordinator" title="Permalink to this headline">#</a></h2>
 <p>We have a new config property, <code class="docutils literal"><span class="pre">node-scheduler.include-coordinator</span></code>,
 that allows or disallows scheduling work on the coordinator.
 Previously, tasks like final aggregations could be scheduled on the
@@ -84,7 +84,7 @@ query execution.</p>
 See <a class="reference internal" href="../installation/deployment.html#config-properties"><span class="std std-ref">Config Properties</span></a> for an example.</p>
 </div>
 <div class="section" id="datasource-configuration">
-<h2>Datasource Configuration</h2>
+<h2>Datasource Configuration<a class="headerlink" href="#datasource-configuration" title="Permalink to this headline">#</a></h2>
 <p>The <code class="docutils literal"><span class="pre">datasources</span></code> config property has been deprecated.
 Please remove it from your <code class="docutils literal"><span class="pre">etc/config.properties</span></code> file.
 The datasources configuration is now automatically generated based
@@ -92,7 +92,7 @@ on the <code class="docutils literal"><span class="pre">node-scheduler.include-c
 (see <a class="reference internal" href="#prevent-scheduling-work-on-coordinator">Prevent Scheduling Work on Coordinator</a>).</p>
 </div>
 <div class="section" id="raptor-connector">
-<h2>Raptor Connector</h2>
+<h2>Raptor Connector<a class="headerlink" href="#raptor-connector" title="Permalink to this headline">#</a></h2>
 <p>Presto has an extremely experimental connector that was previously called
 the <code class="docutils literal"><span class="pre">native</span></code> connector and was intertwined with the main Presto code
 (it was written before Presto had connectors). This connector is now
@@ -117,7 +117,7 @@ metadata.db.filename=var/data/db/MetaStore
 </div>
 </div>
 <div class="section" id="machine-learning-functions">
-<h2>Machine Learning Functions</h2>
+<h2>Machine Learning Functions<a class="headerlink" href="#machine-learning-functions" title="Permalink to this headline">#</a></h2>
 <p>Presto now has functions to train and use machine learning models
 (classifiers and regressors). This is currently only a proof of concept
 and is not ready for use in production. Example usage is as follows:</p>
@@ -135,13 +135,13 @@ identifiers must be integers (encoded as strings because JSON only supports
 strings for map keys) and the feature values are numbers (floating point).</p>
 </div>
 <div class="section" id="variable-length-binary-type">
-<h2>Variable Length Binary Type</h2>
+<h2>Variable Length Binary Type<a class="headerlink" href="#variable-length-binary-type" title="Permalink to this headline">#</a></h2>
 <p>Presto now supports the <code class="docutils literal"><span class="pre">varbinary</span></code> type for variable length binary data.
 Currently, the only supported function is <a class="reference internal" href="../functions/string.html#length" title="length"><code class="xref py py-func docutils literal"><span class="pre">length()</span></code></a>.
 The Hive connector now maps the Hive <code class="docutils literal"><span class="pre">BINARY</span></code> type to <code class="docutils literal"><span class="pre">varbinary</span></code>.</p>
 </div>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add missing operator: <code class="docutils literal"><span class="pre">timestamp</span> <span class="pre">with</span> <span class="pre">time</span> <span class="pre">zone</span></code> - <code class="docutils literal"><span class="pre">interval</span> <span class="pre">year</span> <span class="pre">to</span> <span class="pre">month</span></code></li>
 <li>Support explaining sampled queries</li>

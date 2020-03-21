@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-318-26-aug-2019">
-<h1>12.14. Release 318 (26 Aug 2019)</h1>
+<h1>12.14. Release 318 (26 Aug 2019)<a class="headerlink" href="#release-318-26-aug-2019" title="Permalink to this headline">#</a></h1>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix query failure when using <code class="docutils literal"><span class="pre">DISTINCT</span> <span class="pre">FROM</span></code> with the <code class="docutils literal"><span class="pre">UUID</span></code> or
 <code class="docutils literal"><span class="pre">IPADDRESS</span></code> types. (<a class="reference external" href="https://github.com/prestosql/presto/issues/1180">#1180</a>)</li>
@@ -89,7 +89,7 @@ they are in the queue or in the semantic analysis stage. (<a class="reference ex
 </ul>
 </div>
 <div class="section" id="web-ui-changes">
-<h2>Web UI Changes</h2>
+<h2>Web UI Changes<a class="headerlink" href="#web-ui-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Display information about queries that are in the queue or in the semantic analysis
 stage. (<a class="reference external" href="https://github.com/prestosql/presto/issues/1079">#1079</a>)</li>
@@ -98,7 +98,7 @@ stage. (<a class="reference external" href="https://github.com/prestosql/presto/
 </ul>
 </div>
 <div class="section" id="hive-connector-changes">
-<h2>Hive Connector Changes</h2>
+<h2>Hive Connector Changes<a class="headerlink" href="#hive-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix query failure due to missing credentials while writing empty bucket files. (<a class="reference external" href="https://github.com/prestosql/presto/issues/1298">#1298</a>)</li>
 <li>Fix bucketing of <code class="docutils literal"><span class="pre">NaN</span></code> values of <code class="docutils literal"><span class="pre">real</span></code> type. Previously <code class="docutils literal"><span class="pre">NaN</span></code> values
@@ -115,7 +115,7 @@ using the <code class="docutils literal"><span class="pre">hive.s3.requester-pay
 </ul>
 </div>
 <div class="section" id="postgresql-connector-changes">
-<h2>PostgreSQL Connector Changes</h2>
+<h2>PostgreSQL Connector Changes<a class="headerlink" href="#postgresql-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add support for providing JDBC credential in a separate file. This can be enabled by
 setting the <code class="docutils literal"><span class="pre">credential-provider.type=FILE</span></code> and <code class="docutils literal"><span class="pre">connection-credential-file</span></code>
@@ -128,7 +128,7 @@ by setting <code class="docutils literal"><span class="pre">jdbc-types-mapped-to
 </ul>
 </div>
 <div class="section" id="mysql-connector-changes">
-<h2>MySQL Connector Changes</h2>
+<h2>MySQL Connector Changes<a class="headerlink" href="#mysql-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add support for providing JDBC credential in a separate file. This can be enabled by
 setting the <code class="docutils literal"><span class="pre">credential-provider.type=FILE</span></code> and <code class="docutils literal"><span class="pre">connection-credential-file</span></code>
@@ -140,7 +140,7 @@ by setting <code class="docutils literal"><span class="pre">jdbc-types-mapped-to
 </ul>
 </div>
 <div class="section" id="redshift-connector-changes">
-<h2>Redshift Connector Changes</h2>
+<h2>Redshift Connector Changes<a class="headerlink" href="#redshift-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add support for providing JDBC credential in a separate file. This can be enabled by
 setting the <code class="docutils literal"><span class="pre">credential-provider.type=FILE</span></code> and <code class="docutils literal"><span class="pre">connection-credential-file</span></code>
@@ -152,7 +152,7 @@ by setting <code class="docutils literal"><span class="pre">jdbc-types-mapped-to
 </ul>
 </div>
 <div class="section" id="sql-server-connector-changes">
-<h2>SQL Server Connector Changes</h2>
+<h2>SQL Server Connector Changes<a class="headerlink" href="#sql-server-connector-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add support for providing JDBC credential in a separate file. This can be enabled by
 setting the <code class="docutils literal"><span class="pre">credential-provider.type=FILE</span></code> and <code class="docutils literal"><span class="pre">connection-credential-file</span></code>
@@ -164,7 +164,7 @@ by setting <code class="docutils literal"><span class="pre">jdbc-types-mapped-to
 </ul>
 </div>
 <div class="section" id="spi-changes">
-<h2>SPI Changes</h2>
+<h2>SPI Changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add <code class="docutils literal"><span class="pre">Block.isLoaded()</span></code> method. (<a class="reference external" href="https://github.com/prestosql/presto/issues/1216">#1216</a>)</li>
 <li>Update security APIs to accept the new <code class="docutils literal"><span class="pre">ConnectorSecurityContext</span></code>

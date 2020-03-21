@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-194">
-<h1>12.54. Release 0.194</h1>
+<h1>12.54. Release 0.194<a class="headerlink" href="#release-0-194" title="Permalink to this headline">#</a></h1>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix planning performance regression that can affect queries over Hive tables
 with many partitions.</li>
@@ -76,13 +76,13 @@ with many partitions.</li>
 </ul>
 </div>
 <div class="section" id="web-ui-changes">
-<h2>Web UI Changes</h2>
+<h2>Web UI Changes<a class="headerlink" href="#web-ui-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix previously empty peak memory display in the query details page.</li>
 </ul>
 </div>
 <div class="section" id="cli-changes">
-<h2>CLI Changes</h2>
+<h2>CLI Changes<a class="headerlink" href="#cli-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix regression in CLI that makes it always print “query aborted by user” when
 the result is displayed with a pager, even if the query completes successfully.</li>
@@ -92,7 +92,7 @@ the result is displayed with a pager, even if the query completes successfully.<
 </ul>
 </div>
 <div class="section" id="jdbc-driver-changes">
-<h2>JDBC Driver Changes</h2>
+<h2>JDBC Driver Changes<a class="headerlink" href="#jdbc-driver-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Allow configuring connection network timeout with <code class="docutils literal"><span class="pre">setNetworkTimeout()</span></code>.</li>
 <li>Allow setting client tags via the <code class="docutils literal"><span class="pre">ClientTags</span></code> client info property.</li>
@@ -100,7 +100,7 @@ the result is displayed with a pager, even if the query completes successfully.<
 </ul>
 </div>
 <div class="section" id="hive-changes">
-<h2>Hive Changes</h2>
+<h2>Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Consistently fail queries that attempt to read partitions that are offline.
 Previously, the query can have one of the following outcomes: fail as expected,
@@ -113,7 +113,7 @@ Buffers are only allocated for columns that are actually accessed.</li>
 </ul>
 </div>
 <div class="section" id="cassandra-changes">
-<h2>Cassandra Changes</h2>
+<h2>Cassandra Changes<a class="headerlink" href="#cassandra-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix failure when querying <code class="docutils literal"><span class="pre">information_schema.columns</span></code> when there is no equality predicate on <code class="docutils literal"><span class="pre">table_name</span></code>.</li>
 </ul>

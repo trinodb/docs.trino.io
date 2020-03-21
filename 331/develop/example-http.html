@@ -59,18 +59,18 @@
 <div class="content">
     
   <div class="section" id="example-http-connector">
-<h1>11.3. Example HTTP Connector</h1>
+<h1>11.3. Example HTTP Connector<a class="headerlink" href="#example-http-connector" title="Permalink to this headline">#</a></h1>
 <p>The Example HTTP connector has a simple goal: it reads comma-separated
 data over HTTP. For example, if you have a large amount of data in a
 CSV format, you can point the example HTTP connector at this data and
 write a SQL query to process it.</p>
 <div class="section" id="code">
-<h2>Code</h2>
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">#</a></h2>
 <p>The Example HTTP connector can be found in the <code class="docutils literal"><span class="pre">presto-example-http</span></code>
 directory in the root of the Presto source tree.</p>
 </div>
 <div class="section" id="plugin-implementation">
-<h2>Plugin Implementation</h2>
+<h2>Plugin Implementation<a class="headerlink" href="#plugin-implementation" title="Permalink to this headline">#</a></h2>
 <p>The plugin implementation in the Example HTTP connector looks very
 similar to other plugin implementations.  Most of the implementation is
 devoted to handling optional configuration and the only function of
@@ -87,7 +87,7 @@ interest is the following:</p>
 and returns an <code class="docutils literal"><span class="pre">ExampleConnectorFactory</span></code>.</p>
 </div>
 <div class="section" id="connectorfactory-implementation">
-<h2>ConnectorFactory Implementation</h2>
+<h2>ConnectorFactory Implementation<a class="headerlink" href="#connectorfactory-implementation" title="Permalink to this headline">#</a></h2>
 <p>In Presto, the primary object that handles the connection between
 Presto and a particular type of data source is the <code class="docutils literal"><span class="pre">Connector</span></code> object,
 which are created using <code class="docutils literal"><span class="pre">ConnectorFactory</span></code>.</p>
@@ -122,12 +122,12 @@ and exception handling:</p>
 </pre></div>
 </div>
 <div class="section" id="connector-exampleconnector">
-<h3>Connector: ExampleConnector</h3>
+<h3>Connector: ExampleConnector<a class="headerlink" href="#connector-exampleconnector" title="Permalink to this headline">#</a></h3>
 <p>This class allows Presto to obtain references to the various services
 provided by the connector.</p>
 </div>
 <div class="section" id="metadata-examplemetadata">
-<h3>Metadata: ExampleMetadata</h3>
+<h3>Metadata: ExampleMetadata<a class="headerlink" href="#metadata-examplemetadata" title="Permalink to this headline">#</a></h3>
 <p>This class is responsible for reporting table names, table metadata,
 column names, column metadata and other information about the schemas
 that are provided by this connector. <code class="docutils literal"><span class="pre">ConnectorMetadata</span></code> is also called
@@ -138,14 +138,14 @@ handle a given table name.</p>
 of the connector.</p>
 </div>
 <div class="section" id="split-manager-examplesplitmanager">
-<h3>Split Manager: ExampleSplitManager</h3>
+<h3>Split Manager: ExampleSplitManager<a class="headerlink" href="#split-manager-examplesplitmanager" title="Permalink to this headline">#</a></h3>
 <p>The split manager partitions the data for a table into the individual
 chunks that Presto will distribute to workers for processing.
 In the case of the Example HTTP connector, each table contains one or
 more URIs pointing at the actual data. One split is created per URI.</p>
 </div>
 <div class="section" id="record-set-provider-examplerecordsetprovider">
-<h3>Record Set Provider: ExampleRecordSetProvider</h3>
+<h3>Record Set Provider: ExampleRecordSetProvider<a class="headerlink" href="#record-set-provider-examplerecordsetprovider" title="Permalink to this headline">#</a></h3>
 <p>The record set provider creates a record set which in turn creates a
 record cursor that returns the actual data to Presto.
 <code class="docutils literal"><span class="pre">ExampleRecordCursor</span></code> reads data from a URI via HTTP. Each line

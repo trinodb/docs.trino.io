@@ -59,13 +59,13 @@
 <div class="content">
     
   <div class="section" id="release-0-113">
-<h1>12.146. Release 0.113</h1>
+<h1>12.146. Release 0.113<a class="headerlink" href="#release-0-113" title="Permalink to this headline">#</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">The ORC reader in the Hive connector is broken in this release.</p>
 </div>
 <div class="section" id="cluster-resource-management">
-<h2>Cluster Resource Management</h2>
+<h2>Cluster Resource Management<a class="headerlink" href="#cluster-resource-management" title="Permalink to this headline">#</a></h2>
 <p>The cluster resource manager announced in <a class="reference internal" href="release-0.103.html"><span class="doc">Release 0.103</span></a> is now enabled by default.
 You can disable it with the <code class="docutils literal"><span class="pre">experimental.cluster-memory-manager-enabled</span></code> flag.
 Memory limits can now be configured via <code class="docutils literal"><span class="pre">query.max-memory</span></code> which controls the total distributed
@@ -75,7 +75,7 @@ of memory a query may use on any one node. On each worker, the
 for internal Presto data structures and temporary allocations.</p>
 </div>
 <div class="section" id="session-properties">
-<h2>Session Properties</h2>
+<h2>Session Properties<a class="headerlink" href="#session-properties" title="Permalink to this headline">#</a></h2>
 <p>All session properties now have a SQL type, default value and description.  The
 value for <a class="reference internal" href="../sql/set-session.html"><span class="doc">SET SESSION</span></a> can now be any constant expression, and the
 <a class="reference internal" href="../sql/show-session.html"><span class="doc">SHOW SESSION</span></a> command prints the current effective value and default
@@ -93,7 +93,7 @@ need the expected Java type of the property.</p>
 </div>
 </div>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Allow using any type with value window functions <a class="reference internal" href="../functions/window.html#first_value" title="first_value"><code class="xref py py-func docutils literal"><span class="pre">first_value()</span></code></a>,
 <a class="reference internal" href="../functions/window.html#last_value" title="last_value"><code class="xref py py-func docutils literal"><span class="pre">last_value()</span></code></a>, <a class="reference internal" href="../functions/window.html#nth_value" title="nth_value"><code class="xref py py-func docutils literal"><span class="pre">nth_value()</span></code></a>, <a class="reference internal" href="../functions/window.html#lead" title="lead"><code class="xref py py-func docutils literal"><span class="pre">lead()</span></code></a> and <a class="reference internal" href="../functions/window.html#lag" title="lag"><code class="xref py py-func docutils literal"><span class="pre">lag()</span></code></a>.</li>
@@ -106,7 +106,7 @@ need the expected Java type of the property.</p>
 </ul>
 </div>
 <div class="section" id="hive-changes">
-<h2>Hive Changes</h2>
+<h2>Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Fix the Hive metadata cache to properly handle negative responses.
 This makes the background refresh work properly by clearing the cached
@@ -117,7 +117,7 @@ Hive but Presto thinks it still exists.</li>
 </ul>
 </div>
 <div class="section" id="spi-changes">
-<h2>SPI Changes</h2>
+<h2>SPI Changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Changed the internal representation of structural types.</li>
 </ul>

@@ -59,9 +59,9 @@
 <div class="content">
     
   <div class="section" id="release-0-102">
-<h1>12.157. Release 0.102</h1>
+<h1>12.157. Release 0.102<a class="headerlink" href="#release-0-102" title="Permalink to this headline">#</a></h1>
 <div class="section" id="unicode-support">
-<h2>Unicode Support</h2>
+<h2>Unicode Support<a class="headerlink" href="#unicode-support" title="Permalink to this headline">#</a></h2>
 <p>All string functions have been updated to support Unicode. The functions assume
 that the string contains valid UTF-8 encoded code points. There are no explicit
 checks for valid UTF-8, and the functions may return incorrect results on
@@ -72,7 +72,7 @@ into a single user-perceived <em>character</em>, the basic unit of a writing sys
 language, but the functions will treat each code point as a separate unit.</p>
 </div>
 <div class="section" id="regular-expression-functions">
-<h2>Regular Expression Functions</h2>
+<h2>Regular Expression Functions<a class="headerlink" href="#regular-expression-functions" title="Permalink to this headline">#</a></h2>
 <p>All <a class="reference internal" href="../functions/regexp.html"><span class="doc">Regular Expression Functions</span></a> have been rewritten to improve performance.
 The new versions are often twice as fast and in some cases can be many
 orders of magnitude faster (due to removal of quadratic behavior).
@@ -80,7 +80,7 @@ This change introduced some minor incompatibilities that are explained
 in the documentation for the functions.</p>
 </div>
 <div class="section" id="general-changes">
-<h2>General Changes</h2>
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Add support for partitioned right outer joins, which allows for larger tables to
 be joined on the inner side.</li>
@@ -99,7 +99,7 @@ be joined on the inner side.</li>
 </ul>
 </div>
 <div class="section" id="hive-changes">
-<h2>Hive Changes</h2>
+<h2>Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li>Collect more metrics from <code class="docutils literal"><span class="pre">PrestoS3FileSystem</span></code>.</li>
 <li>Retry when seeking in <code class="docutils literal"><span class="pre">PrestoS3FileSystem</span></code>.</li>
