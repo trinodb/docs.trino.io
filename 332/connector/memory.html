@@ -1,0 +1,139 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>6.16. Memory Connector &#8212; Presto 332 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '332',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6.17. MemSQL Connector" href="memsql.html" />
+    <link rel="prev" title="6.15. Local File Connector" href="localfile.html" /> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133457846-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-133457846-1');
+    </script>
+  </head>
+  <body>
+<div class="header">
+    <span style="float: right; margin-top: 20px;">
+        <a href="/slack.html">
+            <img height="24" src="https://img.shields.io/badge/Slack-ask%20for%20help-44af5c.svg?logo=slack">
+        </a>
+    </span>
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 332 Documentation</span></a></h1>
+    <h2 class="heading"><span>6.16. Memory Connector</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="localfile.html">6.15. Local File Connector</a>
+    </span>
+    <span class="right">
+        <a href="memsql.html">6.17. MemSQL Connector</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="memory-connector">
+<h1>6.16. Memory Connector<a class="headerlink" href="#memory-connector" title="Permalink to this headline">#</a></h1>
+<p>The Memory connector stores all data and metadata in RAM on workers
+and both are discarded when Presto restarts.</p>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h2>
+<p>To configure the Memory connector, create a catalog properties file
+<code class="docutils literal"><span class="pre">etc/catalog/memory.properties</span></code> with the following contents:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>connector.name=memory
+memory.max-data-per-node=128MB
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">memory.max-data-per-node</span></code> defines memory limit for pages stored in this
+connector per each node (default value is 128MB).</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">#</a></h2>
+<p>Create a table using the Memory connector:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">memory</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">nation</span> <span class="k">AS</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">tpch</span><span class="p">.</span><span class="n">tiny</span><span class="p">.</span><span class="n">nation</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Insert data into a table in the Memory connector:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">memory</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">nation</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">tpch</span><span class="p">.</span><span class="n">tiny</span><span class="p">.</span><span class="n">nation</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Select from the Memory connector:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">memory</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">nation</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Drop table:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">memory</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">nation</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="memory-connector-limitations">
+<h2>Memory Connector Limitations<a class="headerlink" href="#memory-connector-limitations" title="Permalink to this headline">#</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>After <code class="docutils literal"><span class="pre">DROP</span> <span class="pre">TABLE</span></code> memory is not released immediately. It is
+released after the next write access to memory connector.</li>
+<li>When one worker fails/restarts, all data that was stored in its
+memory is lost. To prevent silent data loss the
+connector throws an error on any read access to such
+corrupted table.</li>
+<li>When a query fails for any reason during writing to memory table,
+the table enters an undefined state. The table should be dropped
+and recreated manually. Reading attempts from the table may fail,
+or may return partial data.</li>
+<li>When the coordinator fails/restarts, all metadata about tables is
+lost. The tables remain on the workers, but become inaccessible.</li>
+<li>This connector does not work properly with multiple
+coordinators, since each coordinator has different
+metadata.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="localfile.html">6.15. Local File Connector</a>
+    </span>
+    <span class="right">
+        <a href="memsql.html">6.17. MemSQL Connector</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>
