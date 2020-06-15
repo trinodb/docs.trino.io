@@ -1,0 +1,163 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>5.3. Cost based optimizations &#8212; Presto 335 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '335',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Connectors" href="../connector.html" />
+    <link rel="prev" title="5.2. Cost in EXPLAIN" href="cost-in-explain.html" /> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133457846-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-133457846-1');
+    </script>
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 335 Documentation</span></a></h1>
+    <h2 class="heading"><span>5.3. Cost based optimizations</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="cost-in-explain.html">5.2. Cost in EXPLAIN</a>
+    </span>
+    <span class="right">
+        <a href="../connector.html">6. Connectors</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="cost-based-optimizations">
+<h1>5.3. Cost based optimizations<a class="headerlink" href="#cost-based-optimizations" title="Permalink to this headline">#</a></h1>
+<p>Presto supports several cost based optimizations, described below.</p>
+<div class="section" id="join-enumeration">
+<h2>Join Enumeration<a class="headerlink" href="#join-enumeration" title="Permalink to this headline">#</a></h2>
+<p>The order in which joins are executed in a query can have a significant impact
+on the query’s performance. The aspect of join ordering that has the largest
+impact on performance is the size of the data being processed and transferred
+over the network. If a join, that produces a lot of data, is performed early in
+the execution, then subsequent stages need to process large amounts of
+data for longer than necessary, increasing the time and resources needed for
+the query.</p>
+<p>With cost based join enumeration, Presto uses
+<a class="reference internal" href="statistics.html"><span class="doc">Table Statistics</span></a> provided by connectors to estimate
+the costs for different join orders and automatically picks the
+join order with the lowest computed costs.</p>
+<p>The join enumeration strategy is governed by the <code class="docutils literal"><span class="pre">join_reordering_strategy</span></code>
+session property, with the <code class="docutils literal"><span class="pre">optimizer.join-reordering-strategy</span></code>
+configuration property providing the default value.</p>
+<dl class="docutils">
+<dt>The valid values are:</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">AUTOMATIC</span></code> (default) - full automatic join enumeration enabled</li>
+<li><code class="docutils literal"><span class="pre">ELIMINATE_CROSS_JOINS</span></code> - eliminate unnecessary cross joins</li>
+<li><code class="docutils literal"><span class="pre">NONE</span></code> - purely syntactic join order</li>
+</ul>
+</dd>
+</dl>
+<p>If using <code class="docutils literal"><span class="pre">AUTOMATIC</span></code> and statistics are not available, or if for any other
+reason a cost could not be computed, the <code class="docutils literal"><span class="pre">ELIMINATE_CROSS_JOINS</span></code> strategy is
+used instead.</p>
+</div>
+<div class="section" id="join-distribution-selection">
+<h2>Join Distribution Selection<a class="headerlink" href="#join-distribution-selection" title="Permalink to this headline">#</a></h2>
+<p>Presto uses a hash based join algorithm. That implies that for each join
+operator a hash table must be created from one join input, called build side.
+The other input, called probe side, is then iterated, and for each row the hash table is
+queried to find matching rows.</p>
+<dl class="docutils">
+<dt>There are two types of join distributions:</dt>
+<dd><ul class="first last simple">
+<li>Partitioned: each node participating in the query builds a hash table
+from only fraction of the data</li>
+<li>Broadcast: each node participating in the query builds a hash table
+from all of the data (data is replicated to each node)</li>
+</ul>
+</dd>
+</dl>
+<p>Each type have their trade offs. Partitioned joins require redistributing both
+tables using a hash of the join key. This can be slower, sometimes
+substantially slower, than broadcast joins, but allows much larger joins. In
+particular, broadcast joins are faster if the build side is much smaller
+than the probe side. However, broadcast joins require that the tables on the
+build side of the join after filtering fit in memory on each node, whereas
+distributed joins only need to fit in distributed memory across all nodes.</p>
+<p>With cost based join distribution selection, Presto automatically chooses to
+use a partitioned or broadcast join. With cost based join enumeration, Presto
+automatically chooses which side is the probe and which is the build.</p>
+<p>The join distribution strategy is governed by the <code class="docutils literal"><span class="pre">join_distribution_type</span></code>
+session property, with the <code class="docutils literal"><span class="pre">join-distribution-type</span></code> configuration property
+providing the default value.</p>
+<dl class="docutils">
+<dt>The valid values are:</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">AUTOMATIC</span></code> (default) - join distribution type is determined automatically
+for each join</li>
+<li><code class="docutils literal"><span class="pre">BROADCAST</span></code> - broadcast join distribution is used for all joins</li>
+<li><code class="docutils literal"><span class="pre">PARTITIONED</span></code> - partitioned join distribution is used for all join</li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="capping-replicated-table-size">
+<h3>Capping replicated table size<a class="headerlink" href="#capping-replicated-table-size" title="Permalink to this headline">#</a></h3>
+<p>Join distribution type will be chosen automatically when join reordering strategy
+is set to <code class="docutils literal"><span class="pre">COST_BASED</span></code> or when join distribution type is set to <code class="docutils literal"><span class="pre">AUTOMATIC</span></code>.
+In such case it is possible to cap the maximum size of replicated table via
+<code class="docutils literal"><span class="pre">join-max-broadcast-table-size</span></code> config property (e.g. <code class="docutils literal"><span class="pre">join-max-broadcast-table-size=100MB</span></code>)
+or via <code class="docutils literal"><span class="pre">join_max_broadcast_table_size</span></code> session property (e.g. <code class="docutils literal"><span class="pre">set</span> <span class="pre">session</span> <span class="pre">join_max_broadcast_table_size='100MB';</span></code>)
+This allows to improve cluster concurrency and to prevent bad plans when CBO misestimates size of joined tables.</p>
+<p>By default replicated table size is capped to 100MB.</p>
+</div>
+</div>
+<div class="section" id="connector-implementations">
+<h2>Connector Implementations<a class="headerlink" href="#connector-implementations" title="Permalink to this headline">#</a></h2>
+<p>In order for the Presto optimizer to use the cost based strategies,
+the connector implementation must provide <a class="reference internal" href="statistics.html"><span class="doc">Table Statistics</span></a>.</p>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="cost-in-explain.html">5.2. Cost in EXPLAIN</a>
+    </span>
+    <span class="right">
+        <a href="../connector.html">6. Connectors</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

@@ -1,0 +1,115 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>6. Connectors &#8212; Presto 335 Documentation</title>
+    <link rel="stylesheet" href="_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '335',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6.1. Accumulo Connector" href="connector/accumulo.html" />
+    <link rel="prev" title="5.3. Cost based optimizations" href="optimizer/cost-based-optimizations.html" /> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133457846-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-133457846-1');
+    </script>
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="index.html">
+        <span>Presto 335 Documentation</span></a></h1>
+    <h2 class="heading"><span>6. Connectors</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="optimizer/cost-based-optimizations.html">5.3. Cost based optimizations</a>
+    </span>
+    <span class="right">
+        <a href="connector/accumulo.html">6.1. Accumulo Connector</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="connectors">
+<h1>6. Connectors<a class="headerlink" href="#connectors" title="Permalink to this headline">#</a></h1>
+<p>This chapter describes the connectors available in Presto to access data
+from different data sources.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="connector/accumulo.html">6.1. Accumulo Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/bigquery.html">6.2. BigQuery Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/blackhole.html">6.3. Black Hole Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/cassandra.html">6.4. Cassandra Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/elasticsearch.html">6.5. Elasticsearch Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/googlesheets.html">6.6. Google Sheets Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/hive.html">6.7. Hive Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/hive-gcs-tutorial.html">6.8. Hive Connector GCS Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/hive-security.html">6.9. Hive Security Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/jmx.html">6.10. JMX Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/kafka.html">6.11. Kafka Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/kafka-tutorial.html">6.12. Kafka Connector Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/kinesis.html">6.13. Kinesis Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/kudu.html">6.14. Kudu Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/localfile.html">6.15. Local File Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/memory.html">6.16. Memory Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/memsql.html">6.17. MemSQL Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/mongodb.html">6.18. MongoDB Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/mysql.html">6.19. MySQL Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/oracle.html">6.20. Oracle Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/phoenix.html">6.21. Phoenix Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/pinot.html">6.22. Pinot Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/postgresql.html">6.23. PostgreSQL Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/prometheus.html">6.24. Prometheus Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/redis.html">6.25. Redis Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/redshift.html">6.26. Redshift Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/sqlserver.html">6.27. SQL Server Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/system.html">6.28. System Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/thrift.html">6.29. Thrift Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/tpcds.html">6.30. TPCDS Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/tpch.html">6.31. TPCH Connector</a></li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="optimizer/cost-based-optimizations.html">5.3. Cost based optimizations</a>
+    </span>
+    <span class="right">
+        <a href="connector/accumulo.html">6.1. Accumulo Connector</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

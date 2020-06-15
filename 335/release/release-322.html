@@ -1,0 +1,103 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>12.14. Release 322 (16 Oct 2019) &#8212; Presto 335 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '335',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12.15. Release 321 (15 Oct 2019)" href="release-321.html" />
+    <link rel="prev" title="12.13. Release 323 (23 Oct 2019)" href="release-323.html" /> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133457846-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-133457846-1');
+    </script>
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 335 Documentation</span></a></h1>
+    <h2 class="heading"><span>12.14. Release 322 (16 Oct 2019)</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-323.html">12.13. Release 323 (23 Oct 2019)</a>
+    </span>
+    <span class="right">
+        <a href="release-321.html">12.15. Release 321 (15 Oct 2019)</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-322-16-oct-2019">
+<h1>12.14. Release 322 (16 Oct 2019)<a class="headerlink" href="#release-322-16-oct-2019" title="Permalink to this headline">#</a></h1>
+<div class="section" id="general-changes">
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li>Improve performance of certain join queries by reducing the amount of data
+that needs to be scanned. (<a class="reference external" href="https://github.com/prestosql/presto/issues/1673">#1673</a>)</li>
+</ul>
+</div>
+<div class="section" id="server-rpm-changes">
+<h2>Server RPM Changes<a class="headerlink" href="#server-rpm-changes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li>Fix a regression that caused zero-length files in the RPM. (<a class="reference external" href="https://github.com/prestosql/presto/issues/1767">#1767</a>)</li>
+</ul>
+</div>
+<div class="section" id="connector-changes">
+<h2>Connector Changes<a class="headerlink" href="#connector-changes" title="Permalink to this headline">#</a></h2>
+<p>These changes apply to MySQL, PostgreSQL, Redshift, and SQL Server.</p>
+<ul class="simple">
+<li>Add support for providing credentials using a keystore file. This can be enabled
+by setting the <code class="docutils literal"><span class="pre">credential-provider.type</span></code> configuration property to <code class="docutils literal"><span class="pre">KEYSTORE</span></code>
+and by setting the <code class="docutils literal"><span class="pre">keystore-file-path</span></code>, <code class="docutils literal"><span class="pre">keystore-type</span></code>, <code class="docutils literal"><span class="pre">keystore-password</span></code>,
+<code class="docutils literal"><span class="pre">keystore-user-credential-password</span></code>, <code class="docutils literal"><span class="pre">keystore-password-credential-password</span></code>,
+<code class="docutils literal"><span class="pre">keystore-user-credential-name</span></code>, and <code class="docutils literal"><span class="pre">keystore-password-credential-name</span></code>
+configuration properties. (<a class="reference external" href="https://github.com/prestosql/presto/issues/1521">#1521</a>)</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-323.html">12.13. Release 323 (23 Oct 2019)</a>
+    </span>
+    <span class="right">
+        <a href="release-321.html">12.15. Release 321 (15 Oct 2019)</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>
