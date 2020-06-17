@@ -1,0 +1,226 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>6.22. Pinot Connector &#8212; Presto 336 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '336',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6.23. PostgreSQL Connector" href="postgresql.html" />
+    <link rel="prev" title="6.21. Phoenix Connector" href="phoenix.html" /> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133457846-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-133457846-1');
+    </script>
+  </head>
+  <body>
+<div class="header">
+    <span style="float: right; margin-top: 20px;">
+        <a href="/slack.html">
+            <img height="24" src="https://img.shields.io/badge/Slack-ask%20for%20help-44af5c.svg?logo=slack">
+        </a>
+    </span>
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 336 Documentation</span></a></h1>
+    <h2 class="heading"><span>6.22. Pinot Connector</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="phoenix.html">6.21. Phoenix Connector</a>
+    </span>
+    <span class="right">
+        <a href="postgresql.html">6.23. PostgreSQL Connector</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="pinot-connector">
+<h1>6.22. Pinot Connector<a class="headerlink" href="#pinot-connector" title="Permalink to this headline">#</a></h1>
+<p>The Pinot connector allows Presto to query data stored in
+<a class="reference external" href="https://pinot.apache.org/">Apache Pinot™</a>.</p>
+<div class="section" id="compatibility">
+<h2>Compatibility<a class="headerlink" href="#compatibility" title="Permalink to this headline">#</a></h2>
+<p>The Pinot connector is compatible with all Pinot versions starting from 0.1.0.</p>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h2>
+<p>To configure the Pinot connector, create a catalog properties file
+e.g. <code class="docutils literal"><span class="pre">etc/catalog/pinot.properties</span></code> with at least the following contents:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>connector.name=pinot
+pinot.controller-urls=host1:9000,host2:9000
+</pre></div>
+</div>
+<p>Replace <code class="docutils literal"><span class="pre">host1:9000,host2:9000</span></code> with a comma-separated list of Pinot Controller nodes.
+This can be the ip or the FDQN, the url scheme (<code class="docutils literal"><span class="pre">http://</span></code>) is optional.</p>
+</div>
+<div class="section" id="configuration-properties">
+<h2>Configuration Properties<a class="headerlink" href="#configuration-properties" title="Permalink to this headline">#</a></h2>
+<p>The following configuration properties are available:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="8%" />
+<col width="66%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Property Name</th>
+<th class="head">Required</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">pinot.controller-urls</span></code></td>
+<td>Yes</td>
+<td>A comma separated list of controller hosts. If Pinot is deployed via
+<a class="reference external" href="https://kubernetes.io/">Kubernetes</a> this needs to point to the controller
+service endpoint. The Pinot broker and server must be accessible via DNS as
+Pinot returns hostnames and not IP addresses.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">pinot.segments-per-split</span></code></td>
+<td>No</td>
+<td>The number of segments processed in a split. Setting this higher reduces the
+number of requests made to Pinot. This is useful for smaller Pinot clusters.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">pinot.request-timeout</span></code></td>
+<td>No</td>
+<td>The timeout for Pinot requests. Increasing this can reduce timeouts if DNS
+resolution is slow.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="querying-pinot-tables">
+<h2>Querying Pinot Tables<a class="headerlink" href="#querying-pinot-tables" title="Permalink to this headline">#</a></h2>
+<p>The Pinot connector automatically exposes all tables in the default schema of the catalog.
+You can list all tables in the pinot catalog with the following query:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SHOW</span> <span class="n">TABLES</span> <span class="k">FROM</span> <span class="n">pinot</span><span class="p">.</span><span class="k">default</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>You can list columns in the flight_status table:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">DESCRIBE</span> <span class="n">pinot</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">flight_status</span><span class="p">;</span>
+<span class="k">SHOW</span> <span class="n">COLUMNS</span> <span class="k">FROM</span> <span class="n">pinot</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">flight_status</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Queries written with SQL are fully supported and can include filters and limits:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">foo</span>
+<span class="k">FROM</span> <span class="n">pinot_table</span>
+<span class="k">WHERE</span> <span class="n">bar</span> <span class="o">=</span> <span class="mi">3</span> <span class="k">AND</span> <span class="n">baz</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">&#39;ONE&#39;</span><span class="p">,</span> <span class="s1">&#39;TWO&#39;</span><span class="p">,</span> <span class="s1">&#39;THREE&#39;</span><span class="p">)</span>
+<span class="k">LIMIT</span> <span class="mi">25000</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dynamic-tables">
+<h2>Dynamic Tables<a class="headerlink" href="#dynamic-tables" title="Permalink to this headline">#</a></h2>
+<p>To leverage Pinot’s fast aggregation, a Pinot query written in PQL can be used as the table name.
+Filters and limits in the outer query are pushed down to Pinot.
+Let’s look at an example query:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">pinot</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="ss">&quot;SELECT MAX(col1), COUNT(col2) FROM pinot_table GROUP BY col3, col4&quot;</span>
+<span class="k">WHERE</span> <span class="n">col3</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">&#39;FOO&#39;</span><span class="p">,</span> <span class="s1">&#39;BAR&#39;</span><span class="p">)</span> <span class="k">AND</span> <span class="n">col4</span> <span class="o">&gt;</span> <span class="mi">50</span>
+<span class="k">LIMIT</span> <span class="mi">30000</span>
+</pre></div>
+</div>
+<p>Filtering and limit processing is pushed down to Pinot.</p>
+<p>The queries are routed to the broker and are more suitable to aggregate queries.</p>
+<p>For <code class="docutils literal"><span class="pre">SELECT</span></code> queries without aggregates it is more performant to issue a regular SQL query.
+Processing is routed directly to the servers that store the data.</p>
+<p>The above query is translated to the following Pinot PQL query:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">MAX</span><span class="p">(</span><span class="n">col1</span><span class="p">),</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">col2</span><span class="p">)</span>
+<span class="k">FROM</span> <span class="n">pinot_table</span>
+<span class="k">WHERE</span> <span class="n">col3</span> <span class="k">IN</span><span class="p">(</span><span class="s1">&#39;FOO&#39;</span><span class="p">,</span> <span class="s1">&#39;BAR&#39;</span><span class="p">)</span> <span class="k">and</span> <span class="n">col4</span> <span class="o">&gt;</span> <span class="mi">50</span>
+<span class="n">TOP</span> <span class="mi">30000</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-types">
+<h2>Data types<a class="headerlink" href="#data-types" title="Permalink to this headline">#</a></h2>
+<p>Pinot does not allow null values in any data type and supports the following primitive types:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="68%" />
+<col width="32%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Pinot</th>
+<th class="head">Presto</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">INT</span></code></td>
+<td><code class="docutils literal"><span class="pre">INTEGER</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">LONG</span></code></td>
+<td><code class="docutils literal"><span class="pre">BIGINT</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">FLOAT</span></code></td>
+<td><code class="docutils literal"><span class="pre">REAL</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">DOUBLE</span></code></td>
+<td><code class="docutils literal"><span class="pre">DOUBLE</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">STRING</span></code></td>
+<td><code class="docutils literal"><span class="pre">VARCHAR</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">INT_ARRAY</span></code></td>
+<td><code class="docutils literal"><span class="pre">VARCHAR</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">LONG_ARRAY</span></code></td>
+<td><code class="docutils literal"><span class="pre">VARCHAR</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">FLOAT_ARRAY</span></code></td>
+<td><code class="docutils literal"><span class="pre">VARCHAR</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">DOUBLE_ARRAY</span></code></td>
+<td><code class="docutils literal"><span class="pre">VARCHAR</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">STRING_ARRAY</span></code></td>
+<td><code class="docutils literal"><span class="pre">VARCHAR</span></code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="phoenix.html">6.21. Phoenix Connector</a>
+    </span>
+    <span class="right">
+        <a href="postgresql.html">6.23. PostgreSQL Connector</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>
