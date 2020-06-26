@@ -1,0 +1,118 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>7. Connectors &#8212; Presto 337 Documentation</title>
+    <link rel="stylesheet" href="_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '337',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="7.1. Accumulo Connector" href="connector/accumulo.html" />
+    <link rel="prev" title="6.3. Cost based optimizations" href="optimizer/cost-based-optimizations.html" /> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133457846-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-133457846-1');
+    </script>
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="index.html">
+        <span>Presto 337 Documentation</span></a></h1>
+    <h2 class="heading"><span>7. Connectors</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="optimizer/cost-based-optimizations.html">6.3. Cost based optimizations</a>
+    </span>
+    <span class="right">
+        <a href="connector/accumulo.html">7.1. Accumulo Connector</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="connectors">
+<h1>7. Connectors<a class="headerlink" href="#connectors" title="Permalink to this headline">#</a></h1>
+<p>This chapter describes the connectors available in Presto to access data
+from different data sources.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="connector/accumulo.html">7.1. Accumulo Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/bigquery.html">7.2. BigQuery Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/blackhole.html">7.3. Black Hole Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/cassandra.html">7.4. Cassandra Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/druid.html">7.5. Druid Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/elasticsearch.html">7.6. Elasticsearch Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/googlesheets.html">7.7. Google Sheets Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/hive.html">7.8. Hive Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/hive-gcs-tutorial.html">7.9. Hive Connector GCS Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/hive-security.html">7.10. Hive Security Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/hive-caching.html">7.11. Hive Connector Storage Caching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/hive-azure.html">7.12. Hive Connector with Azure Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/jmx.html">7.13. JMX Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/kafka.html">7.14. Kafka Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/kafka-tutorial.html">7.15. Kafka Connector Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/kinesis.html">7.16. Kinesis Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/kudu.html">7.17. Kudu Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/localfile.html">7.18. Local File Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/memory.html">7.19. Memory Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/memsql.html">7.20. MemSQL Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/mongodb.html">7.21. MongoDB Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/mysql.html">7.22. MySQL Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/oracle.html">7.23. Oracle Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/phoenix.html">7.24. Phoenix Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/pinot.html">7.25. Pinot Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/postgresql.html">7.26. PostgreSQL Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/prometheus.html">7.27. Prometheus Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/redis.html">7.28. Redis Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/redshift.html">7.29. Redshift Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/sqlserver.html">7.30. SQL Server Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/system.html">7.31. System Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/thrift.html">7.32. Thrift Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/tpcds.html">7.33. TPCDS Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connector/tpch.html">7.34. TPCH Connector</a></li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="optimizer/cost-based-optimizations.html">6.3. Cost based optimizations</a>
+    </span>
+    <span class="right">
+        <a href="connector/accumulo.html">7.1. Accumulo Connector</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

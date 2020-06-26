@@ -1,0 +1,154 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>5.1. Web UI &#8212; Presto 337 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '337',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.2. Tuning Presto" href="tuning.html" />
+    <link rel="prev" title="5. Administration" href="../admin.html" /> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133457846-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-133457846-1');
+    </script>
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 337 Documentation</span></a></h1>
+    <h2 class="heading"><span>5.1. Web UI</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="../admin.html">5. Administration</a>
+    </span>
+    <span class="right">
+        <a href="tuning.html">5.2. Tuning Presto</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="web-ui">
+<h1>5.1. Web UI<a class="headerlink" href="#web-ui" title="Permalink to this headline">#</a></h1>
+<p>Presto provides a web-based user interface (UI) for monitoring a Presto cluster
+and managing queries. The Web UI is accessible on the coordinator via
+HTTP/HTTPS, using the corresponding port number specified in the coordinator
+<a class="reference internal" href="../installation/deployment.html#config-properties"><span class="std std-ref">Config Properties</span></a>. It can be configured with <a class="reference internal" href="properties.html#web-ui-properties"><span class="std std-ref">Web UI Properties</span></a>.</p>
+<p>The Web UI can be disabled entirely with the <code class="docutils literal"><span class="pre">web-ui.enabled</span></code> property.</p>
+<div class="section" id="authentication">
+<span id="web-ui-authentication"></span><h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">#</a></h2>
+<p>The Web UI requires users to authenticate. If Presto is not configured to require
+authentication, then any username can be used, and no password is required or
+allowed. Typically, users should login with the same username that they use for
+running queries.</p>
+<p>Accessing the Web UI over HTTPS requires configuring an authentication type for
+the Web UI or the Presto server. If no authentication type is configured for the
+Web UI, then it will chosen based on the Presto server authentication type.</p>
+<p>If no system access control is installed, then all users will be able to view and kill
+any query. This can be restricted by using <a class="reference internal" href="../security/built-in-system-access-control.html#query-rules"><span class="std std-ref">query rules</span></a> with the
+<a class="reference internal" href="../security/built-in-system-access-control.html"><span class="doc">Built-in System Access Control</span></a>. Users always have permission to view
+or kill their own queries.</p>
+<div class="section" id="password-authentication">
+<h3>Password Authentication<a class="headerlink" href="#password-authentication" title="Permalink to this headline">#</a></h3>
+<p>Typically, a <a class="reference internal" href="../develop/password-authenticator.html"><span class="doc">password authenticator</span></a>
+such as <a class="reference internal" href="../security/ldap.html"><span class="doc">LDAP</span></a> or <a class="reference internal" href="../security/password-file.html"><span class="doc">password file</span></a>
+is used to secure both the Presto server and the Web UI. When the Presto server
+is configured to use a password authenticator, the Web UI authentication type
+is automatically set to <code class="docutils literal"><span class="pre">form</span></code>. The Web UI will display a login form that accepts
+a username and password.</p>
+</div>
+<div class="section" id="fixed-user-authentication">
+<h3>Fixed User Authentication<a class="headerlink" href="#fixed-user-authentication" title="Permalink to this headline">#</a></h3>
+<p>If you require the Web UI to be accessible without authentication, you can set a fixed
+username that will be used for all Web UI access by setting the authentication type to
+<code class="docutils literal"><span class="pre">fixed</span></code> and setting the username with the <code class="docutils literal"><span class="pre">web-ui.user</span></code> configuration property.
+If there is a system access control installed, this user must have permission to view
+(and possibly to kill) queries.</p>
+</div>
+<div class="section" id="other-authentication-types">
+<h3>Other Authentication Types<a class="headerlink" href="#other-authentication-types" title="Permalink to this headline">#</a></h3>
+<p>The following Web UI authentication types are also supported:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">certificate</span></code></li>
+<li><code class="docutils literal"><span class="pre">kerberos</span></code></li>
+<li><code class="docutils literal"><span class="pre">jwt</span></code></li>
+</ul>
+<p>For these authentication types, the username is defined by <a class="reference internal" href="../security/user-mapping.html"><span class="doc">User Mapping</span></a>.</p>
+</div>
+</div>
+<div class="section" id="user-interface-overview">
+<span id="web-ui-overview"></span><h2>User Interface Overview<a class="headerlink" href="#user-interface-overview" title="Permalink to this headline">#</a></h2>
+<p>The main page has a list of queries along with information like unique query ID, query text,
+query state, percentage completed, username and source from which this query originated.
+The currently running queries are at the top of the page, followed by the most recently
+completed or failed queries.</p>
+<p>The possible query states are as follows:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">QUEUED</span></code> – Query has been accepted and is awaiting execution.</li>
+<li><code class="docutils literal"><span class="pre">PLANNING</span></code> – Query is being planned.</li>
+<li><code class="docutils literal"><span class="pre">STARTING</span></code> – Query execution is being started.</li>
+<li><code class="docutils literal"><span class="pre">RUNNING</span></code> – Query has at least one running task.</li>
+<li><code class="docutils literal"><span class="pre">BLOCKED</span></code> – Query is blocked and is waiting for resources (buffer space, memory, splits, etc.).</li>
+<li><code class="docutils literal"><span class="pre">FINISHING</span></code> – Query is finishing (e.g. commit for autocommit queries).</li>
+<li><code class="docutils literal"><span class="pre">FINISHED</span></code> – Query has finished executing and all output has been consumed.</li>
+<li><code class="docutils literal"><span class="pre">FAILED</span></code> – Query execution failed.</li>
+</ul>
+<p>The <code class="docutils literal"><span class="pre">BLOCKED</span></code> state is normal, but if it is persistent, it should be investigated.
+It has many potential causes: insufficient memory or splits, disk or network I/O bottlenecks, data skew
+(all the data goes to a few workers), a lack of parallelism (only a few workers available), or computationally
+expensive stages of the query following a given stage.  Additionally, a query can be in
+the <code class="docutils literal"><span class="pre">BLOCKED</span></code> state if a client is not processing the data fast enough (common with “SELECT *” queries).</p>
+<p>For more detailed information about a query, simply click the query ID link.
+The query detail page has a summary section, graphical representation of various stages of the
+query and a list of tasks. Each task ID can be clicked to get more information about that task.</p>
+<p>The summary section has a button to kill the currently running query. There are two visualizations
+available in the summary section: task execution and timeline. The full JSON document containing
+information and statistics about the query is available by clicking the <em>JSON</em> link. These visualizations
+and other statistics can be used to analyze where time is being spent for a query.</p>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="../admin.html">5. Administration</a>
+    </span>
+    <span class="right">
+        <a href="tuning.html">5.2. Tuning Presto</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

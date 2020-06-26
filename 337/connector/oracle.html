@@ -1,0 +1,141 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>7.23. Oracle Connector &#8212; Presto 337 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '337',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7.24. Phoenix Connector" href="phoenix.html" />
+    <link rel="prev" title="7.22. MySQL Connector" href="mysql.html" /> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133457846-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-133457846-1');
+    </script>
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 337 Documentation</span></a></h1>
+    <h2 class="heading"><span>7.23. Oracle Connector</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="mysql.html">7.22. MySQL Connector</a>
+    </span>
+    <span class="right">
+        <a href="phoenix.html">7.24. Phoenix Connector</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="oracle-connector">
+<h1>7.23. Oracle Connector<a class="headerlink" href="#oracle-connector" title="Permalink to this headline">#</a></h1>
+<p>The Oracle connector allows querying and creating tables in an
+external Oracle database. This can be used to join data between
+different systems like Oracle and Hive, or between two different
+Oracle instances.</p>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h2>
+<p>To configure the Oracle connector, create a catalog properties file
+in <code class="docutils literal"><span class="pre">etc/catalog</span></code> named, for example, <code class="docutils literal"><span class="pre">oracle.properties</span></code>, to
+mount the Oracle connector as the <code class="docutils literal"><span class="pre">oracle</span></code> catalog.
+Create the file with the following contents, replacing the
+connection properties as appropriate for your setup:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>connector.name=oracle
+connection-url=jdbc:oracle:thin:@example.net:1521/ORCLCDB
+connection-user=root
+connection-password=secret
+</pre></div>
+</div>
+<div class="section" id="multiple-oracle-servers">
+<h3>Multiple Oracle Servers<a class="headerlink" href="#multiple-oracle-servers" title="Permalink to this headline">#</a></h3>
+<p>You can have as many catalogs as you need, so if you have additional
+Oracle servers, simply add another properties file to <code class="docutils literal"><span class="pre">etc/catalog</span></code>
+with a different name (making sure it ends in <code class="docutils literal"><span class="pre">.properties</span></code>). For
+example, if you name the property file <code class="docutils literal"><span class="pre">sales.properties</span></code>, Presto
+will create a catalog named <code class="docutils literal"><span class="pre">sales</span></code> using the configured connector.</p>
+</div>
+</div>
+<div class="section" id="querying-oracle">
+<h2>Querying Oracle<a class="headerlink" href="#querying-oracle" title="Permalink to this headline">#</a></h2>
+<p>The Oracle connector provides a schema for every Oracle <em>database</em>.
+You can see the available Oracle databases by running <code class="docutils literal"><span class="pre">SHOW</span> <span class="pre">SCHEMAS</span></code>:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SHOW</span> <span class="n">SCHEMAS</span> <span class="k">FROM</span> <span class="n">oracle</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>If you have a Oracle database named <code class="docutils literal"><span class="pre">web</span></code>, you can view the tables
+in this database by running <code class="docutils literal"><span class="pre">SHOW</span> <span class="pre">TABLES</span></code>:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SHOW</span> <span class="n">TABLES</span> <span class="k">FROM</span> <span class="n">oracle</span><span class="p">.</span><span class="n">web</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>You can see a list of the columns in the <code class="docutils literal"><span class="pre">clicks</span></code> table in the <code class="docutils literal"><span class="pre">web</span></code> database
+using either of the following:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">DESCRIBE</span> <span class="n">oracle</span><span class="p">.</span><span class="n">web</span><span class="p">.</span><span class="n">clicks</span><span class="p">;</span>
+<span class="k">SHOW</span> <span class="n">COLUMNS</span> <span class="k">FROM</span> <span class="n">oracle</span><span class="p">.</span><span class="n">web</span><span class="p">.</span><span class="n">clicks</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Finally, you can access the <code class="docutils literal"><span class="pre">clicks</span></code> table in the <code class="docutils literal"><span class="pre">web</span></code> database:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">oracle</span><span class="p">.</span><span class="n">web</span><span class="p">.</span><span class="n">clicks</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>If you used a different name for your catalog properties file, use
+that catalog name instead of <code class="docutils literal"><span class="pre">oracle</span></code> in the above examples.</p>
+</div>
+<div class="section" id="oracle-connector-limitations">
+<h2>Oracle Connector Limitations<a class="headerlink" href="#oracle-connector-limitations" title="Permalink to this headline">#</a></h2>
+<p>The following SQL statements are not yet supported:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../sql/delete.html"><span class="doc">DELETE</span></a></li>
+<li><a class="reference internal" href="../sql/grant.html"><span class="doc">GRANT</span></a></li>
+<li><a class="reference internal" href="../sql/revoke.html"><span class="doc">REVOKE</span></a></li>
+<li><a class="reference internal" href="../sql/show-grants.html"><span class="doc">SHOW GRANTS</span></a></li>
+<li><a class="reference internal" href="../sql/show-roles.html"><span class="doc">SHOW ROLES</span></a></li>
+<li><a class="reference internal" href="../sql/show-role-grants.html"><span class="doc">SHOW ROLE GRANTS</span></a></li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="mysql.html">7.22. MySQL Connector</a>
+    </span>
+    <span class="right">
+        <a href="phoenix.html">7.24. Phoenix Connector</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>
