@@ -35,6 +35,11 @@
   </head>
   <body>
 <div class="header">
+    <span style="float: right; margin-top: 20px;">
+        <a href="/slack.html">
+            <img height="24" src="https://img.shields.io/badge/Slack-ask%20for%20help-44af5c.svg?logo=slack">
+        </a>
+    </span>
     <h1 class="heading"><a href="../index.html">
         <span>Presto 337 Documentation</span></a></h1>
     <h2 class="heading"><span>13.1. Release 337 (25 Jun 2020)</span></h2>
@@ -104,8 +109,8 @@ and remaining are ignored. (<a class="reference external" href="https://github.c
 <li>Improve performance of <code class="docutils literal"><span class="pre">INSERT</span></code> queries writing to bucketed tables when some buckets do not contain any data. (<a class="reference external" href="https://github.com/prestosql/presto/issues/1375">#1375</a>)</li>
 <li>Improve performance of queries reading Parquet data with predicates on <code class="docutils literal"><span class="pre">timestamp</span></code> columns. (<a class="reference external" href="https://github.com/prestosql/presto/issues/4104">#4104</a>)</li>
 <li>Improve performance for join queries over partitioned tables. (<a class="reference external" href="https://github.com/prestosql/presto/issues/4156">#4156</a>)</li>
-<li>Add add support for <code class="docutils literal"><span class="pre">null_format</span></code> table property for tables using TextFile storage format (<a class="reference external" href="https://github.com/prestosql/presto/issues/4056">#4056</a>)</li>
-<li>Add add support for <code class="docutils literal"><span class="pre">null_format</span></code> table property for tables using RCText and SequenceFile
+<li>Add support for <code class="docutils literal"><span class="pre">null_format</span></code> table property for tables using TextFile storage format (<a class="reference external" href="https://github.com/prestosql/presto/issues/4056">#4056</a>)</li>
+<li>Add support for <code class="docutils literal"><span class="pre">null_format</span></code> table property for tables using RCText and SequenceFile
 storage formats (<a class="reference external" href="https://github.com/prestosql/presto/issues/4143">#4143</a>)</li>
 <li>Add optimized Parquet writer. The new writer is disabled by default, and can be enabled with the
 <code class="docutils literal"><span class="pre">parquet_optimized_writer_enabled</span></code> session property or the <code class="docutils literal"><span class="pre">hive.parquet.optimized-writer.enabled</span></code> configuration
