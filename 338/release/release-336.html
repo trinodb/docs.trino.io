@@ -1,0 +1,105 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.3. Release 336 (16 Jun 2020) &#8212; Presto 338 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '338',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.4. Release 335 (14 Jun 2020)" href="release-335.html" />
+    <link rel="prev" title="13.2. Release 337 (25 Jun 2020)" href="release-337.html" /> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133457846-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-133457846-1');
+    </script>
+  </head>
+  <body>
+<div class="header">
+    <span style="float: right; margin-top: 20px;">
+        <a href="/slack.html">
+            <img height="24" src="https://img.shields.io/badge/Slack-ask%20for%20help-44af5c.svg?logo=slack">
+        </a>
+    </span>
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 338 Documentation</span></a></h1>
+    <h2 class="heading"><span>13.3. Release 336 (16 Jun 2020)</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-337.html">13.2. Release 337 (25 Jun 2020)</a>
+    </span>
+    <span class="right">
+        <a href="release-335.html">13.4. Release 335 (14 Jun 2020)</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-336-16-jun-2020">
+<h1>13.3. Release 336 (16 Jun 2020)<a class="headerlink" href="#release-336-16-jun-2020" title="Permalink to this headline">#</a></h1>
+<div class="section" id="general-changes">
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li>Fix failure when querying timestamp columns from older clients. (<a class="reference external" href="https://github.com/prestosql/presto/issues/4036">#4036</a>)</li>
+<li>Improve reporting of configuration errors. (<a class="reference external" href="https://github.com/prestosql/presto/issues/4050">#4050</a>)</li>
+<li>Fix rare failure when recording server stats in T-Digests. (<a class="reference external" href="https://github.com/prestosql/presto/issues/3965">#3965</a>)</li>
+</ul>
+</div>
+<div class="section" id="security-changes">
+<h2>Security Changes<a class="headerlink" href="#security-changes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li>Add table access rules to <a class="reference internal" href="../security/built-in-system-access-control.html#file-based-system-access-control"><span class="std std-ref">File Based System Access Control</span></a>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/3951">#3951</a>)</li>
+<li>Add new <code class="docutils literal"><span class="pre">default</span></code> system access control that allows all operations except user impersonation. (<a class="reference external" href="https://github.com/prestosql/presto/issues/4040">#4040</a>)</li>
+</ul>
+</div>
+<div class="section" id="hive-connector-changes">
+<h2>Hive Connector Changes<a class="headerlink" href="#hive-connector-changes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li>Fix incorrect query results when reading Parquet files with predicates
+when <code class="docutils literal"><span class="pre">hive.parquet.use-column-names</span></code> is set to <code class="docutils literal"><span class="pre">false</span></code> (the default). (<a class="reference external" href="https://github.com/prestosql/presto/issues/3574">#3574</a>)</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-337.html">13.2. Release 337 (25 Jun 2020)</a>
+    </span>
+    <span class="right">
+        <a href="release-335.html">13.4. Release 335 (14 Jun 2020)</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

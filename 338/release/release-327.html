@@ -1,0 +1,172 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.12. Release 327 (20 Dec 2019) &#8212; Presto 338 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '338',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.13. Release 326 (27 Nov 2019)" href="release-326.html" />
+    <link rel="prev" title="13.11. Release 328 (10 Jan 2020)" href="release-328.html" /> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133457846-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-133457846-1');
+    </script>
+  </head>
+  <body>
+<div class="header">
+    <span style="float: right; margin-top: 20px;">
+        <a href="/slack.html">
+            <img height="24" src="https://img.shields.io/badge/Slack-ask%20for%20help-44af5c.svg?logo=slack">
+        </a>
+    </span>
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 338 Documentation</span></a></h1>
+    <h2 class="heading"><span>13.12. Release 327 (20 Dec 2019)</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-328.html">13.11. Release 328 (10 Jan 2020)</a>
+    </span>
+    <span class="right">
+        <a href="release-326.html">13.13. Release 326 (27 Nov 2019)</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-327-20-dec-2019">
+<h1>13.12. Release 327 (20 Dec 2019)<a class="headerlink" href="#release-327-20-dec-2019" title="Permalink to this headline">#</a></h1>
+<div class="section" id="general-changes">
+<h2>General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li>Fix join query failure when late materialization is enabled. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2144">#2144</a>)</li>
+<li>Fix failure of <a class="reference internal" href="../functions/string.html#word_stem" title="word_stem"><code class="xref py py-func docutils literal"><span class="pre">word_stem()</span></code></a> for certain inputs. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2145">#2145</a>)</li>
+<li>Fix query failure when using <code class="docutils literal"><span class="pre">transform_values()</span></code> inside <code class="docutils literal"><span class="pre">try()</span></code> and the transformation fails
+for one of the rows. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2315">#2315</a>)</li>
+<li>Fix potential incorrect results for aggregations involving <code class="docutils literal"><span class="pre">FILTER</span> <span class="pre">(WHERE</span> <span class="pre">...)</span></code>
+when the condition is a reference to a table column. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2267">#2267</a>)</li>
+<li>Allow renaming views with <a class="reference internal" href="../sql/alter-view.html"><span class="doc">ALTER VIEW</span></a>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/1060">#1060</a>)</li>
+<li>Add <code class="docutils literal"><span class="pre">error_type</span></code> and <code class="docutils literal"><span class="pre">error_code</span></code> columns to <code class="docutils literal"><span class="pre">system.runtime.queries</span></code>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2249">#2249</a>)</li>
+<li>Rename <code class="docutils literal"><span class="pre">experimental.work-processor-pipelines</span></code> configuration property to <code class="docutils literal"><span class="pre">experimental.late-materialization.enabled</span></code>
+and rename <code class="docutils literal"><span class="pre">work_processor_pipelines</span></code> session property to <code class="docutils literal"><span class="pre">late_materialization</span></code>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2275">#2275</a>)</li>
+</ul>
+</div>
+<div class="section" id="security-changes">
+<h2>Security Changes<a class="headerlink" href="#security-changes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li>Allow using multiple system access controls. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2178">#2178</a>)</li>
+<li>Add <a class="reference internal" href="../security/password-file.html"><span class="doc">Password File Authentication</span></a>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/797">#797</a>)</li>
+</ul>
+</div>
+<div class="section" id="hive-connector-changes">
+<h2>Hive Connector Changes<a class="headerlink" href="#hive-connector-changes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li>Fix incorrect query results when reading <code class="docutils literal"><span class="pre">timestamp</span></code> values from ORC files written by
+Hive 3.1 or later. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2099">#2099</a>)</li>
+<li>Fix a CDH 5.x metastore compatibility issue resulting in failure when analyzing or inserting
+into a table with <code class="docutils literal"><span class="pre">date</span></code> columns. (<a class="reference external" href="https://github.com/prestosql/presto/issues/556">#556</a>)</li>
+<li>Reduce number of metastore calls when fetching partitions. (<a class="reference external" href="https://github.com/prestosql/presto/issues/1921">#1921</a>)</li>
+<li>Support reading from insert-only transactional tables. (<a class="reference external" href="https://github.com/prestosql/presto/issues/576">#576</a>)</li>
+<li>Deprecate <code class="docutils literal"><span class="pre">parquet.fail-on-corrupted-statistics</span></code> (previously known as <code class="docutils literal"><span class="pre">hive.parquet.fail-on-corrupted-statistics</span></code>).
+Setting this configuration property to <code class="docutils literal"><span class="pre">false</span></code> may hide correctness issues, leading to incorrect query results.
+Session property <code class="docutils literal"><span class="pre">parquet_fail_with_corrupted_statistics</span></code> is deprecated as well.
+Both configuration and session properties will be removed in a future version. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2129">#2129</a>)</li>
+<li>Improve concurrency when updating table or partition statistics. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2154">#2154</a>)</li>
+<li>Add support for renaming views. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2189">#2189</a>)</li>
+<li>Allow configuring the <code class="docutils literal"><span class="pre">hive.orc.use-column-names</span></code> config property on a per-session
+basis using the <code class="docutils literal"><span class="pre">orc_use_column_names</span></code> session property. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2248">#2248</a>)</li>
+</ul>
+</div>
+<div class="section" id="kudu-connector-changes">
+<h2>Kudu Connector Changes<a class="headerlink" href="#kudu-connector-changes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li>Support predicate pushdown for the <code class="docutils literal"><span class="pre">decimal</span></code> type. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2131">#2131</a>)</li>
+<li>Fix column position swap for delete operations that may result in deletion of the wrong records. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2252">#2252</a>)</li>
+<li>Improve predicate pushdown for queries that match a column against
+multiple values (typically using the <code class="docutils literal"><span class="pre">IN</span></code> operator). (<a class="reference external" href="https://github.com/prestosql/presto/issues/2253">#2253</a>)</li>
+</ul>
+</div>
+<div class="section" id="mongodb-connector-changes">
+<h2>MongoDB Connector Changes<a class="headerlink" href="#mongodb-connector-changes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li>Add support for reading from views. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2156">#2156</a>)</li>
+</ul>
+</div>
+<div class="section" id="postgresql-connector-changes">
+<h2>PostgreSQL Connector Changes<a class="headerlink" href="#postgresql-connector-changes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li>Allow converting unsupported types to <code class="docutils literal"><span class="pre">VARCHAR</span></code> by setting the session property
+<code class="docutils literal"><span class="pre">unsupported_type_handling</span></code> or configuration property <code class="docutils literal"><span class="pre">unsupported-type-handling</span></code>
+to <code class="docutils literal"><span class="pre">CONVERT_TO_VARCHAR</span></code>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/1182">#1182</a>)</li>
+</ul>
+</div>
+<div class="section" id="mysql-connector-changes">
+<h2>MySQL Connector Changes<a class="headerlink" href="#mysql-connector-changes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li>Fix <code class="docutils literal"><span class="pre">INSERT</span></code> query failure when <code class="docutils literal"><span class="pre">GTID</span></code> mode is enabled. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2251">#2251</a>)</li>
+</ul>
+</div>
+<div class="section" id="elasticsearch-connector-changes">
+<h2>Elasticsearch Connector Changes<a class="headerlink" href="#elasticsearch-connector-changes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li>Improve performance for queries involving equality and range filters
+over table columns. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2310">#2310</a>)</li>
+</ul>
+</div>
+<div class="section" id="google-sheets-connector-changes">
+<h2>Google Sheets Connector Changes<a class="headerlink" href="#google-sheets-connector-changes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li>Fix incorrect results when listing tables in <code class="docutils literal"><span class="pre">information_schema</span></code>. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2118">#2118</a>)</li>
+</ul>
+</div>
+<div class="section" id="spi-changes">
+<h2>SPI Changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li>Add <code class="docutils literal"><span class="pre">executionTime</span></code> to <code class="docutils literal"><span class="pre">QueryStatistics</span></code> for event listeners. (<a class="reference external" href="https://github.com/prestosql/presto/issues/2247">#2247</a>)</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-328.html">13.11. Release 328 (10 Jan 2020)</a>
+    </span>
+    <span class="right">
+        <a href="release-326.html">13.13. Release 326 (27 Nov 2019)</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>
