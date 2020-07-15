@@ -10,6 +10,42 @@
     <loc>https://prestosql.io/docs/current/admin/jmx.html</loc>
   </url>
   <url>
+    <loc>https://prestosql.io/docs/current/admin/properties-exchange.html</loc>
+  </url>
+  <url>
+    <loc>https://prestosql.io/docs/current/admin/properties-general.html</loc>
+  </url>
+  <url>
+    <loc>https://prestosql.io/docs/current/admin/properties-logging.html</loc>
+  </url>
+  <url>
+    <loc>https://prestosql.io/docs/current/admin/properties-memory-management.html</loc>
+  </url>
+  <url>
+    <loc>https://prestosql.io/docs/current/admin/properties-node-scheduler.html</loc>
+  </url>
+  <url>
+    <loc>https://prestosql.io/docs/current/admin/properties-optimizer.html</loc>
+  </url>
+  <url>
+    <loc>https://prestosql.io/docs/current/admin/properties-query-management.html</loc>
+  </url>
+  <url>
+    <loc>https://prestosql.io/docs/current/admin/properties-regexp-function.html</loc>
+  </url>
+  <url>
+    <loc>https://prestosql.io/docs/current/admin/properties-spilling.html</loc>
+  </url>
+  <url>
+    <loc>https://prestosql.io/docs/current/admin/properties-task.html</loc>
+  </url>
+  <url>
+    <loc>https://prestosql.io/docs/current/admin/properties-web-interface.html</loc>
+  </url>
+  <url>
+    <loc>https://prestosql.io/docs/current/admin/properties-writer-scaling.html</loc>
+  </url>
+  <url>
     <loc>https://prestosql.io/docs/current/admin/properties.html</loc>
   </url>
   <url>
@@ -65,6 +101,9 @@
   </url>
   <url>
     <loc>https://prestosql.io/docs/current/connector/hive-gcs-tutorial.html</loc>
+  </url>
+  <url>
+    <loc>https://prestosql.io/docs/current/connector/hive-s3.html</loc>
   </url>
   <url>
     <loc>https://prestosql.io/docs/current/connector/hive-security.html</loc>
