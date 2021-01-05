@@ -18,10 +18,6 @@ div.highlight {
     color: #F57C00;
 }
 
-.md-nav__button img {
-    height: 48px;
-}
-
 .md-typeset h1 {
     color: rgba(0, 0, 0, .80);
 }
@@ -62,4 +58,33 @@ pre.literal-block {
 
 .copybtn:hover {
     cursor: copy;
+}
+
+<!-- trino.io -->
+.md-sidebar { padding-block-start: 75px; }
+.md-content { padding-block-start: 50px; }
+header.md-header { top: auto; }
+#announcement {
+  z-index: 2;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+}
+#announcement-content {
+  background-color: #dd00a1;
+  border: 1px;
+  color: white;
+  text-align: center;
+  height: 53px;
+  padding: 16px;
+  font-family: Alata, sans-serif;
+  line-height: 21.6px;
+  font-size: 18px;
+  font-weight: 300;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+#announcement-content a {
+  text-decoration: underline;
+  margin-left: 32px;
 }
