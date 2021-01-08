@@ -67,6 +67,15 @@ pre.literal-block {
 .md-sidebar { padding-block-start: 75px; }
 .md-content { padding-block-start: 50px; }
 header.md-header { top: auto; }
+.md-typeset h1[id]:target:before,
+.md-typeset h2[id]:target:before,
+.md-typeset h3[id]:target:before,
+.md-typeset h4[id]:target:before,
+.md-typeset h5[id]:target:before,
+.md-typeset h6[id]:target:before {
+  margin-top: -125px;
+  padding-top: 125px;
+}
 #announcement {
   z-index: 2;
   position: fixed;
