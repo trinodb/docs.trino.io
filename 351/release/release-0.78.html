@@ -101,7 +101,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="Trino 351 Documentation"
+        <a href="/" title="Trino"
            class="md-header-nav__button md-logo">
           
               <img src="../_static/trino.svg" height="26"
@@ -193,7 +193,7 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="Trino 351 Documentation" class="md-nav__button md-logo">
+    <a href="/" title="Trino" class="md-nav__button md-logo">
       
         <img src="../_static/trino.svg" alt=" logo" width="48" height="48">
       
@@ -258,7 +258,7 @@
     <li class="md-nav__item">
     
     
-      <a href="../optimizer.html" class="md-nav__link">Query Optimizer</a>
+      <a href="../optimizer.html" class="md-nav__link">Query optimizer</a>
       
     
     </li>
@@ -272,21 +272,21 @@
     <li class="md-nav__item">
     
     
-      <a href="../functions.html" class="md-nav__link">Functions and Operators</a>
+      <a href="../functions.html" class="md-nav__link">Functions and operators</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../language.html" class="md-nav__link">SQL Language</a>
+      <a href="../language.html" class="md-nav__link">SQL language</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../sql.html" class="md-nav__link">SQL Statement Syntax</a>
+      <a href="../sql.html" class="md-nav__link">SQL statement syntax</a>
       
     
     </li>
@@ -300,14 +300,14 @@
     <li class="md-nav__item">
     
     
-      <a href="../develop.html" class="md-nav__link">Developer Guide</a>
+      <a href="../develop.html" class="md-nav__link">Developer guide</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../release.html" class="md-nav__link">Release Notes</a>
+      <a href="../release.html" class="md-nav__link">Release notes</a>
       <ul class="md-nav__list"> 
     <li class="md-nav__item">
     
@@ -1721,13 +1721,13 @@
 <nav class="md-nav md-nav--secondary">
     <label class="md-nav__title" for="__toc">Contents</label>
     <ul class="md-nav__list" data-md-scrollfix="">
-        <li class="md-nav__item"><a href="#array-and-map-types-in-hive-connector" class="md-nav__link">ARRAY and MAP Types in Hive Connector</a>
+        <li class="md-nav__item"><a href="#array-and-map-types-in-hive-connector" class="md-nav__link">ARRAY and MAP types in Hive connector</a>
         </li>
-        <li class="md-nav__item"><a href="#session-properties" class="md-nav__link">Session Properties</a>
+        <li class="md-nav__item"><a href="#session-properties" class="md-nav__link">Session properties</a>
         </li>
-        <li class="md-nav__item"><a href="#hive-changes" class="md-nav__link">Hive Changes</a>
+        <li class="md-nav__item"><a href="#hive-changes" class="md-nav__link">Hive changes</a>
         </li>
-        <li class="md-nav__item"><a href="#general-changes" class="md-nav__link">General Changes</a>
+        <li class="md-nav__item"><a href="#general-changes" class="md-nav__link">General changes</a>
         </li>
     </ul>
 </nav>
@@ -1918,13 +1918,13 @@
 <nav class="md-nav md-nav--secondary">
     <label class="md-nav__title" for="__toc">Contents</label>
     <ul class="md-nav__list" data-md-scrollfix="">
-        <li class="md-nav__item"><a href="#array-and-map-types-in-hive-connector" class="md-nav__link">ARRAY and MAP Types in Hive Connector</a>
+        <li class="md-nav__item"><a href="#array-and-map-types-in-hive-connector" class="md-nav__link">ARRAY and MAP types in Hive connector</a>
         </li>
-        <li class="md-nav__item"><a href="#session-properties" class="md-nav__link">Session Properties</a>
+        <li class="md-nav__item"><a href="#session-properties" class="md-nav__link">Session properties</a>
         </li>
-        <li class="md-nav__item"><a href="#hive-changes" class="md-nav__link">Hive Changes</a>
+        <li class="md-nav__item"><a href="#hive-changes" class="md-nav__link">Hive changes</a>
         </li>
-        <li class="md-nav__item"><a href="#general-changes" class="md-nav__link">General Changes</a>
+        <li class="md-nav__item"><a href="#general-changes" class="md-nav__link">General changes</a>
         </li>
     </ul>
 </nav>
@@ -1938,14 +1938,14 @@
   
 <h1 id="release-release-0-78--page-root">Release 0.78<a class="headerlink" href="#release-release-0-78--page-root" title="Permalink to this headline">#</a></h1>
 
-<h2 id="array-and-map-types-in-hive-connector">ARRAY and MAP Types in Hive Connector<a class="headerlink" href="#array-and-map-types-in-hive-connector" title="Permalink to this headline">#</a></h2>
+<h2 id="array-and-map-types-in-hive-connector">ARRAY and MAP types in Hive connector<a class="headerlink" href="#array-and-map-types-in-hive-connector" title="Permalink to this headline">#</a></h2>
 <p>The Hive connector now returns arrays and maps instead of json encoded strings,
 for columns whose underlying type is array or map. Please note that this is a backwards
-incompatible change, and the <a class="reference internal" href="../functions/json.html"><span class="doc">JSON Functions and Operators</span></a> will no longer work on these columns,
+incompatible change, and the <a class="reference internal" href="../functions/json.html"><span class="doc">JSON functions and operators</span></a> will no longer work on these columns,
 unless you <a class="reference internal" href="../functions/conversion.html#cast" title="cast"><code class="xref py py-func docutils literal notranslate"><span class="pre">cast()</span></code></a> them to the <code class="docutils literal notranslate"><span class="pre">json</span></code> type.</p>
 
 
-<h2 id="session-properties">Session Properties<a class="headerlink" href="#session-properties" title="Permalink to this headline">#</a></h2>
+<h2 id="session-properties">Session properties<a class="headerlink" href="#session-properties" title="Permalink to this headline">#</a></h2>
 <p>The Presto session can now contain properties, which can be used by the Presto
 engine or connectors to customize the query execution. There is a separate
 namespace for the Presto engine and each catalog. A property for a catalog is
@@ -1971,7 +1971,7 @@ allow setting properties via a query.</p>
 </div>
 
 
-<h2 id="hive-changes">Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
+<h2 id="hive-changes">Hive changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">storage_format</span></code> session property to override format used for creating tables.</p></li>
 <li><p>Add write support for <code class="docutils literal notranslate"><span class="pre">VARBINARY</span></code>, <code class="docutils literal notranslate"><span class="pre">DATE</span></code> and <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code>.</p></li>
@@ -1981,7 +1981,7 @@ allow setting properties via a query.</p>
 </ul>
 
 
-<h2 id="general-changes">General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
+<h2 id="general-changes">General changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Fix expression optimizer, so that it runs in linear time instead of exponential time.</p></li>
 <li><p>Add <a class="reference internal" href="../functions/array.html#cardinality" title="cardinality"><code class="xref py py-func docutils literal notranslate"><span class="pre">cardinality()</span></code></a> for maps.</p></li>

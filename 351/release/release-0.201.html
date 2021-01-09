@@ -101,7 +101,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="Trino 351 Documentation"
+        <a href="/" title="Trino"
            class="md-header-nav__button md-logo">
           
               <img src="../_static/trino.svg" height="26"
@@ -193,7 +193,7 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="Trino 351 Documentation" class="md-nav__button md-logo">
+    <a href="/" title="Trino" class="md-nav__button md-logo">
       
         <img src="../_static/trino.svg" alt=" logo" width="48" height="48">
       
@@ -258,7 +258,7 @@
     <li class="md-nav__item">
     
     
-      <a href="../optimizer.html" class="md-nav__link">Query Optimizer</a>
+      <a href="../optimizer.html" class="md-nav__link">Query optimizer</a>
       
     
     </li>
@@ -272,21 +272,21 @@
     <li class="md-nav__item">
     
     
-      <a href="../functions.html" class="md-nav__link">Functions and Operators</a>
+      <a href="../functions.html" class="md-nav__link">Functions and operators</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../language.html" class="md-nav__link">SQL Language</a>
+      <a href="../language.html" class="md-nav__link">SQL language</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../sql.html" class="md-nav__link">SQL Statement Syntax</a>
+      <a href="../sql.html" class="md-nav__link">SQL statement syntax</a>
       
     
     </li>
@@ -300,14 +300,14 @@
     <li class="md-nav__item">
     
     
-      <a href="../develop.html" class="md-nav__link">Developer Guide</a>
+      <a href="../develop.html" class="md-nav__link">Developer guide</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../release.html" class="md-nav__link">Release Notes</a>
+      <a href="../release.html" class="md-nav__link">Release notes</a>
       <ul class="md-nav__list"> 
     <li class="md-nav__item">
     
@@ -783,13 +783,13 @@
 <nav class="md-nav md-nav--secondary">
     <label class="md-nav__title" for="__toc">Contents</label>
     <ul class="md-nav__list" data-md-scrollfix="">
-        <li class="md-nav__item"><a href="#general-changes" class="md-nav__link">General Changes</a>
+        <li class="md-nav__item"><a href="#general-changes" class="md-nav__link">General changes</a>
         </li>
-        <li class="md-nav__item"><a href="#security-changes" class="md-nav__link">Security Changes</a>
+        <li class="md-nav__item"><a href="#security-changes" class="md-nav__link">Security changes</a>
         </li>
-        <li class="md-nav__item"><a href="#hive-changes" class="md-nav__link">Hive Changes</a>
+        <li class="md-nav__item"><a href="#hive-changes" class="md-nav__link">Hive changes</a>
         </li>
-        <li class="md-nav__item"><a href="#spi-changes" class="md-nav__link">SPI Changes</a>
+        <li class="md-nav__item"><a href="#spi-changes" class="md-nav__link">SPI changes</a>
         </li>
     </ul>
 </nav>
@@ -1918,13 +1918,13 @@
 <nav class="md-nav md-nav--secondary">
     <label class="md-nav__title" for="__toc">Contents</label>
     <ul class="md-nav__list" data-md-scrollfix="">
-        <li class="md-nav__item"><a href="#general-changes" class="md-nav__link">General Changes</a>
+        <li class="md-nav__item"><a href="#general-changes" class="md-nav__link">General changes</a>
         </li>
-        <li class="md-nav__item"><a href="#security-changes" class="md-nav__link">Security Changes</a>
+        <li class="md-nav__item"><a href="#security-changes" class="md-nav__link">Security changes</a>
         </li>
-        <li class="md-nav__item"><a href="#hive-changes" class="md-nav__link">Hive Changes</a>
+        <li class="md-nav__item"><a href="#hive-changes" class="md-nav__link">Hive changes</a>
         </li>
-        <li class="md-nav__item"><a href="#spi-changes" class="md-nav__link">SPI Changes</a>
+        <li class="md-nav__item"><a href="#spi-changes" class="md-nav__link">SPI changes</a>
         </li>
     </ul>
 </nav>
@@ -1938,7 +1938,7 @@
   
 <h1 id="release-release-0-201--page-root">Release 0.201<a class="headerlink" href="#release-release-0-201--page-root" title="Permalink to this headline">#</a></h1>
 
-<h2 id="general-changes">General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
+<h2 id="general-changes">General changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Change grouped aggregations to use <code class="docutils literal notranslate"><span class="pre">IS</span> <span class="pre">NOT</span> <span class="pre">DISTINCT</span> <span class="pre">FROM</span></code> semantics rather than equality
 semantics. This fixes incorrect results and degraded performance when grouping on <code class="docutils literal notranslate"><span class="pre">NaN</span></code>
@@ -1954,19 +1954,19 @@ filter on the row numbers generated.</p></li>
 or table writes.</p></li>
 <li><p>Add session property <code class="docutils literal notranslate"><span class="pre">prefer-partial-aggregation</span></code> to allow users to disable partial
 aggregations for queries that do not benefit.</p></li>
-<li><p>Add support for <code class="docutils literal notranslate"><span class="pre">current_user</span></code> (see <a class="reference internal" href="../functions/session.html"><span class="doc">Session Information</span></a>).</p></li>
+<li><p>Add support for <code class="docutils literal notranslate"><span class="pre">current_user</span></code> (see <a class="reference internal" href="../functions/session.html"><span class="doc">Session information</span></a>).</p></li>
 </ul>
 
 
-<h2 id="security-changes">Security Changes<a class="headerlink" href="#security-changes" title="Permalink to this headline">#</a></h2>
+<h2 id="security-changes">Security changes<a class="headerlink" href="#security-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li><p>Change rules in the <a class="reference internal" href="../security/built-in-system-access-control.html"><span class="doc">Built-in System Access Control</span></a> for enforcing matches
+<li><p>Change rules in the <a class="reference internal" href="../security/built-in-system-access-control.html"><span class="doc">Built-in system access control</span></a> for enforcing matches
 between authentication credentials and a chosen username to allow more fine-grained
 control and ability to define superuser-like credentials.</p></li>
 </ul>
 
 
-<h2 id="hive-changes">Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
+<h2 id="hive-changes">Hive changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Replace ORC writer stripe minimum row configuration <code class="docutils literal notranslate"><span class="pre">hive.orc.writer.stripe-min-rows</span></code>
 with stripe minimum data size <code class="docutils literal notranslate"><span class="pre">hive.orc.writer.stripe-min-size</span></code>.</p></li>
@@ -1980,7 +1980,7 @@ user.</p></li>
 </ul>
 
 
-<h2 id="spi-changes">SPI Changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
+<h2 id="spi-changes">SPI changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Support resource group selection based on resource estimates.</p></li>
 </ul>

@@ -101,7 +101,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="Trino 351 Documentation"
+        <a href="/" title="Trino"
            class="md-header-nav__button md-logo">
           
               <img src="../_static/trino.svg" height="26"
@@ -193,7 +193,7 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="Trino 351 Documentation" class="md-nav__button md-logo">
+    <a href="/" title="Trino" class="md-nav__button md-logo">
       
         <img src="../_static/trino.svg" alt=" logo" width="48" height="48">
       
@@ -258,7 +258,7 @@
     <li class="md-nav__item">
     
     
-      <a href="../optimizer.html" class="md-nav__link">Query Optimizer</a>
+      <a href="../optimizer.html" class="md-nav__link">Query optimizer</a>
       
     
     </li>
@@ -272,21 +272,21 @@
     <li class="md-nav__item">
     
     
-      <a href="../functions.html" class="md-nav__link">Functions and Operators</a>
+      <a href="../functions.html" class="md-nav__link">Functions and operators</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../language.html" class="md-nav__link">SQL Language</a>
+      <a href="../language.html" class="md-nav__link">SQL language</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../sql.html" class="md-nav__link">SQL Statement Syntax</a>
+      <a href="../sql.html" class="md-nav__link">SQL statement syntax</a>
       
     
     </li>
@@ -300,14 +300,14 @@
     <li class="md-nav__item">
     
     
-      <a href="../develop.html" class="md-nav__link">Developer Guide</a>
+      <a href="../develop.html" class="md-nav__link">Developer guide</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../release.html" class="md-nav__link">Release Notes</a>
+      <a href="../release.html" class="md-nav__link">Release notes</a>
       <ul class="md-nav__list"> 
     <li class="md-nav__item">
     
@@ -1567,9 +1567,9 @@
 <nav class="md-nav md-nav--secondary">
     <label class="md-nav__title" for="__toc">Contents</label>
     <ul class="md-nav__list" data-md-scrollfix="">
-        <li class="md-nav__item"><a href="#system-connector" class="md-nav__link">System Connector</a>
+        <li class="md-nav__item"><a href="#system-connector" class="md-nav__link">System connector</a>
         </li>
-        <li class="md-nav__item"><a href="#general-changes" class="md-nav__link">General Changes</a>
+        <li class="md-nav__item"><a href="#general-changes" class="md-nav__link">General changes</a>
         </li>
     </ul>
 </nav>
@@ -1914,9 +1914,9 @@
 <nav class="md-nav md-nav--secondary">
     <label class="md-nav__title" for="__toc">Contents</label>
     <ul class="md-nav__list" data-md-scrollfix="">
-        <li class="md-nav__item"><a href="#system-connector" class="md-nav__link">System Connector</a>
+        <li class="md-nav__item"><a href="#system-connector" class="md-nav__link">System connector</a>
         </li>
-        <li class="md-nav__item"><a href="#general-changes" class="md-nav__link">General Changes</a>
+        <li class="md-nav__item"><a href="#general-changes" class="md-nav__link">General changes</a>
         </li>
     </ul>
 </nav>
@@ -1930,15 +1930,15 @@
   
 <h1 id="release-release-0-100--page-root">Release 0.100<a class="headerlink" href="#release-release-0-100--page-root" title="Permalink to this headline">#</a></h1>
 
-<h2 id="system-connector">System Connector<a class="headerlink" href="#system-connector" title="Permalink to this headline">#</a></h2>
-<p>The <a class="reference internal" href="../connector/system.html"><span class="doc">System Connector</span></a> now works like other connectors: global system
+<h2 id="system-connector">System connector<a class="headerlink" href="#system-connector" title="Permalink to this headline">#</a></h2>
+<p>The <a class="reference internal" href="../connector/system.html"><span class="doc">System connector</span></a> now works like other connectors: global system
 tables are only available in the <code class="docutils literal notranslate"><span class="pre">system</span></code> catalog, rather than in a special
 schema that is available in every catalog. Additionally, connectors may now
 provide system tables that are available within that connector’s catalog by
 implementing the <code class="docutils literal notranslate"><span class="pre">getSystemTables()</span></code> method on the <code class="docutils literal notranslate"><span class="pre">Connector</span></code> interface.</p>
 
 
-<h2 id="general-changes">General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
+<h2 id="general-changes">General changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Fix <code class="docutils literal notranslate"><span class="pre">%f</span></code> specifier in <a class="reference internal" href="../functions/datetime.html#date_format" title="date_format"><code class="xref py py-func docutils literal notranslate"><span class="pre">date_format()</span></code></a> and <a class="reference internal" href="../functions/datetime.html#date_parse" title="date_parse"><code class="xref py py-func docutils literal notranslate"><span class="pre">date_parse()</span></code></a>.</p></li>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">WITH</span> <span class="pre">ORDINALITY</span></code> support to <code class="docutils literal notranslate"><span class="pre">UNNEST</span></code>.</p></li>

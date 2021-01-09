@@ -101,7 +101,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="Trino 351 Documentation"
+        <a href="/" title="Trino"
            class="md-header-nav__button md-logo">
           
               <img src="../_static/trino.svg" height="26"
@@ -193,7 +193,7 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="Trino 351 Documentation" class="md-nav__button md-logo">
+    <a href="/" title="Trino" class="md-nav__button md-logo">
       
         <img src="../_static/trino.svg" alt=" logo" width="48" height="48">
       
@@ -258,7 +258,7 @@
     <li class="md-nav__item">
     
     
-      <a href="../optimizer.html" class="md-nav__link">Query Optimizer</a>
+      <a href="../optimizer.html" class="md-nav__link">Query optimizer</a>
       
     
     </li>
@@ -272,21 +272,21 @@
     <li class="md-nav__item">
     
     
-      <a href="../functions.html" class="md-nav__link">Functions and Operators</a>
+      <a href="../functions.html" class="md-nav__link">Functions and operators</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../language.html" class="md-nav__link">SQL Language</a>
+      <a href="../language.html" class="md-nav__link">SQL language</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../sql.html" class="md-nav__link">SQL Statement Syntax</a>
+      <a href="../sql.html" class="md-nav__link">SQL statement syntax</a>
       
     
     </li>
@@ -300,14 +300,14 @@
     <li class="md-nav__item">
     
     
-      <a href="../develop.html" class="md-nav__link">Developer Guide</a>
+      <a href="../develop.html" class="md-nav__link">Developer guide</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../release.html" class="md-nav__link">Release Notes</a>
+      <a href="../release.html" class="md-nav__link">Release notes</a>
       <ul class="md-nav__list"> 
     <li class="md-nav__item">
     
@@ -1637,13 +1637,13 @@
 <nav class="md-nav md-nav--secondary">
     <label class="md-nav__title" for="__toc">Contents</label>
     <ul class="md-nav__list" data-md-scrollfix="">
-        <li class="md-nav__item"><a href="#general-changes" class="md-nav__link">General Changes</a>
+        <li class="md-nav__item"><a href="#general-changes" class="md-nav__link">General changes</a>
         </li>
-        <li class="md-nav__item"><a href="#functions-and-language-features" class="md-nav__link">Functions and Language Features</a>
+        <li class="md-nav__item"><a href="#functions-and-language-features" class="md-nav__link">Functions and language features</a>
         </li>
-        <li class="md-nav__item"><a href="#hive-changes" class="md-nav__link">Hive Changes</a>
+        <li class="md-nav__item"><a href="#hive-changes" class="md-nav__link">Hive changes</a>
         </li>
-        <li class="md-nav__item"><a href="#spi-changes" class="md-nav__link">SPI Changes</a>
+        <li class="md-nav__item"><a href="#spi-changes" class="md-nav__link">SPI changes</a>
         </li>
     </ul>
 </nav>
@@ -1918,13 +1918,13 @@
 <nav class="md-nav md-nav--secondary">
     <label class="md-nav__title" for="__toc">Contents</label>
     <ul class="md-nav__list" data-md-scrollfix="">
-        <li class="md-nav__item"><a href="#general-changes" class="md-nav__link">General Changes</a>
+        <li class="md-nav__item"><a href="#general-changes" class="md-nav__link">General changes</a>
         </li>
-        <li class="md-nav__item"><a href="#functions-and-language-features" class="md-nav__link">Functions and Language Features</a>
+        <li class="md-nav__item"><a href="#functions-and-language-features" class="md-nav__link">Functions and language features</a>
         </li>
-        <li class="md-nav__item"><a href="#hive-changes" class="md-nav__link">Hive Changes</a>
+        <li class="md-nav__item"><a href="#hive-changes" class="md-nav__link">Hive changes</a>
         </li>
-        <li class="md-nav__item"><a href="#spi-changes" class="md-nav__link">SPI Changes</a>
+        <li class="md-nav__item"><a href="#spi-changes" class="md-nav__link">SPI changes</a>
         </li>
     </ul>
 </nav>
@@ -1942,7 +1942,7 @@
 <p>This release has a memory leak and should not be used.</p>
 </div>
 
-<h2 id="general-changes">General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
+<h2 id="general-changes">General changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Initial support for partition and placement awareness in the query planner. This can
 result in better plans for queries involving <code class="docutils literal notranslate"><span class="pre">JOIN</span></code> and <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> over the same
@@ -1961,12 +1961,12 @@ key columns.</p></li>
 to bytecode. To enable this option, add <code class="docutils literal notranslate"><span class="pre">compiler.interpreter-enabled=true</span></code>
 to the coordinator and worker config properties. Enabling this option will
 allow certain queries to run slowly rather than failing.</p></li>
-<li><p>Improve <a class="reference internal" href="../installation/jdbc.html"><span class="doc">JDBC Driver</span></a> conformance. In particular, all unimplemented
+<li><p>Improve <a class="reference internal" href="../installation/jdbc.html"><span class="doc">JDBC driver</span></a> conformance. In particular, all unimplemented
 methods now throw <code class="docutils literal notranslate"><span class="pre">SQLException</span></code> rather than <code class="docutils literal notranslate"><span class="pre">UnsupportedOperationException</span></code>.</p></li>
 </ul>
 
 
-<h2 id="functions-and-language-features">Functions and Language Features<a class="headerlink" href="#functions-and-language-features" title="Permalink to this headline">#</a></h2>
+<h2 id="functions-and-language-features">Functions and language features<a class="headerlink" href="#functions-and-language-features" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Add <a class="reference internal" href="../functions/aggregate.html#bool_and" title="bool_and"><code class="xref py py-func docutils literal notranslate"><span class="pre">bool_and()</span></code></a> and <a class="reference internal" href="../functions/aggregate.html#bool_or" title="bool_or"><code class="xref py py-func docutils literal notranslate"><span class="pre">bool_or()</span></code></a> aggregation functions.</p></li>
 <li><p>Add standard SQL function <a class="reference internal" href="../functions/aggregate.html#every" title="every"><code class="xref py py-func docutils literal notranslate"><span class="pre">every()</span></code></a> as an alias for <a class="reference internal" href="../functions/aggregate.html#bool_and" title="bool_and"><code class="xref py py-func docutils literal notranslate"><span class="pre">bool_and()</span></code></a>.</p></li>
@@ -1981,7 +1981,7 @@ information such as output layout, task placement policy and partitioning functi
 </ul>
 
 
-<h2 id="hive-changes">Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
+<h2 id="hive-changes">Hive changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Disable optimized metastore partition fetching for non-string partition keys.
 This fixes an issue were Presto might silently ignore data with non-canonical
@@ -1991,7 +1991,7 @@ to the coordinator and worker config properties.</p></li>
 </ul>
 
 
-<h2 id="spi-changes">SPI Changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
+<h2 id="spi-changes">SPI changes<a class="headerlink" href="#spi-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">getColumnTypes</span></code> to <code class="docutils literal notranslate"><span class="pre">RecordSink</span></code>.</p></li>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">Slice</span></code> for table writer fragments.</p></li>

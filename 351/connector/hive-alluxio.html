@@ -47,7 +47,7 @@
   
   
   
-    <title>Hive Connector with Alluxio &#8212; Trino 351 Documentation</title>
+    <title>Hive connector with Alluxio &#8212; Trino 351 Documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/material.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -61,8 +61,8 @@
     <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="JMX Connector" href="jmx.html" />
-    <link rel="prev" title="Hive Connector Storage Caching" href="hive-caching.html" />
+    <link rel="next" title="JMX connector" href="jmx.html" />
+    <link rel="prev" title="Hive connector storage caching" href="hive-caching.html" />
   
    
 
@@ -101,7 +101,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="Trino 351 Documentation"
+        <a href="/" title="Trino"
            class="md-header-nav__button md-logo">
           
               <img src="../_static/trino.svg" height="26"
@@ -115,7 +115,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           <span class="md-header-nav__topic">Trino 351 Documentation</span>
-          <span class="md-header-nav__topic"> Hive Connector with Alluxio </span>
+          <span class="md-header-nav__topic"> Hive connector with Alluxio </span>
         </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
@@ -193,7 +193,7 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="Trino 351 Documentation" class="md-nav__button md-logo">
+    <a href="/" title="Trino" class="md-nav__button md-logo">
       
         <img src="../_static/trino.svg" alt=" logo" width="48" height="48">
       
@@ -258,7 +258,7 @@
     <li class="md-nav__item">
     
     
-      <a href="../optimizer.html" class="md-nav__link">Query Optimizer</a>
+      <a href="../optimizer.html" class="md-nav__link">Query optimizer</a>
       
     
     </li>
@@ -379,7 +379,7 @@
         </li>
         <li class="md-nav__item"><a href="#deploy-alluxio-with-trino" class="md-nav__link">Deploy Alluxio with Trino</a>
         </li>
-        <li class="md-nav__item"><a href="#alluxio-catalog-service" class="md-nav__link">Alluxio Catalog Service</a>
+        <li class="md-nav__item"><a href="#alluxio-catalog-service" class="md-nav__link">Alluxio catalog service</a>
         </li>
     </ul>
 </nav>
@@ -540,21 +540,21 @@
     <li class="md-nav__item">
     
     
-      <a href="../functions.html" class="md-nav__link">Functions and Operators</a>
+      <a href="../functions.html" class="md-nav__link">Functions and operators</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../language.html" class="md-nav__link">SQL Language</a>
+      <a href="../language.html" class="md-nav__link">SQL language</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../sql.html" class="md-nav__link">SQL Statement Syntax</a>
+      <a href="../sql.html" class="md-nav__link">SQL statement syntax</a>
       
     
     </li>
@@ -568,14 +568,14 @@
     <li class="md-nav__item">
     
     
-      <a href="../develop.html" class="md-nav__link">Developer Guide</a>
+      <a href="../develop.html" class="md-nav__link">Developer guide</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../release.html" class="md-nav__link">Release Notes</a>
+      <a href="../release.html" class="md-nav__link">Release notes</a>
       
     
     </li>
@@ -597,7 +597,7 @@
         </li>
         <li class="md-nav__item"><a href="#deploy-alluxio-with-trino" class="md-nav__link">Deploy Alluxio with Trino</a>
         </li>
-        <li class="md-nav__item"><a href="#alluxio-catalog-service" class="md-nav__link">Alluxio Catalog Service</a>
+        <li class="md-nav__item"><a href="#alluxio-catalog-service" class="md-nav__link">Alluxio catalog service</a>
         </li>
     </ul>
 </nav>
@@ -609,8 +609,8 @@
           <article class="md-content__inner md-typeset" role="main">
             
   
-<h1 id="connector-hive-alluxio--page-root">Hive Connector with Alluxio<a class="headerlink" href="#connector-hive-alluxio--page-root" title="Permalink to this headline">#</a></h1>
-<p>The <a class="reference internal" href="hive.html"><span class="doc">Hive Connector</span></a> can read and write tables stored in the <a class="reference external" href="https://www.alluxio.io/?utm_source=trino&amp;utm_medium=trinodocs">Alluxio Data Orchestration
+<h1 id="connector-hive-alluxio--page-root">Hive connector with Alluxio<a class="headerlink" href="#connector-hive-alluxio--page-root" title="Permalink to this headline">#</a></h1>
+<p>The <a class="reference internal" href="hive.html"><span class="doc">Hive connector</span></a> can read and write tables stored in the <a class="reference external" href="https://www.alluxio.io/?utm_source=trino&amp;utm_medium=trinodocs">Alluxio Data Orchestration
 System</a>,
 leveraging Alluxio’s distributed block-level read/write caching functionality.
 The tables must be created in the Hive metastore with the <code class="docutils literal notranslate"><span class="pre">alluxio://</span></code>
@@ -623,7 +623,7 @@ a variety of disparate storage systems including HDFS and S3.</p>
 <p>To configure Alluxio client-side properties on Trino, append the Alluxio
 configuration directory (<code class="docutils literal notranslate"><span class="pre">${ALLUXIO_HOME}/conf</span></code>) to the Trino JVM classpath,
 so that the Alluxio properties file <code class="docutils literal notranslate"><span class="pre">alluxio-site.properties</span></code> can be loaded as
-a resource. Update the Trino <a class="reference internal" href="../installation/deployment.html#trino-jvm-config"><span class="std std-ref">JVM Config</span></a> file <code class="docutils literal notranslate"><span class="pre">etc/jvm.config</span></code>
+a resource. Update the Trino <a class="reference internal" href="../installation/deployment.html#trino-jvm-config"><span class="std std-ref">JVM config</span></a> file <code class="docutils literal notranslate"><span class="pre">etc/jvm.config</span></code>
 to include the following:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>-Xbootclasspath/a:&lt;path-to-alluxio-conf&gt;
 </pre></div>
@@ -643,7 +643,7 @@ to bypass the network (<em>short-circuit</em>). See <a class="reference external
 for more details.</p>
 
 
-<span id="id1"></span><h2 id="alluxio-catalog-service">Alluxio Catalog Service<a class="headerlink" href="#alluxio-catalog-service" title="Permalink to this headline">#</a></h2>
+<span id="id1"></span><h2 id="alluxio-catalog-service">Alluxio catalog service<a class="headerlink" href="#alluxio-catalog-service" title="Permalink to this headline">#</a></h2>
 <p>An alternative way for Trino to interact with Alluxio is via the
 <a class="reference external" href="https://docs.alluxio.io/os/user/stable/en/core-services/Catalog.html?utm_source=trino&amp;utm_medium=trinodocs">Alluxio catalog service</a>.
 The primary benefits for using the Alluxio catalog service are simpler
@@ -692,7 +692,7 @@ to existing Hive metastore deployments.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
           
-            <a href="hive-caching.html" title="Hive Connector Storage Caching"
+            <a href="hive-caching.html" title="Hive connector storage caching"
                class="md-flex md-footer-nav__link md-footer-nav__link--prev"
                rel="prev">
               <div class="md-flex__cell md-flex__cell--shrink">
@@ -701,17 +701,17 @@ to existing Hive metastore deployments.</p>
               <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
                 <span class="md-flex__ellipsis">
                   <span
-                      class="md-footer-nav__direction"> Previous </span> Hive Connector Storage Caching </span>
+                      class="md-footer-nav__direction"> Previous </span> Hive connector storage caching </span>
               </div>
             </a>
           
           
-            <a href="jmx.html" title="JMX Connector"
+            <a href="jmx.html" title="JMX connector"
                class="md-flex md-footer-nav__link md-footer-nav__link--next"
                rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
                 class="md-flex__ellipsis"> <span
-                class="md-footer-nav__direction"> Next </span> JMX Connector </span>
+                class="md-footer-nav__direction"> Next </span> JMX connector </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink"><i
                 class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>

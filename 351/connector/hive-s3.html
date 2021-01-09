@@ -47,7 +47,7 @@
   
   
   
-    <title>Hive Connector with Amazon S3 &#8212; Trino 351 Documentation</title>
+    <title>Hive connector with Amazon S3 &#8212; Trino 351 Documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/material.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -61,8 +61,8 @@
     <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Hive Connector with Azure Storage" href="hive-azure.html" />
-    <link rel="prev" title="Hive Connector Security Configuration" href="hive-security.html" />
+    <link rel="next" title="Hive connector with Azure Storage" href="hive-azure.html" />
+    <link rel="prev" title="Hive connector security configuration" href="hive-security.html" />
   
    
 
@@ -101,7 +101,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="Trino 351 Documentation"
+        <a href="/" title="Trino"
            class="md-header-nav__button md-logo">
           
               <img src="../_static/trino.svg" height="26"
@@ -115,7 +115,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           <span class="md-header-nav__topic">Trino 351 Documentation</span>
-          <span class="md-header-nav__topic"> Hive Connector with Amazon S3 </span>
+          <span class="md-header-nav__topic"> Hive connector with Amazon S3 </span>
         </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
@@ -193,7 +193,7 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="Trino 351 Documentation" class="md-nav__button md-logo">
+    <a href="/" title="Trino" class="md-nav__button md-logo">
       
         <img src="../_static/trino.svg" alt=" logo" width="48" height="48">
       
@@ -258,7 +258,7 @@
     <li class="md-nav__item">
     
     
-      <a href="../optimizer.html" class="md-nav__link">Query Optimizer</a>
+      <a href="../optimizer.html" class="md-nav__link">Query optimizer</a>
       
     
     </li>
@@ -347,27 +347,27 @@
 <nav class="md-nav md-nav--secondary">
     <label class="md-nav__title" for="__toc">Contents</label>
     <ul class="md-nav__list" data-md-scrollfix="">
-        <li class="md-nav__item"><a href="#s3-configuration-properties" class="md-nav__link">S3 Configuration Properties</a>
+        <li class="md-nav__item"><a href="#s3-configuration-properties" class="md-nav__link">S3 configuration properties</a>
         </li>
-        <li class="md-nav__item"><a href="#s3-credentials" class="md-nav__link">S3 Credentials</a>
+        <li class="md-nav__item"><a href="#s3-credentials" class="md-nav__link">S3 credentials</a>
         </li>
-        <li class="md-nav__item"><a href="#custom-s3-credentials-provider" class="md-nav__link">Custom S3 Credentials Provider</a>
+        <li class="md-nav__item"><a href="#custom-s3-credentials-provider" class="md-nav__link">Custom S3 credentials provider</a>
         </li>
-        <li class="md-nav__item"><a href="#s3-security-mapping" class="md-nav__link">S3 Security Mapping</a>
+        <li class="md-nav__item"><a href="#s3-security-mapping" class="md-nav__link">S3 security mapping</a>
         </li>
-        <li class="md-nav__item"><a href="#tuning-properties" class="md-nav__link">Tuning Properties</a>
+        <li class="md-nav__item"><a href="#tuning-properties" class="md-nav__link">Tuning properties</a>
         </li>
-        <li class="md-nav__item"><a href="#s3-data-encryption" class="md-nav__link">S3 Data Encryption</a>
+        <li class="md-nav__item"><a href="#s3-data-encryption" class="md-nav__link">S3 data encryption</a>
         </li>
-        <li class="md-nav__item"><a href="#s3-select-pushdown" class="md-nav__link">S3 Select Pushdown</a><nav class="md-nav">
+        <li class="md-nav__item"><a href="#s3-select-pushdown" class="md-nav__link">S3 Select pushdown</a><nav class="md-nav">
                 <ul class="md-nav__list">
         <li class="md-nav__item"><a href="#is-s3-select-a-good-fit-for-my-workload" class="md-nav__link">Is S3 Select a good fit for my workload?</a>
         </li>
-        <li class="md-nav__item"><a href="#considerations-and-limitations" class="md-nav__link">Considerations and Limitations</a>
+        <li class="md-nav__item"><a href="#considerations-and-limitations" class="md-nav__link">Considerations and limitations</a>
         </li>
-        <li class="md-nav__item"><a href="#enabling-s3-select-pushdown" class="md-nav__link">Enabling S3 Select Pushdown</a>
+        <li class="md-nav__item"><a href="#enabling-s3-select-pushdown" class="md-nav__link">Enabling S3 Select pushdown</a>
         </li>
-        <li class="md-nav__item"><a href="#understanding-and-tuning-the-maximum-connections" class="md-nav__link">Understanding and Tuning the Maximum Connections</a>
+        <li class="md-nav__item"><a href="#understanding-and-tuning-the-maximum-connections" class="md-nav__link">Understanding and tuning the maximum connections</a>
         </li></ul>
             </nav>
         </li>
@@ -558,21 +558,21 @@
     <li class="md-nav__item">
     
     
-      <a href="../functions.html" class="md-nav__link">Functions and Operators</a>
+      <a href="../functions.html" class="md-nav__link">Functions and operators</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../language.html" class="md-nav__link">SQL Language</a>
+      <a href="../language.html" class="md-nav__link">SQL language</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../sql.html" class="md-nav__link">SQL Statement Syntax</a>
+      <a href="../sql.html" class="md-nav__link">SQL statement syntax</a>
       
     
     </li>
@@ -586,14 +586,14 @@
     <li class="md-nav__item">
     
     
-      <a href="../develop.html" class="md-nav__link">Developer Guide</a>
+      <a href="../develop.html" class="md-nav__link">Developer guide</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../release.html" class="md-nav__link">Release Notes</a>
+      <a href="../release.html" class="md-nav__link">Release notes</a>
       
     
     </li>
@@ -611,27 +611,27 @@
 <nav class="md-nav md-nav--secondary">
     <label class="md-nav__title" for="__toc">Contents</label>
     <ul class="md-nav__list" data-md-scrollfix="">
-        <li class="md-nav__item"><a href="#s3-configuration-properties" class="md-nav__link">S3 Configuration Properties</a>
+        <li class="md-nav__item"><a href="#s3-configuration-properties" class="md-nav__link">S3 configuration properties</a>
         </li>
-        <li class="md-nav__item"><a href="#s3-credentials" class="md-nav__link">S3 Credentials</a>
+        <li class="md-nav__item"><a href="#s3-credentials" class="md-nav__link">S3 credentials</a>
         </li>
-        <li class="md-nav__item"><a href="#custom-s3-credentials-provider" class="md-nav__link">Custom S3 Credentials Provider</a>
+        <li class="md-nav__item"><a href="#custom-s3-credentials-provider" class="md-nav__link">Custom S3 credentials provider</a>
         </li>
-        <li class="md-nav__item"><a href="#s3-security-mapping" class="md-nav__link">S3 Security Mapping</a>
+        <li class="md-nav__item"><a href="#s3-security-mapping" class="md-nav__link">S3 security mapping</a>
         </li>
-        <li class="md-nav__item"><a href="#tuning-properties" class="md-nav__link">Tuning Properties</a>
+        <li class="md-nav__item"><a href="#tuning-properties" class="md-nav__link">Tuning properties</a>
         </li>
-        <li class="md-nav__item"><a href="#s3-data-encryption" class="md-nav__link">S3 Data Encryption</a>
+        <li class="md-nav__item"><a href="#s3-data-encryption" class="md-nav__link">S3 data encryption</a>
         </li>
-        <li class="md-nav__item"><a href="#s3-select-pushdown" class="md-nav__link">S3 Select Pushdown</a><nav class="md-nav">
+        <li class="md-nav__item"><a href="#s3-select-pushdown" class="md-nav__link">S3 Select pushdown</a><nav class="md-nav">
                 <ul class="md-nav__list">
         <li class="md-nav__item"><a href="#is-s3-select-a-good-fit-for-my-workload" class="md-nav__link">Is S3 Select a good fit for my workload?</a>
         </li>
-        <li class="md-nav__item"><a href="#considerations-and-limitations" class="md-nav__link">Considerations and Limitations</a>
+        <li class="md-nav__item"><a href="#considerations-and-limitations" class="md-nav__link">Considerations and limitations</a>
         </li>
-        <li class="md-nav__item"><a href="#enabling-s3-select-pushdown" class="md-nav__link">Enabling S3 Select Pushdown</a>
+        <li class="md-nav__item"><a href="#enabling-s3-select-pushdown" class="md-nav__link">Enabling S3 Select pushdown</a>
         </li>
-        <li class="md-nav__item"><a href="#understanding-and-tuning-the-maximum-connections" class="md-nav__link">Understanding and Tuning the Maximum Connections</a>
+        <li class="md-nav__item"><a href="#understanding-and-tuning-the-maximum-connections" class="md-nav__link">Understanding and tuning the maximum connections</a>
         </li></ul>
             </nav>
         </li>
@@ -645,15 +645,15 @@
           <article class="md-content__inner md-typeset" role="main">
             
   
-<h1 id="connector-hive-s3--page-root">Hive Connector with Amazon S3<a class="headerlink" href="#connector-hive-s3--page-root" title="Permalink to this headline">#</a></h1>
-<p>The <a class="reference internal" href="hive.html"><span class="doc">Hive Connector</span></a> can read and write tables that are stored in
+<h1 id="connector-hive-s3--page-root">Hive connector with Amazon S3<a class="headerlink" href="#connector-hive-s3--page-root" title="Permalink to this headline">#</a></h1>
+<p>The <a class="reference internal" href="hive.html"><span class="doc">Hive connector</span></a> can read and write tables that are stored in
 <a class="reference external" href="https://aws.amazon.com/s3/">Amazon S3</a> or S3-compatible systems.
 This is accomplished by having a table or database location that
 uses an S3 prefix, rather than an HDFS prefix.</p>
 <p>Trino uses its own S3 filesystem for the URI prefixes
 <code class="docutils literal notranslate"><span class="pre">s3://</span></code>, <code class="docutils literal notranslate"><span class="pre">s3n://</span></code> and  <code class="docutils literal notranslate"><span class="pre">s3a://</span></code>.</p>
 
-<h2 id="s3-configuration-properties">S3 Configuration Properties<a class="headerlink" href="#s3-configuration-properties" title="Permalink to this headline">#</a></h2>
+<h2 id="s3-configuration-properties">S3 configuration properties<a class="headerlink" href="#s3-configuration-properties" title="Permalink to this headline">#</a></h2>
 <table>
 <colgroup>
 <col style="width: 35%"/>
@@ -761,7 +761,7 @@ without staging file to be created in the local file system.</p></td>
 </table>
 
 
-<span id="hive-s3-credentials"></span><h2 id="s3-credentials">S3 Credentials<a class="headerlink" href="#s3-credentials" title="Permalink to this headline">#</a></h2>
+<span id="hive-s3-credentials"></span><h2 id="s3-credentials">S3 credentials<a class="headerlink" href="#s3-credentials" title="Permalink to this headline">#</a></h2>
 <p>If you are running Trino on Amazon EC2, using EMR or another facility,
 it is recommended that you use IAM Roles for EC2 to govern access to S3.
 To enable this, your EC2 instances need to be assigned an IAM Role which
@@ -773,7 +773,7 @@ and <code class="docutils literal notranslate"><span class="pre">hive.s3.aws-sec
 rotate credentials on a regular basis without any additional work on your part.</p>
 
 
-<h2 id="custom-s3-credentials-provider">Custom S3 Credentials Provider<a class="headerlink" href="#custom-s3-credentials-provider" title="Permalink to this headline">#</a></h2>
+<h2 id="custom-s3-credentials-provider">Custom S3 credentials provider<a class="headerlink" href="#custom-s3-credentials-provider" title="Permalink to this headline">#</a></h2>
 <p>You can configure a custom S3 credentials provider by setting the Hadoop
 configuration property <code class="docutils literal notranslate"><span class="pre">presto.s3.credentials-provider</span></code> to be the
 fully qualified class name of a custom AWS credentials provider
@@ -789,7 +789,7 @@ This Hadoop configuration property must be set in the Hadoop configuration
 files referenced by the <code class="docutils literal notranslate"><span class="pre">hive.config.resources</span></code> Hive connector property.</p>
 
 
-<span id="hive-s3-security-mapping"></span><h2 id="s3-security-mapping">S3 Security Mapping<a class="headerlink" href="#s3-security-mapping" title="Permalink to this headline">#</a></h2>
+<span id="hive-s3-security-mapping"></span><h2 id="s3-security-mapping">S3 security mapping<a class="headerlink" href="#s3-security-mapping" title="Permalink to this headline">#</a></h2>
 <p>Trino supports flexible security mapping for S3, allowing for separate
 credentials or IAM roles for specific users or buckets/paths. The IAM role
 for a specific query can be selected from a list of allowed roles by providing
@@ -905,7 +905,7 @@ value that is not used in any of your IAM ARNs.</p></td>
 </table>
 
 
-<h2 id="tuning-properties">Tuning Properties<a class="headerlink" href="#tuning-properties" title="Permalink to this headline">#</a></h2>
+<h2 id="tuning-properties">Tuning properties<a class="headerlink" href="#tuning-properties" title="Permalink to this headline">#</a></h2>
 <p>The following tuning properties affect the behavior of the client
 used by the Trino S3 filesystem when communicating with S3.
 Most of these parameters affect settings on the <code class="docutils literal notranslate"><span class="pre">ClientConfiguration</span></code>
@@ -964,7 +964,7 @@ this maximum value when communicating with S3.</p></td>
 </table>
 
 
-<h2 id="s3-data-encryption">S3 Data Encryption<a class="headerlink" href="#s3-data-encryption" title="Permalink to this headline">#</a></h2>
+<h2 id="s3-data-encryption">S3 data encryption<a class="headerlink" href="#s3-data-encryption" title="Permalink to this headline">#</a></h2>
 <p>Trino supports reading and writing encrypted data in S3 using both
 server-side encryption with S3 managed keys and client-side encryption using
 either the Amazon KMS or a software plugin to manage AES encryption keys.</p>
@@ -988,14 +988,14 @@ is passed in after the object instance is created, and before it is asked to pro
 encryption keys.</p>
 
 
-<span id="s3selectpushdown"></span><h2 id="s3-select-pushdown">S3 Select Pushdown<a class="headerlink" href="#s3-select-pushdown" title="Permalink to this headline">#</a></h2>
-<p>S3 Select Pushdown enables pushing down projection (SELECT) and predicate (WHERE)
+<span id="s3selectpushdown"></span><h2 id="s3-select-pushdown">S3 Select pushdown<a class="headerlink" href="#s3-select-pushdown" title="Permalink to this headline">#</a></h2>
+<p>S3 Select pushdown enables pushing down projection (SELECT) and predicate (WHERE)
 processing to <a class="reference external" href="https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectSELECTContent.html">S3 Select</a>.
 With S3 Select Pushdown, Trino only retrieves the required data from S3 instead
 of entire S3 objects, reducing both latency and network usage.</p>
 
 <h3 id="is-s3-select-a-good-fit-for-my-workload">Is S3 Select a good fit for my workload?<a class="headerlink" href="#is-s3-select-a-good-fit-for-my-workload" title="Permalink to this headline">#</a></h3>
-<p>Performance of S3 Select Pushdown depends on the amount of data filtered by the
+<p>Performance of S3 Select pushdown depends on the amount of data filtered by the
 query. Filtering a large number of rows should result in better performance. If
 the query doesn’t filter any data, then pushdown may not add any additional value
 and the user is charged for S3 Select requests. Thus, we recommend that you
@@ -1020,7 +1020,7 @@ HTTP responses, so the response size may increase for compressed input files.</p
 </ul>
 
 
-<h3 id="considerations-and-limitations">Considerations and Limitations<a class="headerlink" href="#considerations-and-limitations" title="Permalink to this headline">#</a></h3>
+<h3 id="considerations-and-limitations">Considerations and limitations<a class="headerlink" href="#considerations-and-limitations" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Only objects stored in CSV format are supported. Objects can be uncompressed,
 or optionally compressed with gzip or bzip2.</p></li>
@@ -1033,14 +1033,14 @@ formats such as ORC and Parquet.</p></li>
 </ul>
 
 
-<h3 id="enabling-s3-select-pushdown">Enabling S3 Select Pushdown<a class="headerlink" href="#enabling-s3-select-pushdown" title="Permalink to this headline">#</a></h3>
+<h3 id="enabling-s3-select-pushdown">Enabling S3 Select pushdown<a class="headerlink" href="#enabling-s3-select-pushdown" title="Permalink to this headline">#</a></h3>
 <p>You can enable S3 Select Pushdown using the <code class="docutils literal notranslate"><span class="pre">s3_select_pushdown_enabled</span></code>
 Hive session property, or using the <code class="docutils literal notranslate"><span class="pre">hive.s3select-pushdown.enabled</span></code>
 configuration property. The session property overrides the config
 property, allowing you enable or disable on a per-query basis.</p>
 
 
-<h3 id="understanding-and-tuning-the-maximum-connections">Understanding and Tuning the Maximum Connections<a class="headerlink" href="#understanding-and-tuning-the-maximum-connections" title="Permalink to this headline">#</a></h3>
+<h3 id="understanding-and-tuning-the-maximum-connections">Understanding and tuning the maximum connections<a class="headerlink" href="#understanding-and-tuning-the-maximum-connections" title="Permalink to this headline">#</a></h3>
 <p>Trino can use its native S3 file system or EMRFS. When using the native FS, the
 maximum connections is configured via the <code class="docutils literal notranslate"><span class="pre">hive.s3.max-connections</span></code>
 configuration property. When using EMRFS, the maximum connections is configured
@@ -1066,7 +1066,7 @@ the maximum connections configuration for the file system you are using.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
           
-            <a href="hive-security.html" title="Hive Connector Security Configuration"
+            <a href="hive-security.html" title="Hive connector security configuration"
                class="md-flex md-footer-nav__link md-footer-nav__link--prev"
                rel="prev">
               <div class="md-flex__cell md-flex__cell--shrink">
@@ -1075,17 +1075,17 @@ the maximum connections configuration for the file system you are using.</p>
               <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
                 <span class="md-flex__ellipsis">
                   <span
-                      class="md-footer-nav__direction"> Previous </span> Hive Connector Security Configuration </span>
+                      class="md-footer-nav__direction"> Previous </span> Hive connector security configuration </span>
               </div>
             </a>
           
           
-            <a href="hive-azure.html" title="Hive Connector with Azure Storage"
+            <a href="hive-azure.html" title="Hive connector with Azure Storage"
                class="md-flex md-footer-nav__link md-footer-nav__link--next"
                rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
                 class="md-flex__ellipsis"> <span
-                class="md-footer-nav__direction"> Next </span> Hive Connector with Azure Storage </span>
+                class="md-footer-nav__direction"> Next </span> Hive connector with Azure Storage </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink"><i
                 class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>

@@ -47,7 +47,7 @@
   
   
   
-    <title>Lambda Expressions &#8212; Trino 351 Documentation</title>
+    <title>Lambda expressions &#8212; Trino 351 Documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/material.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -61,8 +61,8 @@
     <script src="../_static/copybutton.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Conversion Functions" href="conversion.html" />
-    <link rel="prev" title="Conditional Expressions" href="conditional.html" />
+    <link rel="next" title="Conversion functions" href="conversion.html" />
+    <link rel="prev" title="Conditional expressions" href="conditional.html" />
   
    
 
@@ -101,7 +101,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="Trino 351 Documentation"
+        <a href="/" title="Trino"
            class="md-header-nav__button md-logo">
           
               <img src="../_static/trino.svg" height="26"
@@ -115,7 +115,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           <span class="md-header-nav__topic">Trino 351 Documentation</span>
-          <span class="md-header-nav__topic"> Lambda Expressions </span>
+          <span class="md-header-nav__topic"> Lambda expressions </span>
         </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
@@ -193,7 +193,7 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="Trino 351 Documentation" class="md-nav__button md-logo">
+    <a href="/" title="Trino" class="md-nav__button md-logo">
       
         <img src="../_static/trino.svg" alt=" logo" width="48" height="48">
       
@@ -258,7 +258,7 @@
     <li class="md-nav__item">
     
     
-      <a href="../optimizer.html" class="md-nav__link">Query Optimizer</a>
+      <a href="../optimizer.html" class="md-nav__link">Query optimizer</a>
       
     
     </li>
@@ -272,7 +272,7 @@
     <li class="md-nav__item">
     
     
-      <a href="../functions.html" class="md-nav__link">Functions and Operators</a>
+      <a href="../functions.html" class="md-nav__link">Functions and operators</a>
       <ul class="md-nav__list"> 
     <li class="md-nav__item">
     
@@ -349,7 +349,7 @@
     <li class="md-nav__item">
     
     
-      <a href="regexp.html" class="md-nav__link">Regular Expression</a>
+      <a href="regexp.html" class="md-nav__link">Regular expression</a>
       
     
     </li>
@@ -370,7 +370,7 @@
     <li class="md-nav__item">
     
     
-      <a href="datetime.html" class="md-nav__link">Date and Time</a>
+      <a href="datetime.html" class="md-nav__link">Date and time</a>
       
     
     </li>
@@ -426,7 +426,7 @@
     <li class="md-nav__item">
     
     
-      <a href="qdigest.html" class="md-nav__link">Quantile Digest</a>
+      <a href="qdigest.html" class="md-nav__link">Quantile digest</a>
       
     
     </li>
@@ -468,14 +468,14 @@
     <li class="md-nav__item">
     
     
-      <a href="ml.html" class="md-nav__link">Machine Learning</a>
+      <a href="ml.html" class="md-nav__link">Machine learning</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="list.html" class="md-nav__link">List of Functions and Operators</a>
+      <a href="list.html" class="md-nav__link">List of functions and operators</a>
       
     
     </li></ul>
@@ -484,14 +484,14 @@
     <li class="md-nav__item">
     
     
-      <a href="../language.html" class="md-nav__link">SQL Language</a>
+      <a href="../language.html" class="md-nav__link">SQL language</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../sql.html" class="md-nav__link">SQL Statement Syntax</a>
+      <a href="../sql.html" class="md-nav__link">SQL statement syntax</a>
       
     
     </li>
@@ -505,14 +505,14 @@
     <li class="md-nav__item">
     
     
-      <a href="../develop.html" class="md-nav__link">Developer Guide</a>
+      <a href="../develop.html" class="md-nav__link">Developer guide</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../release.html" class="md-nav__link">Release Notes</a>
+      <a href="../release.html" class="md-nav__link">Release notes</a>
       
     
     </li>
@@ -539,7 +539,7 @@
           <article class="md-content__inner md-typeset" role="main">
             
   
-<span id="id1"></span><h1 id="functions-lambda--page-root">Lambda Expressions<a class="headerlink" href="#functions-lambda--page-root" title="Permalink to this headline">#</a></h1>
+<span id="id1"></span><h1 id="functions-lambda--page-root">Lambda expressions<a class="headerlink" href="#functions-lambda--page-root" title="Permalink to this headline">#</a></h1>
 <p>Lambda expressions are written with <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code>:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
@@ -568,7 +568,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
           
-            <a href="conditional.html" title="Conditional Expressions"
+            <a href="conditional.html" title="Conditional expressions"
                class="md-flex md-footer-nav__link md-footer-nav__link--prev"
                rel="prev">
               <div class="md-flex__cell md-flex__cell--shrink">
@@ -577,17 +577,17 @@
               <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
                 <span class="md-flex__ellipsis">
                   <span
-                      class="md-footer-nav__direction"> Previous </span> Conditional Expressions </span>
+                      class="md-footer-nav__direction"> Previous </span> Conditional expressions </span>
               </div>
             </a>
           
           
-            <a href="conversion.html" title="Conversion Functions"
+            <a href="conversion.html" title="Conversion functions"
                class="md-flex md-footer-nav__link md-footer-nav__link--next"
                rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
                 class="md-flex__ellipsis"> <span
-                class="md-footer-nav__direction"> Next </span> Conversion Functions </span>
+                class="md-footer-nav__direction"> Next </span> Conversion functions </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink"><i
                 class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>

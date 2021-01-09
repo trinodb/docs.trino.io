@@ -101,7 +101,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="Trino 351 Documentation"
+        <a href="/" title="Trino"
            class="md-header-nav__button md-logo">
           
               <img src="../_static/trino.svg" height="26"
@@ -193,7 +193,7 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="Trino 351 Documentation" class="md-nav__button md-logo">
+    <a href="/" title="Trino" class="md-nav__button md-logo">
       
         <img src="../_static/trino.svg" alt=" logo" width="48" height="48">
       
@@ -258,7 +258,7 @@
     <li class="md-nav__item">
     
     
-      <a href="../optimizer.html" class="md-nav__link">Query Optimizer</a>
+      <a href="../optimizer.html" class="md-nav__link">Query optimizer</a>
       
     
     </li>
@@ -272,21 +272,21 @@
     <li class="md-nav__item">
     
     
-      <a href="../functions.html" class="md-nav__link">Functions and Operators</a>
+      <a href="../functions.html" class="md-nav__link">Functions and operators</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../language.html" class="md-nav__link">SQL Language</a>
+      <a href="../language.html" class="md-nav__link">SQL language</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../sql.html" class="md-nav__link">SQL Statement Syntax</a>
+      <a href="../sql.html" class="md-nav__link">SQL statement syntax</a>
       
     
     </li>
@@ -300,14 +300,14 @@
     <li class="md-nav__item">
     
     
-      <a href="../develop.html" class="md-nav__link">Developer Guide</a>
+      <a href="../develop.html" class="md-nav__link">Developer guide</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../release.html" class="md-nav__link">Release Notes</a>
+      <a href="../release.html" class="md-nav__link">Release notes</a>
       <ul class="md-nav__list"> 
     <li class="md-nav__item">
     
@@ -1851,7 +1851,7 @@
         </li>
         <li class="md-nav__item"><a href="#use-catalog-and-use-schema" class="md-nav__link">USE CATALOG and USE SCHEMA</a>
         </li>
-        <li class="md-nav__item"><a href="#tpch-connector" class="md-nav__link">TPCH Connector</a>
+        <li class="md-nav__item"><a href="#tpch-connector" class="md-nav__link">TPCH connector</a>
         </li>
         <li class="md-nav__item"><a href="#spi-changes" class="md-nav__link">SPI changes</a>
         </li>
@@ -1936,7 +1936,7 @@
         </li>
         <li class="md-nav__item"><a href="#use-catalog-and-use-schema" class="md-nav__link">USE CATALOG and USE SCHEMA</a>
         </li>
-        <li class="md-nav__item"><a href="#tpch-connector" class="md-nav__link">TPCH Connector</a>
+        <li class="md-nav__item"><a href="#tpch-connector" class="md-nav__link">TPCH connector</a>
         </li>
         <li class="md-nav__item"><a href="#spi-changes" class="md-nav__link">SPI changes</a>
         </li>
@@ -1976,11 +1976,11 @@ anymore.</p>
 
 
 <h2 id="use-catalog-and-use-schema">USE CATALOG and USE SCHEMA<a class="headerlink" href="#use-catalog-and-use-schema" title="Permalink to this headline">#</a></h2>
-<p>The <a class="reference internal" href="../installation/cli.html"><span class="doc">Command Line Interface</span></a> now supports <code class="docutils literal notranslate"><span class="pre">USE</span> <span class="pre">CATALOG</span></code> and
+<p>The <a class="reference internal" href="../installation/cli.html"><span class="doc">Command line interface</span></a> now supports <code class="docutils literal notranslate"><span class="pre">USE</span> <span class="pre">CATALOG</span></code> and
 <code class="docutils literal notranslate"><span class="pre">USE</span> <span class="pre">SCHEMA</span></code>.</p>
 
 
-<h2 id="tpch-connector">TPCH Connector<a class="headerlink" href="#tpch-connector" title="Permalink to this headline">#</a></h2>
+<h2 id="tpch-connector">TPCH connector<a class="headerlink" href="#tpch-connector" title="Permalink to this headline">#</a></h2>
 <p>We have added a new connector that will generate synthetic data following the
 TPC-H specification. This connector makes it easy to generate large datasets for
 testing and bug reports. When generating bug reports, we encourage users to use
@@ -2065,7 +2065,7 @@ awaiting creation in the task executor.</p>
 <p>Presto converts complex Hive types (array, map, struct and union) into JSON.
 Previously, numeric keys in maps were converted to numbers, not strings,
 which is invalid as JSON only allows strings for object keys. This prevented
-the <a class="reference internal" href="../functions/json.html"><span class="doc">JSON Functions and Operators</span></a> from working.</p>
+the <a class="reference internal" href="../functions/json.html"><span class="doc">JSON functions and operators</span></a> from working.</p>
 </li>
 <li><p>Hive hidden files</p>
 <p>Presto will now ignore files in Hive that start with an underscore <code class="docutils literal notranslate"><span class="pre">_</span></code> or

@@ -101,7 +101,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex navheader">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="Trino 351 Documentation"
+        <a href="/" title="Trino"
            class="md-header-nav__button md-logo">
           
               <img src="../_static/trino.svg" height="26"
@@ -193,7 +193,7 @@
               <div class="md-sidebar__inner">
                 <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="Trino 351 Documentation" class="md-nav__button md-logo">
+    <a href="/" title="Trino" class="md-nav__button md-logo">
       
         <img src="../_static/trino.svg" alt=" logo" width="48" height="48">
       
@@ -258,7 +258,7 @@
     <li class="md-nav__item">
     
     
-      <a href="../optimizer.html" class="md-nav__link">Query Optimizer</a>
+      <a href="../optimizer.html" class="md-nav__link">Query optimizer</a>
       
     
     </li>
@@ -272,21 +272,21 @@
     <li class="md-nav__item">
     
     
-      <a href="../functions.html" class="md-nav__link">Functions and Operators</a>
+      <a href="../functions.html" class="md-nav__link">Functions and operators</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../language.html" class="md-nav__link">SQL Language</a>
+      <a href="../language.html" class="md-nav__link">SQL language</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../sql.html" class="md-nav__link">SQL Statement Syntax</a>
+      <a href="../sql.html" class="md-nav__link">SQL statement syntax</a>
       
     
     </li>
@@ -300,14 +300,14 @@
     <li class="md-nav__item">
     
     
-      <a href="../develop.html" class="md-nav__link">Developer Guide</a>
+      <a href="../develop.html" class="md-nav__link">Developer guide</a>
       
     
     </li>
     <li class="md-nav__item">
     
     
-      <a href="../release.html" class="md-nav__link">Release Notes</a>
+      <a href="../release.html" class="md-nav__link">Release notes</a>
       <ul class="md-nav__list"> 
     <li class="md-nav__item">
     
@@ -1546,13 +1546,13 @@
 <nav class="md-nav md-nav--secondary">
     <label class="md-nav__title" for="__toc">Contents</label>
     <ul class="md-nav__list" data-md-scrollfix="">
-        <li class="md-nav__item"><a href="#cluster-resource-management" class="md-nav__link">Cluster Resource Management</a>
+        <li class="md-nav__item"><a href="#cluster-resource-management" class="md-nav__link">Cluster resource management</a>
         </li>
-        <li class="md-nav__item"><a href="#task-parallelism" class="md-nav__link">Task Parallelism</a>
+        <li class="md-nav__item"><a href="#task-parallelism" class="md-nav__link">Task parallelism</a>
         </li>
-        <li class="md-nav__item"><a href="#hive-changes" class="md-nav__link">Hive Changes</a>
+        <li class="md-nav__item"><a href="#hive-changes" class="md-nav__link">Hive changes</a>
         </li>
-        <li class="md-nav__item"><a href="#general-changes" class="md-nav__link">General Changes</a>
+        <li class="md-nav__item"><a href="#general-changes" class="md-nav__link">General changes</a>
         </li>
     </ul>
 </nav>
@@ -1918,13 +1918,13 @@
 <nav class="md-nav md-nav--secondary">
     <label class="md-nav__title" for="__toc">Contents</label>
     <ul class="md-nav__list" data-md-scrollfix="">
-        <li class="md-nav__item"><a href="#cluster-resource-management" class="md-nav__link">Cluster Resource Management</a>
+        <li class="md-nav__item"><a href="#cluster-resource-management" class="md-nav__link">Cluster resource management</a>
         </li>
-        <li class="md-nav__item"><a href="#task-parallelism" class="md-nav__link">Task Parallelism</a>
+        <li class="md-nav__item"><a href="#task-parallelism" class="md-nav__link">Task parallelism</a>
         </li>
-        <li class="md-nav__item"><a href="#hive-changes" class="md-nav__link">Hive Changes</a>
+        <li class="md-nav__item"><a href="#hive-changes" class="md-nav__link">Hive changes</a>
         </li>
-        <li class="md-nav__item"><a href="#general-changes" class="md-nav__link">General Changes</a>
+        <li class="md-nav__item"><a href="#general-changes" class="md-nav__link">General changes</a>
         </li>
     </ul>
 </nav>
@@ -1938,7 +1938,7 @@
   
 <h1 id="release-release-0-103--page-root">Release 0.103<a class="headerlink" href="#release-release-0-103--page-root" title="Permalink to this headline">#</a></h1>
 
-<h2 id="cluster-resource-management">Cluster Resource Management<a class="headerlink" href="#cluster-resource-management" title="Permalink to this headline">#</a></h2>
+<h2 id="cluster-resource-management">Cluster resource management<a class="headerlink" href="#cluster-resource-management" title="Permalink to this headline">#</a></h2>
 <p>There is a new cluster resource manager, which can be enabled via the
 <code class="docutils literal notranslate"><span class="pre">experimental.cluster-memory-manager-enabled</span></code> flag. Currently, the only
 resource that’s tracked is memory, and the cluster resource manager guarantees
@@ -1951,7 +1951,7 @@ of memory a query may use on any one node. On each worker, the
 for internal Presto data structures and temporary allocations.</p>
 
 
-<h2 id="task-parallelism">Task Parallelism<a class="headerlink" href="#task-parallelism" title="Permalink to this headline">#</a></h2>
+<h2 id="task-parallelism">Task parallelism<a class="headerlink" href="#task-parallelism" title="Permalink to this headline">#</a></h2>
 <p>Queries involving a large number of aggregations or a large hash table for a
 join can be slow due to single threaded execution in the intermediate stages.
 This release adds experimental configuration and session properties to execute
@@ -1968,7 +1968,7 @@ is also expected that this will eventually be handled automatically by the
 query planner and these options will be removed entirely.</p>
 
 
-<h2 id="hive-changes">Hive Changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
+<h2 id="hive-changes">Hive changes<a class="headerlink" href="#hive-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Removed the <code class="docutils literal notranslate"><span class="pre">hive.max-split-iterator-threads</span></code> parameter and renamed
 <code class="docutils literal notranslate"><span class="pre">hive.max-global-split-iterator-threads</span></code> to <code class="docutils literal notranslate"><span class="pre">hive.max-split-iterator-threads</span></code>.</p></li>
@@ -1977,7 +1977,7 @@ query planner and these options will be removed entirely.</p>
 </ul>
 
 
-<h2 id="general-changes">General Changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
+<h2 id="general-changes">General changes<a class="headerlink" href="#general-changes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Add <a class="reference internal" href="../functions/array.html#array_remove" title="array_remove"><code class="xref py py-func docutils literal notranslate"><span class="pre">array_remove()</span></code></a>.</p></li>
 <li><p>Fix NPE in <a class="reference internal" href="../functions/aggregate.html#max_by" title="max_by"><code class="xref py py-func docutils literal notranslate"><span class="pre">max_by()</span></code></a> and <a class="reference internal" href="../functions/aggregate.html#min_by" title="min_by"><code class="xref py py-func docutils literal notranslate"><span class="pre">min_by()</span></code></a> caused when few rows were present in the aggregation.</p></li>
