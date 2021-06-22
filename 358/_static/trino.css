@@ -109,6 +109,12 @@ header.md-header { top: 53px; }
     margin-top:-92px;
     padding-top:92px;
 }
+.md-typeset h1[id]:target:before,
+.md-typeset h2[id]:target:before,
+.md-typeset h3[id]:target:before,
+.md-typeset h4[id]:target:before,
+.md-typeset h5[id]:target:before,
+.md-typeset h6[id]:target:before,
 .md-typeset dl[id]:target:before {
     margin-top:-134px;
     padding-top:134px;
