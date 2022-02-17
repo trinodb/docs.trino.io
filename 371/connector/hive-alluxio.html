@@ -1,0 +1,751 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Alata&family=Open+Sans:ital,wght%400,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="2196f3">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>Hive connector with Alluxio &#8212; Trino 371 Documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/material.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/trino.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Iceberg connector" href="iceberg.html" />
+    <link rel="prev" title="Hive connector storage caching" href="hive-caching.html" />
+  
+   
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133457846-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-133457846-1');
+      gtag('config', 'AW-1036784065');
+      window._linkedin_data_partner_ids = ['2842796'];
+    </script>
+    <script async src="https://snap.licdn.com/li.lms-analytics/insight.min.js"></script>
+  </head>
+  <body dir=ltr
+        data-md-color-primary= data-md-color-accent=>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#connector/hive-alluxio" tabindex="1" class="md-skip"> Skip to content </a>
+  <div id="announcement">
+  <div id="announcement-content">
+    Presto SQL is now Trino
+    <a href="https://trino.io/blog/2020/12/27/announcing-trino.html" target="_blank">Read why &raquo;</a>
+  </div>
+</div>
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="/" title="Trino"
+           class="md-header-nav__button md-logo">
+          
+              <img src="../_static/trino.svg" height="26"
+                   alt="Trino 371 Documentation logo">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">Trino 371 Documentation</span>
+          <span class="md-header-nav__topic"> Hive connector with Alluxio </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="GET" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://github.com/trinodb/trino" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Trino
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../../versions.json",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    <!-- empty -->
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="/" title="Trino" class="md-nav__button md-logo">
+      
+        <img src="../_static/trino.svg" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="../index.html"
+       title="Trino 371 Documentation">Trino 371 Documentation</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://github.com/trinodb/trino" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Trino
+  </div>
+</a>
+    </div>
+  
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+    
+      <a href="../overview.html" class="md-nav__link">Overview</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../installation.html" class="md-nav__link">Installation</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../client.html" class="md-nav__link">Clients</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../security.html" class="md-nav__link">Security</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../admin.html" class="md-nav__link">Administration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../admin.html#event-listeners" class="md-nav__link">Event listeners</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../optimizer.html" class="md-nav__link">Query optimizer</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../connector.html" class="md-nav__link">Connectors</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="accumulo.html" class="md-nav__link">Accumulo</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="bigquery.html" class="md-nav__link">BigQuery</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="blackhole.html" class="md-nav__link">Black Hole</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="cassandra.html" class="md-nav__link">Cassandra</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="clickhouse.html" class="md-nav__link">ClickHouse</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="druid.html" class="md-nav__link">Druid</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="elasticsearch.html" class="md-nav__link">Elasticsearch</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="googlesheets.html" class="md-nav__link">Google Sheets</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="hive.html" class="md-nav__link">Hive</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="hive-security.html" class="md-nav__link">Security</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="hive-s3.html" class="md-nav__link">Amazon S3</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="hive-azure.html" class="md-nav__link">Azure Storage</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="hive-gcs-tutorial.html" class="md-nav__link">GCS Tutorial</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="hive-caching.html" class="md-nav__link">Storage Caching</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> Alluxio </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">Alluxio</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+    <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#alluxio-client-side-configuration" class="md-nav__link">Alluxio client-side configuration</a>
+        </li>
+        <li class="md-nav__item"><a href="#deploy-alluxio-with-trino" class="md-nav__link">Deploy Alluxio with Trino</a>
+        </li>
+        <li class="md-nav__item"><a href="#alluxio-catalog-service" class="md-nav__link">Alluxio catalog service</a>
+        </li>
+    </ul>
+</nav>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="iceberg.html" class="md-nav__link">Iceberg</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="jmx.html" class="md-nav__link">JMX</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="kafka.html" class="md-nav__link">Kafka</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="kinesis.html" class="md-nav__link">Kinesis</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="kudu.html" class="md-nav__link">Kudu</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="localfile.html" class="md-nav__link">Local File</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="memory.html" class="md-nav__link">Memory</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="mongodb.html" class="md-nav__link">MongoDB</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="mysql.html" class="md-nav__link">MySQL</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="oracle.html" class="md-nav__link">Oracle</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="phoenix.html" class="md-nav__link">Phoenix</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="pinot.html" class="md-nav__link">Pinot</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="postgresql.html" class="md-nav__link">PostgreSQL</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="prometheus.html" class="md-nav__link">Prometheus</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="redis.html" class="md-nav__link">Redis</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="redshift.html" class="md-nav__link">Redshift</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="memsql.html" class="md-nav__link">SingleStore (MemSQL)</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="sqlserver.html" class="md-nav__link">SQL Server</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="system.html" class="md-nav__link">System</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="thrift.html" class="md-nav__link">Thrift</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="tpcds.html" class="md-nav__link">TPCDS</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="tpch.html" class="md-nav__link">TPCH</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../functions.html" class="md-nav__link">Functions and operators</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../language.html" class="md-nav__link">SQL language</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../sql.html" class="md-nav__link">SQL statement syntax</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../develop.html" class="md-nav__link">Developer guide</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../appendix.html" class="md-nav__link">Appendix</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../release.html" class="md-nav__link">Release notes</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+    <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#alluxio-client-side-configuration" class="md-nav__link">Alluxio client-side configuration</a>
+        </li>
+        <li class="md-nav__item"><a href="#deploy-alluxio-with-trino" class="md-nav__link">Deploy Alluxio with Trino</a>
+        </li>
+        <li class="md-nav__item"><a href="#alluxio-catalog-service" class="md-nav__link">Alluxio catalog service</a>
+        </li>
+    </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  
+<h1 id="connector-hive-alluxio--page-root">Hive connector with Alluxio<a class="headerlink" href="#connector-hive-alluxio--page-root" title="Permalink to this headline">#</a></h1>
+<p>The <a class="reference internal" href="hive.html"><span class="doc">Hive connector</span></a> can read and write tables stored in the <a class="reference external" href="https://www.alluxio.io/?utm_source=trino&amp;utm_medium=trinodocs">Alluxio Data Orchestration
+System</a>,
+leveraging Alluxio’s distributed block-level read/write caching functionality.
+The tables must be created in the Hive metastore with the <code class="docutils literal notranslate"><span class="pre">alluxio://</span></code>
+location prefix (see <a class="reference external" href="https://docs.alluxio.io/os/user/2.1/en/compute/Hive.html?utm_source=trino&amp;utm_medium=trinodocs">Running Apache Hive with Alluxio</a>
+for details and examples).</p>
+<p>Trino queries will then transparently retrieve and cache files or objects from
+a variety of disparate storage systems including HDFS and S3.</p>
+
+<h2 id="alluxio-client-side-configuration">Alluxio client-side configuration<a class="headerlink" href="#alluxio-client-side-configuration" title="Permalink to this headline">#</a></h2>
+<p>To configure Alluxio client-side properties on Trino, append the Alluxio
+configuration directory (<code class="docutils literal notranslate"><span class="pre">${ALLUXIO_HOME}/conf</span></code>) to the Trino JVM classpath,
+so that the Alluxio properties file <code class="docutils literal notranslate"><span class="pre">alluxio-site.properties</span></code> can be loaded as
+a resource. Update the Trino <a class="reference internal" href="../installation/deployment.html#jvm-config"><span class="std std-ref">JVM config</span></a> file <code class="docutils literal notranslate"><span class="pre">etc/jvm.config</span></code>
+to include the following:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>-Xbootclasspath/a:&lt;path-to-alluxio-conf&gt;
+</pre></div>
+</div>
+<p>The advantage of this approach is that all the Alluxio properties are set in
+the single <code class="docutils literal notranslate"><span class="pre">alluxio-site.properties</span></code> file. For details, see <a class="reference external" href="https://docs.alluxio.io/os/user/2.1/en/compute/Presto.html#customize-alluxio-user-properties?utm_source=trino&amp;utm_medium=trinodocs">Customize Alluxio Presto Properties</a>.</p>
+<p>Alternatively, add Alluxio configuration properties to the Hadoop configuration
+files (<code class="docutils literal notranslate"><span class="pre">core-site.xml</span></code>, <code class="docutils literal notranslate"><span class="pre">hdfs-site.xml</span></code>) and configure the Hive connector
+to use the <a class="reference external" href="#hdfs-configuration">Hadoop configuration files</a> via the
+<code class="docutils literal notranslate"><span class="pre">hive.config.resources</span></code> connector property.</p>
+
+
+<h2 id="deploy-alluxio-with-trino">Deploy Alluxio with Trino<a class="headerlink" href="#deploy-alluxio-with-trino" title="Permalink to this headline">#</a></h2>
+<p>To achieve the best performance running Trino on Alluxio, it is recommended
+to collocate Trino workers with Alluxio workers. This allows reads and writes
+to bypass the network (<em>short-circuit</em>). See <a class="reference external" href="https://www.alluxio.io/blog/top-5-performance-tuning-tips-for-running-presto-on-alluxio-1/?utm_source=trino&amp;utm_medium=trinodocs">Performance Tuning Tips for Presto with Alluxio</a>
+for more details.</p>
+
+
+<span id="id1"></span><h2 id="alluxio-catalog-service">Alluxio catalog service<a class="headerlink" href="#alluxio-catalog-service" title="Permalink to this headline">#</a></h2>
+<p>An alternative way for Trino to interact with Alluxio is via the
+<a class="reference external" href="https://docs.alluxio.io/os/user/stable/en/core-services/Catalog.html?utm_source=trino&amp;utm_medium=trinodocs">Alluxio catalog service</a>.
+The primary benefits for using the Alluxio catalog service are simpler
+deployment of Alluxio with Trino, and enabling schema-aware optimizations
+such as transparent caching and transformations. Currently, the catalog service
+supports read-only workloads.</p>
+<p>The Alluxio catalog service is a metastore that can cache the information
+from different underlying metastores. It currently supports the Hive metastore
+as an underlying metastore. In order for the Alluxio catalog to manage the metadata
+of other existing metastores, the other metastores must be “attached” to the
+Alluxio catalog. To attach an existing Hive metastore to the Alluxio
+catalog, simply use the
+<a class="reference external" href="https://docs.alluxio.io/os/user/stable/en/operation/User-CLI.html?utm_source=trino&amp;utm_medium=trinodocs#attachdb">Alluxio CLI attachdb command</a>.
+The appropriate Hive metastore location and Hive database name need to be
+provided.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>./bin/alluxio table attachdb hive thrift://HOSTNAME:9083 hive_db_name
+</pre></div>
+</div>
+<p>Once a metastore is attached, the Alluxio catalog can manage and serve the
+information to Trino. To configure the Hive connector for Alluxio
+catalog service, simply configure the connector to use the Alluxio
+metastore type, and provide the location to the Alluxio cluster.
+For example, your <code class="docutils literal notranslate"><span class="pre">etc/catalog/alluxio.properties</span></code> should include
+the following:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>connector.name=hive
+hive.metastore=alluxio
+hive.metastore.alluxio.master.address=HOSTNAME:PORT
+</pre></div>
+</div>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">HOSTNAME</span></code> with the Alluxio master hostname, and replace <code class="docutils literal notranslate"><span class="pre">PORT</span></code>
+with the Alluxio master port.
+An example of an Alluxio master address is <code class="docutils literal notranslate"><span class="pre">master-node:19998</span></code>.
+Now, Trino queries can take advantage of the Alluxio catalog service, such as
+transparent caching and transparent transformations, without any modifications
+to existing Hive metastore deployments.</p>
+
+
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="hive-caching.html" title="Hive connector storage caching"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> Previous </span> Hive connector storage caching </span>
+              </div>
+            </a>
+          
+          
+            <a href="iceberg.html" title="Iceberg connector"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> Next </span> Iceberg connector </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>
