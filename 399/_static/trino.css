@@ -112,7 +112,6 @@ header.md-header { top: 53px; }
   -webkit-font-smoothing: antialiased !important;
 }
 #announcement-content a {
-  text-decoration: underline;
   margin-left: 32px;
 }
 .md-typeset span[id]:target:before {
