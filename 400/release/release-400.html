@@ -47,7 +47,7 @@
   
   
   
-    <title>Release 400 (12 Oct 2022) &#8212; Trino 400 Documentation</title>
+    <title>Release 400 (13 Oct 2022) &#8212; Trino 400 Documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/material.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -120,7 +120,7 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           <span class="md-header-nav__topic">Trino 400 Documentation</span>
-          <span class="md-header-nav__topic"> Release 400 (12 Oct 2022) </span>
+          <span class="md-header-nav__topic"> Release 400 (13 Oct 2022) </span>
         </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
@@ -325,9 +325,9 @@
     
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    <label class="md-nav__link md-nav__link--active" for="__toc"> Release 400 (12 Oct 2022) </label>
+    <label class="md-nav__link md-nav__link--active" for="__toc"> Release 400 (13 Oct 2022) </label>
     
-      <a href="#" class="md-nav__link md-nav__link--active">Release 400 (12 Oct 2022)</a>
+      <a href="#" class="md-nav__link md-nav__link--active">Release 400 (13 Oct 2022)</a>
       
         
 <nav class="md-nav md-nav--secondary">
@@ -2311,7 +2311,7 @@
           <article class="md-content__inner md-typeset" role="main">
             
   
-<h1 id="release-release-400--page-root">Release 400 (12 Oct 2022)<a class="headerlink" href="#release-release-400--page-root" title="Permalink to this headline">#</a></h1>
+<h1 id="release-release-400--page-root">Release 400 (13 Oct 2022)<a class="headerlink" href="#release-release-400--page-root" title="Permalink to this headline">#</a></h1>
 
 <h2 id="general">General<a class="headerlink" href="#general" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
@@ -2319,6 +2319,11 @@
 <li><p>Increase concurrency for large clusters. (<a class="reference external" href="https://github.com/trinodb/trino/issues/14395">#14395</a>)</p></li>
 <li><p>Fix JSON serialization failure for <code class="docutils literal notranslate"><span class="pre">QueryCompletedEvent</span></code> in event listener.
 (<a class="reference external" href="https://github.com/trinodb/trino/issues/14604">#14604</a>)</p></li>
+<li><p>Fix occasional <code class="docutils literal notranslate"><span class="pre">maximum</span> <span class="pre">pending</span> <span class="pre">connection</span> <span class="pre">acquisitions</span> <span class="pre">exceeded</span></code> failure
+when fault-tolerant execution is enabled. (<a class="reference external" href="https://github.com/trinodb/trino/issues/14580">#14580</a>)</p></li>
+<li><p>Fix incorrect results when calling the <code class="docutils literal notranslate"><span class="pre">round</span></code> function on large <code class="docutils literal notranslate"><span class="pre">real</span></code> and
+<code class="docutils literal notranslate"><span class="pre">double</span></code> values. (<a class="reference external" href="https://github.com/trinodb/trino/issues/14613">#14613</a>)</p></li>
+<li><p>Fix query failure when using the <code class="docutils literal notranslate"><span class="pre">merge(qdigest)</span></code> function. (<a class="reference external" href="https://github.com/trinodb/trino/issues/14616">#14616</a>)</p></li>
 </ul>
 
 
@@ -2356,6 +2361,7 @@ when dropping tables. (<a class="reference external" href="https://github.com/tr
 
 <h2 id="iceberg-connector">Iceberg connector<a class="headerlink" href="#iceberg-connector" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
+<li><p>Reduce query latency when querying tables with a large number of files. (<a class="reference external" href="https://github.com/trinodb/trino/issues/14504">#14504</a>)</p></li>
 <li><p>Prevent table corruption when changing a table fails due to an inability to
 release the table lock from the Hive metastore. (<a class="reference external" href="https://github.com/trinodb/trino/issues/14386">#14386</a>)</p></li>
 <li><p>Fix query failure when reading from a table with a leading double slash in the
