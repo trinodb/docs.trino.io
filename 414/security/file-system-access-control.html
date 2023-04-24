@@ -1462,19 +1462,27 @@ as <code class="docutils literal notranslate"><span class="pre">group@example.ne
 <section id="system-information-rules">
 <span id="system-file-auth-system-information"></span><h3 id="system-information-rules">System information rules<a class="headerlink" href="#system-information-rules" title="Permalink to this heading">#</a></h3>
 <p>These rules specify which users can access the system information management
-interface. The user is granted or denied access, based on the first matching
+interface. System information access includes the following aspects:</p>
+<ul class="simple">
+<li><p>Read access to details such as Trino version, uptime of the node, and others
+from the <code class="docutils literal notranslate"><span class="pre">/v1/info</span></code> and <code class="docutils literal notranslate"><span class="pre">/v1/status</span></code> REST endpoints.</p></li>
+<li><p>Read access with the <a class="reference internal" href="../functions/system.html"><span class="doc">system information functions</span></a>.</p></li>
+<li><p>Read access with the <a class="reference internal" href="../connector/system.html"><span class="doc">System connector</span></a>.</p></li>
+<li><p>Write access to trigger <a class="reference internal" href="../admin/graceful-shutdown.html"><span class="doc">Graceful shutdown</span></a>.</p></li>
+</ul>
+<p>The user is granted or denied access based on the first matching
 rule read from top to bottom. If no rules are specified, all access to system
 information is denied. If no rule matches, system access is denied. Each rule is
 composed of the following fields:</p>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">role</span></code> (optional): regex to match against role. If matched, it
+grants or denies the authorization based on the value of <code class="docutils literal notranslate"><span class="pre">allow</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">user</span></code> (optional): regex to match against user name. If matched, it
 grants or denies the authorization based on the value of <code class="docutils literal notranslate"><span class="pre">allow</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">allow</span></code> (required): set of access permissions granted to user. Values:
 <code class="docutils literal notranslate"><span class="pre">read</span></code>, <code class="docutils literal notranslate"><span class="pre">write</span></code></p></li>
 </ul>
-<p>For example, if you want to allow only the role <code class="docutils literal notranslate"><span class="pre">admin</span></code> to read and write
-system information, allow <code class="docutils literal notranslate"><span class="pre">alice</span></code> to read system information, and deny all
-other access, you can use the following rules:</p>
+<p>The following configuration provides and example:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">"system_information"</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
@@ -1489,6 +1497,13 @@ other access, you can use the following rules:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li><p>All users with the <code class="docutils literal notranslate"><span class="pre">admin</span></code> role have read and write access to system
+information. This includes the ability to trigger
+<a class="reference internal" href="../admin/graceful-shutdown.html"><span class="doc">Graceful shutdown</span></a>.</p></li>
+<li><p>The user <code class="docutils literal notranslate"><span class="pre">alice</span></code> can read system information.</p></li>
+<li><p>All other users and roles are denied access to system information.</p></li>
+</ul>
 <p>A fixed user can be set for management interfaces using the <code class="docutils literal notranslate"><span class="pre">management.user</span></code>
 configuration property.  When this is configured, system information rules must
 still be set to authorize this user to read or write to management information.

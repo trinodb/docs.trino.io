@@ -456,6 +456,12 @@
         <li class="md-nav__item"><a href="#confluent-table-description-supplier" class="md-nav__link">Confluent table description supplier</a><nav class="md-nav">
                 <ul class="md-nav__list">
         <li class="md-nav__item"><a href="#confluent-subject-to-table-name-mapping" class="md-nav__link">Confluent subject to table name mapping</a>
+        </li>
+        <li class="md-nav__item"><a href="#protobuf-specific-type-handling-in-confluent-table-description-supplier" class="md-nav__link">Protobuf-specific type handling in Confluent table description supplier</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#oneof" class="md-nav__link">oneof</a>
+        </li></ul>
+            </nav>
         </li></ul>
             </nav>
         </li></ul>
@@ -791,6 +797,12 @@
         <li class="md-nav__item"><a href="#confluent-table-description-supplier" class="md-nav__link">Confluent table description supplier</a><nav class="md-nav">
                 <ul class="md-nav__list">
         <li class="md-nav__item"><a href="#confluent-subject-to-table-name-mapping" class="md-nav__link">Confluent subject to table name mapping</a>
+        </li>
+        <li class="md-nav__item"><a href="#protobuf-specific-type-handling-in-confluent-table-description-supplier" class="md-nav__link">Protobuf-specific type handling in Confluent table description supplier</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#oneof" class="md-nav__link">oneof</a>
+        </li></ul>
+            </nav>
         </li></ul>
             </nav>
         </li></ul>
@@ -1383,6 +1395,7 @@ table description supplier are:</p>
 <li><p>New tables can be defined without a cluster restart.</p></li>
 <li><p>Schema updates are detected automatically.</p></li>
 <li><p>There is no need to define tables manually.</p></li>
+<li><p>Some Protobuf specific types like <code class="docutils literal notranslate"><span class="pre">oneof</span></code> are supported and mapped to JSON.</p></li>
 </ul>
 <p>Set <code class="docutils literal notranslate"><span class="pre">kafka.table-description-supplier</span></code> to <code class="docutils literal notranslate"><span class="pre">CONFLUENT</span></code> to use the
 schema registry. You must also configure the additional properties in the following table:</p>
@@ -1453,6 +1466,38 @@ optional. If neither is specified, then the default <code class="docutils litera
 used to resolve the subject name via the topic name. Note that a case
 insensitive match must be done, as identifiers cannot contain upper case
 characters.</p>
+</section>
+<section id="protobuf-specific-type-handling-in-confluent-table-description-supplier">
+<h4 id="protobuf-specific-type-handling-in-confluent-table-description-supplier">Protobuf-specific type handling in Confluent table description supplier<a class="headerlink" href="#protobuf-specific-type-handling-in-confluent-table-description-supplier" title="Permalink to this heading">#</a></h4>
+<p>When using the Confluent table description supplier, the following Protobuf
+specific types are supported in addition to the <a class="reference internal" href="#kafka-protobuf-decoding"><span class="std std-ref">normally supported types</span></a>:</p>
+<section id="oneof">
+<h5 id="oneof">oneof<a class="headerlink" href="#oneof" title="Permalink to this heading">#</a></h5>
+<p>Protobuf schemas containing <code class="docutils literal notranslate"><span class="pre">oneof</span></code> fields are mapped to a <code class="docutils literal notranslate"><span class="pre">JSON</span></code> field in
+Trino.</p>
+<p>For example, given the following Protobuf schema:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>syntax = "proto3";
+
+message schema {
+    oneof test_oneof_column {
+        string string_column = 1;
+        uint32 integer_column = 2;
+        uint64 long_column = 3;
+        double double_column = 4;
+        float float_column = 5;
+        bool boolean_column = 6;
+    }
+}
+</pre></div>
+</div>
+<p>The corresponding Trino row is a <code class="docutils literal notranslate"><span class="pre">JSON</span></code> field <code class="docutils literal notranslate"><span class="pre">test_oneof_column</span></code>
+containing a JSON object with a single key. The value of the key matches
+the name of the <code class="docutils literal notranslate"><span class="pre">oneof</span></code> type that is present.</p>
+<p>In the above example, if the Protobuf message has the
+<code class="docutils literal notranslate"><span class="pre">test_oneof_column</span></code> containing <code class="docutils literal notranslate"><span class="pre">string_column</span></code> set to a value <code class="docutils literal notranslate"><span class="pre">Trino</span></code>
+then the corresponding Trino row includes a column named
+<code class="docutils literal notranslate"><span class="pre">test_oneof_column</span></code> with the value <code class="docutils literal notranslate"><span class="pre">JSON</span> <span class="pre">'{"string_column":</span> <span class="pre">"Trino"}'</span></code>.</p>
+</section>
 </section>
 </section>
 </section>
@@ -2413,7 +2458,7 @@ error is thrown for incompatible types.</p></li>
 </section>
 </section>
 <section id="protobuf-decoder">
-<h4 id="protobuf-decoder">Protobuf decoder<a class="headerlink" href="#protobuf-decoder" title="Permalink to this heading">#</a></h4>
+<span id="kafka-protobuf-decoding"></span><h4 id="protobuf-decoder">Protobuf decoder<a class="headerlink" href="#protobuf-decoder" title="Permalink to this heading">#</a></h4>
 <p>The Protobuf decoder converts the bytes representing a message or key in
 Protobuf formatted message based on a schema.</p>
 <p>For key/message, using the <code class="docutils literal notranslate"><span class="pre">protobuf</span></code> decoder, the <code class="docutils literal notranslate"><span class="pre">dataSchema</span></code> must be

@@ -462,9 +462,10 @@ or satisfy whatever other security you have enabled.</p></li>
 <li><p>If you have TLS/HTTPS enabled, you have to ensure the worker certificate is
 CA signed, or trusted by the server calling the shut down endpoint.
 Otherwise, you can make the call <code class="docutils literal notranslate"><span class="pre">--insecure</span></code>, but that isn’t recommended.</p></li>
-<li><p>If <a class="reference internal" href="../security/file-system-access-control.html#system-file-auth-system-information"><span class="std std-ref">system information rules</span></a> are
-configured, then the user in the HTTP request must have read and write
-permissions in the system information rules.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">default</span></code> <a class="reference internal" href="../security/built-in-system-access-control.html"><span class="doc">System access control</span></a> does not allow
+graceful shutdowns. You can use the <code class="docutils literal notranslate"><span class="pre">allow-all</span></code> system access control, or
+configure <a class="reference internal" href="../security/file-system-access-control.html#system-file-auth-system-information"><span class="std std-ref">system information rules</span></a> with the <code class="docutils literal notranslate"><span class="pre">file</span></code> system access
+control. These configuration must be present on all workers.</p></li>
 </ul>
 <section id="shutdown-behavior">
 <h2 id="shutdown-behavior">Shutdown behavior<a class="headerlink" href="#shutdown-behavior" title="Permalink to this heading">#</a></h2>

@@ -2439,10 +2439,11 @@ greater than 2<sup>31</sup> (about 2.1 billion). (<a class="reference external" 
 <section id="security">
 <h2 id="security">Security<a class="headerlink" href="#security" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Disallow writing system information with the <code class="docutils literal notranslate"><span class="pre">default</span></code> system access control.
-System information writes can be re-enabled by setting the
-<code class="docutils literal notranslate"><span class="pre">access-control.name</span></code> configuration property to <code class="docutils literal notranslate"><span class="pre">allow-all</span></code>, or by configuring
-<a class="reference internal" href="../security/file-system-access-control.html#system-file-auth-system-information"><span class="std std-ref">system information rules</span></a>. (<a class="reference external" href="https://github.com/trinodb/trino/issues/17105">#17105</a>)</p></li>
+<li><p>Disallow <a class="reference internal" href="../admin/graceful-shutdown.html"><span class="doc std std-doc">graceful shutdown</span></a> with the <code class="docutils literal notranslate"><span class="pre">default</span></code>
+<a class="reference internal" href="../security/built-in-system-access-control.html"><span class="doc std std-doc">system access control</span></a>. Shutdowns
+can be re-enabled by using the <code class="docutils literal notranslate"><span class="pre">allow-all</span></code> system access control, or by
+configuring <a class="reference internal" href="../security/file-system-access-control.html#system-file-auth-system-information"><span class="std std-ref">system information rules</span></a>
+with the <code class="docutils literal notranslate"><span class="pre">file</span></code> system access control. (<a class="reference external" href="https://github.com/trinodb/trino/issues/17105">#17105</a>)</p></li>
 </ul>
 </section>
 <section id="delta-lake-connector">

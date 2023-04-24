@@ -1078,16 +1078,32 @@ this table:</p>
 <td><p><code class="docutils literal notranslate"><span class="pre">TINYINT</span></code></p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SMALLINT</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TINYINT</span> <span class="pre">UNSIGNED</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">SMALLINT</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SMALLINT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SMALLINT</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SMALLINT</span> <span class="pre">UNSIGNED</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INTEGER</span></code></p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">INTEGER</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">INTEGER</span></code></p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BIGINT</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">INTEGER</span> <span class="pre">UNSIGNED</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">BIGINT</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BIGINT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BIGINT</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BIGINT</span> <span class="pre">UNSIGNED</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DECIMAL(20,</span> <span class="pre">0)</span></code></p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DOUBLE</span> <span class="pre">PRECISION</span></code></p></td>
@@ -1351,6 +1367,10 @@ requires syntax native to MySQL, because the full query is pushed down and
 processed in MySQL. This can be useful for accessing native features which are
 not available in Trino or for improving query performance in situations where
 running a query natively may be faster.</p>
+<p>The native query passed to the underlying data source is required to return a
+table as a result set. Only the data source performs validation or security
+checks for these queries using its own configuration. Trino does not perform
+these tasks. Only use passthrough queries to read data.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Polymorphic table functions may not preserve the order of the query result.
