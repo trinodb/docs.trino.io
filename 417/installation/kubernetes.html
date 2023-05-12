@@ -697,10 +697,10 @@ for more tips on configuring Kubernetes deployments.</p>
 <p>A common use-case is to add custom catalogs. You can do this by adding values to
 the <code class="docutils literal notranslate"><span class="pre">additionalCatalogs</span></code> property in the <code class="docutils literal notranslate"><span class="pre">example.yaml</span></code> file.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">additionalCatalogs</span><span class="p">:</span>
-  <span class="nt">lakehouse.properties</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+  <span class="nt">lakehouse</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
     <span class="no">connector.name=iceberg</span>
     <span class="no">hive.metastore.uri=thrift://example.net:9083</span>
-  <span class="nt">rdbms.properties</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+  <span class="nt">rdbms</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
     <span class="no">connector.name=postgresql</span>
     <span class="no">connection-url=jdbc:postgresql://example.net:5432/database</span>
     <span class="no">connection-user=root</span>

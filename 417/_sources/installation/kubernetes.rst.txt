@@ -294,10 +294,10 @@ the ``additionalCatalogs`` property in the ``example.yaml`` file.
 .. code-block:: yaml
 
     additionalCatalogs:
-      lakehouse.properties: |-
+      lakehouse: |-
         connector.name=iceberg
         hive.metastore.uri=thrift://example.net:9083
-      rdbms.properties: |-
+      rdbms: |-
         connector.name=postgresql
         connection-url=jdbc:postgresql://example.net:5432/database
         connection-user=root
