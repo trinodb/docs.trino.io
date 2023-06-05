@@ -1,0 +1,838 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Alata&family=Open+Sans:ital,wght%400,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="2196f3">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>OAuth 2.0 authentication &#8212; Trino 419 Documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/trino.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Kerberos authentication" href="kerberos.html" />
+    <link rel="prev" title="Salesforce authentication" href="salesforce.html" />
+  
+   
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133457846-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-133457846-1');
+      gtag('config', 'AW-1036784065');
+      window._linkedin_data_partner_ids = ['2842796'];
+    </script>
+    <script async src="https://snap.licdn.com/li.lms-analytics/insight.min.js"></script>
+    <link rel=stylesheet href=https://use.fontawesome.com/releases/v5.8.2/css/all.css>
+  </head>
+  <body dir=ltr
+        data-md-color-primary= data-md-color-accent=>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#security/oauth2" tabindex="1" class="md-skip"> Skip to content </a>
+  <div id="announcement">
+  <div id="announcement-content">
+    <a href="https://github.com/trinodb/trino" target="_blank">
+      Do you ❤️ Trino? Give us a 🌟 on GitHub <i class="fab fa-github"></i>
+    </a>
+  </div>
+</div>
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="/" title="Trino"
+           class="md-header-nav__button md-logo">
+          
+              <img src="../_static/trino.svg" height="26"
+                   alt="Trino 419 Documentation logo">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">Trino 419 Documentation</span>
+          <span class="md-header-nav__topic"> OAuth 2.0 authentication </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="GET" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://github.com/trinodb/trino" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Trino
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../../versions.json",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    <!-- empty -->
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="/" title="Trino" class="md-nav__button md-logo">
+      
+        <img src="../_static/trino.svg" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="../index.html"
+       title="Trino 419 Documentation">Trino 419 Documentation</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://github.com/trinodb/trino" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Trino
+  </div>
+</a>
+    </div>
+  
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+    
+      <a href="../overview.html" class="md-nav__link">Overview</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../installation.html" class="md-nav__link">Installation</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../client.html" class="md-nav__link">Clients</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../security.html" class="md-nav__link">Security</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="overview.html" class="md-nav__link">Security overview</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="tls.html" class="md-nav__link">TLS and HTTPS</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="inspect-pem.html" class="md-nav__link">PEM files</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="inspect-jks.html" class="md-nav__link">JKS files</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="authentication-types.html" class="md-nav__link">Authentication types</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="password-file.html" class="md-nav__link">Password file authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="ldap.html" class="md-nav__link">LDAP authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="salesforce.html" class="md-nav__link">Salesforce authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> OAuth 2.0 authentication </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">OAuth 2.0 authentication</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+    <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#openid-connect-discovery" class="md-nav__link">OpenID Connect Discovery</a>
+        </li>
+        <li class="md-nav__item"><a href="#trino-server-configuration" class="md-nav__link">Trino server configuration</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#refresh-tokens" class="md-nav__link">Refresh tokens</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#troubleshooting" class="md-nav__link">Troubleshooting</a>
+        </li>
+    </ul>
+</nav>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="kerberos.html" class="md-nav__link">Kerberos authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="certificate.html" class="md-nav__link">Certificate authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="jwt.html" class="md-nav__link">JWT authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="user-mapping.html" class="md-nav__link">User mapping</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="group-file.html" class="md-nav__link">File group provider</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="built-in-system-access-control.html" class="md-nav__link">System access control</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="file-system-access-control.html" class="md-nav__link">File-based access control</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="internal-communication.html" class="md-nav__link">Secure internal communication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="secrets.html" class="md-nav__link">Secrets</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../admin.html" class="md-nav__link">Administration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../admin.html#event-listeners" class="md-nav__link">Event listeners</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../optimizer.html" class="md-nav__link">Query optimizer</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../connector.html" class="md-nav__link">Connectors</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../functions.html" class="md-nav__link">Functions and operators</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../language.html" class="md-nav__link">SQL language</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../sql.html" class="md-nav__link">SQL statement syntax</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../develop.html" class="md-nav__link">Developer guide</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../glossary.html" class="md-nav__link">Glossary</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../appendix.html" class="md-nav__link">Appendix</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../release.html" class="md-nav__link">Release notes</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+    <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#openid-connect-discovery" class="md-nav__link">OpenID Connect Discovery</a>
+        </li>
+        <li class="md-nav__item"><a href="#trino-server-configuration" class="md-nav__link">Trino server configuration</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#refresh-tokens" class="md-nav__link">Refresh tokens</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#troubleshooting" class="md-nav__link">Troubleshooting</a>
+        </li>
+    </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="oauth-2-0-authentication">
+<h1 id="security-oauth2--page-root">OAuth 2.0 authentication<a class="headerlink" href="#security-oauth2--page-root" title="Permalink to this heading">#</a></h1>
+<p>Trino can be configured to enable OAuth 2.0 authentication over HTTPS for the
+Web UI and the JDBC driver. Trino uses the <a class="reference external" href="https://tools.ietf.org/html/rfc6749#section-1.3.1">Authorization Code</a> flow which exchanges an
+Authorization Code for a token. At a high level, the flow includes the following
+steps:</p>
+<ol class="arabic simple">
+<li><p>the Trino coordinator redirects a user’s browser to the Authorization Server</p></li>
+<li><p>the user authenticates with the Authorization Server, and it approves the Trino’s permissions request</p></li>
+<li><p>the user’s browser is redirected back to the Trino coordinator with an authorization code</p></li>
+<li><p>the Trino coordinator exchanges the authorization code for a token</p></li>
+</ol>
+<p>To enable OAuth 2.0 authentication for Trino, configuration changes are made on
+the Trino coordinator. No changes are required to the worker configuration;
+only the communication from the clients to the coordinator is authenticated.</p>
+<p>Set the callback/redirect URL to <code class="docutils literal notranslate"><span class="pre">https://&lt;trino-coordinator-domain-name&gt;/oauth2/callback</span></code>,
+when configuring an OAuth 2.0 authorization server like an OpenID Connect (OIDC)
+provider.</p>
+<p>Using <a class="reference internal" href="tls.html"><span class="doc">TLS</span></a> and <a class="reference internal" href="internal-communication.html"><span class="doc">a configured shared secret</span></a> is required for OAuth 2.0 authentication.</p>
+<section id="openid-connect-discovery">
+<h2 id="openid-connect-discovery">OpenID Connect Discovery<a class="headerlink" href="#openid-connect-discovery" title="Permalink to this heading">#</a></h2>
+<p>Trino supports reading Authorization Server configuration from <a class="reference external" href="https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata">OIDC provider
+configuration metadata document</a>.
+During startup of the coordinator Trino retrieves the document and uses provided
+values to set corresponding OAuth2 authentication configuration properties:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">authorization_endpoint</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.auth-url</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">token_endpoint</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.token-url</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jwks_uri</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.jwks-url</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">userinfo_endpoint</span></code> -&gt;  <code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.userinfo-url</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">access_token_issuer</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.access-token-issuer</span></code></p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If the authorization server is issuing JSON Web Tokens (JWTs) and the
+metadata document contains <code class="docutils literal notranslate"><span class="pre">userinfo_endpoint</span></code>, Trino uses this endpoint to
+check the validity of OAuth2 access tokens. Since JWTs can be inspected
+locally, using them against <code class="docutils literal notranslate"><span class="pre">userinfo_endpoint</span></code> may result in authentication
+failure. In this case, set the
+<code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.oidc.use-userinfo-endpoint</span></code> configuration
+property to <code class="docutils literal notranslate"><span class="pre">false</span></code>
+(<code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.oidc.use-userinfo-endpoint=false</span></code>). This
+instructs Trino to ignore <code class="docutils literal notranslate"><span class="pre">userinfo_endpoint</span></code> and inspect tokens locally.</p>
+</div>
+<p>This functionality is enabled by default but can be turned off with:
+<code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.oidc.discovery=false</span></code>.</p>
+</section>
+<section id="trino-server-configuration">
+<span id="trino-server-configuration-oauth2"></span><h2 id="trino-server-configuration">Trino server configuration<a class="headerlink" href="#trino-server-configuration" title="Permalink to this heading">#</a></h2>
+<p>Using the OAuth2 authentication requires the Trino coordinator to be secured
+with TLS.</p>
+<p>The following is an example of the required properties that need to be added
+to the coordinator’s <code class="docutils literal notranslate"><span class="pre">config.properties</span></code> file:</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><span class="na">http-server.authentication.type</span><span class="o">=</span><span class="s">oauth2</span>
+
+<span class="na">http-server.https.port</span><span class="o">=</span><span class="s">8443</span>
+<span class="na">http-server.https.enabled</span><span class="o">=</span><span class="s">true</span>
+
+<span class="na">http-server.authentication.oauth2.issuer</span><span class="o">=</span><span class="s">https://authorization-server.com</span>
+<span class="na">http-server.authentication.oauth2.client-id</span><span class="o">=</span><span class="s">CLIENT_ID</span>
+<span class="na">http-server.authentication.oauth2.client-secret</span><span class="o">=</span><span class="s">CLIENT_SECRET</span>
+</pre></div>
+</div>
+<p>To enable OAuth 2.0 authentication for the Web UI, the following
+property must be be added:</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><span class="na">web-ui.authentication.type</span><span class="o">=</span><span class="s">oauth2</span>
+</pre></div>
+</div>
+<p>The following configuration properties are available:</p>
+<table id="id1">
+<caption><span class="caption-text">OAuth2 configuration properties</span><a class="headerlink" href="#id1" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 40%"/>
+<col style="width: 60%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.type</span></code></p></td>
+<td><p>The type of authentication to use. Must  be set to <code class="docutils literal notranslate"><span class="pre">oauth2</span></code> to enable
+OAuth2 authentication for the Trino coordinator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.issuer</span></code></p></td>
+<td><p>The issuer URL of the IdP. All issued tokens must have this in the <code class="docutils literal notranslate"><span class="pre">iss</span></code> field.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.access-token-issuer</span></code></p></td>
+<td><p>The issuer URL of the IdP for access tokens, if different.
+All issued access tokens must have this in the <code class="docutils literal notranslate"><span class="pre">iss</span></code> field.
+Providing this value while OIDC discovery is enabled overrides the value
+from the OpenID provider metadata document.
+Defaults to the value of <code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.issuer</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.auth-url</span></code></p></td>
+<td><p>The authorization URL. The URL a user’s browser will be redirected to in
+order to begin the OAuth 2.0 authorization process. Providing this value
+while OIDC discovery is enabled overrides the value from the OpenID
+provider metadata document.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.token-url</span></code></p></td>
+<td><p>The URL of the endpoint on the authorization server which Trino uses to
+obtain an access token. Providing this value while OIDC discovery is
+enabled overrides the value from the OpenID provider metadata document.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.jwks-url</span></code></p></td>
+<td><p>The URL of the JSON Web Key Set (JWKS) endpoint on the authorization
+server. It provides Trino the set of keys containing the public key
+to verify any JSON Web Token (JWT) from the authorization server.
+Providing this value while OIDC discovery is enabled overrides the value
+from the OpenID provider metadata document.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.userinfo-url</span></code></p></td>
+<td><p>The URL of the IdPs <code class="docutils literal notranslate"><span class="pre">/userinfo</span></code> endpoint. If supplied then this URL is
+used to validate the OAuth access token and retrieve any associated
+claims. This is required if the IdP issues opaque tokens. Providing this
+value while OIDC discovery is enabled overrides the value from the OpenID
+provider metadata document.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.client-id</span></code></p></td>
+<td><p>The public identifier of the Trino client.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.client-secret</span></code></p></td>
+<td><p>The secret used to authorize Trino client with the authorization server.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.additional-audiences</span></code></p></td>
+<td><p>Additional audiences to trust in addition to the client ID which is
+always a trusted audience.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.scopes</span></code></p></td>
+<td><p>Scopes requested by the server during the authorization challenge. See:
+<a class="reference external" href="https://tools.ietf.org/html/rfc6749#section-3.3">https://tools.ietf.org/html/rfc6749#section-3.3</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.challenge-timeout</span></code></p></td>
+<td><p>Maximum <a class="reference internal" href="../admin/properties.html#prop-type-duration"><span class="std std-ref">duration</span></a> of the authorization challenge.
+Default is <code class="docutils literal notranslate"><span class="pre">15m</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.state-key</span></code></p></td>
+<td><p>A secret key used by the SHA-256
+<a class="reference external" href="https://tools.ietf.org/html/rfc2104">HMAC</a>
+algorithm to sign the state parameter in order to ensure that the
+authorization request was not forged. Default is a random string
+generated during the coordinator start.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.user-mapping.pattern</span></code></p></td>
+<td><p>Regex to match against user. If matched, the user name is replaced with
+first regex group. If not matched, authentication is denied.  Default is
+<code class="docutils literal notranslate"><span class="pre">(.*)</span></code> which allows any user name.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.user-mapping.file</span></code></p></td>
+<td><p>File containing rules for mapping user. See <a class="reference internal" href="user-mapping.html"><span class="doc">User mapping</span></a>
+for more information.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.principal-field</span></code></p></td>
+<td><p>The field of the access token used for the Trino user principal. Defaults to <code class="docutils literal notranslate"><span class="pre">sub</span></code>. Other commonly used fields include <code class="docutils literal notranslate"><span class="pre">sAMAccountName</span></code>, <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">upn</span></code>, and <code class="docutils literal notranslate"><span class="pre">email</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.oidc.discovery</span></code></p></td>
+<td><p>Enable reading the <a class="reference external" href="https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata">OIDC provider metadata</a>.
+Default is <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.oidc.discovery.timeout</span></code></p></td>
+<td><p>The timeout when reading OpenID provider metadata. Default is <code class="docutils literal notranslate"><span class="pre">30s</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.oidc.use-userinfo-endpoint</span></code></p></td>
+<td><p>Use the value of <code class="docutils literal notranslate"><span class="pre">userinfo_endpoint</span></code> <a class="reference external" href="https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata">in the provider metadata</a>.
+When a <code class="docutils literal notranslate"><span class="pre">userinfo_endpoint</span></code> value is supplied this URL is used to
+validate the OAuth 2.0 access token, and retrieve any associated claims.
+This flag allows ignoring the value provided in the metadata document.
+Default is <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="refresh-tokens">
+<span id="trino-oauth2-refresh-tokens"></span><h3 id="refresh-tokens">Refresh tokens<a class="headerlink" href="#refresh-tokens" title="Permalink to this heading">#</a></h3>
+<p><em>Refresh tokens</em> allow you to securely control the length of user sessions
+within applications. The refresh token has a longer lifespan (TTL) and is used
+to refresh the <em>access token</em> that has a shorter lifespan. When refresh tokens
+are used in conjunction with access tokens, users can remain logged in for an
+extended duration without interruption by another login request.</p>
+<p>In a refresh token flow, there are three tokens with different expiration times:</p>
+<ul class="simple">
+<li><p>access token</p></li>
+<li><p>refresh token</p></li>
+<li><p>Trino-encrypted token that is a combination of the access and refresh tokens.
+The encrypted token manages the session lifetime with the timeout value that
+is set with the
+<code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.refresh-tokens.issued-token.timeout</span></code>
+property.</p></li>
+</ul>
+<p>In the following scenario, the lifespan of the tokens issued by an IdP are:</p>
+<ul class="simple">
+<li><p>access token 5m</p></li>
+<li><p>refresh token 24h</p></li>
+</ul>
+<p>Because the access token lifespan is only five minutes, Trino uses the longer
+lifespan refresh token to request another access token every five minutes on
+behalf of a user. In this case, the maximum
+<code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.refresh-tokens.issued-token.timeout</span></code> is
+twenty-four hours.</p>
+<p>To use refresh token flows, the following property must be
+enabled in the coordinator configuration.</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><span class="na">http-server.authentication.oauth2.refresh-tokens</span><span class="o">=</span><span class="s">true</span>
+</pre></div>
+</div>
+<p>Additional scopes for offline access might be required, depending on
+IdP configuration.</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><span class="na">http-server.authentication.oauth2.scopes</span><span class="o">=</span><span class="s">openid,offline_access [or offline]</span>
+</pre></div>
+</div>
+<p>The following configuration properties are available:</p>
+<table id="id2">
+<caption><span class="caption-text">OAuth2 configuration properties for refresh flow</span><a class="headerlink" href="#id2" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 40%"/>
+<col style="width: 60%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.refresh-tokens.issued-token.timeout</span></code></p></td>
+<td><p>Expiration time for an issued token, which is the Trino-encrypted token
+that contains an access token and a refresh token. The timeout value must
+be less than or equal to the <a class="reference internal" href="../admin/properties.html#prop-type-duration"><span class="std std-ref">duration</span></a> of the
+refresh token expiration issued by the IdP. Defaults to <code class="docutils literal notranslate"><span class="pre">1h</span></code>. The
+timeout value is the maximum session time for an OAuth2-authenticated
+client with refresh tokens enabled. For more details, see
+<a class="reference internal" href="#trino-oauth2-troubleshooting"><span class="std std-ref">Troubleshooting</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.refresh-tokens.issued-token.issuer</span></code></p></td>
+<td><p>Issuer representing the coordinator instance, that is referenced in the
+issued token, defaults to <code class="docutils literal notranslate"><span class="pre">Trino_coordinator</span></code>. The current
+Trino version is appended to the value. This is mainly used for
+debugging purposes.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.refresh-tokens.issued-token.audience</span></code></p></td>
+<td><p>Audience representing this coordinator instance, that is used in the
+issued token. Defaults to <code class="docutils literal notranslate"><span class="pre">Trino_coordinator</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.refresh-tokens.secret-key</span></code></p></td>
+<td><p>Base64-encoded secret key used to encrypt the generated token.
+By default it’s generated during startup.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="troubleshooting">
+<span id="trino-oauth2-troubleshooting"></span><h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading">#</a></h2>
+<p>To debug issues, change the <a class="reference internal" href="../installation/deployment.html#log-levels"><span class="std std-ref">log level</span></a> for the OAuth 2.0
+authenticator:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>io.trino.server.security.oauth2=DEBUG
+</pre></div>
+</div>
+<p>To debug issues with OAuth 2.0 authentication use with the web UI, set the
+following configuration property:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>io.trino.server.ui.OAuth2WebUiAuthenticationFilter=DEBUG
+</pre></div>
+</div>
+<p>This assumes the OAuth 2.0 authentication for the Web UI is enabled as described
+in <a class="reference internal" href="#trino-server-configuration-oauth2"><span class="std std-ref">Trino server configuration</span></a>.</p>
+<p>The logged debug error for a lapsed refresh token is <code class="docutils literal notranslate"><span class="pre">Tokens</span> <span class="pre">refresh</span> <span class="pre">challenge</span>
+<span class="pre">has</span> <span class="pre">failed</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If a refresh token lapses, the user session is interrupted and the user must
+reauthenticate by logging in again. Ensure you set the
+<code class="docutils literal notranslate"><span class="pre">http-server.authentication.oauth2.refresh-tokens.issued-token.timeout</span></code>
+value to less than or equal to the duration of the refresh token expiration
+issued by your IdP. Optimally, the timeout should be slightly less than the
+refresh token lifespan of your IdP to ensure that sessions end gracefully.</p>
+</div>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="salesforce.html" title="Salesforce authentication"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> Previous </span> Salesforce authentication </span>
+              </div>
+            </a>
+          
+          
+            <a href="kerberos.html" title="Kerberos authentication"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> Next </span> Kerberos authentication </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>
