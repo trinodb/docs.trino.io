@@ -1,0 +1,851 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Alata&family=Open+Sans:ital,wght%400,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="2196f3">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>Open Policy Agent access control &#8212; Trino 445 Documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/trino.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Secure internal communication" href="internal-communication.html" />
+    <link rel="prev" title="File-based access control" href="file-system-access-control.html" />
+  
+   
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJ94STKPJ5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RJ94STKPJ5');
+      gtag('config', 'UA-133457846-1');
+      gtag('config', 'AW-1036784065');
+      window._linkedin_data_partner_ids = ['2842796'];
+    </script>
+    <script async src="https://snap.licdn.com/li.lms-analytics/insight.min.js"></script>
+  </head>
+  <body dir=ltr
+        data-md-color-primary= data-md-color-accent=>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#security/opa-access-control" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="/" title="Trino"
+           class="md-header-nav__button md-logo">
+          
+              <img src="../_static/trino.svg" height="26"
+                   alt="Trino 445 Documentation logo">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">Trino 445 Documentation</span>
+          <span class="md-header-nav__topic"> Open Policy Agent access control </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="GET" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://github.com/trinodb/trino" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Trino
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../../versions.json",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    <!-- empty -->
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="/" title="Trino" class="md-nav__button md-logo">
+      
+        <img src="../_static/trino.svg" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="../index.html"
+       title="Trino 445 Documentation">Trino 445 Documentation</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://github.com/trinodb/trino" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Trino
+  </div>
+</a>
+    </div>
+  
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+    
+      <a href="../overview.html" class="md-nav__link">Overview</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../installation.html" class="md-nav__link">Installation</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../client.html" class="md-nav__link">Clients</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../security.html" class="md-nav__link">Security</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="overview.html" class="md-nav__link">Security overview</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="tls.html" class="md-nav__link">TLS and HTTPS</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="inspect-pem.html" class="md-nav__link">PEM files</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="inspect-jks.html" class="md-nav__link">JKS files</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="authentication-types.html" class="md-nav__link">Authentication types</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="password-file.html" class="md-nav__link">Password file authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="ldap.html" class="md-nav__link">LDAP authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="salesforce.html" class="md-nav__link">Salesforce authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="oauth2.html" class="md-nav__link">OAuth 2.0 authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="kerberos.html" class="md-nav__link">Kerberos authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="certificate.html" class="md-nav__link">Certificate authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="jwt.html" class="md-nav__link">JWT authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="user-mapping.html" class="md-nav__link">User mapping</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="group-file.html" class="md-nav__link">File group provider</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="built-in-system-access-control.html" class="md-nav__link">System access control</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="file-system-access-control.html" class="md-nav__link">File-based access control</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> Open Policy Agent access control </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">Open Policy Agent access control</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+    <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#requirements" class="md-nav__link">Requirements</a>
+        </li>
+        <li class="md-nav__item"><a href="#trino-configuration" class="md-nav__link">Trino configuration</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#logging" class="md-nav__link">Logging</a>
+        </li>
+        <li class="md-nav__item"><a href="#permission-management" class="md-nav__link">Permission management</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#opa-configuration" class="md-nav__link">OPA configuration</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#example-requests-to-opa" class="md-nav__link">Example requests to OPA</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#batch-mode" class="md-nav__link">Batch mode</a>
+        </li>
+    </ul>
+</nav>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="internal-communication.html" class="md-nav__link">Secure internal communication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="secrets.html" class="md-nav__link">Secrets</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../admin.html" class="md-nav__link">Administration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../optimizer.html" class="md-nav__link">Query optimizer</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../connector.html" class="md-nav__link">Connectors</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../object-storage.html" class="md-nav__link">Object storage</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../functions.html" class="md-nav__link">Functions and operators</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../language.html" class="md-nav__link">SQL language</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../sql.html" class="md-nav__link">SQL statement syntax</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../routines.html" class="md-nav__link">SQL routines</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../develop.html" class="md-nav__link">Developer guide</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../glossary.html" class="md-nav__link">Glossary</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../appendix.html" class="md-nav__link">Appendix</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../release.html" class="md-nav__link">Release notes</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+    <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#requirements" class="md-nav__link">Requirements</a>
+        </li>
+        <li class="md-nav__item"><a href="#trino-configuration" class="md-nav__link">Trino configuration</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#logging" class="md-nav__link">Logging</a>
+        </li>
+        <li class="md-nav__item"><a href="#permission-management" class="md-nav__link">Permission management</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#opa-configuration" class="md-nav__link">OPA configuration</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#example-requests-to-opa" class="md-nav__link">Example requests to OPA</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#batch-mode" class="md-nav__link">Batch mode</a>
+        </li>
+    </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="open-policy-agent-access-control">
+<h1 id="security-opa-access-control--page-root">Open Policy Agent access control<a class="headerlink" href="#security-opa-access-control--page-root" title="Permalink to this heading">#</a></h1>
+<p>The Open Policy Agent access control plugin enables the use of <a class="reference external" href="https://www.openpolicyagent.org/">Open Policy
+Agent (OPA)</a> as authorization engine for
+fine-grained access control to catalogs, schemas, tables, and more in Trino.
+Policies are defined in OPA, and Trino checks access control privileges in OPA.</p>
+<section id="requirements">
+<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A running <a class="reference external" href="https://www.openpolicyagent.org/docs/latest/#running-opa">OPA deployment</a></p></li>
+<li><p>Network connectivity from the Trino cluster to the OPA server</p></li>
+</ul>
+<p>With the requirements fulfilled, you can proceed to set up Trino and OPA with
+your desired access control configuration.</p>
+</section>
+<section id="trino-configuration">
+<h2 id="trino-configuration">Trino configuration<a class="headerlink" href="#trino-configuration" title="Permalink to this heading">#</a></h2>
+<p>To use only OPA for access control, create the file <code class="docutils literal notranslate"><span class="pre">etc/access-control.properties</span></code>
+with the following minimal configuration:</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><span class="na">access-control.name</span><span class="o">=</span><span class="s">opa</span>
+<span class="na">opa.policy.uri</span><span class="o">=</span><span class="s">https://your-opa-endpoint/v1/data/allow</span>
+</pre></div>
+</div>
+<p>To combine OPA access control with file-based or other access control systems,
+configure multiple access control configuration file paths in
+<code class="docutils literal notranslate"><span class="pre">etc/config.properties</span></code>:</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><span class="na">access-control.config-files</span><span class="o">=</span><span class="s">etc/trino/file-based.properties,etc/trino/opa.properties</span>
+</pre></div>
+</div>
+<p>Order the configuration files list in the desired order of the different systems
+for overall access control. Configure each access-control system in the
+specified files.</p>
+<p>The following table lists the configuration properties for the OPA access control:</p>
+<table id="id1">
+<caption><span class="caption-text">OPA access control configuration properties</span><a class="headerlink" href="#id1" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 40%"/>
+<col style="width: 60%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">opa.policy.uri</span></code></p></td>
+<td><p>The <strong>required</strong> URI for the OPA endpoint, for example,
+<code class="docutils literal notranslate"><span class="pre">https://opa.example.com/v1/data/allow</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">opa.policy.batched-uri</span></code></p></td>
+<td><p>The <strong>optional</strong> URI for activating batch mode for certain authorization
+queries where batching is applicable, for example
+<code class="docutils literal notranslate"><span class="pre">https://opa.example.com/v1/data/batch</span></code>. Batch mode is described
+<a class="reference internal" href="#opa-batch-mode"><span class="std std-ref">Batch mode</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">opa.log-requests</span></code></p></td>
+<td><p>Configure if request details, including URI, headers and the entire body, are
+logged prior to sending them to OPA. Defaults to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">opa.log-responses</span></code></p></td>
+<td><p>Configure if OPA response details, including URI, status code, headers and
+the entire body, are logged. Defaults to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">opa.allow-permission-management</span></code></p></td>
+<td><p>Configure if permission management operations are allowed. Find more details in
+<a class="reference internal" href="#opa-permission-management"><span class="std std-ref">Permission management</span></a>. Defaults to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">opa.http-client.*</span></code></p></td>
+<td><p>Optional HTTP client configurations for the connection from Trino to OPA,
+for example <code class="docutils literal notranslate"><span class="pre">opa.http-client.http-proxy</span></code> for configuring the HTTP proxy.
+Find more details in <a class="reference internal" href="../admin/properties-http-client.html"><span class="doc std std-doc">HTTP client properties</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="logging">
+<h3 id="logging">Logging<a class="headerlink" href="#logging" title="Permalink to this heading">#</a></h3>
+<p>When request or response logging is enabled, details are logged at the <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code>
+level under the <code class="docutils literal notranslate"><span class="pre">io.trino.plugin.opa.OpaHttpClient</span></code> logger. The Trino logging
+configuration must be updated to include this class, to ensure log entries are
+created.</p>
+<p>Note that enabling these options produces very large amounts of log data.</p>
+</section>
+<section id="permission-management">
+<span id="opa-permission-management"></span><h3 id="permission-management">Permission management<a class="headerlink" href="#permission-management" title="Permalink to this heading">#</a></h3>
+<p>The following operations are allowed or denied based on the setting of
+<code class="docutils literal notranslate"><span class="pre">opa.allow-permission-management</span></code> If set to <code class="docutils literal notranslate"><span class="pre">true</span></code>, these operations are
+allowed. If set to <code class="docutils literal notranslate"><span class="pre">false</span></code>, they are denied. In both cases, no request is sent
+to OPA.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GrantSchemaPrivilege</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DenySchemaPrivilege</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RevokeSchemaPrivilege</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GrantTablePrivilege</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DenyTablePrivilege</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RevokeTablePrivilege</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CreateRole</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DropRole</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GrantRoles</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RevokeRoles</span></code></p></li>
+</ul>
+<p>The setting defaults to <code class="docutils literal notranslate"><span class="pre">false</span></code> due to the complexity and potential unexpected
+consequences of having SQL-style grants and roles together with OPA.</p>
+<p>You must enable permission management if another custom security system in Trino
+is capable of grant management and used together with OPA access control.</p>
+<p>Additionally, users are always allowed to show information about roles (<code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">ROLES</span></code>), regardless of this setting. The following operations are <em>always</em>
+allowed:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ShowRoles</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ShowCurrentRoles</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ShowRoleGrants</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="opa-configuration">
+<h2 id="opa-configuration">OPA configuration<a class="headerlink" href="#opa-configuration" title="Permalink to this heading">#</a></h2>
+<p>The OPA access control in Trino contacts OPA for each query and issues an
+authorization request. OPA must return a response containing a boolean <code class="docutils literal notranslate"><span class="pre">allow</span></code>
+field, which determines whether the operation is permitted or not.</p>
+<p>Policies in OPA are defined with the purpose built policy language Rego. Find
+more information in the <a class="reference external" href="https://www.openpolicyagent.org/docs/latest/policy-language/">detailed
+documentation</a>.
+After the initial installation and configuration in Trino, these policies are
+the main configuration aspect for your access control setup.</p>
+<p>A query from the OPA access control in Trino to OPA contains a <code class="docutils literal notranslate"><span class="pre">context</span></code> and an
+<code class="docutils literal notranslate"><span class="pre">action</span></code> as its top level fields.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">context</span></code> object contains all other contextual information about the query:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">identity</span></code>: The identity of the user performing the operation, containing the
+following two fields:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">user</span></code>: username</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">groups</span></code>: list of groups this user belongs to</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">softwareStack</span></code>: Information about the software stack issuing the request to
+OPA. The following information is included:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">trinoVersion</span></code>: Version of Trino used</p></li>
+</ul>
+</li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">action</span></code> object contains information about what action is performed on what
+resources. The following fields are provided:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">operation</span></code>: the performed operation, for example <code class="docutils literal notranslate"><span class="pre">SelectFromColumns</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resource</span></code>: information about the accessed objects</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">targetResource</span></code>: information about any newly created object, if applicable</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">grantee</span></code>: grantee of a grant operation.</p></li>
+</ul>
+<p>Fields that are not applicable for a specific operation are set to null.
+Examples are an empty  <code class="docutils literal notranslate"><span class="pre">targetResource</span></code> if not modifying a table or schema or
+catalog is modified, or an empty <code class="docutils literal notranslate"><span class="pre">grantee</span></code> if not granting permissions is set.
+Any null field is omitted altogether from the <code class="docutils literal notranslate"><span class="pre">action</span></code> object.</p>
+<section id="example-requests-to-opa">
+<h3 id="example-requests-to-opa">Example requests to OPA<a class="headerlink" href="#example-requests-to-opa" title="Permalink to this heading">#</a></h3>
+<p>Accessing a table results in a query similar to the following example:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">"context"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">"identity"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">"user"</span><span class="p">:</span> <span class="s2">"foo"</span><span class="p">,</span>
+      <span class="nt">"groups"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"some-group"</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="nt">"softwareStack"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">"trinoVersion"</span><span class="p">:</span> <span class="s2">"434"</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">"action"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">"operation"</span><span class="p">:</span> <span class="s2">"SelectFromColumns"</span><span class="p">,</span>
+    <span class="nt">"resource"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">"table"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">"catalogName"</span><span class="p">:</span> <span class="s2">"example_catalog"</span><span class="p">,</span>
+        <span class="nt">"schemaName"</span><span class="p">:</span> <span class="s2">"example_schema"</span><span class="p">,</span>
+        <span class="nt">"tableName"</span><span class="p">:</span> <span class="s2">"example_table"</span><span class="p">,</span>
+        <span class="nt">"columns"</span><span class="p">:</span> <span class="p">[</span>
+          <span class="s2">"column1"</span><span class="p">,</span>
+          <span class="s2">"column2"</span><span class="p">,</span>
+          <span class="s2">"column3"</span>
+        <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">targetResource</span></code> is used in cases where a new resource, distinct from the one in
+<code class="docutils literal notranslate"><span class="pre">resource</span></code> is created. For example, when renaming a table.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">"context"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">"identity"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">"user"</span><span class="p">:</span> <span class="s2">"foo"</span><span class="p">,</span>
+      <span class="nt">"groups"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"some-group"</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="nt">"softwareStack"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">"trinoVersion"</span><span class="p">:</span> <span class="s2">"434"</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">"action"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">"operation"</span><span class="p">:</span> <span class="s2">"RenameTable"</span><span class="p">,</span>
+    <span class="nt">"resource"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">"table"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">"catalogName"</span><span class="p">:</span> <span class="s2">"example_catalog"</span><span class="p">,</span>
+        <span class="nt">"schemaName"</span><span class="p">:</span> <span class="s2">"example_schema"</span><span class="p">,</span>
+        <span class="nt">"tableName"</span><span class="p">:</span> <span class="s2">"example_table"</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">"targetResource"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">"table"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">"catalogName"</span><span class="p">:</span> <span class="s2">"example_catalog"</span><span class="p">,</span>
+        <span class="nt">"schemaName"</span><span class="p">:</span> <span class="s2">"example_schema"</span><span class="p">,</span>
+        <span class="nt">"tableName"</span><span class="p">:</span> <span class="s2">"new_table_name"</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="batch-mode">
+<span id="opa-batch-mode"></span><h2 id="batch-mode">Batch mode<a class="headerlink" href="#batch-mode" title="Permalink to this heading">#</a></h2>
+<p>A very powerful feature provided by OPA is its ability to respond to
+authorization queries with more complex answers than a <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code> boolean
+value.</p>
+<p>Many features in Trino require filtering to determine to which resources a user
+is granted access. These resources are catalogs, schema, queries, views, and
+others objects.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">opa.policy.batched-uri</span></code> is not configured, Trino sends one request to OPA
+for each object, and then creates a filtered list of permitted objects.</p>
+<p>Configuring <code class="docutils literal notranslate"><span class="pre">opa.policy.batched-uri</span></code> allows Trino to send a request to
+the batch endpoint, with a list of resources in one request using the
+under <code class="docutils literal notranslate"><span class="pre">action.filterResources</span></code> node.</p>
+<p>All other fields in the request are identical to the non-batch endpoint.</p>
+<p>An OPA policy supporting batch operations must return a list containing the
+<em>indices</em> of the items for which authorization is granted. Returning a <code class="docutils literal notranslate"><span class="pre">null</span></code>
+value or an empty list is equivalent and denies any access.</p>
+<p>You can add batching support for policies that do not support it:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>package foo
+
+import future.keywords.contains
+
+# ... rest of the policy ...
+# this assumes the non-batch response field is called "allow"
+batch contains i {
+    some i
+    raw_resource := input.action.filterResources[i]
+    allow with input.action.resource as raw_resource
+}
+
+# Corner case: filtering columns is done with a single table item, and many columns inside
+# We cannot use our normal logic in other parts of the policy as they are based on sets
+# and we need to retain order
+batch contains i {
+    some i
+    input.action.operation == "FilterColumns"
+    count(input.action.filterResources) == 1
+    raw_resource := input.action.filterResources[0]
+    count(raw_resource["table"]["columns"]) &gt; 0
+    new_resources := [
+        object.union(raw_resource, {"table": {"column": column_name}})
+        | column_name := raw_resource["table"]["columns"][_]
+    ]
+    allow with input.action.resource as new_resources[i]
+}
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="file-system-access-control.html" title="File-based access control"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> Previous </span> File-based access control </span>
+              </div>
+            </a>
+          
+          
+            <a href="internal-communication.html" title="Secure internal communication"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> Next </span> Secure internal communication </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>
