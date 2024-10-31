@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Alata&family=Open+Sans:ital,wght%400,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="2196f3">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>Faker connector &#8212; Trino 464 Documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=bbebba6e" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css?v=79c92029" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/trino.css?v=daa3c281" />
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=09f0d9dd"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <link rel="canonical" href="https://trino.io/docs/current/connector/faker.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Google Sheets connector" href="googlesheets.html" />
+    <link rel="prev" title="Exasol connector" href="exasol.html" />
+  
+   
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJ94STKPJ5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RJ94STKPJ5');
+      gtag('config', 'UA-133457846-1');
+      gtag('config', 'AW-1036784065');
+      window._linkedin_data_partner_ids = ['2842796'];
+    </script>
+    <script async src="https://snap.licdn.com/li.lms-analytics/insight.min.js"></script>
+  </head>
+  <body dir=ltr
+        data-md-color-primary= data-md-color-accent=>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#connector/faker" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+    <nav class="md-header-nav md-grid">
+        <div class="md-flex navheader">
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <a href="/" title="Trino"
+                   class="md-header-nav__button md-logo">
+                    
+                    <!-- https://github.com/bashtage/sphinx-material/issues/136 -->
+                    <img src="../_static/trino.svg" height="26"
+                         alt="Trino 464 Documentation logo">
+                    
+                </a>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch">
+                <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+                    <span class="md-header-nav__topic">Trino 464 Documentation</span>
+                    <span class="md-header-nav__topic"> Faker connector </span>
+                </div>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+                
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+            </div>
+            
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <div class="md-header-nav__source">
+                    <a href="https://github.com/trinodb/trino" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Trino
+  </div>
+</a>
+                </div>
+            </div>
+            
+            
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../../versions.json",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+        </div>
+    </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    <!-- empty -->
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+    <label class="md-nav__title md-nav__title--site" for="__drawer">
+        <a href="/" title="Trino" class="md-nav__button md-logo">
+            
+            <img src="../_static/trino.svg" alt=" logo" width="48" height="48">
+            
+        </a>
+        <a href="../index.html"
+           title="Trino 464 Documentation">Trino 464 Documentation</a>
+    </label>
+    <div class="md-nav__source">
+        <a href="https://github.com/trinodb/trino" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Trino
+  </div>
+</a>
+    </div>
+    
+    
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+    
+      <a href="../overview.html" class="md-nav__link">Overview</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../installation.html" class="md-nav__link">Installation</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../client.html" class="md-nav__link">Clients</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../security.html" class="md-nav__link">Security</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../admin.html" class="md-nav__link">Administration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../optimizer.html" class="md-nav__link">Query optimizer</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../connector.html" class="md-nav__link">Connectors</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="bigquery.html" class="md-nav__link">BigQuery</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="blackhole.html" class="md-nav__link">Black Hole</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="cassandra.html" class="md-nav__link">Cassandra</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="clickhouse.html" class="md-nav__link">ClickHouse</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="delta-lake.html" class="md-nav__link">Delta Lake</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="druid.html" class="md-nav__link">Druid</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="elasticsearch.html" class="md-nav__link">Elasticsearch</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="exasol.html" class="md-nav__link">Exasol</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> Faker </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">Faker</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+    <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#configuration" class="md-nav__link">Configuration</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#character-types" class="md-nav__link">Character types</a>
+        </li>
+        <li class="md-nav__item"><a href="#non-character-types" class="md-nav__link">Non-character types</a>
+        </li>
+        <li class="md-nav__item"><a href="#unsupported-types" class="md-nav__link">Unsupported types</a>
+        </li>
+        <li class="md-nav__item"><a href="#number-of-generated-rows" class="md-nav__link">Number of generated rows</a>
+        </li>
+        <li class="md-nav__item"><a href="#null-values" class="md-nav__link">Null values</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#type-mapping" class="md-nav__link">Type mapping</a>
+        </li>
+        <li class="md-nav__item"><a href="#sql-support" class="md-nav__link">SQL support</a>
+        </li>
+        <li class="md-nav__item"><a href="#usage" class="md-nav__link">Usage</a>
+        </li>
+        <li class="md-nav__item"><a href="#limitations" class="md-nav__link">Limitations</a>
+        </li>
+    </ul>
+</nav>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="googlesheets.html" class="md-nav__link">Google Sheets</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="hive.html" class="md-nav__link">Hive</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="hudi.html" class="md-nav__link">Hudi</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="iceberg.html" class="md-nav__link">Iceberg</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="ignite.html" class="md-nav__link">Ignite</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="jmx.html" class="md-nav__link">JMX</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="kafka.html" class="md-nav__link">Kafka</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="kinesis.html" class="md-nav__link">Kinesis</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="kudu.html" class="md-nav__link">Kudu</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="mariadb.html" class="md-nav__link">MariaDB</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="memory.html" class="md-nav__link">Memory</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="mongodb.html" class="md-nav__link">MongoDB</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="mysql.html" class="md-nav__link">MySQL</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="opensearch.html" class="md-nav__link">OpenSearch</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="oracle.html" class="md-nav__link">Oracle</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="phoenix.html" class="md-nav__link">Phoenix</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="pinot.html" class="md-nav__link">Pinot</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="postgresql.html" class="md-nav__link">PostgreSQL</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="prometheus.html" class="md-nav__link">Prometheus</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="redis.html" class="md-nav__link">Redis</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="redshift.html" class="md-nav__link">Redshift</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="singlestore.html" class="md-nav__link">SingleStore</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="snowflake.html" class="md-nav__link">Snowflake</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="sqlserver.html" class="md-nav__link">SQL Server</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="system.html" class="md-nav__link">System</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="thrift.html" class="md-nav__link">Thrift</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="tpcds.html" class="md-nav__link">TPCDS</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="tpch.html" class="md-nav__link">TPCH</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="vertica.html" class="md-nav__link">Vertica</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="removed.html" class="md-nav__link">404 - Connector removed</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../object-storage.html" class="md-nav__link">Object storage</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../functions.html" class="md-nav__link">Functions and operators</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../language.html" class="md-nav__link">SQL language</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../sql.html" class="md-nav__link">SQL statement syntax</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../routines.html" class="md-nav__link">SQL routines</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../develop.html" class="md-nav__link">Developer guide</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../glossary.html" class="md-nav__link">Glossary</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../appendix.html" class="md-nav__link">Appendix</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../release.html" class="md-nav__link">Release notes</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+    <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#configuration" class="md-nav__link">Configuration</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#character-types" class="md-nav__link">Character types</a>
+        </li>
+        <li class="md-nav__item"><a href="#non-character-types" class="md-nav__link">Non-character types</a>
+        </li>
+        <li class="md-nav__item"><a href="#unsupported-types" class="md-nav__link">Unsupported types</a>
+        </li>
+        <li class="md-nav__item"><a href="#number-of-generated-rows" class="md-nav__link">Number of generated rows</a>
+        </li>
+        <li class="md-nav__item"><a href="#null-values" class="md-nav__link">Null values</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#type-mapping" class="md-nav__link">Type mapping</a>
+        </li>
+        <li class="md-nav__item"><a href="#sql-support" class="md-nav__link">SQL support</a>
+        </li>
+        <li class="md-nav__item"><a href="#usage" class="md-nav__link">Usage</a>
+        </li>
+        <li class="md-nav__item"><a href="#limitations" class="md-nav__link">Limitations</a>
+        </li>
+    </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="faker-connector">
+<h1 id="connector-faker--page-root">Faker connector<a class="headerlink" href="#connector-faker--page-root" title="Link to this heading">#</a></h1>
+<p>The Faker connector generates random data matching a defined structure. It uses
+the <a class="reference external" href="https://www.datafaker.net/">Datafaker</a> library to make the generated data
+more realistic. Use the connector to populate another data source with large
+and realistic test data. This allows testing performance of applications
+processing data, including Trino itself, and application user interfaces.</p>
+<section id="configuration">
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Link to this heading">#</a></h2>
+<p>Create a catalog properties file that specifies the Faker connector by setting
+the <code class="docutils literal notranslate"><span class="pre">connector.name</span></code> to <code class="docutils literal notranslate"><span class="pre">faker</span></code>.</p>
+<p>For example, to generate data in the <code class="docutils literal notranslate"><span class="pre">generator</span></code> catalog, create the file
+<code class="docutils literal notranslate"><span class="pre">etc/catalog/generator.properties</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>connector.name=faker
+faker.null-probability=0.1
+faker.default-limit=1000
+</pre></div>
+</div>
+<p>Create tables in the <code class="docutils literal notranslate"><span class="pre">default</span></code> schema, or create different schemas first.
+Reading from tables in this catalog return random data. See <a class="reference internal" href="#faker-usage"><span class="std std-ref">Usage</span></a> for
+more examples.</p>
+<p>Schema objects created in this connector are not persisted, and are stored in
+memory only. They need to be recreated every time after restarting the
+coordinator.</p>
+<p>The following table details all general configuration properties:</p>
+<table id="id1">
+<caption><span class="caption-text">Faker configuration properties</span><a class="headerlink" href="#id1" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 35%"/>
+<col style="width: 55%"/>
+<col style="width: 10%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Default</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">faker.null-probability</span></code></p></td>
+<td><p>Default null probability for any column in any table that allows them.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.5</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">faker.default-limit</span></code></p></td>
+<td><p>Default number of rows for each table, when the LIMIT clause is not
+specified in the query.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1000</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>The following table details all supported schema properties. If they’re not
+set, values from corresponding configuration properties are used.</p>
+<table id="id2">
+<caption><span class="caption-text">Faker schema properties</span><a class="headerlink" href="#id2" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 35%"/>
+<col style="width: 65%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">null_probability</span></code></p></td>
+<td><p>Default probability of null values in any column that allows them, in any
+table of this schema.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">default_limit</span></code></p></td>
+<td><p>Default limit of rows returned from any table in this schema, if not
+specified in the query.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The following table details all supported table properties. If they’re not set,
+values from corresponding schema properties are used.</p>
+<table id="id3">
+<caption><span class="caption-text">Faker table properties</span><a class="headerlink" href="#id3" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 35%"/>
+<col style="width: 65%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">null_probability</span></code></p></td>
+<td><p>Default probability of null values in any column in this table that allows
+them.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">default_limit</span></code></p></td>
+<td><p>Default limit of rows returned from this table if not specified in the
+query.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The following table details all supported column properties.</p>
+<table id="id4">
+<caption><span class="caption-text">Faker column properties</span><a class="headerlink" href="#id4" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 20%"/>
+<col style="width: 40%"/>
+<col style="width: 40%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Default</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">null_probability</span></code></p></td>
+<td><p>Default probability of null values in any column in this table that allows them.</p></td>
+<td><p>Defaults to the <code class="docutils literal notranslate"><span class="pre">null_probability</span></code> table or schema property, if set, or the
+<code class="docutils literal notranslate"><span class="pre">faker.null-probability</span></code> configuration property.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">generator</span></code></p></td>
+<td><p>Name of the Faker library generator used to generate data for this column.
+Only valid for columns of a character based type.</p></td>
+<td><p>Defaults to a 3 to 40 word sentence from the
+<a class="reference external" href="https://javadoc.io/doc/net.datafaker/datafaker/latest/net/datafaker/providers/base/Lorem.html">Lorem</a>
+provider.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="character-types">
+<h3 id="character-types">Character types<a class="headerlink" href="#character-types" title="Link to this heading">#</a></h3>
+<p>Faker supports the following character types:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CHAR</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VARCHAR</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VARBINARY</span></code></p></li>
+</ul>
+<p>Columns of those types use a generator producing the <a class="reference external" href="https://en.wikipedia.org/wiki/Lorem_ipsum">Lorem
+ipsum</a> placeholder text. Unbounded
+columns return a random sentence with 3 to 40 words.</p>
+<p>To have more control over the format of the generated data, use the <code class="docutils literal notranslate"><span class="pre">generator</span></code>
+column property. Some examples of valid generator expressions:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">#{regexify</span> <span class="pre">'(a|b){2,3}'}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#{regexify</span> <span class="pre">'\\.\\*\\?\\+'}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#{bothify</span> <span class="pre">'????','false'}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#{Name.first_name}</span> <span class="pre">#{Name.first_name}</span> <span class="pre">#{Name.last_name}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#{number.number_between</span> <span class="pre">'1','10'}</span></code></p></li>
+</ul>
+<p>See the Datafaker’s documentation for more information about
+<a class="reference external" href="https://www.datafaker.net/documentation/expressions/">the expression</a> syntax
+and <a class="reference external" href="https://www.datafaker.net/documentation/providers/">available providers</a>.</p>
+</section>
+<section id="non-character-types">
+<h3 id="non-character-types">Non-character types<a class="headerlink" href="#non-character-types" title="Link to this heading">#</a></h3>
+<p>Faker supports the following non-character types:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BIGINT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">INTEGER</span></code> or <code class="docutils literal notranslate"><span class="pre">INT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SMALLINT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TINYINT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BOOLEAN</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DATE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DECIMAL</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">REAL</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">INTERVAL</span> <span class="pre">DAY</span> <span class="pre">TO</span> <span class="pre">SECOND</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">INTERVAL</span> <span class="pre">YEAR</span> <span class="pre">TO</span> <span class="pre">MONTH</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code> and <code class="docutils literal notranslate"><span class="pre">TIMESTAMP(P)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code> and <code class="docutils literal notranslate"><span class="pre">TIMESTAMP(P)</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TIME</span></code> and <code class="docutils literal notranslate"><span class="pre">TIME(P)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code> and <code class="docutils literal notranslate"><span class="pre">TIME(P)</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IPADDRESS</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UUID</span></code></p></li>
+</ul>
+<p>You can not use generator expressions for non-character-based columns. To limit
+their data range, specify constraints in the <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> clause.</p>
+</section>
+<section id="unsupported-types">
+<h3 id="unsupported-types">Unsupported types<a class="headerlink" href="#unsupported-types" title="Link to this heading">#</a></h3>
+<p>Faker does not support the following data types:</p>
+<ul class="simple">
+<li><p>structural types: <code class="docutils literal notranslate"><span class="pre">ARRAY</span></code>, <code class="docutils literal notranslate"><span class="pre">MAP</span></code>, <code class="docutils literal notranslate"><span class="pre">ROW</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">JSON</span></code></p></li>
+<li><p>Geometry</p></li>
+<li><p>HyperLogLog and all digest types</p></li>
+</ul>
+<p>To generate data using these complex types, data from column of primitive types
+can be combined, like in the following example.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">faker</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">prices</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">currency</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="p">(</span><span class="n">generator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'#{Currency.code}'</span><span class="p">),</span>
+<span class="w">  </span><span class="n">price</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="p">);</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">JSON_OBJECT</span><span class="p">(</span><span class="k">KEY</span><span class="w"> </span><span class="n">currency</span><span class="w"> </span><span class="n">VALUE</span><span class="w"> </span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">complex</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">faker</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">prices</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Executing these queries should return data structured like this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      complex
+-------------------
+ {"TTD":924657.82}
+ {"MRO":968292.49}
+ {"LTL":357773.63}
+(3 rows)
+</pre></div>
+</div>
+</section>
+<section id="number-of-generated-rows">
+<h3 id="number-of-generated-rows">Number of generated rows<a class="headerlink" href="#number-of-generated-rows" title="Link to this heading">#</a></h3>
+<p>By default, the connector generates 1000 rows for every table. To control how
+many rows are generated for a table, use the <code class="docutils literal notranslate"><span class="pre">LIMIT</span></code> clause in the query. A
+default limit can be set using the <code class="docutils literal notranslate"><span class="pre">default_limit</span></code> table, or schema property or
+in the connector configuration file, using the <code class="docutils literal notranslate"><span class="pre">faker.default-limit</span></code> property.</p>
+</section>
+<section id="null-values">
+<h3 id="null-values">Null values<a class="headerlink" href="#null-values" title="Link to this heading">#</a></h3>
+<p>For columns without a <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code> constraint, null values are generated using
+the default probability of 50%. It can be modified using the <code class="docutils literal notranslate"><span class="pre">null_probability</span></code>
+property set for a column, table, or schema. The default value of 0.5 can be
+also modified in the connector configuration file, by using the
+<code class="docutils literal notranslate"><span class="pre">faker.null-probability</span></code> property.</p>
+</section>
+</section>
+<section id="type-mapping">
+<span id="faker-type-mapping"></span><h2 id="type-mapping">Type mapping<a class="headerlink" href="#type-mapping" title="Link to this heading">#</a></h2>
+<p>The Faker connector generates data itself, so no mapping is required.</p>
+</section>
+<section id="sql-support">
+<span id="faker-sql-support"></span><h2 id="sql-support">SQL support<a class="headerlink" href="#sql-support" title="Link to this heading">#</a></h2>
+<p>The connector provides <a class="reference internal" href="../language/sql-support.html#sql-globally-available"><span class="std std-ref">globally available</span></a> and
+<a class="reference internal" href="../language/sql-support.html#sql-read-operations"><span class="std std-ref">read operation</span></a> statements to generate data.</p>
+<p>To define the schema for generating data, it supports the following features:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../sql/create-table.html"><span class="doc std std-doc">CREATE TABLE</span></a></p></li>
+<li><p><a class="reference internal" href="../sql/create-table-as.html"><span class="doc std std-doc">CREATE TABLE AS</span></a></p></li>
+<li><p><a class="reference internal" href="../sql/drop-table.html"><span class="doc std std-doc">DROP TABLE</span></a></p></li>
+<li><p><a class="reference internal" href="../sql/create-schema.html"><span class="doc std std-doc">CREATE SCHEMA</span></a></p></li>
+<li><p><a class="reference internal" href="../sql/drop-schema.html"><span class="doc std std-doc">DROP SCHEMA</span></a></p></li>
+</ul>
+</section>
+<section id="usage">
+<span id="faker-usage"></span><h2 id="usage">Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
+<p>Faker generates data when reading from a table created in a catalog using this
+connector. This makes it easy to fill an existing schema with random data, by
+copying only the schema into a Faker catalog, and inserting the data back into
+the original tables.</p>
+<p>Using the catalog definition from Configuration you can proceed with the
+following steps.</p>
+<p>Create a table with the same columns as in the table to populate with random
+data. Exclude all properties, because the Faker connector doesn’t support the
+same table properties as other connectors.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">generator</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">customer</span><span class="w"> </span><span class="p">(</span><span class="k">LIKE</span><span class="w"> </span><span class="n">production</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">customer</span><span class="w"> </span><span class="k">EXCLUDING</span><span class="w"> </span><span class="n">PROPERTIES</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Insert random data into the original table, by selecting it from the
+<code class="docutils literal notranslate"><span class="pre">generator</span></code> catalog. Data generated by the Faker connector for columns of
+non-character types cover the whole range of that data type. Add constraints to
+adjust the data as desired. The following example ensures that date of birth
+and age in years are related and realistic values.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">production</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">customers</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">generator</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">customers</span>
+<span class="k">WHERE</span>
+<span class="w">  </span><span class="n">born_at</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="k">CURRENT_DATE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">'150'</span><span class="w"> </span><span class="k">YEAR</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT_DATE</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">age_years</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">150</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>To generate even more realistic data, choose specific generators by setting the
+<code class="docutils literal notranslate"><span class="pre">generator</span></code> property on columns. Start with getting the complete definition of
+a table:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">production</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">customers</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Modify the output of the previous query and add some column properties.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">generator</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">customer</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">id</span><span class="w"> </span><span class="n">UUID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="p">(</span><span class="n">generator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'#{Name.first_name} #{Name.last_name}'</span><span class="p">),</span>
+<span class="w">  </span><span class="n">address</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="p">(</span><span class="n">generator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'#{Address.fullAddress}'</span><span class="p">),</span>
+<span class="w">  </span><span class="n">born_at</span><span class="w"> </span><span class="nb">DATE</span><span class="p">,</span>
+<span class="w">  </span><span class="n">age_years</span><span class="w"> </span><span class="nb">INTEGER</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="limitations">
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Generated data is not deterministic. There is no way to specify a seed for
+the random generator. The same query reading from catalogs using this
+connector, executed multiple times, returns different results each time.</p></li>
+<li><p>It is not possible to choose the locale used by the Datafaker’s generators.</p></li>
+</ul>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="exasol.html" title="Exasol connector"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> Previous </span> Exasol connector </span>
+              </div>
+            </a>
+          
+          
+            <a href="googlesheets.html" title="Google Sheets connector"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> Next </span> Google Sheets connector </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>
