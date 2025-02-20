@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Alata&family=Open+Sans:ital,wght%400,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="2196f3">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>AI functions &#8212; Trino 471 Documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=bbebba6e" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css?v=79c92029" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/trino.css?v=daa3c281" />
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=35369727"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <link rel="canonical" href="https://trino.io/docs/current/functions/ai.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Array functions and operators" href="array.html" />
+    <link rel="prev" title="Aggregate functions" href="aggregate.html" />
+  
+   
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJ94STKPJ5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RJ94STKPJ5');
+      gtag('config', 'UA-133457846-1');
+      gtag('config', 'AW-1036784065');
+      window._linkedin_data_partner_ids = ['2842796'];
+    </script>
+    <script async src="https://snap.licdn.com/li.lms-analytics/insight.min.js"></script>
+  </head>
+  <body dir=ltr
+        data-md-color-primary= data-md-color-accent=>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#functions/ai" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+    <nav class="md-header-nav md-grid">
+        <div class="md-flex navheader">
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <a href="/" title="Trino"
+                   class="md-header-nav__button md-logo">
+                    
+                    <!-- https://github.com/bashtage/sphinx-material/issues/136 -->
+                    <img src="../_static/trino.svg" height="26"
+                         alt="Trino 471 Documentation logo">
+                    
+                </a>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch">
+                <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+                    <span class="md-header-nav__topic">Trino 471 Documentation</span>
+                    <span class="md-header-nav__topic"> AI functions </span>
+                </div>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+                
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+            </div>
+            
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <div class="md-header-nav__source">
+                    <a href="https://github.com/trinodb/trino" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Trino
+  </div>
+</a>
+                </div>
+            </div>
+            
+            
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../../versions.json",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+        </div>
+    </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    <!-- empty -->
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+    <label class="md-nav__title md-nav__title--site" for="__drawer">
+        <a href="/" title="Trino" class="md-nav__button md-logo">
+            
+            <img src="../_static/trino.svg" alt=" logo" width="48" height="48">
+            
+        </a>
+        <a href="../index.html"
+           title="Trino 471 Documentation">Trino 471 Documentation</a>
+    </label>
+    <div class="md-nav__source">
+        <a href="https://github.com/trinodb/trino" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Trino
+  </div>
+</a>
+    </div>
+    
+    
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+    
+      <a href="../overview.html" class="md-nav__link">Overview</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../installation.html" class="md-nav__link">Installation</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../client.html" class="md-nav__link">Clients</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../security.html" class="md-nav__link">Security</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../admin.html" class="md-nav__link">Administration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../optimizer.html" class="md-nav__link">Query optimizer</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../connector.html" class="md-nav__link">Connectors</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../object-storage.html" class="md-nav__link">Object storage</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../functions.html" class="md-nav__link">Functions and operators</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="list.html" class="md-nav__link">List of functions and operators</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="list-by-topic.html" class="md-nav__link">List of functions by topic</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="aggregate.html" class="md-nav__link">Aggregate</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> AI </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">AI</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+    <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#configuration" class="md-nav__link">Configuration</a>
+        </li>
+        <li class="md-nav__item"><a href="#providers" class="md-nav__link">Providers</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#anthropic" class="md-nav__link">Anthropic</a>
+        </li>
+        <li class="md-nav__item"><a href="#openai" class="md-nav__link">OpenAI</a>
+        </li>
+        <li class="md-nav__item"><a href="#ollama" class="md-nav__link">Ollama</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#functions" class="md-nav__link">Functions</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#ai_analyze_sentiment" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ai_analyze_sentiment()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#ai_classify" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ai_classify()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#ai_extract" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ai_extract()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#ai_fix_grammar" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ai_fix_grammar()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#ai_gen" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ai_gen()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#ai_mask" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ai_mask()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#ai_translate" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ai_translate()</span></code></a>
+        </li></ul>
+            </nav>
+        </li>
+    </ul>
+</nav>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="array.html" class="md-nav__link">Array</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="binary.html" class="md-nav__link">Binary</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="bitwise.html" class="md-nav__link">Bitwise</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="color.html" class="md-nav__link">Color</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="comparison.html" class="md-nav__link">Comparison</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="conditional.html" class="md-nav__link">Conditional</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="conversion.html" class="md-nav__link">Conversion</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="datetime.html" class="md-nav__link">Date and time</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="decimal.html" class="md-nav__link">Decimal</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="geospatial.html" class="md-nav__link">Geospatial</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="hyperloglog.html" class="md-nav__link">HyperLogLog</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="ipaddress.html" class="md-nav__link">IP Address</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="json.html" class="md-nav__link">JSON</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="lambda.html" class="md-nav__link">Lambda</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="logical.html" class="md-nav__link">Logical</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="ml.html" class="md-nav__link">Machine learning</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="map.html" class="md-nav__link">Map</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="math.html" class="md-nav__link">Math</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="qdigest.html" class="md-nav__link">Quantile digest</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="regexp.html" class="md-nav__link">Regular expression</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="session.html" class="md-nav__link">Session</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="setdigest.html" class="md-nav__link">Set Digest</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="string.html" class="md-nav__link">String</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="system.html" class="md-nav__link">System</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="table.html" class="md-nav__link">Table</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="teradata.html" class="md-nav__link">Teradata</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="tdigest.html" class="md-nav__link">T-Digest</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="url.html" class="md-nav__link">URL</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="uuid.html" class="md-nav__link">UUID</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="window.html" class="md-nav__link">Window</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../udf.html" class="md-nav__link">User-defined functions</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../language.html" class="md-nav__link">SQL language</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../sql.html" class="md-nav__link">SQL statement syntax</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../develop.html" class="md-nav__link">Developer guide</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../glossary.html" class="md-nav__link">Glossary</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../appendix.html" class="md-nav__link">Appendix</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../release.html" class="md-nav__link">Release notes</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+    <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#configuration" class="md-nav__link">Configuration</a>
+        </li>
+        <li class="md-nav__item"><a href="#providers" class="md-nav__link">Providers</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#anthropic" class="md-nav__link">Anthropic</a>
+        </li>
+        <li class="md-nav__item"><a href="#openai" class="md-nav__link">OpenAI</a>
+        </li>
+        <li class="md-nav__item"><a href="#ollama" class="md-nav__link">Ollama</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#functions" class="md-nav__link">Functions</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#ai_analyze_sentiment" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ai_analyze_sentiment()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#ai_classify" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ai_classify()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#ai_extract" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ai_extract()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#ai_fix_grammar" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ai_fix_grammar()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#ai_gen" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ai_gen()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#ai_mask" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ai_mask()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#ai_translate" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ai_translate()</span></code></a>
+        </li></ul>
+            </nav>
+        </li>
+    </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="ai-functions">
+<h1 id="functions-ai--page-root">AI functions<a class="headerlink" href="#functions-ai--page-root" title="Link to this heading">#</a></h1>
+<p>The AI functions allow you to invoke a large language model (LLM)
+to perform various textual tasks.
+Multiple LLM providers are supported, specifically
+<a class="reference external" href="https://platform.openai.com/">OpenAI</a> and
+<a class="reference external" href="https://www.anthropic.com/api">Anthropic</a> directly,
+and many others such as Llama, DeepSeek, Phi, Mistral, or Gemma
+using <a class="reference external" href="https://ollama.com/">Ollama</a>.</p>
+<p>The LLM must be provided outside Trino as an external service.</p>
+<section id="configuration">
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Link to this heading">#</a></h2>
+<p>Because the AI functions require an external LLM service, they are not
+available by default. To enable them, you must configure a
+<a class="reference internal" href="../installation/deployment.html#catalog-properties"><span class="std std-ref">catalog properties file</span></a> to register the functions invoking the
+configured LLM under the specified catalog name.</p>
+<p>Create a catalog properties file <code class="docutils literal notranslate"><span class="pre">etc/catalog/llm.properties</span></code> that references
+the <code class="docutils literal notranslate"><span class="pre">ai</span></code> connector:</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><span class="na">connector.name</span><span class="o">=</span><span class="s">ai</span>
+</pre></div>
+</div>
+<p>The AI functions all use the <code class="docutils literal notranslate"><span class="pre">ai</span></code> schema name. For the preceding example,
+the functions use the <code class="docutils literal notranslate"><span class="pre">llm.ai</span></code> catalog and schema prefix.</p>
+<p>To avoid needing to reference the functions using their fully qualified name,
+you can configure the <code class="docutils literal notranslate"><span class="pre">sql.path</span></code> <a class="reference internal" href="../admin/properties-sql-environment.html"><span class="doc std std-doc">SQL environment property</span></a>
+in the <code class="docutils literal notranslate"><span class="pre">config.properties</span></code> file to include the catalog and schema prefix:</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><span class="na">sql.path</span><span class="o">=</span><span class="s">llm.ai</span>
+</pre></div>
+</div>
+<p>Configure multiple catalogs to use the same functions with different LLM
+providers. In this case, the functions must be referenced using their
+fully qualified name, rather than relying on the SQL path.</p>
+</section>
+<section id="providers">
+<h2 id="providers">Providers<a class="headerlink" href="#providers" title="Link to this heading">#</a></h2>
+<p>The AI functions invoke an external LLM, which must be configured for the
+catalog. Performance, results, and cost of all AI function invocations are
+completely dependent on the LLM provider and the model used.
+You must specify a model that is suitable for textual analysis.</p>
+<section id="anthropic">
+<h3 id="anthropic">Anthropic<a class="headerlink" href="#anthropic" title="Link to this heading">#</a></h3>
+<p>The Anthropic provider uses the <a class="reference external" href="https://www.anthropic.com/api">Anthropic API</a>
+to perform the AI functions:</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><span class="na">ai.provider</span><span class="o">=</span><span class="s">anthropic</span>
+<span class="na">ai.model</span><span class="o">=</span><span class="s">claude-3-5-sonnet-latest</span>
+<span class="na">ai.anthropic.api-key</span><span class="o">=</span><span class="s">xxx</span>
+</pre></div>
+</div>
+</section>
+<section id="openai">
+<h3 id="openai">OpenAI<a class="headerlink" href="#openai" title="Link to this heading">#</a></h3>
+<p>The OpenAI provider uses the <a class="reference external" href="https://platform.openai.com/">OpenAI API</a>
+to perform the AI functions:</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><span class="na">ai.provider</span><span class="o">=</span><span class="s">openai</span>
+<span class="na">ai.model</span><span class="o">=</span><span class="s">gpt-4o-mini</span>
+<span class="na">ai.openai.api-key</span><span class="o">=</span><span class="s">xxx</span>
+</pre></div>
+</div>
+</section>
+<section id="ollama">
+<h3 id="ollama">Ollama<a class="headerlink" href="#ollama" title="Link to this heading">#</a></h3>
+<p>The OpenAI provider can be used with <a class="reference external" href="https://ollama.com/">Ollama</a>
+to perform the AI functions, as Ollama is compatible with the OpenAI API:</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><span class="na">ai.provider</span><span class="o">=</span><span class="s">openai</span>
+<span class="na">ai.model</span><span class="o">=</span><span class="s">llama3.3</span>
+<span class="na">ai.openai.endpoint</span><span class="o">=</span><span class="s">http://localhost:11434</span>
+<span class="na">ai.openai.api-key</span><span class="o">=</span><span class="s">none</span>
+</pre></div>
+</div>
+<p>The API key must be specified, but will be ignored by Ollama.</p>
+</section>
+</section>
+<section id="functions">
+<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<p>The following functions are available in each catalog configured with the <code class="docutils literal notranslate"><span class="pre">ai</span></code>
+connector under the <code class="docutils literal notranslate"><span class="pre">ai</span></code> schema and use the configured LLM provider:</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="ai_analyze_sentiment">
+<span class="sig-name descname"><span class="pre">ai_analyze_sentiment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">varchar</span></span></span><a class="headerlink" href="#ai_analyze_sentiment" title="Link to this definition">#</a></dt>
+<dd><p>Analyzes the sentiment of the input text.</p>
+<p>The sentiment result is <code class="docutils literal notranslate"><span class="pre">positive</span></code>, <code class="docutils literal notranslate"><span class="pre">negative</span></code>, <code class="docutils literal notranslate"><span class="pre">neutral</span></code>, or <code class="docutils literal notranslate"><span class="pre">mixed</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ai_analyze_sentiment</span><span class="p">(</span><span class="s1">'I love Trino'</span><span class="p">);</span>
+<span class="c1">-- positive</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="ai_classify">
+<span class="sig-name descname"><span class="pre">ai_classify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">varchar</span></span></span><a class="headerlink" href="#ai_classify" title="Link to this definition">#</a></dt>
+<dd><p>Classifies the input text according to the provided labels.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ai_classify</span><span class="p">(</span><span class="s1">'Buy now!'</span><span class="p">,</span><span class="w"> </span><span class="nb">ARRAY</span><span class="p">[</span><span class="s1">'spam'</span><span class="p">,</span><span class="w"> </span><span class="s1">'not spam'</span><span class="p">]);</span>
+<span class="c1">-- spam</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="ai_extract">
+<span class="sig-name descname"><span class="pre">ai_extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ai_extract" title="Link to this definition">#</a></dt>
+<dd><p>Extracts values for the provided labels from the input text.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ai_extract</span><span class="p">(</span><span class="s1">'John is 25 years old'</span><span class="p">,</span><span class="w"> </span><span class="nb">ARRAY</span><span class="p">[</span><span class="s1">'name'</span><span class="p">,</span><span class="w"> </span><span class="s1">'age'</span><span class="p">]);</span>
+<span class="c1">-- {name=John, age=25}</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="ai_fix_grammar">
+<span class="sig-name descname"><span class="pre">ai_fix_grammar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">varchar</span></span></span><a class="headerlink" href="#ai_fix_grammar" title="Link to this definition">#</a></dt>
+<dd><p>Corrects grammatical errors in the input text.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ai_fix_grammar</span><span class="p">(</span><span class="s1">'I are happy. What you doing?'</span><span class="p">);</span>
+<span class="c1">-- I am happy. What are you doing?</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="ai_gen">
+<span class="sig-name descname"><span class="pre">ai_gen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prompt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">varchar</span></span></span><a class="headerlink" href="#ai_gen" title="Link to this definition">#</a></dt>
+<dd><p>Generates text based on the input prompt.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ai_gen</span><span class="p">(</span><span class="s1">'Describe Trino in a few words'</span><span class="p">);</span>
+<span class="c1">-- Distributed SQL query engine.</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="ai_mask">
+<span class="sig-name descname"><span class="pre">ai_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">varchar</span></span></span><a class="headerlink" href="#ai_mask" title="Link to this definition">#</a></dt>
+<dd><p>Masks values for the provided labels in the input text.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ai_mask</span><span class="p">(</span>
+<span class="w">    </span><span class="s1">'Contact me at 555-1234 or visit us at 123 Main St.'</span><span class="p">,</span>
+<span class="w">    </span><span class="nb">ARRAY</span><span class="p">[</span><span class="s1">'phone'</span><span class="p">,</span><span class="w"> </span><span class="s1">'address'</span><span class="p">]);</span>
+<span class="c1">-- Contact me at [MASKED] or visit us at [MASKED].</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="ai_translate">
+<span class="sig-name descname"><span class="pre">ai_translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">varchar</span></span></span><a class="headerlink" href="#ai_translate" title="Link to this definition">#</a></dt>
+<dd><p>Translates the input text to the specified language.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ai_translate</span><span class="p">(</span><span class="s1">'I like coffee'</span><span class="p">,</span><span class="w"> </span><span class="s1">'es'</span><span class="p">);</span>
+<span class="c1">-- Me gusta el café</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">ai_translate</span><span class="p">(</span><span class="s1">'I like coffee'</span><span class="p">,</span><span class="w"> </span><span class="s1">'zh-TW'</span><span class="p">);</span>
+<span class="c1">-- 我喜歡咖啡</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="aggregate.html" title="Aggregate functions"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> Previous </span> Aggregate functions </span>
+              </div>
+            </a>
+          
+          
+            <a href="array.html" title="Array functions and operators"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> Next </span> Array functions and operators </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>
