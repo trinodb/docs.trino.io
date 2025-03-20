@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Alata&family=Open+Sans:ital,wght%400,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="2196f3">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>Ranger access control &#8212; Trino 473 Documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=bbebba6e" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css?v=79c92029" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/trino.css?v=b5fc78e7" />
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=a6b69954"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <link rel="canonical" href="https://trino.io/docs/current/security/ranger-access-control.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Secure internal communication" href="internal-communication.html" />
+    <link rel="prev" title="Open Policy Agent access control" href="opa-access-control.html" />
+  
+   
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJ94STKPJ5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RJ94STKPJ5');
+      gtag('config', 'UA-133457846-1');
+      gtag('config', 'AW-1036784065');
+      window._linkedin_data_partner_ids = ['2842796'];
+    </script>
+    <script async src="https://snap.licdn.com/li.lms-analytics/insight.min.js"></script>
+  </head>
+  <body dir=ltr
+        data-md-color-primary= data-md-color-accent=>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#security/ranger-access-control" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+    <nav class="md-header-nav md-grid">
+        <div class="md-flex navheader">
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <a href="/" title="Trino"
+                   class="md-header-nav__button md-logo">
+                    
+                    <!-- https://github.com/bashtage/sphinx-material/issues/136 -->
+                    <img src="../_static/trino.svg" height="26"
+                         alt="Trino 473 Documentation logo">
+                    
+                </a>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch">
+                <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+                    <span class="md-header-nav__topic">Trino 473 Documentation</span>
+                    <span class="md-header-nav__topic"> Ranger access control </span>
+                </div>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+                
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+            </div>
+            
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <div class="md-header-nav__source">
+                    <a href="https://github.com/trinodb/trino" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Trino
+  </div>
+</a>
+                </div>
+            </div>
+            
+            
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../../versions.json",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+        </div>
+    </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    <!-- empty -->
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+    <label class="md-nav__title md-nav__title--site" for="__drawer">
+        <a href="/" title="Trino" class="md-nav__button md-logo">
+            
+            <img src="../_static/trino.svg" alt=" logo" width="48" height="48">
+            
+        </a>
+        <a href="../index.html"
+           title="Trino 473 Documentation">Trino 473 Documentation</a>
+    </label>
+    <div class="md-nav__source">
+        <a href="https://github.com/trinodb/trino" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Trino
+  </div>
+</a>
+    </div>
+    
+    
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+    
+      <a href="../overview.html" class="md-nav__link">Overview</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../installation.html" class="md-nav__link">Installation</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../client.html" class="md-nav__link">Clients</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../security.html" class="md-nav__link">Security</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="overview.html" class="md-nav__link">Security overview</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="tls.html" class="md-nav__link">TLS and HTTPS</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="inspect-pem.html" class="md-nav__link">PEM files</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="inspect-jks.html" class="md-nav__link">JKS files</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="authentication-types.html" class="md-nav__link">Authentication types</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="password-file.html" class="md-nav__link">Password file authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="ldap.html" class="md-nav__link">LDAP authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="salesforce.html" class="md-nav__link">Salesforce authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="oauth2.html" class="md-nav__link">OAuth 2.0 authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="kerberos.html" class="md-nav__link">Kerberos authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="certificate.html" class="md-nav__link">Certificate authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="jwt.html" class="md-nav__link">JWT authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="user-mapping.html" class="md-nav__link">User mapping</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="group-file.html" class="md-nav__link">File group provider</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="built-in-system-access-control.html" class="md-nav__link">System access control</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="file-system-access-control.html" class="md-nav__link">File-based access control</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="opa-access-control.html" class="md-nav__link">Open Policy Agent access control</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> Ranger access control </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">Ranger access control</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+    <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#requirements" class="md-nav__link">Requirements</a>
+        </li>
+        <li class="md-nav__item"><a href="#configuration" class="md-nav__link">Configuration</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#ranger-trino-security-xml" class="md-nav__link">ranger-trino-security.xml</a>
+        </li>
+        <li class="md-nav__item"><a href="#ranger-trino-audit-xml" class="md-nav__link">ranger-trino-audit.xml</a>
+        </li>
+        <li class="md-nav__item"><a href="#ranger-policymgr-ssl-xml" class="md-nav__link">ranger-policymgr-ssl.xml</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#required-policies" class="md-nav__link">Required policies</a>
+        </li>
+    </ul>
+</nav>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="internal-communication.html" class="md-nav__link">Secure internal communication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="secrets.html" class="md-nav__link">Secrets</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../admin.html" class="md-nav__link">Administration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../optimizer.html" class="md-nav__link">Query optimizer</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../connector.html" class="md-nav__link">Connectors</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../object-storage.html" class="md-nav__link">Object storage</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../functions.html" class="md-nav__link">Functions and operators</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../udf.html" class="md-nav__link">User-defined functions</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../language.html" class="md-nav__link">SQL language</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../sql.html" class="md-nav__link">SQL statement syntax</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../develop.html" class="md-nav__link">Developer guide</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../glossary.html" class="md-nav__link">Glossary</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../appendix.html" class="md-nav__link">Appendix</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../release.html" class="md-nav__link">Release notes</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+    <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#requirements" class="md-nav__link">Requirements</a>
+        </li>
+        <li class="md-nav__item"><a href="#configuration" class="md-nav__link">Configuration</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#ranger-trino-security-xml" class="md-nav__link">ranger-trino-security.xml</a>
+        </li>
+        <li class="md-nav__item"><a href="#ranger-trino-audit-xml" class="md-nav__link">ranger-trino-audit.xml</a>
+        </li>
+        <li class="md-nav__item"><a href="#ranger-policymgr-ssl-xml" class="md-nav__link">ranger-policymgr-ssl.xml</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#required-policies" class="md-nav__link">Required policies</a>
+        </li>
+    </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="ranger-access-control">
+<h1 id="security-ranger-access-control--page-root">Ranger access control<a class="headerlink" href="#security-ranger-access-control--page-root" title="Link to this heading">#</a></h1>
+<p>The Ranger access control plugin supports use of <a class="reference external" href="https://ranger.apache.org/">Apache
+Ranger</a> policies to authorize data access in Trino
+on catalogs, schemas, tables, and columns. The plugin also supports
+column-masking, row-filtering and audit logging.</p>
+<section id="requirements">
+<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Access to a Apache Ranger deployment with the desired authorization policies.</p></li>
+<li><p>Access to an audit store using Solr, HDFS, Log4J, or S3 to save audit logs.</p></li>
+<li><p>Apache Ranger 2.5.0 and greater include the required Trino service definition.
+Earlier versions of Apache Ranger require an <a class="reference external" href="https://github.com/apache/ranger/blob/ranger-2.5/agents-common/src/main/resources/service-defs/ranger-servicedef-trino.json">update to the service definition
+available on
+GitHub</a>.</p></li>
+</ul>
+</section>
+<section id="configuration">
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Link to this heading">#</a></h2>
+<p>To use only Ranger for access control, create the file
+<code class="docutils literal notranslate"><span class="pre">etc/access-control.properties</span></code> on the coordinator, with the following
+configuration, and configurations listed in the table below:</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><span class="na">access-control.name</span><span class="o">=</span><span class="s">ranger</span>
+</pre></div>
+</div>
+<p>To combine Ranger access control with file-based or other access control
+systems, follow the instructions about <a class="reference internal" href="built-in-system-access-control.html#multiple-access-control"><span class="std std-ref">Multiple access control systems</span></a>.</p>
+<p>The following table lists the configuration properties for the Ranger access control:</p>
+<table id="id1">
+<caption><span class="caption-text">Ranger access control configuration properties</span><a class="headerlink" href="#id1" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 30%"/>
+<col style="width: 70%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ranger.service.name</span></code></p></td>
+<td><p>Name of the service on Ranger with the policies to enforce.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ranger.plugin.config.resource</span></code></p></td>
+<td><p>Comma-separated list of Ranger plugin configuration files. Relative paths
+are resolved dynamically by searching on the classpath.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ranger.hadoop.config.resource</span></code></p></td>
+<td><p>Comma-separated list of Hadoop configuration files. Relative paths are
+resolved dynamically by searching on the classpath.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="ranger-trino-security-xml">
+<h3 id="ranger-trino-security-xml">ranger-trino-security.xml<a class="headerlink" href="#ranger-trino-security-xml" title="Link to this heading">#</a></h3>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml-stylesheet type="text/xsl" href="configuration.xsl"?&gt;</span>
+<span class="nt">&lt;configuration</span><span class="w"> </span><span class="na">xmlns:xi=</span><span class="s">"http://www.w3.org/2001/XInclude"</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;property&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>ranger.plugin.trino.policy.rest.url<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;</span>https://ranger-hostname:6182<span class="nt">&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>MANDATORY:<span class="w"> </span>a<span class="w"> </span>comma<span class="w"> </span>separated<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>URLs<span class="w"> </span>to<span class="w"> </span>Apache<span class="w"> </span>Ranger<span class="w"> </span>instances<span class="w"> </span>in<span class="w"> </span>a<span class="w"> </span>deployment<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/property&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;property&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>ranger.plugin.trino.access.cluster.name<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>Name<span class="w"> </span>to<span class="w"> </span>identify<span class="w"> </span>the<span class="w"> </span>cluster<span class="w"> </span>running<span class="w"> </span>the<span class="w"> </span>Trino<span class="w"> </span>instance.<span class="w"> </span>This<span class="w"> </span>is<span class="w"> </span>recorded<span class="w"> </span>in<span class="w"> </span>audit<span class="w"> </span>logs<span class="w"> </span>generated<span class="w"> </span>by<span class="w"> </span>the<span class="w"> </span>plugin<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/property&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;property&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>ranger.plugin.trino.use.rangerGroups<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;</span>false<span class="nt">&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>Boolean<span class="w"> </span>flag<span class="w"> </span>to<span class="w"> </span>specify<span class="w"> </span>whether<span class="w"> </span>user-to-groups<span class="w"> </span>mapping<span class="w"> </span>should<span class="w"> </span>be<span class="w"> </span>obtained<span class="w"> </span>from<span class="w"> </span>in<span class="w"> </span>Apache<span class="w"> </span>Ranger.<span class="w"> </span>Default:<span class="w"> </span>false<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/property&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;property&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>ranger.plugin.trino.use.only.rangerGroups<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;</span>false<span class="nt">&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>Boolean<span class="w"> </span>flag.<span class="w"> </span>true:<span class="w"> </span>use<span class="w"> </span>only<span class="w"> </span>user-to-groups<span class="w"> </span>mapping<span class="w"> </span>from<span class="w"> </span>Apache<span class="w"> </span>Ranger;<span class="w"> </span>false:<span class="w"> </span>use<span class="w"> </span>user-to-groups<span class="w"> </span>mappings<span class="w"> </span>from<span class="w"> </span>Apache<span class="w"> </span>Ranger<span class="w"> </span>and<span class="w"> </span>Trino.<span class="w"> </span>Default:<span class="w"> </span>false<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/property&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;property&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>ranger.plugin.trino.super.users<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>Comma<span class="w"> </span>separated<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>user<span class="w"> </span>names.<span class="w"> </span>Superusers<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>authorized<span class="w"> </span>for<span class="w"> </span>all<span class="w"> </span>accesses,<span class="w"> </span>without<span class="w"> </span>requiring<span class="w"> </span>explicit<span class="w"> </span>policy<span class="w"> </span>grants.<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/property&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;property&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>ranger.plugin.trino.super.groups<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>Comma<span class="w"> </span>separated<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>group<span class="w"> </span>names.<span class="w"> </span>Users<span class="w"> </span>in<span class="w"> </span>supergroups<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>authorized<span class="w"> </span>for<span class="w"> </span>all<span class="w"> </span>accesses,<span class="w"> </span>without<span class="w"> </span>requiring<span class="w"> </span>explicit<span class="w"> </span>policy<span class="w"> </span>grants<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/property&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;property&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>ranger.plugin.trino.ugi.initialize<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;</span>false<span class="nt">&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>Initialize<span class="w"> </span>the<span class="w"> </span>kerberos<span class="w"> </span>identity<span class="w"> </span>used<span class="w"> </span>to<span class="w"> </span>authenticate<span class="w"> </span>with<span class="w"> </span>Ranger<span class="w"> </span>admin<span class="w"> </span>server<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/property&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;property&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>ranger.plugin.trino.ugi.login.type<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>Valid<span class="w"> </span>value:<span class="w"> </span>keytab<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/property&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;property&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>ranger.plugin.trino.ugi.keytab.principal<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>Kerberos<span class="w"> </span>principal.<span class="w"> </span>Example:<span class="w"> </span>trino@EXAMPLE.COM<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/property&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;property&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>ranger.plugin.trino.ugi.keytab.file<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>Location<span class="w"> </span>of<span class="w"> </span>keytab<span class="w"> </span>file.<span class="w"> </span>Example:<span class="w"> </span>/etc/trino/trino.keytab<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="ranger-trino-audit-xml">
+<h3 id="ranger-trino-audit-xml">ranger-trino-audit.xml<a class="headerlink" href="#ranger-trino-audit-xml" title="Link to this heading">#</a></h3>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml-stylesheet type="text/xsl" href="configuration.xsl"?&gt;</span>
+<span class="nt">&lt;configuration</span><span class="w"> </span><span class="na">xmlns:xi=</span><span class="s">"http://www.w3.org/2001/XInclude"</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;property&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>xasecure.audit.is.enabled<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;</span>true<span class="nt">&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>Boolean<span class="w"> </span>flag<span class="w"> </span>to<span class="w"> </span>specify<span class="w"> </span>if<span class="w"> </span>the<span class="w"> </span>plugin<span class="w"> </span>should<span class="w"> </span>generate<span class="w"> </span>access<span class="w"> </span>audit<span class="w"> </span>logs.<span class="w"> </span>Default:<span class="w"> </span>true<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/property&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;property&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>xasecure.audit.solr.is.enabled<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;</span>false<span class="nt">&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>Boolean<span class="w"> </span>flag<span class="w"> </span>to<span class="w"> </span>specify<span class="w"> </span>if<span class="w"> </span>audit<span class="w"> </span>logs<span class="w"> </span>should<span class="w"> </span>be<span class="w"> </span>stored<span class="w"> </span>in<span class="w"> </span>Solr.<span class="w"> </span>Default:<span class="w"> </span>false<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/property&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;property&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>xasecure.audit.solr.solr_url<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>URL<span class="w"> </span>to<span class="w"> </span>Solr<span class="w"> </span>deployment<span class="w"> </span>where<span class="w"> </span>the<span class="w"> </span>plugin<span class="w"> </span>should<span class="w"> </span>send<span class="w"> </span>access<span class="w"> </span>audits<span class="w"> </span>to<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="ranger-policymgr-ssl-xml">
+<h3 id="ranger-policymgr-ssl-xml">ranger-policymgr-ssl.xml<a class="headerlink" href="#ranger-policymgr-ssl-xml" title="Link to this heading">#</a></h3>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml-stylesheet type="text/xsl" href="configuration.xsl"?&gt;</span>
+<span class="nt">&lt;configuration</span><span class="w"> </span><span class="na">xmlns:xi=</span><span class="s">"http://www.w3.org/2001/XInclude"</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- properties used for 2-way SSL between the Trino plugin and Apache Ranger server --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;property&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>xasecure.policymgr.clientssl.keystore<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>Path<span class="w"> </span>to<span class="w"> </span>keystore<span class="w"> </span>file.<span class="w"> </span>Only<span class="w"> </span>required<span class="w"> </span>for<span class="w"> </span>two-way<span class="w"> </span>SSL.<span class="w"> </span>This<span class="w"> </span>property<span class="w"> </span>should<span class="w"> </span>not<span class="w"> </span>be<span class="w"> </span>included<span class="w"> </span>for<span class="w"> </span>one-way<span class="w"> </span>SSL<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/property&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;property&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>xasecure.policymgr.clientssl.keystore.type<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;</span>jks<span class="nt">&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>Type<span class="w"> </span>of<span class="w"> </span>keystore.<span class="w"> </span>Default:<span class="w"> </span>jks<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/property&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;property&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>xasecure.policymgr.clientssl.keystore.credential.file<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>Path<span class="w"> </span>to<span class="w"> </span>credential<span class="w"> </span>file<span class="w"> </span>for<span class="w"> </span>the<span class="w"> </span>keystore;<span class="w"> </span>the<span class="w"> </span>credential<span class="w"> </span>should<span class="w"> </span>be<span class="w"> </span>in<span class="w"> </span>alias<span class="w"> </span>sslKeyStore.<span class="w"> </span>Only<span class="w"> </span>required<span class="w"> </span>for<span class="w"> </span>two-way<span class="w"> </span>SSL.<span class="w"> </span>This<span class="w"> </span>property<span class="w"> </span>should<span class="w"> </span>not<span class="w"> </span>be<span class="w"> </span>included<span class="w"> </span>for<span class="w"> </span>one-way<span class="w"> </span>SSL<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/property&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;property&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>xasecure.policymgr.clientssl.truststore<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>Path<span class="w"> </span>to<span class="w"> </span>truststore<span class="w"> </span>file<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/property&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;property&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>xasecure.policymgr.clientssl.truststore.type<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;</span>jks<span class="nt">&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>Type<span class="w"> </span>of<span class="w"> </span>truststore.<span class="w"> </span>Default:<span class="w"> </span>jks<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/property&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;property&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name&gt;</span>xasecure.policymgr.clientssl.truststore.credential.file<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;value&gt;&lt;/value&gt;</span>
+<span class="w">    </span><span class="nt">&lt;description&gt;</span>Path<span class="w"> </span>to<span class="w"> </span>credential<span class="w"> </span>file<span class="w"> </span>for<span class="w"> </span>the<span class="w"> </span>truststore;<span class="w"> </span>the<span class="w"> </span>credential<span class="w"> </span>should<span class="w"> </span>be<span class="w"> </span>in<span class="w"> </span>alias<span class="w"> </span>sslTrustStore<span class="nt">&lt;/description&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="required-policies">
+<h2 id="required-policies">Required policies<a class="headerlink" href="#required-policies" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Users must have permission to execute queries in Trino. Without a policy in
+Apache Ranger to grant this permission, users are not be able to execute any
+query.</p>
+<ul>
+<li><p>To allow this, create a policy in Apache Ranger for a <code class="docutils literal notranslate"><span class="pre">queryId</span></code> resource
+with a value <code class="docutils literal notranslate"><span class="pre">*</span></code> and with the <code class="docutils literal notranslate"><span class="pre">execute</span></code> permission for the user <code class="docutils literal notranslate"><span class="pre">{USER}</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Users must have permission to impersonate themselves in Trino. Without a
+policy in Apache Ranger to grant this permission, users are not able to
+execute any query.</p>
+<ul>
+<li><p>To allow this, create a policy in Apache Ranger for a <code class="docutils literal notranslate"><span class="pre">trinouser</span></code> resource
+with value <code class="docutils literal notranslate"><span class="pre">{USER}</span></code> and with the <code class="docutils literal notranslate"><span class="pre">impersonate</span></code> permission for user <code class="docutils literal notranslate"><span class="pre">{USER}</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="opa-access-control.html" title="Open Policy Agent access control"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> Previous </span> Open Policy Agent access control </span>
+              </div>
+            </a>
+          
+          
+            <a href="internal-communication.html" title="Secure internal communication"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> Next </span> Secure internal communication </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>

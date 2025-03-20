@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Alata&family=Open+Sans:ital,wght%400,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="2196f3">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>Trino metrics with OpenMetrics &#8212; Trino 473 Documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=bbebba6e" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css?v=79c92029" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/trino.css?v=b5fc78e7" />
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=a6b69954"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <link rel="canonical" href="https://trino.io/docs/current/admin/openmetrics.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Properties reference" href="properties.html" />
+    <link rel="prev" title="Observability with OpenTelemetry" href="opentelemetry.html" />
+  
+   
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJ94STKPJ5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RJ94STKPJ5');
+      gtag('config', 'UA-133457846-1');
+      gtag('config', 'AW-1036784065');
+      window._linkedin_data_partner_ids = ['2842796'];
+    </script>
+    <script async src="https://snap.licdn.com/li.lms-analytics/insight.min.js"></script>
+  </head>
+  <body dir=ltr
+        data-md-color-primary= data-md-color-accent=>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#admin/openmetrics" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+    <nav class="md-header-nav md-grid">
+        <div class="md-flex navheader">
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <a href="/" title="Trino"
+                   class="md-header-nav__button md-logo">
+                    
+                    <!-- https://github.com/bashtage/sphinx-material/issues/136 -->
+                    <img src="../_static/trino.svg" height="26"
+                         alt="Trino 473 Documentation logo">
+                    
+                </a>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch">
+                <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+                    <span class="md-header-nav__topic">Trino 473 Documentation</span>
+                    <span class="md-header-nav__topic"> Trino metrics with OpenMetrics </span>
+                </div>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+                
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+            </div>
+            
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <div class="md-header-nav__source">
+                    <a href="https://github.com/trinodb/trino" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Trino
+  </div>
+</a>
+                </div>
+            </div>
+            
+            
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../../versions.json",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+        </div>
+    </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    <!-- empty -->
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+    <label class="md-nav__title md-nav__title--site" for="__drawer">
+        <a href="/" title="Trino" class="md-nav__button md-logo">
+            
+            <img src="../_static/trino.svg" alt=" logo" width="48" height="48">
+            
+        </a>
+        <a href="../index.html"
+           title="Trino 473 Documentation">Trino 473 Documentation</a>
+    </label>
+    <div class="md-nav__source">
+        <a href="https://github.com/trinodb/trino" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Trino
+  </div>
+</a>
+    </div>
+    
+    
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+    
+      <a href="../overview.html" class="md-nav__link">Overview</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../installation.html" class="md-nav__link">Installation</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../client.html" class="md-nav__link">Clients</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../security.html" class="md-nav__link">Security</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../admin.html" class="md-nav__link">Administration</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="web-interface.html" class="md-nav__link">Web UI</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="preview-web-interface.html" class="md-nav__link">Preview Web UI</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="logging.html" class="md-nav__link">Logging</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="tuning.html" class="md-nav__link">Tuning Trino</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="jmx.html" class="md-nav__link">Monitoring with JMX</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="opentelemetry.html" class="md-nav__link">Observability with OpenTelemetry</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> Trino metrics with OpenMetrics </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">Trino metrics with OpenMetrics</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+    <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#examples" class="md-nav__link">Examples</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#simple-example-with-docker-and-prometheus" class="md-nav__link">Simple example with Docker and Prometheus</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#coordinator-and-worker-metrics-with-kubernetes" class="md-nav__link">Coordinator and worker metrics with Kubernetes</a>
+        </li>
+    </ul>
+</nav>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="properties.html" class="md-nav__link">Properties reference</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="spill.html" class="md-nav__link">Spill to disk</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="resource-groups.html" class="md-nav__link">Resource groups</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="session-property-managers.html" class="md-nav__link">Session property managers</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="dist-sort.html" class="md-nav__link">Distributed sort</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="dynamic-filtering.html" class="md-nav__link">Dynamic filtering</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="graceful-shutdown.html" class="md-nav__link">Graceful shutdown</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="fault-tolerant-execution.html" class="md-nav__link">Fault-tolerant execution</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="event-listeners-http.html" class="md-nav__link">HTTP event listener</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="event-listeners-kafka.html" class="md-nav__link">Kafka event listener</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="event-listeners-mysql.html" class="md-nav__link">MySQL event listener</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="event-listeners-openlineage.html" class="md-nav__link">OpenLineage event listener</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="properties.html" class="md-nav__link">Properties reference</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../optimizer.html" class="md-nav__link">Query optimizer</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../connector.html" class="md-nav__link">Connectors</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../object-storage.html" class="md-nav__link">Object storage</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../functions.html" class="md-nav__link">Functions and operators</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../udf.html" class="md-nav__link">User-defined functions</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../language.html" class="md-nav__link">SQL language</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../sql.html" class="md-nav__link">SQL statement syntax</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../develop.html" class="md-nav__link">Developer guide</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../glossary.html" class="md-nav__link">Glossary</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../appendix.html" class="md-nav__link">Appendix</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../release.html" class="md-nav__link">Release notes</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+    <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#examples" class="md-nav__link">Examples</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#simple-example-with-docker-and-prometheus" class="md-nav__link">Simple example with Docker and Prometheus</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#coordinator-and-worker-metrics-with-kubernetes" class="md-nav__link">Coordinator and worker metrics with Kubernetes</a>
+        </li>
+    </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="trino-metrics-with-openmetrics">
+<h1 id="admin-openmetrics--page-root">Trino metrics with OpenMetrics<a class="headerlink" href="#admin-openmetrics--page-root" title="Link to this heading">#</a></h1>
+<p>Trino supports the metrics standard <a class="reference external" href="https://openmetrics.io/">OpenMetrics</a>, that
+originated with the open-source systems monitoring and alerting toolkit
+<a class="reference external" href="https://prometheus.io/">Prometheus</a>.</p>
+<p>Metrics are automatically enabled and available on the coordinator at the
+<code class="docutils literal notranslate"><span class="pre">/metrics</span></code> endpoint. The endpoint is protected with the configured
+<a class="reference internal" href="../security.html#security-authentication"><span class="std std-ref">authentication</span></a>, identical to the
+<a class="reference internal" href="web-interface.html"><span class="doc std std-doc">Web UI</span></a> and the <a class="reference internal" href="../client/client-protocol.html"><span class="doc std std-doc">Client protocol</span></a>.</p>
+<p>For example, you can retrieve metrics data from an unsecured Trino server
+running on <code class="docutils literal notranslate"><span class="pre">localhost:8080</span></code> with random username <code class="docutils literal notranslate"><span class="pre">example</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-H<span class="w"> </span>X-Trino-User:foo<span class="w"> </span>localhost:8080/metrics
+</pre></div>
+</div>
+<p>The result follows the <a class="reference external" href="https://github.com/OpenObservability/OpenMetrics/blob/main/specification/OpenMetrics.md">OpenMetrics
+specification</a>
+and looks similar to the following example output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">#</span><span class="w"> </span><span class="k">TYPE</span><span class="w"> </span><span class="n">io_airlift_http_client_type_HttpClient_name_ForDiscoveryClient_CurrentResponseProcessTime_Min</span><span class="w"> </span><span class="n">gauge</span>
+<span class="n">io_airlift_http_client_type_HttpClient_name_ForDiscoveryClient_CurrentResponseProcessTime_Min</span><span class="w"> </span><span class="n">NaN</span>
+<span class="o">#</span><span class="w"> </span><span class="k">TYPE</span><span class="w"> </span><span class="n">io_airlift_http_client_type_HttpClient_name_ForDiscoveryClient_CurrentResponseProcessTime_P25</span><span class="w"> </span><span class="n">gauge</span>
+<span class="n">io_airlift_http_client_type_HttpClient_name_ForDiscoveryClient_CurrentResponseProcessTime_P25</span><span class="w"> </span><span class="n">NaN</span>
+<span class="o">#</span><span class="w"> </span><span class="k">TYPE</span><span class="w"> </span><span class="n">io_airlift_http_client_type_HttpClient_name_ForDiscoveryClient_CurrentResponseProcessTime_Total</span><span class="w"> </span><span class="n">gauge</span>
+<span class="n">io_airlift_http_client_type_HttpClient_name_ForDiscoveryClient_CurrentResponseProcessTime_Total</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span>
+<span class="o">#</span><span class="w"> </span><span class="k">TYPE</span><span class="w"> </span><span class="n">io_airlift_http_client_type_HttpClient_name_ForDiscoveryClient_CurrentResponseProcessTime_P90</span><span class="w"> </span><span class="n">gauge</span>
+<span class="n">io_airlift_http_client_type_HttpClient_name_ForDiscoveryClient_CurrentResponseProcessTime_P90</span><span class="w"> </span><span class="n">NaN</span>
+</pre></div>
+</div>
+<p>The same data is available when using a browser, and logging manually.</p>
+<p>The user, <code class="docutils literal notranslate"><span class="pre">foo</span></code> in the example, must have read permission to system information
+on a secured deployment, and the URL and port must be adjusted accordingly.</p>
+<p>Each Trino node, so the coordinator and all workers, provide separate metrics
+independently.</p>
+<p>Use the property <code class="docutils literal notranslate"><span class="pre">openmetrics.jmx-object-names</span></code> in <a class="reference internal" href="../installation/deployment.html#config-properties"><span class="std std-ref">Config properties</span></a> to
+define  the JMX object names to include when retrieving all metrics. Multiple
+object names are must be separated with <code class="docutils literal notranslate"><span class="pre">|</span></code>.  Metrics use the package namespace
+for any metric. Use <code class="docutils literal notranslate"><span class="pre">:*</span></code> to expose all metrics. Use <code class="docutils literal notranslate"><span class="pre">name</span></code> to select specific
+classes or <code class="docutils literal notranslate"><span class="pre">type</span></code> for specific metric types.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">trino.plugin.exchange.filesystem:name=FileSystemExchangeStats</span></code> for metrics
+from the <code class="docutils literal notranslate"><span class="pre">FileSystemExchangeStats</span></code> class in the
+<code class="docutils literal notranslate"><span class="pre">trino.plugin.exchange.filesystem</span></code> package.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trino.plugin.exchange.filesystem.s3:name=S3FileSystemExchangeStorageStats</span></code>
+for metrics from the <code class="docutils literal notranslate"><span class="pre">S3FileSystemExchangeStorageStats</span></code> class in the
+<code class="docutils literal notranslate"><span class="pre">trino.plugin.exchange.filesystem.s3</span></code> package.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">io.trino.hdfs:*</span></code> for all metrics in the <code class="docutils literal notranslate"><span class="pre">io.trino.hdfs</span></code> package.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">java.lang:type=Memory</span></code> for all memory metrics in the <code class="docutils literal notranslate"><span class="pre">java.lang</span></code> package.</p></li>
+</ul>
+<p>Typically, Prometheus or a similar application is configured to monitor the
+endpoint. The same application can then be used to inspect the metrics data.</p>
+<p>Trino also includes a <a class="reference internal" href="../connector/prometheus.html"><span class="doc std std-doc">Prometheus connector</span></a> that allows you to query
+Prometheus data using SQL.</p>
+<section id="examples">
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<p>The following sections provide tips and tricks for your usage with small
+examples.</p>
+<p>Other configurations with tools such as
+<a class="reference external" href="https://grafana.com/docs/agent/latest/">grafana-agent</a> or <a class="reference external" href="https://grafana.com/docs/alloy/latest/">grafana alloy
+opentelemetry agent</a> are also possible,
+and can use platforms such as <a class="reference external" href="https://cortexmetrics.io/">Cortex</a> or <a class="reference external" href="https://grafana.com/oss/mimir/mimir">Grafana
+Mimir</a> for metrics storage and related
+monitoring and analysis.</p>
+<section id="simple-example-with-docker-and-prometheus">
+<h3 id="simple-example-with-docker-and-prometheus">Simple example with Docker and Prometheus<a class="headerlink" href="#simple-example-with-docker-and-prometheus" title="Link to this heading">#</a></h3>
+<p>The following steps provide a simple demo setup to run
+<a class="reference external" href="https://prometheus.io/">Prometheus</a> and Trino locally in Docker containers.</p>
+<p>Create a shared network for both servers called <code class="docutils literal notranslate"><span class="pre">platform</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>platform
+</pre></div>
+</div>
+<p>Start Trino in the background:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="o">=</span>trino<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--network<span class="o">=</span>platform<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--network-alias<span class="o">=</span>trino<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>trinodb/trino:latest
+</pre></div>
+</div>
+<p>The preceding command starts Trino and adds it to the <code class="docutils literal notranslate"><span class="pre">platform</span></code> network with
+the hostname <code class="docutils literal notranslate"><span class="pre">trino</span></code>.</p>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">prometheus.yml</span></code> configuration file with the following content, that
+point Prometheus at the <code class="docutils literal notranslate"><span class="pre">trino</span></code> hostname:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scrape_configs</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trino</span>
+<span class="w">  </span><span class="nt">basic_auth</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trino-user</span>
+<span class="w">  </span><span class="nt">static_configs</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trino:8080</span>
+</pre></div>
+</div>
+<p>Start Prometheus from the same directory as the configuration file:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--name<span class="o">=</span>prometheus<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--network<span class="o">=</span>platform<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">9090</span>:9090<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mount<span class="w"> </span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span><span class="nv">$PWD</span>/prometheus.yml,target<span class="o">=</span>/etc/prometheus/prometheus.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>prom/prometheus
+</pre></div>
+</div>
+<p>The preceding command adds Prometheus to the <code class="docutils literal notranslate"><span class="pre">platform</span></code> network. It also mounts
+the configuration file into the container so that metrics from Trino are
+gathered by Prometheus.</p>
+<p>Now everything is running.</p>
+<p>Install and run the <a class="reference internal" href="../client/cli.html"><span class="doc std std-doc">Trino CLI</span></a> or any other client application and
+submit a query such as <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">CATALOGS;</span></code> or <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">tpch.tiny.nation;</span></code>.</p>
+<p>Optionally, log into the <a class="reference internal" href="web-interface.html"><span class="doc std std-doc">Trino Web UI</span></a> at
+<a class="reference external" href="http://localhost:8080">http://localhost:8080</a> with a random username. Press
+the <strong>Finished</strong> button and inspect the details for the completed queries.</p>
+<p>Access the Prometheus UI at <a class="reference external" href="http://localhost:9090/">http://localhost:9090/</a>,
+select <strong>Status</strong> &gt; <strong>Targets</strong> and see the configured endpoint for Trino
+metrics.</p>
+<p>To see an example graph, select <strong>Graph</strong>, add the metric name
+<code class="docutils literal notranslate"><span class="pre">trino_execution_name_QueryManager_RunningQueries</span></code> in the input field and press
+<strong>Execute</strong>. Press <strong>Table</strong> for the raw data or <strong>Graph</strong> for a visualization.</p>
+<p>As a next step, run more queries and inspect the effect on the metrics.</p>
+<p>Once you are done you can stop the containers:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>stop<span class="w"> </span>prometheus
+docker<span class="w"> </span>stop<span class="w"> </span>trino
+</pre></div>
+</div>
+<p>You can start them again for further testing:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>start<span class="w"> </span>trino
+docker<span class="w"> </span>start<span class="w"> </span>prometheus
+</pre></div>
+</div>
+<p>Use the following commands to completely remove the network and containers:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>rm<span class="w"> </span>trino
+docker<span class="w"> </span>rm<span class="w"> </span>prometheus
+docker<span class="w"> </span>network<span class="w"> </span>rm<span class="w"> </span>platform
+</pre></div>
+</div>
+</section>
+</section>
+<section id="coordinator-and-worker-metrics-with-kubernetes">
+<h2 id="coordinator-and-worker-metrics-with-kubernetes">Coordinator and worker metrics with Kubernetes<a class="headerlink" href="#coordinator-and-worker-metrics-with-kubernetes" title="Link to this heading">#</a></h2>
+<p>To get a complete picture of the metrics on your cluster, you must access the
+coordinator and the worker metrics. This section details tips for setting up for
+this scenario with the <a class="reference external" href="https://github.com/trinodb/charts">Trino Helm chart</a> on
+Kubernetes.</p>
+<p>Add an annotation to flag all cluster nodes for scraping in your values for the
+Trino Helm chart:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">coordinator</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">prometheus.io/trino_scrape</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span>
+<span class="nt">worker</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">prometheus.io/trino_scrape</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span>
+</pre></div>
+</div>
+<p>Configure metrics retrieval from the workers in your Prometheus configuration:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trino-metrics-worker</span>
+<span class="w">      </span><span class="nt">scrape_interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+<span class="w">      </span><span class="nt">scrape_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+<span class="w">      </span><span class="nt">kubernetes_sd_configs</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pod</span>
+<span class="w">      </span><span class="nt">relabel_configs</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">__meta_kubernetes_pod_annotation_prometheus_io_trino_scrape</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">keep</span><span class="w"> </span><span class="c1"># scrape only pods with the trino scrape anotation</span>
+<span class="w">        </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">__meta_kubernetes_pod_container_name</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">keep</span><span class="w"> </span><span class="c1"># dont try to scrape non trino container</span>
+<span class="w">        </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trino-worker</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hashmod</span>
+<span class="w">        </span><span class="nt">modulus</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$(SHARDS)</span>
+<span class="w">        </span><span class="nt">source_labels</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">__address__</span>
+<span class="w">        </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">__tmp_hash</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">keep</span>
+<span class="w">        </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$(SHARD)</span>
+<span class="w">        </span><span class="nt">source_labels</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">__tmp_hash</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">__meta_kubernetes_pod_name</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">replace</span>
+<span class="w">        </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pod</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">__meta_kubernetes_pod_container_name</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">replace</span>
+<span class="w">        </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">container</span>
+<span class="w">      </span><span class="nt">metric_relabel_configs</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">__name__</span><span class="p p-Indicator">]</span>
+<span class="w">            </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="s">".+_FifteenMinute.+|.+_FiveMinute.+|.+IterativeOptimizer.+|.*io_airlift_http_client_type_HttpClient.+"</span>
+<span class="w">            </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drop</span><span class="w"> </span><span class="c1"># droping some highly granular metrics </span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">__meta_kubernetes_pod_name</span><span class="p p-Indicator">]</span>
+<span class="w">            </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="s">".+"</span>
+<span class="w">            </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pod</span>
+<span class="w">            </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">replace</span><span class="w"> </span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">__meta_kubernetes_pod_container_name</span><span class="p p-Indicator">]</span>
+<span class="w">            </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="s">".+"</span>
+<span class="w">            </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">container</span>
+<span class="w">            </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">replace</span><span class="w"> </span>
+<span class="w">            </span>
+<span class="w">      </span><span class="nt">scheme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+<span class="w">      </span><span class="nt">tls_config</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">insecure_skip_verify</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">basic_auth</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysuer</span><span class="w"> </span><span class="c1"># replace with a user with system information permission </span>
+<span class="w">        </span><span class="c1"># DO NOT ADD PASSWORD</span>
+</pre></div>
+</div>
+<p>The worker authentication uses a user with access to the system information, yet
+does not add a password and uses access via HTTP.</p>
+<p>Configure metrics retrieval from the coordinator in your Prometheus
+configuration:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trino-metrics-coordinator</span>
+<span class="w">      </span><span class="nt">scrape_interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+<span class="w">      </span><span class="nt">scrape_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+<span class="w">      </span><span class="nt">kubernetes_sd_configs</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pod</span>
+<span class="w">      </span><span class="nt">relabel_configs</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">__meta_kubernetes_pod_annotation_prometheus_io_trino_scrape</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">keep</span><span class="w"> </span><span class="c1"># scrape only pods with the trino scrape anotation</span>
+<span class="w">        </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">__meta_kubernetes_pod_container_name</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">keep</span><span class="w"> </span><span class="c1"># dont try to scrape non trino container</span>
+<span class="w">        </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trino-coordinator</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hashmod</span>
+<span class="w">        </span><span class="nt">modulus</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$(SHARDS)</span>
+<span class="w">        </span><span class="nt">source_labels</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">__address__</span>
+<span class="w">        </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">__tmp_hash</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">keep</span>
+<span class="w">        </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$(SHARD)</span>
+<span class="w">        </span><span class="nt">source_labels</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">__tmp_hash</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">__meta_kubernetes_pod_name</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">replace</span>
+<span class="w">        </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pod</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">__meta_kubernetes_pod_container_name</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">replace</span>
+<span class="w">        </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">container</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">replace</span><span class="w">  </span><span class="c1"># overide the address to the https ingress address </span>
+<span class="w">        </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">__address__</span>
+<span class="w">        </span><span class="nt">replacement</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">.Values.trinourl</span><span class="w"> </span><span class="p p-Indicator">}}</span><span class="w"> </span>
+<span class="w">      </span><span class="nt">metric_relabel_configs</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">__name__</span><span class="p p-Indicator">]</span>
+<span class="w">            </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="s">".+_FifteenMinute.+|.+_FiveMinute.+|.+IterativeOptimizer.+|.*io_airlift_http_client_type_HttpClient.+"</span>
+<span class="w">            </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">drop</span><span class="w"> </span><span class="c1"># droping some highly granular metrics </span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">__meta_kubernetes_pod_name</span><span class="p p-Indicator">]</span>
+<span class="w">            </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="s">".+"</span>
+<span class="w">            </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pod</span>
+<span class="w">            </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">replace</span><span class="w"> </span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source_labels</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">__meta_kubernetes_pod_container_name</span><span class="p p-Indicator">]</span>
+<span class="w">            </span><span class="nt">regex</span><span class="p">:</span><span class="w"> </span><span class="s">".+"</span>
+<span class="w">            </span><span class="nt">target_label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">container</span>
+<span class="w">            </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">replace</span><span class="w"> </span>
+<span class="w">            </span>
+<span class="w">      </span><span class="nt">scheme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https</span>
+<span class="w">      </span><span class="nt">tls_config</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">insecure_skip_verify</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">basic_auth</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysuer</span><span class="w"> </span><span class="c1"># replace with a user with system information permission </span>
+<span class="w">        </span><span class="nt">password_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/some/password/file</span>
+</pre></div>
+</div>
+<p>The coordinator authentication uses a user with access to the system information
+and requires authentication and access via HTTPS.</p>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="opentelemetry.html" title="Observability with OpenTelemetry"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> Previous </span> Observability with OpenTelemetry </span>
+              </div>
+            </a>
+          
+          
+            <a href="properties.html" title="Properties reference"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> Next </span> Properties reference </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>

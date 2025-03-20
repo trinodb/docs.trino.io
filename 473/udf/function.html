@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Alata&family=Open+Sans:ital,wght%400,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="2196f3">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>FUNCTION &#8212; Trino 473 Documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=bbebba6e" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css?v=79c92029" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/trino.css?v=b5fc78e7" />
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=a6b69954"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <link rel="canonical" href="https://trino.io/docs/current/udf/function.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="SQL user-defined functions" href="sql.html" />
+    <link rel="prev" title="Introduction to UDFs" href="introduction.html" />
+  
+   
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJ94STKPJ5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RJ94STKPJ5');
+      gtag('config', 'UA-133457846-1');
+      gtag('config', 'AW-1036784065');
+      window._linkedin_data_partner_ids = ['2842796'];
+    </script>
+    <script async src="https://snap.licdn.com/li.lms-analytics/insight.min.js"></script>
+  </head>
+  <body dir=ltr
+        data-md-color-primary= data-md-color-accent=>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#udf/function" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+    <nav class="md-header-nav md-grid">
+        <div class="md-flex navheader">
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <a href="/" title="Trino"
+                   class="md-header-nav__button md-logo">
+                    
+                    <!-- https://github.com/bashtage/sphinx-material/issues/136 -->
+                    <img src="../_static/trino.svg" height="26"
+                         alt="Trino 473 Documentation logo">
+                    
+                </a>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch">
+                <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+                    <span class="md-header-nav__topic">Trino 473 Documentation</span>
+                    <span class="md-header-nav__topic"> FUNCTION </span>
+                </div>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+                
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+            </div>
+            
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <div class="md-header-nav__source">
+                    <a href="https://github.com/trinodb/trino" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Trino
+  </div>
+</a>
+                </div>
+            </div>
+            
+            
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../../versions.json",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+        </div>
+    </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    <!-- empty -->
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+    <label class="md-nav__title md-nav__title--site" for="__drawer">
+        <a href="/" title="Trino" class="md-nav__button md-logo">
+            
+            <img src="../_static/trino.svg" alt=" logo" width="48" height="48">
+            
+        </a>
+        <a href="../index.html"
+           title="Trino 473 Documentation">Trino 473 Documentation</a>
+    </label>
+    <div class="md-nav__source">
+        <a href="https://github.com/trinodb/trino" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Trino
+  </div>
+</a>
+    </div>
+    
+    
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+    
+      <a href="../overview.html" class="md-nav__link">Overview</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../installation.html" class="md-nav__link">Installation</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../client.html" class="md-nav__link">Clients</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../security.html" class="md-nav__link">Security</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../admin.html" class="md-nav__link">Administration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../optimizer.html" class="md-nav__link">Query optimizer</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../connector.html" class="md-nav__link">Connectors</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../object-storage.html" class="md-nav__link">Object storage</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../functions.html" class="md-nav__link">Functions and operators</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../udf.html" class="md-nav__link">User-defined functions</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="introduction.html" class="md-nav__link">Introduction to UDFs</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> FUNCTION </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">FUNCTION</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+    <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#synopsis" class="md-nav__link">Synopsis</a>
+        </li>
+        <li class="md-nav__item"><a href="#description" class="md-nav__link">Description</a>
+        </li>
+        <li class="md-nav__item"><a href="#examples" class="md-nav__link">Examples</a>
+        </li>
+        <li class="md-nav__item"><a href="#see-also" class="md-nav__link">See also</a>
+        </li>
+    </ul>
+</nav>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="sql.html" class="md-nav__link">SQL user-defined functions</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="python.html" class="md-nav__link">Python user-defined functions</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../language.html" class="md-nav__link">SQL language</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../sql.html" class="md-nav__link">SQL statement syntax</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../develop.html" class="md-nav__link">Developer guide</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../glossary.html" class="md-nav__link">Glossary</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../appendix.html" class="md-nav__link">Appendix</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../release.html" class="md-nav__link">Release notes</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+    <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#synopsis" class="md-nav__link">Synopsis</a>
+        </li>
+        <li class="md-nav__item"><a href="#description" class="md-nav__link">Description</a>
+        </li>
+        <li class="md-nav__item"><a href="#examples" class="md-nav__link">Examples</a>
+        </li>
+        <li class="md-nav__item"><a href="#see-also" class="md-nav__link">See also</a>
+        </li>
+    </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="function">
+<h1 id="udf-function--page-root">FUNCTION<a class="headerlink" href="#udf-function--page-root" title="Link to this heading">#</a></h1>
+<section id="synopsis">
+<h2 id="synopsis">Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading">#</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>FUNCTION name ( [ parameter_name data_type [, ...] ] )
+  RETURNS type
+  [ LANGUAGE language]
+  [ NOT? DETERMINISTIC ]
+  [ RETURNS NULL ON NULL INPUT ]
+  [ CALLED ON NULL INPUT ]
+  [ SECURITY { DEFINER | INVOKER } ]
+  [ COMMENT description]
+  [ WITH ( property_name = expression [, ...] ) ]
+  { statements | AS definition }
+</pre></div>
+</div>
+</section>
+<section id="description">
+<h2 id="description">Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
+<p>Declare a <a class="reference internal" href="../udf.html"><span class="doc std std-doc">user-defined function</span></a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">name</span></code> of the UDF. <a class="reference internal" href="introduction.html#udf-inline"><span class="std std-ref">Inline user-defined functions</span></a> can use a simple string. <a class="reference internal" href="introduction.html#udf-catalog"><span class="std std-ref">Catalog user-defined functions</span></a>
+must qualify the name of the catalog and schema, delimited by <code class="docutils literal notranslate"><span class="pre">.</span></code>, to store the
+UDF or rely on the <a class="reference internal" href="../admin/properties-sql-environment.html"><span class="doc std std-doc">default catalog and schema for UDF
+storage</span></a>.</p>
+<p>The list of parameters is a comma-separated list of names <code class="docutils literal notranslate"><span class="pre">parameter_name</span></code> and
+data types <code class="docutils literal notranslate"><span class="pre">data_type</span></code>, see <a class="reference internal" href="../language/types.html"><span class="doc std std-doc">data type</span></a>. An empty list, specified as
+<code class="docutils literal notranslate"><span class="pre">()</span></code> is also valid.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type</span></code> value after the <code class="docutils literal notranslate"><span class="pre">RETURNS</span></code> keyword identifies the <a class="reference internal" href="../language/types.html"><span class="doc std std-doc">data
+type</span></a> of the UDF output.</p>
+<p>The optional <code class="docutils literal notranslate"><span class="pre">LANGUAGE</span></code> characteristic identifies the language used for the UDF
+definition with <code class="docutils literal notranslate"><span class="pre">language</span></code>. The <code class="docutils literal notranslate"><span class="pre">SQL</span></code> and <code class="docutils literal notranslate"><span class="pre">PYTHON</span></code> languages are supported by
+default. Additional languages may be supported via a language engine plugin.
+If not specified, the default language is <code class="docutils literal notranslate"><span class="pre">SQL</span></code>.</p>
+<p>The optional <code class="docutils literal notranslate"><span class="pre">DETERMINISTIC</span></code> or <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">DETERMINISTIC</span></code> characteristic declares that
+the UDF is deterministic. This means that repeated UDF calls with identical
+input parameters yield the same result. A UDF is non-deterministic if it calls
+any non-deterministic UDFs and <a class="reference internal" href="../functions.html"><span class="doc std std-doc">functions</span></a>. By default, UDFs are
+assumed to have a deterministic behavior.</p>
+<p>The optional <code class="docutils literal notranslate"><span class="pre">RETURNS</span> <span class="pre">NULL</span> <span class="pre">ON</span> <span class="pre">NULL</span> <span class="pre">INPUT</span></code> characteristic declares that the UDF
+returns a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> value when any of the input parameters are <code class="docutils literal notranslate"><span class="pre">NULL</span></code>. The UDF is
+not invoked with a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> input value.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">CALLED</span> <span class="pre">ON</span> <span class="pre">NULL</span> <span class="pre">INPUT</span></code> characteristic declares that the UDF is invoked with
+<code class="docutils literal notranslate"><span class="pre">NULL</span></code> input parameter values.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">RETURNS</span> <span class="pre">NULL</span> <span class="pre">ON</span> <span class="pre">NULL</span> <span class="pre">INPUT</span></code> and <code class="docutils literal notranslate"><span class="pre">CALLED</span> <span class="pre">ON</span> <span class="pre">NULL</span> <span class="pre">INPUT</span></code> characteristics are
+mutually exclusive, with <code class="docutils literal notranslate"><span class="pre">CALLED</span> <span class="pre">ON</span> <span class="pre">NULL</span> <span class="pre">INPUT</span></code> as the default.</p>
+<p>The security declaration of <code class="docutils literal notranslate"><span class="pre">SECURITY</span> <span class="pre">INVOKER</span></code> or <code class="docutils literal notranslate"><span class="pre">SECURITY</span> <span class="pre">DEFINER</span></code> is only
+valid for catalog UDFs. It sets the mode for processing the UDF with the
+permissions of the user who calls the UDF (<code class="docutils literal notranslate"><span class="pre">INVOKER</span></code>) or the user who created
+the UDF (<code class="docutils literal notranslate"><span class="pre">DEFINER</span></code>).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">COMMENT</span></code> characteristic can be used to provide information about the
+function to other users as <code class="docutils literal notranslate"><span class="pre">description</span></code>. The information is accessible with
+<a class="reference internal" href="../sql/show-functions.html"><span class="doc std std-doc">SHOW FUNCTIONS</span></a>.</p>
+<p>The optional <code class="docutils literal notranslate"><span class="pre">WITH</span></code> clause can be used to specify properties for the function.
+The available properties vary based on the function language. For
+<a class="reference internal" href="python.html"><span class="doc std std-doc">Python user-defined functions</span></a>, the <code class="docutils literal notranslate"><span class="pre">handler</span></code> property specifies the name of the Python
+function to invoke.</p>
+<p>For SQL UDFs the body of the UDF can either be a simple single <code class="docutils literal notranslate"><span class="pre">RETURN</span></code>
+statement with an expression, or compound list of <code class="docutils literal notranslate"><span class="pre">statements</span></code> in a <code class="docutils literal notranslate"><span class="pre">BEGIN</span></code>
+block. UDF must contain a <code class="docutils literal notranslate"><span class="pre">RETURN</span></code> statement at the end of the top-level block,
+even if it’s unreachable.</p>
+<p>For UDFs in other languages, the <code class="docutils literal notranslate"><span class="pre">definition</span></code> is enclosed in a <code class="docutils literal notranslate"><span class="pre">$$</span></code>-quoted
+string.</p>
+</section>
+<section id="examples">
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<p>A simple catalog function:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">example</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">meaning_of_life</span><span class="p">()</span>
+<span class="w">  </span><span class="k">RETURNS</span><span class="w"> </span><span class="nb">BIGINT</span>
+<span class="w">  </span><span class="k">RETURN</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>And used:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">example</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">meaning_of_life</span><span class="p">();</span><span class="w"> </span><span class="c1">-- returns 42</span>
+</pre></div>
+</div>
+<p>Equivalent usage with an inline function:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">WITH</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">meaning_of_life</span><span class="p">()</span>
+<span class="w">  </span><span class="k">RETURNS</span><span class="w"> </span><span class="nb">BIGINT</span>
+<span class="w">  </span><span class="k">RETURN</span><span class="w"> </span><span class="mi">42</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">meaning_of_life</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Further examples of varying complexity that cover usage of the <code class="docutils literal notranslate"><span class="pre">FUNCTION</span></code>
+statement in combination with other statements are available in the <a class="reference internal" href="sql/examples.html"><span class="doc std std-doc">SQL UDF
+documentation</span></a> and the <a class="reference internal" href="python.html"><span class="doc std std-doc">Python UDF
+documentation</span></a>.</p>
+</section>
+<section id="see-also">
+<h2 id="see-also">See also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../udf.html"><span class="doc std std-doc">User-defined functions</span></a></p></li>
+<li><p><a class="reference internal" href="sql.html"><span class="doc std std-doc">SQL user-defined functions</span></a></p></li>
+<li><p><a class="reference internal" href="python.html"><span class="doc std std-doc">Python user-defined functions</span></a></p></li>
+<li><p><a class="reference internal" href="../sql/create-function.html"><span class="doc std std-doc">CREATE FUNCTION</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="introduction.html" title="Introduction to UDFs"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> Previous </span> Introduction to UDFs </span>
+              </div>
+            </a>
+          
+          
+            <a href="sql.html" title="SQL user-defined functions"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> Next </span> SQL user-defined functions </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>
