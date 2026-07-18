@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+<!-- fonts loaded from trino.css -->
+
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+<!-- material icons loaded from trino.css -->
+
+  <meta name="theme-color" content="2196f3">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>Group mapping &#8212; Trino 483 Documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=bbebba6e" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css?v=79c92029" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/trino.css?v=bb1a13b7" />
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=d334206b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <link rel="canonical" href="https://trino.io/docs/current/security/group-mapping.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="System access control" href="built-in-system-access-control.html" />
+    <link rel="prev" title="User mapping" href="user-mapping.html" />
+  
+   
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJ94STKPJ5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RJ94STKPJ5');
+      gtag('config', 'UA-133457846-1');
+      gtag('config', 'AW-1036784065');
+      window._linkedin_data_partner_ids = ['2842796'];
+    </script>
+    <script async src="https://snap.licdn.com/li.lms-analytics/insight.min.js"></script>
+  </head>
+  <body dir=ltr
+        data-md-color-primary= data-md-color-accent=>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#security/group-mapping" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+    <nav class="md-header-nav md-grid">
+        <div class="md-flex navheader">
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <a href="/" title="Trino"
+                   class="md-header-nav__button md-logo">
+                    
+                    <!-- https://github.com/bashtage/sphinx-material/issues/136 -->
+                    <img src="../_static/trino.svg" height="26"
+                         alt="Trino 483 Documentation logo">
+                    
+                </a>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch">
+                <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+                    <span class="md-header-nav__topic">Trino 483 Documentation</span>
+                    <span class="md-header-nav__topic"> Group mapping </span>
+                </div>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+                
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+            </div>
+            
+            <div class="md-flex__cell md-flex__cell--shrink">
+                <div class="md-header-nav__source">
+                    <a href="https://github.com/trinodb/trino" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Trino
+  </div>
+</a>
+                </div>
+            </div>
+            
+            
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../../versions.json",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+        </div>
+    </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    <!-- empty -->
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+    <label class="md-nav__title md-nav__title--site" for="__drawer">
+        <a href="/" title="Trino" class="md-nav__button md-logo">
+            
+            <img src="../_static/trino.svg" alt=" logo" width="48" height="48">
+            
+        </a>
+        <a href="../index.html"
+           title="Trino 483 Documentation">Trino 483 Documentation</a>
+    </label>
+    <div class="md-nav__source">
+        <a href="https://github.com/trinodb/trino" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Trino
+  </div>
+</a>
+    </div>
+    
+    
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+    
+      <a href="../overview.html" class="md-nav__link">Overview</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../installation.html" class="md-nav__link">Installation</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../client.html" class="md-nav__link">Clients</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../security.html" class="md-nav__link">Security</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="overview.html" class="md-nav__link">Security overview</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="tls.html" class="md-nav__link">TLS and HTTPS</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="inspect-pem.html" class="md-nav__link">PEM files</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="inspect-jks.html" class="md-nav__link">JKS files</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="authentication-types.html" class="md-nav__link">Authentication types</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="password-file.html" class="md-nav__link">Password file authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="ldap.html" class="md-nav__link">LDAP authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="salesforce.html" class="md-nav__link">Salesforce authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="oauth2.html" class="md-nav__link">OAuth 2.0 authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="kerberos.html" class="md-nav__link">Kerberos authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="certificate.html" class="md-nav__link">Certificate authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="jwt.html" class="md-nav__link">JWT authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="user-mapping.html" class="md-nav__link">User mapping</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> Group mapping </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">Group mapping</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+    <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#integration-with-access-control" class="md-nav__link">Integration with access control</a>
+        </li>
+        <li class="md-nav__item"><a href="#file-group-provider" class="md-nav__link">File group provider</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#configuration" class="md-nav__link">Configuration</a>
+        </li>
+        <li class="md-nav__item"><a href="#group-file-format" class="md-nav__link">Group file format</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#ldap-group-provider" class="md-nav__link">LDAP group provider</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#id3" class="md-nav__link">Configuration</a>
+        </li>
+        <li class="md-nav__item"><a href="#example-configurations" class="md-nav__link">Example configurations</a>
+        </li></ul>
+            </nav>
+        </li>
+    </ul>
+</nav>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="built-in-system-access-control.html" class="md-nav__link">System access control</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="file-system-access-control.html" class="md-nav__link">File-based access control</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="opa-access-control.html" class="md-nav__link">Open Policy Agent access control</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="ranger-access-control.html" class="md-nav__link">Ranger access control</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="internal-communication.html" class="md-nav__link">Secure internal communication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="secrets.html" class="md-nav__link">Secrets</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../admin.html" class="md-nav__link">Administration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../optimizer.html" class="md-nav__link">Query optimizer</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../connector.html" class="md-nav__link">Connectors</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../object-storage.html" class="md-nav__link">Object storage</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../functions.html" class="md-nav__link">Functions and operators</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../udf.html" class="md-nav__link">User-defined functions</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../language.html" class="md-nav__link">SQL language</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../sql.html" class="md-nav__link">SQL statement syntax</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../develop.html" class="md-nav__link">Developer guide</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../glossary.html" class="md-nav__link">Glossary</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../appendix.html" class="md-nav__link">Appendix</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../release.html" class="md-nav__link">Release notes</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+    <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#integration-with-access-control" class="md-nav__link">Integration with access control</a>
+        </li>
+        <li class="md-nav__item"><a href="#file-group-provider" class="md-nav__link">File group provider</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#configuration" class="md-nav__link">Configuration</a>
+        </li>
+        <li class="md-nav__item"><a href="#group-file-format" class="md-nav__link">Group file format</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#ldap-group-provider" class="md-nav__link">LDAP group provider</a><nav class="md-nav">
+                <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#id3" class="md-nav__link">Configuration</a>
+        </li>
+        <li class="md-nav__item"><a href="#example-configurations" class="md-nav__link">Example configurations</a>
+        </li></ul>
+            </nav>
+        </li>
+    </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="group-mapping">
+<h1 id="security-group-mapping--page-root">Group mapping<a class="headerlink" href="#security-group-mapping--page-root" title="Link to this heading">#</a></h1>
+<p>Group providers in Trino map usernames onto groups for easier access control
+and resource group management.</p>
+<p>Configure a group provider by creating an <code class="docutils literal notranslate"><span class="pre">etc/group-provider.properties</span></code> file
+on the coordinator:</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><span class="na">group-provider.name</span><span class="o">=</span><span class="s">file</span>
+</pre></div>
+</div>
+<p>The value for <code class="docutils literal notranslate"><span class="pre">group-provider.name</span></code> must be either <code class="docutils literal notranslate"><span class="pre">file</span></code> or <code class="docutils literal notranslate"><span class="pre">ldap</span></code> and the
+configuration of the chosen group provider must be included in the same file.</p>
+<table id="id4">
+<caption><span class="caption-text">Group provider configuration</span><a class="headerlink" href="#id4" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 40%"/>
+<col style="width: 60%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">group-provider.name</span></code></p></td>
+<td><p>Name of the group provider to use.
+Supported values are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">file</span></code>: <a class="reference internal" href="#file-group-provider"><span class="std std-ref">See configuration</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ldap</span></code>: <a class="reference internal" href="#ldap-group-provider"><span class="std std-ref">See configuration</span></a></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">group-provider.group-case</span></code></p></td>
+<td><p>Optional transformation of the case of the group name.
+Supported values are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">keep</span></code>: default, no conversion</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">upper</span></code>: convert group name to <em>UPPERCASE</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lower</span></code>: converts the group name to <em>lowercase</em></p></li>
+</ul>
+<p>Defaults to <code class="docutils literal notranslate"><span class="pre">keep</span></code>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="integration-with-access-control">
+<h2 id="integration-with-access-control">Integration with access control<a class="headerlink" href="#integration-with-access-control" title="Link to this heading">#</a></h2>
+<p>Groups resolved by the group provider are passed to Trino’s system access
+control engine. Access control rules can reference these group names to grant
+or restrict permissions.</p>
+</section>
+<section id="file-group-provider">
+<span id="id1"></span><h2 id="file-group-provider">File group provider<a class="headerlink" href="#file-group-provider" title="Link to this heading">#</a></h2>
+<p>The file group provider resolves group memberships with the configuration in
+the group-provider.properties file on the coordinator.</p>
+<section id="configuration">
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Link to this heading">#</a></h3>
+<p>Enable the file group provider by creating an <code class="docutils literal notranslate"><span class="pre">etc/group-provider.properties</span></code>
+file on the coordinator:</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><span class="na">group-provider.name</span><span class="o">=</span><span class="s">file</span>
+<span class="na">file.group-file</span><span class="o">=</span><span class="s">/path/to/group.txt</span>
+</pre></div>
+</div>
+<p>The following configuration properties are available:</p>
+<table id="id5">
+<caption><span class="caption-text">File group provider configuration</span><a class="headerlink" href="#id5" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 40%"/>
+<col style="width: 60%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">file.group-file</span></code></p></td>
+<td><p>Path of the group file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">file.refresh-period</span></code></p></td>
+<td><p><a class="reference internal" href="../admin/properties.html#prop-type-duration"><span class="std std-ref">Duration</span></a> between refreshing the group mapping
+configuration from the file. Defaults to <code class="docutils literal notranslate"><span class="pre">5s</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="group-file-format">
+<h3 id="group-file-format">Group file format<a class="headerlink" href="#group-file-format" title="Link to this heading">#</a></h3>
+<p>The group file contains a list of groups and members, one per line,
+separated by a colon. Users are separated by a comma.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>group_name:user_1,user_2,user_3
+</pre></div>
+</div>
+</section>
+</section>
+<section id="ldap-group-provider">
+<span id="id2"></span><h2 id="ldap-group-provider">LDAP group provider<a class="headerlink" href="#ldap-group-provider" title="Link to this heading">#</a></h2>
+<p>The LDAP group provider resolves user group memberships from configuration
+retrieved from an LDAP server. This allows access rules to be defined based on
+LDAP groups instead of individual users.</p>
+<section id="id3">
+<h3 id="id3">Configuration<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>Enable LDAP group provider by creating an <code class="docutils literal notranslate"><span class="pre">etc/group-provider.properties</span></code> file
+on the coordinator and add further configuration for the LDAP server
+connections and other information as detailed in the following sections.</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><span class="na">group-provider.name</span><span class="o">=</span><span class="s">ldap</span>
+</pre></div>
+</div>
+<table id="id6">
+<caption><span class="caption-text">Generic LDAP properties</span><a class="headerlink" href="#id6" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 40%"/>
+<col style="width: 60%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ldap.url</span></code></p></td>
+<td><p>LDAP server URI.  For example, <code class="docutils literal notranslate"><span class="pre">ldap://host:389</span></code> or <code class="docutils literal notranslate"><span class="pre">ldaps://host:636</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ldap.allow-insecure</span></code></p></td>
+<td><p>Allow insecure connection to the LDAP server. Defaults to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ldap.ssl.keystore.path</span></code></p></td>
+<td><p>Path to the PEM or JKS key store.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ldap.ssl.keystore.password</span></code></p></td>
+<td><p>Password for the key store.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ldap.ssl.truststore.path</span></code></p></td>
+<td><p>Path to the PEM or JKS trust store.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ldap.ssl.truststore.password</span></code></p></td>
+<td><p>Password for the trust store.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ldap.ignore-referrals</span></code></p></td>
+<td><p>Referrals allow finding entries across multiple LDAP servers. Ignore them
+to only search within one LDAP server. Defaults to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ldap.timeout.connect</span></code></p></td>
+<td><p>Timeout <a class="reference internal" href="../admin/properties.html#prop-type-duration"><span class="std std-ref">duration</span></a> for establishing a connection.
+Defaults to <code class="docutils literal notranslate"><span class="pre">1m</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ldap.timeout.read</span></code></p></td>
+<td><p>Timeout <a class="reference internal" href="../admin/properties.html#prop-type-duration"><span class="std std-ref">duration</span></a> for reading data from LDAP.
+Defaults to <code class="docutils literal notranslate"><span class="pre">1m</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ldap.admin-user</span></code></p></td>
+<td><p>Bind distinguished name for admin user. For example,
+<code class="docutils literal notranslate"><span class="pre">CN=UserName,OU=City,OU=State,DC=domain,DC=domain_root</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ldap.admin-password</span></code></p></td>
+<td><p>Bind password used for the admin user.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ldap.user-base-dn</span></code></p></td>
+<td><p>Base distinguished name for users. For example, <code class="docutils literal notranslate"><span class="pre">dc=example,dc=com</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ldap.user-search-filter</span></code></p></td>
+<td><p>LDAP filter to find user entries; <code class="docutils literal notranslate"><span class="pre">{0}</span></code> is replaced with the Trino username.
+For example, <code class="docutils literal notranslate"><span class="pre">(cn={0})</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ldap.group-name-attribute</span></code></p></td>
+<td><p>Attribute to extract group name from group entry. For example, <code class="docutils literal notranslate"><span class="pre">cn</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ldap.use-group-filter</span></code></p></td>
+<td><p>Whether to use search-based group resolution. Defaults to <code class="docutils literal notranslate"><span class="pre">true</span></code>.
+When <code class="docutils literal notranslate"><span class="pre">false</span></code>, Trino uses the attribute-based method.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Group resolution behavior is controlled by the <code class="docutils literal notranslate"><span class="pre">ldap.use-group-filter</span></code> property.
+With search-based group resolution, Trino searches for group entries that
+include the user DN. This requires the following properties:</p>
+<table id="id7">
+<caption><span class="caption-text">Search-based group resolution</span><a class="headerlink" href="#id7" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 40%"/>
+<col style="width: 60%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ldap.group-base-dn</span></code></p></td>
+<td><p>Base distinguished name for groups. For example, <code class="docutils literal notranslate"><span class="pre">dc=example,dc=com</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ldap.group-search-filter</span></code></p></td>
+<td><p>Search filter for group documents. For example, <code class="docutils literal notranslate"><span class="pre">(cn=trino_*)</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ldap.group-search-member-attribute</span></code></p></td>
+<td><p>Attribute from group documents used for filtering by member. For example,
+<code class="docutils literal notranslate"><span class="pre">cn</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>In case of attribute-based group resolution, Trino reads the group list
+directly from a user attribute. This requires the following property:</p>
+<table id="id8">
+<caption><span class="caption-text">Attribute-based (single query) group resolution</span><a class="headerlink" href="#id8" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 40%"/>
+<col style="width: 60%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ldap.user-member-of-attribute</span></code></p></td>
+<td><p>Group membership attribute in user documents. For example, <code class="docutils literal notranslate"><span class="pre">memberOf</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="example-configurations">
+<h3 id="example-configurations">Example configurations<a class="headerlink" href="#example-configurations" title="Link to this heading">#</a></h3>
+<p>The following configuration is an example for an OpenLDAP (search-based)
+group provider:</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><span class="na">group-provider.name</span><span class="o">=</span><span class="s">ldap</span>
+<span class="na">group-provider.group-case</span><span class="o">=</span><span class="s">lower</span>
+
+<span class="na">ldap.url</span><span class="o">=</span><span class="s">ldap://ldap.example.com:389</span>
+<span class="na">ldap.admin-user</span><span class="o">=</span><span class="s">cn=admin,dc=example,dc=com</span>
+<span class="na">ldap.admin-password</span><span class="o">=</span><span class="s">your_password</span>
+<span class="na">ldap.group-name-attribute</span><span class="o">=</span><span class="s">cn</span>
+<span class="na">ldap.user-base-dn</span><span class="o">=</span><span class="s">ou=users,dc=example,dc=com</span>
+<span class="na">ldap.user-search-filter</span><span class="o">=</span><span class="s">(uid={0})</span>
+<span class="na">ldap.use-group-filter</span><span class="o">=</span><span class="s">true</span>
+
+<span class="na">ldap.group-base-dn</span><span class="o">=</span><span class="s">ou=groups,dc=example,dc=com</span>
+<span class="na">ldap.group-search-filter</span><span class="o">=</span><span class="s">(cn=trino_*)</span>
+<span class="na">ldap.group-search-member-attribute</span><span class="o">=</span><span class="s">member</span>
+</pre></div>
+</div>
+<p>The following configuration is an example for an Active Directory
+(single query, attribute-based) group provider:</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><span class="na">group-provider.name</span><span class="o">=</span><span class="s">ldap</span>
+<span class="na">group-provider.group-case</span><span class="o">=</span><span class="s">lower</span>
+
+<span class="na">ldap.url</span><span class="o">=</span><span class="s">ldaps://ad.example.com:636</span>
+<span class="na">ldap.admin-user</span><span class="o">=</span><span class="s">cn=admin,dc=example,dc=com</span>
+<span class="na">ldap.admin-password</span><span class="o">=</span><span class="s">your_password</span>
+<span class="na">ldap.group-name-attribute</span><span class="o">=</span><span class="s">cn</span>
+<span class="na">ldap.user-base-dn</span><span class="o">=</span><span class="s">ou=users,dc=example,dc=com</span>
+<span class="na">ldap.user-search-filter</span><span class="o">=</span><span class="s">(sAMAccountName={0})</span>
+<span class="na">ldap.use-group-filter</span><span class="o">=</span><span class="s">false</span>
+
+<span class="na">ldap.user-member-of-attribute</span><span class="o">=</span><span class="s">memberOf</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="user-mapping.html" title="User mapping"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> Previous </span> User mapping </span>
+              </div>
+            </a>
+          
+          
+            <a href="built-in-system-access-control.html" title="System access control"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> Next </span> System access control </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>
